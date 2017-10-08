@@ -6,6 +6,7 @@ const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoDog = require('../img/ego/dog.svg');
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
+const { toast } = require('react-toastify');
 
 const addCompanyModalStyles = {
   content: {
@@ -49,9 +50,9 @@ class Compagnies extends React.Component<CompanyContainer.Props, CompanyContaine
       }
     }
 
-    this.addCompanyOnRequestOpen = this.addCompanyOnRequestOpen.bind(this);
+    this.addCompany = this.addCompany.bind(this);
     this.addCompanyOnRequestClose = this.addCompanyOnRequestClose.bind(this);
-    this.addCompany = this.addCompanyOnRequestClose.bind(this);
+    this.addCompanyOnRequestOpen = this.addCompanyOnRequestOpen.bind(this);
   }
 
   addCompanyOnRequestOpen(){
@@ -67,6 +68,11 @@ class Compagnies extends React.Component<CompanyContainer.Props, CompanyContaine
   }
 
   addCompany(e: any){
+    e.preventDefault();
+    toast("Company added...");
+    this.setState({
+      addCompanyModalIsOpen: false
+    })
   }
 
   addCompanyHandleChanges(company: string, e: any) {
@@ -97,14 +103,14 @@ class Compagnies extends React.Component<CompanyContainer.Props, CompanyContaine
             <div className="modal-content">
               <img className="visual-tip" src={egoCheckHexagon} />
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-              <form className="addCompanyForm">
+              {/* <form className="addCompanyForm">
                 <table>
                   <tr>
                     <td className="label"><label>Name:</label></td>
                     <td><input className="value" type="text" value={this.state.addCompany.name} onChange={(e) => this.addCompanyHandleChanges('name', e)} /></td>
                   </tr>
                 </table>
-              </form>
+              </form> */}
             </div>
             <div className="modal-actions">
               <button onClick={(e) => this.addCompany(e)}>Add</button>
