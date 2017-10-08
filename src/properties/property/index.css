@@ -1,0 +1,59 @@
+.property{
+    display: inline-block;
+    border-radius: 3px;
+    width: 50%;
+    background-color: transparent;
+}
+
+.property .description{
+    position: relative;
+    padding: 24px 8px 16px 16px;
+    border-left: solid 1px #399AFF;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    margin: 8px 8px 8px 0;
+    color: #595959;
+}
+
+.property .description .address{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.8em;
+    color: #A0A0A0;
+}
+
+.property .description .balance{
+    position: absolute;
+    top: 20px;
+    right: 8px;
+    font-size: 0.8em;
+    color: #A0A0A0;
+}
+
+.property .description .name{
+    max-width: 75%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    margin-top: 4px;
+    line-height: 1.2em;
+    font-size: 1.8em;
+}
+
+.property .description .location{
+    margin-top: 8px;
+    color: #C0C0C0;
+}
+
+.property .description .location .icon{
+    width: 16px;
+}
+
+.property .description .flag-icon{
+    float: left;
+    margin-left: 8px;
+    margin-top: 4px;
+    width: 24px;
+}

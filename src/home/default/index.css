@@ -1,0 +1,23 @@
+.default{
+    background-color: transparent;
+}
+
+.default .content{
+    position: relative;
+    width: 1180px;
+    margin: auto;
+    padding: 80px 0;
+}
+
+.default .content p{
+    text-align: justify;
+    width: 50%;
+    margin: auto;
+    line-height: 1.6em;
+}
+
+.default .content .icon{
+    display: block;
+    margin: auto auto 36px auto;
+    width: 100px;
+}

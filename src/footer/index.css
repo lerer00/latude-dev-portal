@@ -1,0 +1,11 @@
+.footer{
+    background-color: #F4F7FA;
+}
+
+.footer .content{
+    height: 56px;
+    line-height: 56px;
+    width: 1180px;
+    margin: auto;
+    color: #9BA6B2;
+}

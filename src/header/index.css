@@ -1,0 +1,33 @@
+.header{
+    height: 70px;
+    background-color: #0667D0;
+    color: #FFFFFF;
+}
+
+.header .content{
+    position: relative;
+    height: 70px;
+    width: 1180px;
+    margin: auto;
+}
+
+.header .content .title{
+    display: inline-block;
+    line-height: 70px;
+    font-size: 1.8em;
+    margin-right: 4px;
+}
+
+.header .content .subtitle{
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+.header .content .subtitle::before{
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    background-color: #FFCC00;
+}

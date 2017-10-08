@@ -1,0 +1,23 @@
+.companies {
+    background-color: transparent;
+}
+
+.companies .content{
+    position: relative;
+    width: 1180px;
+    margin: auto;
+    padding: 80px 0;
+}
+
+.companies .content p{
+    text-align: justify;
+    width: 50%;
+    margin: auto;
+    line-height: 1.6em;
+}
+
+.companies .content .icon{
+    display: block;
+    margin: auto auto 36px auto;
+    width: 100px;
+}
