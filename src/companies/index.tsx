@@ -1,27 +1,116 @@
 import * as React from 'react';
 import './index.css';
 
+const Modal = require('react-modal');
+const egoAxe = require('../img/ego/axe.svg');
+const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoDog = require('../img/ego/dog.svg');
+const egoPenChecklist = require('../img/ego/pen-checklist.svg');
+
+const addCompanyModalStyles = {
+  content: {
+    padding: '16px',
+    width: '600px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    overflow: 'none',
+    borderRadius: '3px',
+    borderColor: '#C0C0C0',
+    boxShadow: '3px 3px 15px #7F7F7F',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.25)'
+  }
+};
 
 export namespace CompanyContainer {
   export interface Props {
-    web3: any;
+    // empty
   }
 
   export interface State {
-    // empty
+    addCompanyModalIsOpen: boolean,
+    addCompany: any
   }
 }
 
 class Compagnies extends React.Component<CompanyContainer.Props, CompanyContainer.State> {
   constructor() {
     super();
+
+    this.state = {
+      addCompanyModalIsOpen: false,
+      addCompany: {
+        name: ''
+      }
+    }
+
+    this.addCompanyOnRequestOpen = this.addCompanyOnRequestOpen.bind(this);
+    this.addCompanyOnRequestClose = this.addCompanyOnRequestClose.bind(this);
+    this.addCompany = this.addCompanyOnRequestClose.bind(this);
+  }
+
+  addCompanyOnRequestOpen(){
+    this.setState({
+      addCompanyModalIsOpen: true
+    });
+  }
+
+  addCompanyOnRequestClose(){
+    this.setState({
+      addCompanyModalIsOpen: false
+    });
+  }
+
+  addCompany(e: any){
+  }
+
+  addCompanyHandleChanges(company: string, e: any) {
+    var tmp = this.state.addCompany;
+    tmp[company] = e.target.value;
+    this.setState({
+      addCompany: tmp
+    });
   }
 
   render() {
     return (
       <div className="companies">
         <div className="content">
+          <button className="add-company" onClick={this.addCompanyOnRequestOpen}>
+            <img className="add-company-icon" src={egoPenChecklist} />
+            <span className="add-company-text">Add company</span>
+          </button>
+          <Modal
+            isOpen={this.state.addCompanyModalIsOpen}
+            onRequestClose={this.addCompanyOnRequestClose}
+            style={addCompanyModalStyles}
+            contentLabel="Modal">
+            <div className="modal-header">
+              <h1 className="title">Add company</h1>
+              <img className="close" src={egoAxe} onClick={this.addCompanyOnRequestClose} />
+            </div>
+            <div className="modal-content">
+              <img className="visual-tip" src={egoCheckHexagon} />
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+              <form className="addCompanyForm">
+                <table>
+                  <tr>
+                    <td className="label"><label>Name:</label></td>
+                    <td><input className="value" type="text" value={this.state.addCompany.name} onChange={(e) => this.addCompanyHandleChanges('name', e)} /></td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+            <div className="modal-actions">
+              <button onClick={(e) => this.addCompany(e)}>Add</button>
+              <button className="addCompanyCloseButton" onClick={this.addCompanyOnRequestClose}>Close</button>
+            </div>
+          </Modal>
           <img className="icon" src={egoDog} />
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,

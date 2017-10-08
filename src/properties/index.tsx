@@ -5,6 +5,7 @@ import './index.css';
 import Ethereum from '../utilities/ethereum';
 
 const Modal = require('react-modal');
+const notify = require('react-notify-toast');
 const contract = require('truffle-contract');
 const PropertyFactoryContract = require('../truffle-build/contracts/PropertyFactory.json');
 const propertyFactoryContract = contract(PropertyFactoryContract);
@@ -118,6 +119,7 @@ class PropertiesContainer extends React.Component<PropertiesContainer.Props, Pro
           this.state.addProperty.country,
           this.state.addProperty.city, { from: accounts[0] });
       }).then((result: any) => {
+        notify.show('Toasty!');
         this.getProperties();
         this.setState({
           addPropertyModalIsOpen: false,

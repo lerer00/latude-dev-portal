@@ -8,6 +8,9 @@ import Default from './default';
 import Menu from '../menu';
 import './index.css';
 
+const { ToastContainer, toast } = require('react-toastify');
+import 'react-toastify/dist/ReactToastify.min.css';
+
 export namespace Home {
   export interface Props {
     // empty
@@ -19,9 +22,21 @@ export namespace Home {
 }
 
 class Home extends React.Component<Home.Props, Home.State> {
+  notify = () => toast("Wow so easy !");
+
   render() {
     return (
       <div className="home">
+        <button onClick={this.notify}>Notify !</button>
+        <ToastContainer
+          position="top-right"
+          type="default"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+        />
         <Header />
         <Menu />
         <Switch>
