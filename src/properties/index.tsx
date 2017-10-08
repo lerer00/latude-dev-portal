@@ -191,18 +191,20 @@ class PropertiesContainer extends React.Component<PropertiesContainer.Props, Pro
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
               <form className="addPropertyForm">
                 <table>
-                  <tr>
-                    <td className="label"><label>Name:</label></td>
-                    <td><input className="value" type="text" value={this.state.addProperty.name} onChange={(e) => this.addPropertyHandleChanges('name', e)} /></td>
-                  </tr>
-                  <tr>
-                    <td className="label"><label>Country:</label></td>
-                    <td><input className="value" type="text" value={this.state.addProperty.country} onChange={(e) => this.addPropertyHandleChanges('country', e)} /></td>
-                  </tr>
-                  <tr>
-                    <td className="label"><label>City:</label></td>
-                    <td><input className="value" type="text" value={this.state.addProperty.city} onChange={(e) => this.addPropertyHandleChanges('city', e)} /></td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td className="label"><label>Name:</label></td>
+                      <td><input className="value" type="text" value={this.state.addProperty.name} onChange={(e) => this.addPropertyHandleChanges('name', e)} /></td>
+                    </tr>
+                    <tr>
+                      <td className="label"><label>Country:</label></td>
+                      <td><input className="value" type="text" value={this.state.addProperty.country} onChange={(e) => this.addPropertyHandleChanges('country', e)} /></td>
+                    </tr>
+                    <tr>
+                      <td className="label"><label>City:</label></td>
+                      <td><input className="value" type="text" value={this.state.addProperty.city} onChange={(e) => this.addPropertyHandleChanges('city', e)} /></td>
+                    </tr>
+                  </tbody>
                 </table>
               </form>
             </div>
