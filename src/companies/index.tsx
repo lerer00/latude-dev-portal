@@ -1,12 +1,17 @@
 import * as React from 'react';
+import Company from './company';
+import Spinner from '../spinner';
 import './index.css';
+import Ethereum from '../utilities/ethereum';
 
 const Modal = require('react-modal');
+const contract = require('truffle-contract');
+const CompanyFactoryContract = require('../truffle-build/contracts/CompanyFactory.json');
+const companyFactoryContract = contract(CompanyFactoryContract);
 const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
-const egoDog = require('../img/ego/dog.svg');
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
-const { toast } = require('react-toastify');
+const egoCursorHand = require('../img/ego/cursor-hand.svg');
 
 const addCompanyModalStyles = {
   content: {
@@ -28,22 +33,28 @@ const addCompanyModalStyles = {
   }
 };
 
-export namespace CompanyContainer {
+export namespace Compagnies {
   export interface Props {
     // empty
   }
 
   export interface State {
+    loading: boolean,
+    web3: any,
+    companies: Array<string>,
     addCompanyModalIsOpen: boolean,
     addCompany: any
   }
 }
 
-class Compagnies extends React.Component<CompanyContainer.Props, CompanyContainer.State> {
+class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
   constructor() {
     super();
 
     this.state = {
+      loading: true,
+      web3: undefined,
+      companies: [],
       addCompanyModalIsOpen: false,
       addCompany: {
         name: ''
@@ -53,26 +64,75 @@ class Compagnies extends React.Component<CompanyContainer.Props, CompanyContaine
     this.addCompany = this.addCompany.bind(this);
     this.addCompanyOnRequestClose = this.addCompanyOnRequestClose.bind(this);
     this.addCompanyOnRequestOpen = this.addCompanyOnRequestOpen.bind(this);
+    this.addCompanyHandleChanges = this.addCompanyHandleChanges.bind(this);
   }
 
-  addCompanyOnRequestOpen(){
+  componentWillMount() {
+    var ethereum = new Ethereum();
+    var web3 = ethereum.getWeb3();
+    this.setState({
+      web3: web3
+    });
+  }
+
+  componentDidMount() {
+    this.getCompanies();
+  }
+
+  getCompanies() {
+    companyFactoryContract.setProvider(this.state.web3.currentProvider);
+    var companyFactoryInstance;
+    this.state.web3.eth.getAccounts((error: any, accounts: any) => {
+      companyFactoryContract.deployed().then((instance: any) => {
+        companyFactoryInstance = instance;
+
+        return companyFactoryInstance.getCompanies.call();
+      }).then((result: any) => {
+        this.setState({
+          companies: result,
+          loading: false
+        });
+        this.forceUpdate();
+      });
+    });
+  }
+
+  addCompany(e: any) {
+    e.preventDefault();
+
+    if (this.state.addCompany.name === '')
+      return;
+
+    companyFactoryContract.setProvider(this.state.web3.currentProvider);
+    var companyFactoryInstance;
+    this.state.web3.eth.getAccounts((error: any, accounts: any) => {
+      companyFactoryContract.deployed().then((instance: any) => {
+        companyFactoryInstance = instance;
+
+        return companyFactoryInstance.createCompany(
+          this.state.addCompany.name, { from: accounts[0] });
+      }).then((result: any) => {
+        this.getCompanies();
+        this.setState({
+          addCompanyModalIsOpen: false,
+          addCompany: {
+            name: '',
+          }
+        })
+      });;
+    });
+  }
+
+  addCompanyOnRequestClose() {
+    this.setState({
+      addCompanyModalIsOpen: false
+    });
+  }
+
+  addCompanyOnRequestOpen() {
     this.setState({
       addCompanyModalIsOpen: true
     });
-  }
-
-  addCompanyOnRequestClose(){
-    this.setState({
-      addCompanyModalIsOpen: false
-    });
-  }
-
-  addCompany(e: any){
-    e.preventDefault();
-    toast("Company added...");
-    this.setState({
-      addCompanyModalIsOpen: false
-    })
   }
 
   addCompanyHandleChanges(company: string, e: any) {
@@ -84,6 +144,23 @@ class Compagnies extends React.Component<CompanyContainer.Props, CompanyContaine
   }
 
   render() {
+    var companiesContent;
+    if (this.state.loading)
+      companiesContent = <Spinner />
+    else {
+      if (this.state.companies.length > 0) {
+        companiesContent = this.state.companies.map((id) =>
+          <Company web3={this.state.web3} key={id} id={id} />
+        );
+      } else {
+        companiesContent =
+          <div className="empty">
+            <img className="icon" src={egoCursorHand} />
+            <p className="text">No companies found...</p>
+          </div>;
+      }
+    }
+
     return (
       <div className="companies">
         <div className="content">
@@ -106,10 +183,10 @@ class Compagnies extends React.Component<CompanyContainer.Props, CompanyContaine
               <form className="addCompanyForm">
                 <table>
                   <tbody>
-                  <tr>
-                    <td className="label"><label>Name:</label></td>
-                    <td><input className="value" type="text" value={this.state.addCompany.name} onChange={(e) => this.addCompanyHandleChanges('name', e)} /></td>
-                  </tr>
+                    <tr>
+                      <td className="label"><label>Name:</label></td>
+                      <td><input className="value" type="text" value={this.state.addCompany.name} onChange={(e) => this.addCompanyHandleChanges('name', e)} /></td>
+                    </tr>
                   </tbody>
                 </table>
               </form>
@@ -119,14 +196,7 @@ class Compagnies extends React.Component<CompanyContainer.Props, CompanyContaine
               <button className="addCompanyCloseButton" onClick={this.addCompanyOnRequestClose}>Close</button>
             </div>
           </Modal>
-          <img className="icon" src={egoDog} />
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          It has survived not only five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.</p>
+          {companiesContent}
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 pragma solidity ^0.4.13;
+import "./Company.sol";
 
 contract CompanyFactory {
     address[] companyAddress;

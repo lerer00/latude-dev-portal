@@ -33,7 +33,7 @@ const addPropertyModalStyles = {
   }
 };
 
-export namespace PropertiesContainer {
+export namespace Properties {
   export interface Props {
     // empty
   }
@@ -47,7 +47,7 @@ export namespace PropertiesContainer {
   }
 }
 
-class PropertiesContainer extends React.Component<PropertiesContainer.Props, PropertiesContainer.State> {
+class Properties extends React.Component<Properties.Props, Properties.State> {
   constructor() {
     super();
 
@@ -176,7 +176,6 @@ class PropertiesContainer extends React.Component<PropertiesContainer.Props, Pro
             <img className="add-property-icon" src={egoPenChecklist} />
             <span className="add-property-text">Add property</span>
           </button>
-          <br />
           <Modal
             isOpen={this.state.addPropertyModalIsOpen}
             onRequestClose={this.addPropertyOnRequestClose}
@@ -220,4 +219,4 @@ class PropertiesContainer extends React.Component<PropertiesContainer.Props, Pro
   }
 }
 
-export default PropertiesContainer;
+export default Properties;

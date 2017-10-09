@@ -55,7 +55,7 @@
 
 .properties .content .empty .text{
     text-align: center;
-    margin: 24px;
+    margin: 24px auto;
     color: #C0C0C0;
 }
 
