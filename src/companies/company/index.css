@@ -42,9 +42,14 @@
     font-size: 1.8em;
 }
 
-.company .description .flag-icon{
-    float: left;
-    margin-left: 8px;
-    margin-top: 4px;
+.company .description .detail{
+    overflow: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.company .description .detail .plus{
     width: 24px;
+    margin: none;
 }

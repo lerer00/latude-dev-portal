@@ -50,10 +50,3 @@
 .property .description .location .icon{
     width: 16px;
 }
-
-.property .description .flag-icon{
-    float: left;
-    margin-left: 8px;
-    margin-top: 4px;
-    width: 24px;
-}

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import './index.css';
+import { NavLink } from 'react-router-dom';
 
 const contract = require('truffle-contract');
 const CompanyContract = require('../../truffle-build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
+const egoLighthouse = require('../../img/ego/lighthouse.svg');
 
 export namespace Company {
     export interface Props {
@@ -42,12 +44,11 @@ class Company extends React.Component<Company.Props, Company.State> {
 
                 return companyInstance.getName.call();
             }).then((result: any) => {
-                console.log(result);
-                // this.setState({
-                //     company: {
-                //         name: result[0]
-                //     }
-                // });
+                this.setState({
+                    company: {
+                        name: result
+                    }
+                });
                 return companyInstance.getBalance.call();
             }).then((result: any) => {
                 this.setState({
@@ -59,11 +60,14 @@ class Company extends React.Component<Company.Props, Company.State> {
 
     render() {
         return (
-            <section className="property">
+            <section className="company">
                 <div className="description">
                     <span className="address">address: {this.props.id}</span>
                     <span className="balance">balance: {this.state.balance} ether</span>
                     <p className="name">{this.state.company.name}</p>
+                    <NavLink className="detail" activeClassName="active" to="/properties">
+                        <img className="plus" src={egoLighthouse} />
+                    </NavLink>
                 </div>
             </section>
         );
