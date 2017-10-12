@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './index.css';
 
 const egoBuilding1 = require('../img/ego/building-1.svg');
-const egoBuilding2 = require('../img/ego/building-2.svg');
+// const egoBuilding2 = require('../img/ego/building-2.svg');
 const egoMultiPlatform = require('../img/ego/multi-platform.svg');
 
 export namespace Menu {
@@ -28,10 +28,6 @@ class Menu extends React.Component<Menu.Props, Menu.State> {
                     <NavLink className="link" activeClassName="active" to="/compagnies">
                         <img className="icon" src={egoBuilding1} />
                         <p>Companies</p>
-                    </NavLink>
-                    <NavLink className="link" activeClassName="active" to="/properties">
-                        <img className="icon" src={egoBuilding2} />
-                        <p>Properties</p>
                     </NavLink>
                 </div>
             </section>

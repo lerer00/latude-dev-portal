@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Properties from '../properties';
 import Compagnies from '../companies';
+import CompanyDetail from '../companyDetail';
+import PropertyDetail from '../propertyDetail';
 import Header from '../header';
 import Footer from '../footer';
 import Default from './default';
@@ -39,7 +40,8 @@ class Home extends React.Component<Home.Props, Home.State> {
         <Switch>
           <Route exact={true} path="/" component={Default} />
           <Route exact={true} path="/compagnies" component={Compagnies} />
-          <Route exact={true} path="/properties" component={Properties} />
+          <Route exact={true} path="/compagnies/:address" component={CompanyDetail} />
+          <Route exact={true} path="/compagnies/:address/properties/:id" component={PropertyDetail} />
         </Switch>
         <Footer />
       </div>

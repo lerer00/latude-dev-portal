@@ -180,7 +180,7 @@ class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
             <div className="modal-content">
               <img className="visual-tip" src={egoCheckHexagon} />
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-              <form className="addCompanyForm">
+              <form>
                 <table>
                   <tbody>
                     <tr>
@@ -192,8 +192,8 @@ class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
               </form>
             </div>
             <div className="modal-actions">
-              <button onClick={(e) => this.addCompany(e)}>Add</button>
-              <button className="addCompanyCloseButton" onClick={this.addCompanyOnRequestClose}>Close</button>
+              <button className="action" onClick={(e) => this.addCompany(e)}>Add</button>
+              <button className="action close" onClick={this.addCompanyOnRequestClose}>Close</button>
             </div>
           </Modal>
           {companiesContent}

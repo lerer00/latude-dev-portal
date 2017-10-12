@@ -1,15 +1,15 @@
-.companies {
+.company-detail {
     background-color: transparent;
 }
 
-.companies .content{
+.company-detail .content{
     position: relative;
     width: 1180px;
     margin: auto;
     padding: 16px;
 }
 
-.companies .content .add-company{
+.company-detail .content .add-property{
     position: relative;
     display: block;
     outline: 0;
@@ -23,16 +23,16 @@
     transition: all 0.2s;
 }
 
-.companies .content .add-company:hover{
+.company-detail .content .add-property:hover{
     border: solid 1px transparent;
     background-color: #399AFF;
 }
 
-.companies .content .add-company:hover .add-company-text{
+.company-detail .content .add-property:hover .add-property-text{
     color: #FFFFFF;
 }
 
-.companies .content .add-company .add-company-icon{
+.company-detail .content .add-property .add-property-icon{
     line-height: 40px;
     vertical-align: middle;
     margin-left: 16px;
@@ -40,33 +40,33 @@
     width: 20px;
 }
 
-.companies .content .add-company .add-company-text{
+.company-detail .content .add-property .add-property-text{
     line-height: 40px;
     color: #399AFF;
     font-size: 1.2em;
     margin: 0 16px 0 8px;
 }
 
-.companies .content .empty .icon{
+.company-detail .content .empty .icon{
     display: block;
     margin: auto;
     width: 200px;
 }
 
-.companies .content .empty .text{
+.company-detail .content .empty .text{
     text-align: center;
     margin: 24px auto;
     color: #C0C0C0;
 }
 
-.companies .content p{
+.company-detail .content p{
     text-align: justify;
     width: 50%;
     margin: auto;
     line-height: 1.6em;
 }
 
-.companies .content .icon{
+.company-detail .content .icon{
     display: block;
     margin: auto auto 36px auto;
     width: 100px;

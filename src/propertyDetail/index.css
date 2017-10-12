@@ -1,11 +1,15 @@
-.property{
-    display: inline-block;
-    border-radius: 3px;
-    width: 50%;
+.property-detail{
     background-color: transparent;
 }
 
-.property .description{
+.property-detail .content{
+    position: relative;
+    width: 1180px;
+    margin: auto;
+    padding: 16px;
+}
+
+.property-detail .description{
     position: relative;
     padding: 24px 8px 16px 16px;
     border-left: solid 1px #399AFF;
@@ -15,7 +19,7 @@
     color: #595959;
 }
 
-.property .description .address{
+.property-detail .description .address{
     position: absolute;
     top: 8px;
     right: 8px;
@@ -23,7 +27,7 @@
     color: #A0A0A0;
 }
 
-.property .description .balance{
+.property-detail .description .balance{
     position: absolute;
     top: 20px;
     right: 8px;
@@ -31,7 +35,7 @@
     color: #A0A0A0;
 }
 
-.property .description .name{
+.property-detail .description .name{
     max-width: 75%;
     white-space: nowrap;
     overflow: hidden;
@@ -40,13 +44,4 @@
     margin-top: 4px;
     line-height: 1.2em;
     font-size: 1.8em;
-}
-
-.property .description .location{
-    margin-top: 8px;
-    color: #C0C0C0;
-}
-
-.property .description .location .icon{
-    width: 16px;
 }

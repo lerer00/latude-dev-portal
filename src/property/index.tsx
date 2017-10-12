@@ -1,13 +1,15 @@
 import * as React from 'react';
 import './index.css';
+import { NavLink } from 'react-router-dom';
 
 const contract = require('truffle-contract');
-const PropertyContract = require('../../truffle-build/contracts/Property.json');
+const PropertyContract = require('../truffle-build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
-const egoLocation = require('../../img/ego/location.svg');
+const egoSun1 = require('../img/ego/sun-1.svg');
 
 export namespace Property {
     export interface Props {
+        company: string;
         web3: any;
         id: string;
     }
@@ -24,32 +26,28 @@ class Property extends React.Component<Property.Props, Property.State> {
 
         this.state = {
             property: {
-                name: '',
-                country: '',
-                city: ''
+                name: ''
             },
             balance: -1
         };
     }
 
     componentWillMount() {
-        this.getPartial();
+        this.getName();
     }
 
-    getPartial() {
+    getName() {
         propertyContract.setProvider(this.props.web3.currentProvider);
         var propertyInstance: any;
         this.props.web3.eth.getAccounts((error: any, accounts: any) => {
             propertyContract.at(this.props.id).then((instance: any) => {
                 propertyInstance = instance;
 
-                return propertyInstance.getPartial.call();
+                return propertyInstance.getName.call();
             }).then((result: any) => {
                 this.setState({
                     property: {
-                        name: result[0],
-                        country: result[1],
-                        city: result[2]
+                        name: result,
                     }
                 });
                 return propertyInstance.getBalance.call();
@@ -68,10 +66,9 @@ class Property extends React.Component<Property.Props, Property.State> {
                     <span className="address">address: {this.props.id}</span>
                     <span className="balance">balance: {this.state.balance} ether</span>
                     <p className="name">{this.state.property.name}</p>
-                    <p className="location">
-                        <img src={egoLocation} className="icon" />
-                        {this.state.property.country},{''}{this.state.property.city}
-                    </p>
+                    <NavLink className="detail" to={"/compagnies/" + this.props.company + "/properties/" + this.props.id}>
+                        <img className="plus" src={egoSun1} />
+                    </NavLink>
                 </div>
             </section>
         );
