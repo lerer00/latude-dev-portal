@@ -1,24 +1,22 @@
-pragma solidity ^0.4.13;
-import "./Owned.sol";
+pragma solidity ^0.4.15;
+
+import "./Ownable.sol";
 import "./Property.sol";
 
-contract Company is Owned {
-    string name;
-    address[] properties;
+contract Company is Ownable {
+    string public name;
+    address[] public properties;
 
-    function Company(string n) payable {
-        name = n;
+    function Company(string _name, address _owner) payable {
+        transferOwnership(_owner);
+        name = _name;
     }
 
-    function createProperty(string n) returns (address) {
-        address newProperty = (new Property).value(100000000000000000)(n);
+    function createProperty(string _name) onlyOwner returns (Property) {
+        Property newProperty = (new Property).value(100000000000000000)(_name, owner);
         properties.push(newProperty);
 
         return newProperty;
-    }
-
-    function getName() constant returns (string) {
-        return name;
     }
 
     function getProperties() constant returns(address[]) {

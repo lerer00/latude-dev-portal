@@ -1,40 +1,32 @@
-pragma solidity ^0.4.13;
-import "./Owned.sol";
+pragma solidity ^0.4.15;
 
-contract Property is Owned {
-    string name;
-    uint id;
-    mapping(uint => Asset) assets;
+import "./Ownable.sol";
+
+contract Property is Ownable {
+    string public name;
+    uint public numberOfAssets;
+    mapping(uint => Asset) public assets;
+
 
     struct Asset {
-        uint id;
         string name;
         uint price;
     }
 
-    function Property(string n) payable {
-        id = 0;
-        name = n;
+    function Property(string _name, address _owner) payable {
+        // owner of this Property = person who owns the company that Property is associated with
+        transferOwnership(_owner);
+        name = _name;
+        numberOfAssets = 0;
     }
 
-    function getName() constant returns (string) {
-        return name;
+    function createAsset(string _name, uint _price) onlyOwner returns (address) {
+        assets[numberOfAssets++] = Asset(_name, _price);
     }
 
-    function createAsset(string n, uint p) returns (address) {
-        Asset memory myAsset = Asset(id,n,p);
-        assets[id] = myAsset;
-        id++;
-    }
-
-    function getAsset(uint i) constant returns (uint, string, uint) {
-        Asset memory myAsset = assets[i];
-        return(myAsset.id, myAsset.name, myAsset.price);
-    }
-
-    function getId() constant returns (uint) {
-        return id;
-    }
+    function getAsset(uint _id) constant returns (string, uint) {
+        return (assets[_id].name, assets[_id].price);
+    }    
 
     function getBalance() constant returns(uint) {
         return this.balance;

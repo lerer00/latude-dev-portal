@@ -1,22 +1,22 @@
-pragma solidity ^0.4.13;
-import "./Owned.sol";
+pragma solidity ^0.4.15;
+
+import "./Ownable.sol";
 import "./Company.sol";
 
-contract CompanyFactory is Owned {
-    address[] compagnies;
+contract CompanyFactory is Ownable {
+    address[] public companies;
 
-    function CompanyFactory() payable {
-    }
+    function CompanyFactory() payable {}
 
-    function createCompany(string name) returns (address) {
-        address newCompany = (new Company).value(1000000000000000000)(name);
-        compagnies.push(newCompany);
+    function createCompany(string _name) returns (Company) {
+        Company newCompany = (new Company).value(1000000000000000000)(_name, msg.sender);
+        companies.push(newCompany);
 
         return newCompany;
     }
 
     function getCompanies() constant returns(address[]) {
-        return compagnies;
+        return companies;
     }
 
     function getBalance() constant returns(uint) {
