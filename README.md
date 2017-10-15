@@ -1,4 +1,4 @@
-# Project Title
+# latude-dev-portal
 
 latude-dev-portal is created to help us bootstrap the idea of removing third-parties within the accommodation industry.
 
