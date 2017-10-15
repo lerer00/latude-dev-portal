@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bl": "^1.2.1",
+    "ipfs-api": "^14.3.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-modal": "^3.0.0",

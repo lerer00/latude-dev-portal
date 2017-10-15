@@ -7,10 +7,10 @@ contract Property is Ownable {
     uint public numberOfAssets;
     mapping(uint => Asset) public assets;
 
-
     struct Asset {
         string name;
         uint price;
+        string currency;
     }
 
     function Property(string _name, address _owner) payable {
@@ -20,12 +20,12 @@ contract Property is Ownable {
         numberOfAssets = 0;
     }
 
-    function createAsset(string _name, uint _price) onlyOwner returns (address) {
-        assets[numberOfAssets++] = Asset(_name, _price);
+    function createAsset(string _name, uint _price, string _currency) onlyOwner {
+        assets[numberOfAssets++] = Asset(_name, _price, _currency);
     }
 
-    function getAsset(uint _id) constant returns (string, uint) {
-        return (assets[_id].name, assets[_id].price);
+    function getAsset(uint _id) constant returns (string, uint, string) {
+        return (assets[_id].name, assets[_id].price, assets[_id].currency);
     }    
 
     function getBalance() constant returns(uint) {

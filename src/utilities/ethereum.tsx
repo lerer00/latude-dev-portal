@@ -1,10 +1,6 @@
 const Web3 = require('web3');
 
 class Ethereum {
-    constructor() {
-        console.log('Ethereum utilities.');
-    }
-
     getWeb3() {
         var web3 = window['web3'];
 

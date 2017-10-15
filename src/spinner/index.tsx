@@ -3,7 +3,7 @@ import './index.css';
 
 export namespace Spinner {
     export interface Props {
-        // empty
+        text: string;
     }
 
     export interface State {
@@ -24,7 +24,7 @@ class Spinner extends React.Component<Spinner.Props, Spinner.State> {
                     <div className="bounce2"></div>
                     <div className="bounce3"></div>
                 </div>
-                <p className="text">loading...</p>
+                <p className="text">{this.props.text}</p>
             </div>
         );
     }

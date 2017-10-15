@@ -9,6 +9,44 @@
     padding: 16px;
 }
 
+.property-detail .content .add-asset{
+    position: relative;
+    display: block;
+    outline: 0;
+    height: 40px;
+    line-height: 40px;
+    font-family: 'Ubuntu', sans-serif;
+    border: solid 1px #399AFF;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.property-detail .content .add-asset:hover{
+    border: solid 1px transparent;
+    background-color: #399AFF;
+}
+
+.property-detail .content .add-asset:hover .add-asset-text{
+    color: #FFFFFF;
+}
+
+.property-detail .content .add-asset .add-asset-icon{
+    line-height: 40px;
+    vertical-align: middle;
+    margin-left: 16px;
+    margin-top: -8px;
+    width: 20px;
+}
+
+.property-detail .content .add-asset .add-asset-text{
+    line-height: 40px;
+    color: #399AFF;
+    font-size: 1.2em;
+    margin: 0 16px 0 8px;
+}
+
 .property-detail .description{
     position: relative;
     padding: 24px 8px 16px 16px;

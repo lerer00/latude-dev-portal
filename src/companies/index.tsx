@@ -146,7 +146,7 @@ class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
   render() {
     var companiesContent;
     if (this.state.loading)
-      companiesContent = <Spinner />
+      companiesContent = <Spinner text="loading companies..." />
     else {
       if (this.state.companies.length > 0) {
         companiesContent = this.state.companies.map((id) =>

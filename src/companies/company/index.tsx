@@ -42,7 +42,7 @@ class Company extends React.Component<Company.Props, Company.State> {
             companyContract.at(this.props.id).then((instance: any) => {
                 companyInstance = instance;
 
-                return companyInstance.getName.call();
+                return companyInstance.name.call();
             }).then((result: any) => {
                 this.setState({
                     company: {

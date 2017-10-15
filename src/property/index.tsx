@@ -43,7 +43,7 @@ class Property extends React.Component<Property.Props, Property.State> {
             propertyContract.at(this.props.id).then((instance: any) => {
                 propertyInstance = instance;
 
-                return propertyInstance.getName.call();
+                return propertyInstance.name.call();
             }).then((result: any) => {
                 this.setState({
                     property: {

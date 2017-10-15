@@ -145,7 +145,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
     render() {
         var propertiesContent;
         if (this.state.loading)
-            propertiesContent = <Spinner />
+            propertiesContent = <Spinner text="loading company..." />
         else {
             if (this.state.properties.length > 0) {
                 propertiesContent = this.state.properties.map((id) =>
