@@ -1,87 +1,47 @@
 # Project Title
 
-One Paragraph of project description goes here
+latude-dev-portal is created to help us bootstrap the idea of removing third-parties within the accommodation industry.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Build React, Web3, IPFS, and the help of solidity contracts. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+This is what you need to install before building the application
 
 ```
-Give examples
+npm ^5.3.0
+node ^6.11.2
+testrpc ^4.1.1
+ipfs ^0.4.11
+truffle ^3.4.9
+metamask ^3.11.0
 ```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Here's how to setup you dev environment using testrpc. Other networks haven't been tested out yet.
+Note that testrpc will always run with the same mnemonic phrase since metamask require 12 words.
 
 ```
-until finished
+git clone https://github.com/lerer00/latude-dev-portal.git
+npm install
+testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch" --accounts 50
+truffle compile
+truffle migrate
+*copy the /build/contract folder into the /src/truffle-build this step will be removed soon
+npm start
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+And if you are doing changes to your solidity contract simply do those step.
 
 ```
-Give an example
+truffle compile
+truffle migrate
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Francis Boily** - *Initial work*
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
