@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './index.css';
 import Ethereum from '../utilities/ethereum';
+import Asset from './asset';
+import Spinner from '../spinner';
 
 const Modal = require('react-modal');
 const contract = require('truffle-contract');
@@ -9,6 +11,7 @@ const propertyContract = contract(PropertyContract);
 const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
+const egoCursorHand = require('../img/ego/cursor-hand.svg');
 
 const addAssetModalStyles = {
     content: {
@@ -38,6 +41,8 @@ export namespace PropertyDetail {
     export interface State {
         web3: any;
         property: any;
+        assets: Array<any>;
+        assetsLoading: boolean;
         balance: number;
         addAsset: any;
         addAssetModalIsOpen: boolean;
@@ -53,9 +58,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             property: {
                 name: ''
             },
+            assets: [],
+            assetsLoading: false,
             balance: -1,
             addAsset: {
-                name: 'Room 336',
+                id: 'Room 336',
                 price: 150,
                 currency: 'CAD'
             },
@@ -77,11 +84,12 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     }
 
     componentDidMount() {
+        propertyContract.setProvider(this.state.web3.currentProvider);
         this.getName();
+        this.getAssets();
     }
 
     getName() {
-        propertyContract.setProvider(this.state.web3.currentProvider);
         var propertyInstance: any;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
             propertyContract.at(this.props.match.params.id).then((instance: any) => {
@@ -106,21 +114,51 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     addAsset(e: any) {
         e.preventDefault();
 
-        if (this.state.addAsset.name === '' && this.state.addAsset.price < 0 && this.state.addAsset.currency === '')
+        if (this.state.addAsset.id === '' && this.state.addAsset.price < 0 && this.state.addAsset.currency === '')
             return;
 
-        propertyContract.setProvider(this.state.web3.currentProvider);
         var propertyInstance;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
             propertyContract.at(this.props.match.params.id).then((instance: any) => {
                 propertyInstance = instance;
 
-                return propertyInstance.createAsset(this.state.addAsset.name, this.state.addAsset.price, this.state.addAsset.currency, { from: accounts[0] });
+                return propertyInstance.createAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: accounts[0] });
             }).then((result: any) => {
-                console.log(result);
                 this.setState({
                     addAssetModalIsOpen: false
                 })
+            });;
+        });
+    }
+
+    getAssets() {
+        var propertyInstance;
+        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
+            propertyContract.at(this.props.match.params.id).then((instance: any) => {
+                propertyInstance = instance;
+
+                return propertyInstance.numberOfAssets.call();
+            }).then((result: any) => {
+                for (var i = 0; i < result.toNumber(); i++) {
+                    this.getAsset(i);
+                }
+            });;
+        });
+    }
+
+    getAsset(id: number) {
+        var propertyInstance;
+        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
+            propertyContract.at(this.props.match.params.id).then((instance: any) => {
+                propertyInstance = instance;
+
+                return propertyInstance.getAsset.call(id);
+            }).then((result: any) => {
+                console.log(result);
+                var asset: any = { id: result[0], price: result[1].toNumber(), currency: result[2] };
+                this.setState({
+                    assets: this.state.assets.concat([asset])
+                });
             });;
         });
     }
@@ -141,11 +179,27 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         var tmp = this.state.addAsset;
         tmp[asset] = e.target.value;
         this.setState({
-          addAsset: tmp
+            addAsset: tmp
         });
     }
 
     render() {
+        var assetsContent;
+        if (this.state.assetsLoading)
+            assetsContent = <Spinner text="loading assets..." />
+        else {
+            if (this.state.assets.length > 0) {
+                assetsContent = this.state.assets.map((asset) => <Asset web3={this.state.web3} key={asset.id} id={asset.id} price={asset.price} currency={asset.currency} />
+                );
+            } else {
+                assetsContent =
+                    <div className="empty">
+                        <img className="icon" src={egoCursorHand} />
+                        <p className="text">No assets found...</p>
+                    </div>;
+            }
+        }
+
         return (
             <section className="property-detail">
                 <div className="content">
@@ -169,8 +223,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td className="label"><label>Name:</label></td>
-                                            <td><input className="value" type="text" value={this.state.addAsset.name} onChange={(e) => this.addAssetHandleChanges('name', e)} /></td>
+                                            <td className="label"><label>Id:</label></td>
+                                            <td><input className="value" type="text" value={this.state.addAsset.id} onChange={(e) => this.addAssetHandleChanges('id', e)} /></td>
                                         </tr>
                                         <tr>
                                             <td className="label"><label>Price:</label></td>
@@ -194,6 +248,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                         <span className="balance">balance: {this.state.balance} ether</span>
                         <p className="name">{this.state.property.name}</p>
                         <p>This place will be to display the whole asset struct plus metadata from ipfs or ipdb will do that tomorrow enough for tonight.</p>
+                        <div className="assets">
+                            {assetsContent}
+                        </div>
                     </div>
                 </div>
             </section>

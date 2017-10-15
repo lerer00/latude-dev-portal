@@ -1,0 +1,44 @@
+.asset {
+    width: calc(50% - 46px);
+    background-color: #FAFAFA;
+    position: relative;
+    display: inline-block;
+    padding: 4px 8px 4px 24px;
+    margin: 4px;
+    border-radius: 3px;
+}
+
+.asset:before{
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    background-color: #2ecc71;
+}
+
+.asset .id{
+    margin-top: -2px;
+    margin-bottom: 4px;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.asset .price{
+    color: #A0A0A0;
+}
+
+.asset .price .currency{
+    font-size: 0.8em;
+}
+
+.asset .bookings{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.8em;
+    color: #A0A0A0;
+}
