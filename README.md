@@ -44,4 +44,5 @@ truffle migrate
 ## Authors
 
 * **Francis Boily** - *Initial work*
+* **Vadim Stepanov** - *Work on contracts*
 
