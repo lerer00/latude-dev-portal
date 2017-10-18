@@ -60,6 +60,14 @@ contract Property is Ownable {
         return (currentStay.id, currentStay.startTime, currentStay.endTime, currentStay.person);
     }
 
+    function numberOfAssets() returns(uint) {
+        return assets.length;
+    }
+
+    function numberOfStays() returns(uint) {
+        return stays.length;
+    }
+
     function getBalance() constant returns(uint) {
         return this.balance;
     }
