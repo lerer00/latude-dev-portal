@@ -57,7 +57,7 @@ class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
       companies: [],
       addCompanyModalIsOpen: false,
       addCompany: {
-        name: ''
+        name: 'latude inc. (todo)'
       }
     }
 

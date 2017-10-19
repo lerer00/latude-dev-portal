@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Compagnies from '../companies';
 import CompanyDetail from '../companyDetail';
 import PropertyDetail from '../propertyDetail';
+import AssetDetail from '../assetDetail';
 import Header from '../header';
 import Footer from '../footer';
 import Default from './default';
@@ -10,8 +11,6 @@ import Menu from '../menu';
 import './index.css';
 
 const { ToastContainer } = require('react-toastify');
-// const ipfsAPI = require('ipfs-api')
-// const bl = require('bl');
 import 'react-toastify/dist/ReactToastify.min.css';
 
 export namespace Home {
@@ -28,40 +27,6 @@ class Home extends React.Component<Home.Props, Home.State> {
   constructor(props?: Home.Props, context?: any){
     super(props, context);
   }
-
-  // init(){
-  //   var ipfs = ipfsAPI('localhost', '5001', {protocol: 'http'});
-  //   const files = [
-  //     {
-  //       path: '/src/home/myfile.json',
-  //       content: "{\"name\": \"Stessie\"}"
-  //     }
-  //   ]
-  //   ipfs.files.add(files, null, (err: any, result: any) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     console.log(result)
-  //     this.getFile(result[0].hash);
-  //   })
-  // }
-
-  // getFile(hash: string){
-  //   var ipfs = ipfsAPI('localhost', '5001', {protocol: 'http'});
-  //   ipfs.files.cat(hash, (err: any, stream: any) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     stream.pipe(bl((e: any, d: any) => {
-  //       if(e){
-  //         throw err;
-  //       }
-  //       console.log(d.toString());
-  //       var x = JSON.parse(d.toString());
-  //       console.log(x);
-  //     }));
-  //   });
-  // }
 
   render() {
     return (
@@ -80,8 +45,9 @@ class Home extends React.Component<Home.Props, Home.State> {
         <Switch>
           <Route exact={true} path="/" component={Default} />
           <Route exact={true} path="/compagnies" component={Compagnies} />
-          <Route exact={true} path="/compagnies/:address" component={CompanyDetail} />
-          <Route exact={true} path="/compagnies/:address/properties/:id" component={PropertyDetail} />
+          <Route exact={true} path="/compagnies/:cid" component={CompanyDetail} />
+          <Route exact={true} path="/compagnies/:cid/properties/:pid" component={PropertyDetail} />
+          <Route exact={true} path="/compagnies/:cid/properties/:pid/assets/:aid" component={AssetDetail} />
         </Switch>
         <Footer />
       </div>

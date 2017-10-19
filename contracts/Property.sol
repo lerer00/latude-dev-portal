@@ -23,6 +23,8 @@ contract Property is Ownable {
         string currency;
         // ids of stays associated with this particular asset
         uint[] stayIds;
+        // hashes that represent the last metadata update
+        string[] metadataHashes;
     }
 
     function Property(string _name, address _owner) payable {
@@ -31,10 +33,21 @@ contract Property is Ownable {
         name = _name;
     }
 
+    // this is metadata for assets, basically an ipfs hash
+    function addMetadataHashForAsset(uint _id, string hash) onlyOwner {
+        assets[_id].metadataHashes.push(hash);
+    }
+
+    function lastMetadataHashForAsset(uint _id) constant returns (string) {
+        require(assets[_id].metadataHashes.length > 0);
+        return assets[_id].metadataHashes[assets[_id].metadataHashes.length - 1];
+    }
+
     function createAsset(string _category, uint _price, string _currency) onlyOwner {
         uint newAssetId = assets.length;
         uint[] memory initialStays;
-        assets.push(Asset(newAssetId, _category, _price, _currency, initialStays));
+        string[] memory metadataHashes;
+        assets.push(Asset(newAssetId, _category, _price, _currency, initialStays, metadataHashes));
     }
 
     function getAsset(uint _id) constant returns (uint, string, uint, string, uint[]) {
@@ -51,7 +64,9 @@ contract Property is Ownable {
         // here we need an if statement to check if the time of stay is acceptable
         uint newStayId = stays.length;
         stays.push(Stay(newStayId, _startTime, _endTime, msg.sender));
-        Asset currentAsset = assets[_id];
+
+        // without storage it was causing a warning on compilation
+        Asset storage currentAsset = assets[_id];
         currentAsset.stayIds.push(newStayId);
     }
 

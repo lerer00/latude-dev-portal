@@ -92,7 +92,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     getName() {
         var propertyInstance: any;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.id).then((instance: any) => {
+            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
                 propertyInstance = instance;
 
                 return propertyInstance.name.call();
@@ -119,7 +119,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
         var propertyInstance;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.id).then((instance: any) => {
+            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
                 propertyInstance = instance;
 
                 return propertyInstance.createAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: accounts[0] });
@@ -134,7 +134,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     getAssets() {
         var propertyInstance;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.id).then((instance: any) => {
+            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
                 propertyInstance = instance;
 
                 return propertyInstance.numberOfAssets.call();
@@ -149,13 +149,12 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     getAsset(id: number) {
         var propertyInstance;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.id).then((instance: any) => {
+            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
                 propertyInstance = instance;
 
                 return propertyInstance.getAsset.call(id);
             }).then((result: any) => {
-                console.log(result);
-                var asset: any = { id: result[0], price: result[1].toNumber(), currency: result[2] };
+                var asset: any = { id: result[0].toNumber(), name: result[1], price: result[2].toNumber(), currency: result[3], stay: result[4] };
                 this.setState({
                     assets: this.state.assets.concat([asset])
                 });
@@ -189,7 +188,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             assetsContent = <Spinner text="loading assets..." />
         else {
             if (this.state.assets.length > 0) {
-                assetsContent = this.state.assets.map((asset) => <Asset web3={this.state.web3} key={asset.id} id={asset.id} price={asset.price} currency={asset.currency} />
+                assetsContent = this.state.assets.map((asset) => <Asset web3={this.state.web3} key={asset.id} id={asset.id} name={asset.name} price={asset.price} currency={asset.currency} url={this.props.match.url} />
                 );
             } else {
                 assetsContent =
@@ -244,7 +243,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                         </div>
                     </Modal>
                     <div className="description">
-                        <span className="address">address: {this.props.match.params.id}</span>
+                        <span className="address">address: {this.props.match.params.pid}</span>
                         <span className="balance">balance: {this.state.balance} ether</span>
                         <p className="name">{this.state.property.name}</p>
                         <p>This place will be to display the whole asset struct plus metadata from ipfs or ipdb will do that tomorrow enough for tonight.</p>

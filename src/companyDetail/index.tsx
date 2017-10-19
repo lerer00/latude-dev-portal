@@ -57,7 +57,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
             properties: [],
             addPropertyModalIsOpen: false,
             addProperty: {
-                name: ''
+                name: 'latude québec (todo)'
             }
         };
 
@@ -83,7 +83,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
         companyContract.setProvider(this.state.web3.currentProvider);
         var companyInstance;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            companyContract.at(this.props.match.params.address).then((instance: any) => {
+            companyContract.at(this.props.match.params.cid).then((instance: any) => {
                 companyInstance = instance;
 
                 return companyInstance.getProperties.call();
@@ -106,7 +106,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
         companyContract.setProvider(this.state.web3.currentProvider);
         var companyInstance;
         this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            companyContract.at(this.props.match.params.address).then((instance: any) => {
+            companyContract.at(this.props.match.params.cid).then((instance: any) => {
                 companyInstance = instance;
 
                 return companyInstance.createProperty(this.state.addProperty.name, { from: accounts[0] });
@@ -149,7 +149,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
         else {
             if (this.state.properties.length > 0) {
                 propertiesContent = this.state.properties.map((id) =>
-                    <Property company={this.props.match.params.address} web3={this.state.web3} key={id} id={id} />
+                    <Property company={this.props.match.params.cid} web3={this.state.web3} key={id} id={id} />
                 );
             } else {
                 propertiesContent =
