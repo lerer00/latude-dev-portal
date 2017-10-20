@@ -9,7 +9,8 @@ contract CompanyFactory is Ownable {
     function CompanyFactory() payable {}
 
     function createCompany(string _name) returns (Company) {
-        Company newCompany = (new Company).value(10000000000000000000)(_name, msg.sender);
+        //Company newCompany = (new Company).value(10000000000000000000)(_name, msg.sender);
+        Company newCompany = new Company(_name, msg.sender);
         companies.push(newCompany);
 
         return newCompany;
