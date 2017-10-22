@@ -65,7 +65,7 @@ class Company extends React.Component<Company.Props, Company.State> {
                     <span className="address">address: {this.props.id}</span>
                     <span className="balance">balance: {this.state.balance} ether</span>
                     <p className="name">{this.state.company.name}</p>
-                    <NavLink className="detail" to={"/compagnies/" + this.props.id}>
+                    <NavLink className="detail" to={"/companies/" + this.props.id}>
                         <img className="plus" src={egoLighthouse} />
                     </NavLink>
                 </div>

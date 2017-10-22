@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Company from './company';
+import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner';
 import './index.css';
 import Ethereum from '../utilities/ethereum';
@@ -33,7 +34,7 @@ const addCompanyModalStyles = {
   }
 };
 
-export namespace Compagnies {
+export namespace Companies {
   export interface Props {
     // empty
   }
@@ -47,7 +48,7 @@ export namespace Compagnies {
   }
 }
 
-class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
+class Companies extends React.Component<Companies.Props, Companies.State> {
   constructor() {
     super();
 
@@ -159,9 +160,18 @@ class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
       }
     }
 
+    const routes: any = [
+      {
+        name: 'Companies',
+        path: '/companies',
+        active: true,
+      }
+    ]
+
     return (
       <div className="companies">
         <div className="content">
+          <Breadcrumbs routes={routes} />
           <button className="add-company" onClick={this.addCompanyOnRequestOpen}>
             <img className="add-company-icon" src={egoPenChecklist} />
             <span className="add-company-text">Add company</span>
@@ -201,4 +211,4 @@ class Compagnies extends React.Component<Compagnies.Props, Compagnies.State> {
   }
 }
 
-export default Compagnies;
+export default Companies;

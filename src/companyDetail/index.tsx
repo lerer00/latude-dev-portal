@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Property from '../property';
+import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner'
 import './index.css';
 import Ethereum from '../utilities/ethereum';
@@ -15,23 +16,23 @@ const egoCursorHand = require('../img/ego/cursor-hand.svg');
 
 const addPropertyModalStyles = {
     content: {
-      padding: '16px',
-      width: '600px',
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      overflow: 'none',
-      borderRadius: '3px',
-      borderColor: '#C0C0C0',
-      boxShadow: '3px 3px 15px #7F7F7F',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
+        padding: '16px',
+        width: '600px',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        overflow: 'none',
+        borderRadius: '3px',
+        borderColor: '#C0C0C0',
+        boxShadow: '3px 3px 15px #7F7F7F',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
     },
     overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.25)'
+        backgroundColor: 'rgba(0, 0, 0, 0.25)'
     }
-  };
+};
 
 export namespace CompanyDetail {
     export interface Props {
@@ -159,9 +160,23 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
             }
         }
 
+        const routes: any = [
+            {
+                name: 'Companies',
+                path: '/companies',
+                active: true,
+            },
+            {
+                name: this.props.match.params.cid,
+                path: '/companies/' + this.props.match.params.cid,
+                active: true,
+            }
+        ]
+
         return (
             <section className="company-detail">
                 <div className="content">
+                    <Breadcrumbs routes={routes} />
                     <button className="add-property" onClick={this.addPropertyOnRequestOpen}>
                         <img className="add-property-icon" src={egoPenChecklist} />
                         <span className="add-property-text">Add property</span>

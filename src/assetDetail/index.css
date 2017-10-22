@@ -69,3 +69,15 @@
 .asset-detail .content .informations .asset-type{
     margin-top: 8px;
 }
+
+.asset-detail .content .empty .icon{
+    display: block;
+    margin: auto;
+    width: 200px;
+}
+
+.asset-detail .content .empty .text{
+    text-align: center;
+    margin: 24px auto;
+    color: #C0C0C0;
+}

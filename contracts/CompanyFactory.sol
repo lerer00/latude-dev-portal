@@ -6,14 +6,12 @@ import "./Company.sol";
 contract CompanyFactory is Ownable {
     mapping(address => address[]) companies;
 
-    function addCompany(string _name) returns (Company) {      
+    function addCompany(string _name){      
         // Add a new company contract.
         Company newCompany = new Company(_name, msg.sender);
         
         // Add the new one.
         companies[msg.sender].push(newCompany);
-
-        return newCompany;
     }
 
     function getCompanies() constant returns(address[]) {

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import './index.css';
+import Breadcrumbs from '../breadcrumbs'
+import Spinner from '../spinner';
 import Ethereum from '../utilities/ethereum';
+import './index.css';
 
 const Modal = require('react-modal');
 const ipfsAPI = require('ipfs-api')
@@ -11,6 +13,7 @@ const propertyContract = contract(PropertyContract);
 const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
+const egoCursorHand = require('../img/ego/cursor-hand.svg');
 
 const manageAssetModalStyles = {
     content: {
@@ -38,6 +41,8 @@ export namespace AssetDetail {
     }
 
     export interface State {
+        loading: boolean,
+        dataFound: boolean,
         web3: any,
         ipfs: any,
         manageAssetModalIsOpen: boolean,
@@ -50,6 +55,8 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         super(props, context);
 
         this.state = {
+            loading: true,
+            dataFound: false,
             web3: null,
             ipfs: ipfsAPI('localhost', '5001', { protocol: 'http' }),
             manageAssetModalIsOpen: false,
@@ -99,14 +106,22 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                 propertyInstance = instance;
 
                 return propertyInstance.lastMetadataHashForAsset.call(this.props.match.params.aid);
-            }).then((hash: string, err: any) => {
+            }).then((hash: string) => {
+                this.setState({
+                    loading: false,
+                    dataFound: true
+                })
                 this.getFile(hash);
-            });;
+            }).catch((error: any) => {
+                this.setState({
+                    loading: false,
+                    dataFound: false
+                })
+            });
         });
     }
 
     getFile(hash: string) {
-        console.log('Getting file: ' + hash);
         this.state.ipfs.files.cat(hash, (err: any, stream: any) => {
             if (err) {
                 throw err;
@@ -161,9 +176,62 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     render() {
+        var assetContent;
+        if (this.state.loading)
+            assetContent = <Spinner text="loading asset..." />
+        else {
+            if (this.state.dataFound) {
+                assetContent = <div className="informations">
+                    <h1 className="asset-name">{this.state.asset.name}</h1>
+                    <p className="asset-description">{this.state.asset.description}</p>
+                    <p className="asset-type">Type: {this.state.asset.type}</p>
+                </div>
+            } else {
+                assetContent =
+                    <div className="empty">
+                        <img className="icon" src={egoCursorHand} />
+                        <p className="text">No data were found please add some more informations before continuing...</p>
+                    </div>;
+            }
+        }
+
+        const routes: any = [
+            {
+                name: 'Companies',
+                path: '/companies',
+                active: true,
+            },
+            {
+                name: this.props.match.params.cid,
+                path: '/companies/' + this.props.match.params.cid,
+                active: true,
+            },
+            {
+                name: 'Properties',
+                path: '/companies/' + this.props.match.params.cid + '/properties/',
+                active: false,
+            },
+            {
+                name: this.props.match.params.pid,
+                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid,
+                active: true,
+            },
+            {
+                name: 'Assets',
+                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid + '/assets',
+                active: false,
+            },
+            {
+                name: this.props.match.params.aid,
+                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid + '/assets/' + this.props.match.params.aid,
+                active: true,
+            },
+        ]
+
         return (
             <section className="asset-detail">
                 <div className="content">
+                    <Breadcrumbs routes={routes} />
                     <button className="manage-asset" onClick={this.manageAssetOnRequestOpen}>
                         <img className="manage-asset-icon" src={egoPenChecklist} />
                         <span className="manage-asset-text">Manage asset</span>
@@ -204,11 +272,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             <button className="action close" onClick={this.manageAssetOnRequestClose}>Close</button>
                         </div>
                     </Modal>
-                    <div className="informations">
-                        <h1 className="asset-name">{this.state.asset.name}</h1>
-                        <p className="asset-description">{this.state.asset.description}</p>
-                        <p className="asset-type">Type: {this.state.asset.type}</p>
-                    </div>
+                    {assetContent}
                 </div>
             </section>
         );

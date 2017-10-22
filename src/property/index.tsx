@@ -66,7 +66,7 @@ class Property extends React.Component<Property.Props, Property.State> {
                     <span className="address">address: {this.props.id}</span>
                     <span className="balance">balance: {this.state.balance} ether</span>
                     <p className="name">{this.state.property.name}</p>
-                    <NavLink className="detail" to={"/compagnies/" + this.props.company + "/properties/" + this.props.id}>
+                    <NavLink className="detail" to={"/companies/" + this.props.company + "/properties/" + this.props.id}>
                         <img className="plus" src={egoSun1} />
                     </NavLink>
                 </div>

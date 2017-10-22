@@ -1,8 +1,9 @@
 import * as React from 'react';
+import Asset from './asset';
+import Breadcrumbs from '../breadcrumbs'
+import Spinner from '../spinner';
 import './index.css';
 import Ethereum from '../utilities/ethereum';
-import Asset from './asset';
-import Spinner from '../spinner';
 
 const Modal = require('react-modal');
 const contract = require('truffle-contract');
@@ -199,9 +200,33 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             }
         }
 
+        const routes: any = [
+            {
+                name: 'Companies',
+                path: '/companies',
+                active: true,
+            },
+            {
+                name: this.props.match.params.cid,
+                path: '/companies/' + this.props.match.params.cid,
+                active: true,
+            },
+            {
+                name: 'Properties',
+                path: '/companies/' + this.props.match.params.cid + '/properties/',
+                active: false,
+            },
+            {
+                name: this.props.match.params.pid,
+                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid,
+                active: true,
+            },
+        ]
+
         return (
             <section className="property-detail">
                 <div className="content">
+                    <Breadcrumbs routes={routes} />
                     <button className="add-asset" onClick={this.addAssetOnRequestOpen}>
                         <img className="add-asset-icon" src={egoPenChecklist} />
                         <span className="add-asset-text">Add asset</span>

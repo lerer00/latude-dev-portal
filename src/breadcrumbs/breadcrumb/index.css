@@ -1,0 +1,31 @@
+.breadcrumb{
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.breadcrumb .link {
+    text-decoration: none; 
+}
+
+.breadcrumb .link .name{
+    display: inline;
+    font-size: 0.8em;
+    color: #8C8C8C;
+}
+
+.breadcrumb .link .name::after{
+    content: '/';
+    margin: 0 4px;
+    color: #C4C4C4;
+}
+
+.breadcrumb .disabled-link{
+    font-size: 0.8em;
+    color: #C4C4C4;
+}
+
+.breadcrumb .disabled-link::after{
+    content: '/';
+    margin: 0 4px;
+}

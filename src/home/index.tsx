@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Compagnies from '../companies';
+import Companies from '../companies';
 import CompanyDetail from '../companyDetail';
 import PropertyDetail from '../propertyDetail';
 import AssetDetail from '../assetDetail';
@@ -24,7 +24,7 @@ export namespace Home {
 }
 
 class Home extends React.Component<Home.Props, Home.State> {
-  constructor(props?: Home.Props, context?: any){
+  constructor(props?: Home.Props, context?: any) {
     super(props, context);
   }
 
@@ -44,10 +44,10 @@ class Home extends React.Component<Home.Props, Home.State> {
         <Menu />
         <Switch>
           <Route exact={true} path="/" component={Default} />
-          <Route exact={true} path="/compagnies" component={Compagnies} />
-          <Route exact={true} path="/compagnies/:cid" component={CompanyDetail} />
-          <Route exact={true} path="/compagnies/:cid/properties/:pid" component={PropertyDetail} />
-          <Route exact={true} path="/compagnies/:cid/properties/:pid/assets/:aid" component={AssetDetail} />
+          <Route exact={true} path="/companies" component={Companies} />
+          <Route exact={true} path="/companies/:cid" component={CompanyDetail} />
+          <Route exact={true} path="/companies/:cid/properties/:pid" component={PropertyDetail} />
+          <Route exact={true} path="/companies/:cid/properties/:pid/assets/:aid" component={AssetDetail} />
         </Switch>
         <Footer />
       </div>
