@@ -12,8 +12,7 @@ contract Company is Ownable {
         name = _name;
     }
 
-    function createProperty(string _name) onlyOwner returns (Property) {
-        //Property newProperty = (new Property).value(1000000000000000000)(_name, owner);
+    function addProperty(string _name) onlyOwner returns (Property) {
         Property newProperty = new Property(_name, owner);
         properties.push(newProperty);
 

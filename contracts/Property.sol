@@ -43,7 +43,7 @@ contract Property is Ownable {
         return assets[_id].metadataHashes[assets[_id].metadataHashes.length - 1];
     }
 
-    function createAsset(string _category, uint _price, string _currency) onlyOwner {
+    function addAsset(string _category, uint _price, string _currency) onlyOwner {
         uint newAssetId = assets.length;
         uint[] memory initialStays;
         string[] memory metadataHashes;
@@ -55,9 +55,9 @@ contract Property is Ownable {
         return (currentAsset.id, currentAsset.category, currentAsset.price, currentAsset.currency, currentAsset.stayIds);
     }
 
-    // creates new stay for asset at _id
-    // IN FUTURE will create a file representing the stay in IPFS and push its hash to the array 
-    function createStay(uint _id, uint _startTime, uint _endTime) payable returns(bool) {
+    // add new stay for asset at _id
+    // IN FUTURE will add a file representing the stay in IPFS and push its hash to the array 
+    function addStay(uint _id, uint _startTime, uint _endTime) payable returns(bool) {
         // check if the amount of wei(!) sent is sufficient
         require(msg.value >= assets[_id].price);
         require(_endTime > _startTime);

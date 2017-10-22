@@ -109,9 +109,8 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
             companyContract.at(this.props.match.params.cid).then((instance: any) => {
                 companyInstance = instance;
 
-                return companyInstance.createProperty(this.state.addProperty.name, { from: accounts[0] });
+                return companyInstance.addProperty(this.state.addProperty.name, { from: accounts[0] });
             }).then((result: any) => {
-                this.getProperties();
                 this.setState({
                     addPropertyModalIsOpen: false,
                     addProperty: {

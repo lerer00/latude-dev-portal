@@ -4,23 +4,19 @@ import "./Ownable.sol";
 import "./Company.sol";
 
 contract CompanyFactory is Ownable {
-    address[] public companies;
+    mapping(address => address[]) companies;
 
-    function CompanyFactory() payable {}
-
-    function createCompany(string _name) returns (Company) {
-        //Company newCompany = (new Company).value(10000000000000000000)(_name, msg.sender);
+    function addCompany(string _name) returns (Company) {      
+        // Add a new company contract.
         Company newCompany = new Company(_name, msg.sender);
-        companies.push(newCompany);
+        
+        // Add the new one.
+        companies[msg.sender].push(newCompany);
 
         return newCompany;
     }
 
     function getCompanies() constant returns(address[]) {
-        return companies;
-    }
-
-    function getBalance() constant returns(uint) {
-        return this.balance;
+        return companies[msg.sender];
     }
 }

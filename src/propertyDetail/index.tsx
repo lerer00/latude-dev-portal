@@ -122,7 +122,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             propertyContract.at(this.props.match.params.pid).then((instance: any) => {
                 propertyInstance = instance;
 
-                return propertyInstance.createAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: accounts[0] });
+                return propertyInstance.addAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: accounts[0] });
             }).then((result: any) => {
                 this.setState({
                     addAssetModalIsOpen: false
