@@ -7,7 +7,7 @@ import Ethereum from '../utilities/ethereum';
 
 const Modal = require('react-modal');
 const contract = require('truffle-contract');
-const CompanyFactoryContract = require('../truffle-build/contracts/CompanyFactory.json');
+const CompanyFactoryContract = require('../build/contracts/CompanyFactory.json');
 const companyFactoryContract = contract(CompanyFactoryContract);
 const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');

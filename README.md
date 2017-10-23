@@ -31,7 +31,7 @@ testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orc
 ipfs daemon
 truffle compile
 truffle migrate
-*copy the /build/contract folder into the /src/truffle-build this step will be removed soon
+*copy the /build/contract folder into the /src/build this step will be removed soon
 npm start
 ```
 

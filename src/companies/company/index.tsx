@@ -3,7 +3,7 @@ import './index.css';
 import { NavLink } from 'react-router-dom';
 
 const contract = require('truffle-contract');
-const CompanyContract = require('../../truffle-build/contracts/Company.json');
+const CompanyContract = require('../../build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
 const egoLighthouse = require('../../img/ego/lighthouse.svg');
 

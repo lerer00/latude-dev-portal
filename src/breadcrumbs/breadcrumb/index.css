@@ -21,6 +21,7 @@
 }
 
 .breadcrumb .disabled-link{
+    cursor: default;
     font-size: 0.8em;
     color: #C4C4C4;
 }
