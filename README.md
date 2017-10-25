@@ -25,13 +25,21 @@ Here's how to setup you dev environment using testrpc. Other networks haven't be
 Note that testrpc will always run with the same mnemonic phrase since metamask require 12 words.
 
 ```
+Festch sources and dependencies
 git clone https://github.com/lerer00/latude-dev-portal.git
 npm install -msvs_version=2015 *this is a problem with the web3 library, does not accept other version... pretty weird!
+
+Manuel process
 testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch" --accounts 50
 ipfs daemon
 truffle compile
 truffle migrate
-*copy the /build/contract folder into the /src/build this step will be removed soon
+*copy the /build/contract folder into the /src/build
+npm start
+
+Automated process
+grunt bootstrap (start testrpc & ipfs)
+grunt truffle (compile, migrate and copy to go location)
 npm start
 ```
 

@@ -12,6 +12,7 @@ module.exports = function (grunt) {
         },
         exec: {
             local_rpc: 'start testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch" --accounts 50',
+            local_ipfs: 'start ipfs daemon',
             truffle_compile: 'truffle compile',
             truffle_migrate: 'truffle migrate --reset'
         }
@@ -22,7 +23,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-exec');
 
     // Task definitions.
+    grunt.registerTask('bootstrap', ['exec:local_rpc', 'exec:local_ipfs']);
     grunt.registerTask('truffle', ['exec:truffle_compile', 'exec:truffle_migrate', 'copy:contracts']);
-    grunt.registerTask('bootstrap', ['exec:local_rpc']);
     grunt.registerTask('default', []);
 };

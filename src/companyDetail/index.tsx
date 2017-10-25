@@ -6,6 +6,7 @@ import './index.css';
 import Ethereum from '../utilities/ethereum';
 
 const Modal = require('react-modal');
+const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
 const CompanyContract = require('../build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
@@ -117,6 +118,16 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                     addProperty: {
                         name: ''
                     }
+                }, () => {
+                    // This is only until the total mess of events is resolved...
+                    setTimeout(() => {
+                        this.getProperties();
+
+                        // Notify user from success.
+                        toast.success("Success, property was added.", {
+                            position: toast.POSITION.BOTTOM_RIGHT
+                        });
+                    }, 1500);
                 })
             });;
         });

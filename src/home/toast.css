@@ -1,0 +1,29 @@
+.toastify-content{
+    min-height: 36px;
+    border-radius: 3px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgba(255,255,255,0.9);
+    color: #595959;
+}
+
+.toastify-content--success{
+    position: relative;
+    border: solid 2px #399AFF;
+}
+
+.toastify-content--success::before{
+    content: '';
+    display: block;
+    margin: 6px;
+    width: 36px;
+    height: 36px;
+    background: url('../img/ego/check-hexagon.svg');
+    background-size: 36px;
+    background-repeat: no-repeat;
+}
+
+.toastify-content .toastify__close{
+    position: absolute;
+    top: 4px;
+    right: 8px;
+}

@@ -6,6 +6,7 @@ import './index.css';
 import Ethereum from '../utilities/ethereum';
 
 const Modal = require('react-modal');
+const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
 const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
@@ -127,6 +128,16 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             }).then((result: any) => {
                 this.setState({
                     addAssetModalIsOpen: false
+                }, () => {
+                    // This is only until the total mess of events is resolved...
+                    setTimeout(() => {
+                        this.getAssets();
+
+                        // Notify user from success.
+                        toast.success("Success, asset was added.", {
+                            position: toast.POSITION.BOTTOM_RIGHT
+                        });
+                    }, 1500);
                 })
             });;
         });

@@ -12,6 +12,7 @@ import './index.css';
 
 const { ToastContainer } = require('react-toastify');
 import 'react-toastify/dist/ReactToastify.min.css';
+import './toast.css';
 
 export namespace Home {
   export interface Props {
@@ -34,9 +35,9 @@ class Home extends React.Component<Home.Props, Home.State> {
         <ToastContainer
           position="top-right"
           type="default"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
+          autoClose={4500}
+          hideProgressBar={true}
+          newestOnTop={true}
           closeOnClick
           pauseOnHover
         />

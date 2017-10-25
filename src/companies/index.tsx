@@ -6,6 +6,7 @@ import './index.css';
 import Ethereum from '../utilities/ethereum';
 
 const Modal = require('react-modal');
+const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
 const CompanyFactoryContract = require('../build/contracts/CompanyFactory.json');
 const companyFactoryContract = contract(CompanyFactoryContract);
@@ -117,7 +118,17 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
           addCompany: {
             name: '',
           }
-        })
+        }, () => {
+          // This is only until the total mess of events is resolved...
+          setTimeout(() => {
+            this.getCompanies();
+
+            // Notify user from success.
+            toast.success("Success, company was added.", {
+              position: toast.POSITION.BOTTOM_RIGHT
+            });
+          }, 1500);
+        });
       });;
     });
   }
