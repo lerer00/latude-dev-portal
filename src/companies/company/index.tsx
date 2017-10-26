@@ -32,28 +32,25 @@ class Company extends React.Component<Company.Props, Company.State> {
     }
 
     componentWillMount() {
+        companyContract.setProvider(this.props.web3.currentProvider);
         this.getPartial();
     }
 
     getPartial() {
-        companyContract.setProvider(this.props.web3.currentProvider);
         var companyInstance: any;
-        this.props.web3.eth.getAccounts((error: any, accounts: any) => {
-            companyContract.at(this.props.id).then((instance: any) => {
-                companyInstance = instance;
-
-                return companyInstance.name.call();
-            }).then((result: any) => {
-                this.setState({
-                    company: {
-                        name: result
-                    }
-                });
-                return companyInstance.getBalance.call();
-            }).then((result: any) => {
-                this.setState({
-                    balance: this.props.web3.utils.fromWei(result.toNumber())
-                });
+        companyContract.at(this.props.id).then((instance: any) => {
+            companyInstance = instance;
+            return companyInstance.name.call();
+        }).then((result: any) => {
+            this.setState({
+                company: {
+                    name: result
+                }
+            });
+            return companyInstance.getBalance.call();
+        }).then((result: any) => {
+            this.setState({
+                balance: this.props.web3.utils.fromWei(result.toNumber())
             });
         });
     }

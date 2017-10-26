@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner';
 import Ethereum from '../utilities/ethereum';
@@ -73,6 +74,10 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         this.manageAssetHandleChanges = this.manageAssetHandleChanges.bind(this);
     }
 
+    static contextTypes = {
+        web3: PropTypes.object
+    }
+
     componentWillMount() {
         var ethereum = new Ethereum();
         var web3 = ethereum.getWeb3();
@@ -87,37 +92,27 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     addAssetHash(hash: string) {
-        var propertyInstance;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-                propertyInstance = instance;
-
-                return propertyInstance.addMetadataHashForAsset(this.props.match.params.aid, hash, { from: accounts[0] });
-            }).then((hash: string) => {
-                this.manageAssetOnRequestClose();
-            });;
+        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
+            return instance.addMetadataHashForAsset(this.props.match.params.aid, hash, { from: this.context.web3.accounts[0] });
+        }).then((hash: string) => {
+            this.manageAssetOnRequestClose();
         });
     }
 
     retrieveLastAssetHash() {
-        var propertyInstance;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-                propertyInstance = instance;
-
-                return propertyInstance.lastMetadataHashForAsset.call(this.props.match.params.aid);
-            }).then((hash: string) => {
-                this.setState({
-                    loading: false,
-                    dataFound: true
-                })
-                this.getFile(hash);
-            }).catch((error: any) => {
-                this.setState({
-                    loading: false,
-                    dataFound: false
-                })
-            });
+        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
+            return instance.lastMetadataHashForAsset.call(this.props.match.params.aid);
+        }).then((hash: string) => {
+            this.setState({
+                loading: false,
+                dataFound: true
+            })
+            this.getFile(hash);
+        }).catch((error: any) => {
+            this.setState({
+                loading: false,
+                dataFound: false
+            })
         });
     }
 

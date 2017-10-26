@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Company from './company';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner';
@@ -69,33 +70,30 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     this.addCompanyHandleChanges = this.addCompanyHandleChanges.bind(this);
   }
 
+  static contextTypes = {
+    web3: PropTypes.object
+  }
+
   componentWillMount() {
     var ethereum = new Ethereum();
     var web3 = ethereum.getWeb3();
     this.setState({
       web3: web3
+    }, () => {
+      companyFactoryContract.setProvider(this.state.web3.currentProvider);
+      this.getCompanies();
     });
   }
 
-  componentDidMount() {
-    this.getCompanies();
-  }
-
   getCompanies() {
-    companyFactoryContract.setProvider(this.state.web3.currentProvider);
-    var companyFactoryInstance;
-    this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-      companyFactoryContract.deployed().then((instance: any) => {
-        companyFactoryInstance = instance;
-
-        return companyFactoryInstance.getCompanies.call();
-      }).then((result: any) => {
-        this.setState({
-          companies: result,
-          loading: false
-        });
-        this.forceUpdate();
+    companyFactoryContract.deployed().then((instance: any) => {
+      return instance.getCompanies.call();
+    }).then((result: any) => {
+      this.setState({
+        companies: result,
+        loading: false
       });
+      this.forceUpdate();
     });
   }
 
@@ -105,31 +103,25 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     if (this.state.addCompany.name === '')
       return;
 
-    companyFactoryContract.setProvider(this.state.web3.currentProvider);
-    var companyFactoryInstance;
-    this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-      companyFactoryContract.deployed().then((instance: any) => {
-        companyFactoryInstance = instance;
+    companyFactoryContract.deployed().then((instance: any) => {
+      return instance.addCompany(this.state.addCompany.name, { from: this.context.web3.accounts[0] });
+    }).then((result: any) => {
+      this.setState({
+        addCompanyModalIsOpen: false,
+        addCompany: {
+          name: '',
+        }
+      }, () => {
+        // This is only until the total mess of events is resolved...
+        setTimeout(() => {
+          this.getCompanies();
 
-        return companyFactoryInstance.addCompany(this.state.addCompany.name, { from: accounts[0] });
-      }).then((result: any) => {
-        this.setState({
-          addCompanyModalIsOpen: false,
-          addCompany: {
-            name: '',
-          }
-        }, () => {
-          // This is only until the total mess of events is resolved...
-          setTimeout(() => {
-            this.getCompanies();
-
-            // Notify user from success.
-            toast.success("Success, company was added.", {
-              position: toast.POSITION.BOTTOM_RIGHT
-            });
-          }, 1500);
-        });
-      });;
+          // Notify user from success.
+          toast.success("Success, company was added.", {
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
+        }, 1500);
+      });
     });
   }
 

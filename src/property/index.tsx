@@ -37,24 +37,22 @@ class Property extends React.Component<Property.Props, Property.State> {
     }
 
     getName() {
-        propertyContract.setProvider(this.props.web3.currentProvider);
         var propertyInstance: any;
-        this.props.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.id).then((instance: any) => {
-                propertyInstance = instance;
+        propertyContract.setProvider(this.props.web3.currentProvider);
+        propertyContract.at(this.props.id).then((instance: any) => {
+            propertyInstance = instance;
 
-                return propertyInstance.name.call();
-            }).then((result: any) => {
-                this.setState({
-                    property: {
-                        name: result,
-                    }
-                });
-                return propertyInstance.getBalance.call();
-            }).then((result: any) => {
-                this.setState({
-                    balance: this.props.web3.utils.fromWei(result.toNumber())
-                });
+            return propertyInstance.name.call();
+        }).then((result: any) => {
+            this.setState({
+                property: {
+                    name: result,
+                }
+            });
+            return propertyInstance.getBalance.call();
+        }).then((result: any) => {
+            this.setState({
+                balance: this.props.web3.utils.fromWei(result.toNumber())
             });
         });
     }

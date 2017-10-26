@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Property from '../property';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner'
@@ -69,6 +70,10 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
         this.addPropertyHandleChanges = this.addPropertyHandleChanges.bind(this);
     }
 
+    static contextTypes = {
+        web3: PropTypes.object
+    }
+
     componentWillMount() {
         var ethereum = new Ethereum();
         var web3 = ethereum.getWeb3();
@@ -78,24 +83,19 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
     }
 
     componentDidMount() {
+        companyContract.setProvider(this.state.web3.currentProvider);
         this.getProperties();
     }
 
     getProperties() {
-        companyContract.setProvider(this.state.web3.currentProvider);
-        var companyInstance;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            companyContract.at(this.props.match.params.cid).then((instance: any) => {
-                companyInstance = instance;
-
-                return companyInstance.getProperties.call();
-            }).then((result: any) => {
-                this.setState({
-                    properties: result,
-                    loading: false
-                });
-                this.forceUpdate();
+        companyContract.at(this.props.match.params.cid).then((instance: any) => {
+            return instance.getProperties.call();
+        }).then((result: any) => {
+            this.setState({
+                properties: result,
+                loading: false
             });
+            this.forceUpdate();
         });
     }
 
@@ -105,31 +105,25 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
         if (this.state.addProperty.name === '')
             return;
 
-        companyContract.setProvider(this.state.web3.currentProvider);
-        var companyInstance;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            companyContract.at(this.props.match.params.cid).then((instance: any) => {
-                companyInstance = instance;
+        companyContract.at(this.props.match.params.cid).then((instance: any) => {
+            return instance.addProperty(this.state.addProperty.name, { from: this.context.web3.accounts[0] });
+        }).then((result: any) => {
+            this.setState({
+                addPropertyModalIsOpen: false,
+                addProperty: {
+                    name: ''
+                }
+            }, () => {
+                // This is only until the total mess of events is resolved...
+                setTimeout(() => {
+                    this.getProperties();
 
-                return companyInstance.addProperty(this.state.addProperty.name, { from: accounts[0] });
-            }).then((result: any) => {
-                this.setState({
-                    addPropertyModalIsOpen: false,
-                    addProperty: {
-                        name: ''
-                    }
-                }, () => {
-                    // This is only until the total mess of events is resolved...
-                    setTimeout(() => {
-                        this.getProperties();
-
-                        // Notify user from success.
-                        toast.success("Success, property was added.", {
-                            position: toast.POSITION.BOTTOM_RIGHT
-                        });
-                    }, 1500);
-                })
-            });;
+                    // Notify user from success.
+                    toast.success("Success, property was added.", {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                    });
+                }, 1500);
+            })
         });
     }
 

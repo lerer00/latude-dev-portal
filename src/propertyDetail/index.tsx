@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Asset from './asset';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner';
@@ -77,6 +78,10 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         this.addAssetHandleChanges = this.addAssetHandleChanges.bind(this);
     }
 
+    static contextTypes = {
+        web3: PropTypes.object
+    }
+
     componentWillMount() {
         var ethereum = new Ethereum();
         var web3 = ethereum.getWeb3();
@@ -93,22 +98,19 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
     getName() {
         var propertyInstance: any;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-                propertyInstance = instance;
-
-                return propertyInstance.name.call();
-            }).then((result: any) => {
-                this.setState({
-                    property: {
-                        name: result,
-                    }
-                });
-                return propertyInstance.getBalance.call();
-            }).then((result: any) => {
-                this.setState({
-                    balance: this.state.web3.utils.fromWei(result.toNumber())
-                });
+        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
+            propertyInstance = instance;
+            return propertyInstance.name.call();
+        }).then((result: any) => {
+            this.setState({
+                property: {
+                    name: result,
+                }
+            });
+            return propertyInstance.getBalance.call();
+        }).then((result: any) => {
+            this.setState({
+                balance: this.state.web3.utils.fromWei(result.toNumber())
             });
         });
     }
@@ -119,58 +121,43 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         if (this.state.addAsset.id === '' && this.state.addAsset.price < 0 && this.state.addAsset.currency === '')
             return;
 
-        var propertyInstance;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-                propertyInstance = instance;
+        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
+            return instance.addAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: this.context.web3.accounts[0] });
+        }).then((result: any) => {
+            this.setState({
+                addAssetModalIsOpen: false
+            }, () => {
+                // This is only until the total mess of events is resolved...
+                setTimeout(() => {
+                    this.getAssets();
 
-                return propertyInstance.addAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: accounts[0] });
-            }).then((result: any) => {
-                this.setState({
-                    addAssetModalIsOpen: false
-                }, () => {
-                    // This is only until the total mess of events is resolved...
-                    setTimeout(() => {
-                        this.getAssets();
-
-                        // Notify user from success.
-                        toast.success("Success, asset was added.", {
-                            position: toast.POSITION.BOTTOM_RIGHT
-                        });
-                    }, 1500);
-                })
-            });;
+                    // Notify user from success.
+                    toast.success("Success, asset was added.", {
+                        position: toast.POSITION.BOTTOM_RIGHT
+                    });
+                }, 1500);
+            })
         });
     }
 
     getAssets() {
-        var propertyInstance;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-                propertyInstance = instance;
-
-                return propertyInstance.numberOfAssets.call();
-            }).then((result: any) => {
-                for (var i = 0; i < result.toNumber(); i++) {
-                    this.getAsset(i);
-                }
-            });;
+        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
+            return instance.numberOfAssets.call();
+        }).then((result: any) => {
+            for (var i = 0; i < result.toNumber(); i++) {
+                this.getAsset(i);
+            }
         });
     }
 
     getAsset(id: number) {
-        var propertyInstance;
-        this.state.web3.eth.getAccounts((error: any, accounts: any) => {
-            propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-                propertyInstance = instance;
-
-                return propertyInstance.getAsset.call(id);
-            }).then((result: any) => {
-                var asset: any = { id: result[0].toNumber(), name: result[1], price: result[2].toNumber(), currency: result[3], stay: result[4] };
-                this.setState({
-                    assets: this.state.assets.concat([asset])
-                });
-            });;
+        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
+            return instance.getAsset.call(id);
+        }).then((result: any) => {
+            var asset: any = { id: result[0].toNumber(), name: result[1], price: result[2].toNumber(), currency: result[3], stay: result[4] };
+            this.setState({
+                assets: this.state.assets.concat([asset])
+            });
         });
     }
 
