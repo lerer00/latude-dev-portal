@@ -4,8 +4,8 @@ import Property from '../property';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner'
 import './index.css';
-import Ethereum from '../utilities/ethereum';
 
+const web3 = window['web3'];
 const Modal = require('react-modal');
 const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
@@ -43,7 +43,6 @@ export namespace CompanyDetail {
 
     export interface State {
         loading: boolean,
-        web3: any;
         properties: Array<string>;
         addPropertyModalIsOpen: boolean;
         addProperty: any;
@@ -56,7 +55,6 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
 
         this.state = {
             loading: true,
-            web3: undefined,
             properties: [],
             addPropertyModalIsOpen: false,
             addProperty: {
@@ -74,16 +72,8 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
         web3: PropTypes.object
     }
 
-    componentWillMount() {
-        var ethereum = new Ethereum();
-        var web3 = ethereum.getWeb3();
-        this.setState({
-            web3: web3
-        });
-    }
-
     componentDidMount() {
-        companyContract.setProvider(this.state.web3.currentProvider);
+        companyContract.setProvider(web3.currentProvider);
         this.getProperties();
     }
 
@@ -154,7 +144,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
         else {
             if (this.state.properties.length > 0) {
                 propertiesContent = this.state.properties.map((id) =>
-                    <Property company={this.props.match.params.cid} web3={this.state.web3} key={id} id={id} />
+                    <Property company={this.props.match.params.cid} key={id} id={id} />
                 );
             } else {
                 propertiesContent =

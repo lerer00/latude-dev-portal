@@ -4,8 +4,8 @@ import Asset from './asset';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner';
 import './index.css';
-import Ethereum from '../utilities/ethereum';
 
+const web3 = window['web3'];
 const Modal = require('react-modal');
 const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
@@ -42,7 +42,6 @@ export namespace PropertyDetail {
     }
 
     export interface State {
-        web3: any;
         property: any;
         assets: Array<any>;
         assetsLoading: boolean;
@@ -57,7 +56,6 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         super(props, context);
 
         this.state = {
-            web3: null,
             property: {
                 name: ''
             },
@@ -82,16 +80,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         web3: PropTypes.object
     }
 
-    componentWillMount() {
-        var ethereum = new Ethereum();
-        var web3 = ethereum.getWeb3();
-        this.setState({
-            web3: web3
-        });
-    }
-
     componentDidMount() {
-        propertyContract.setProvider(this.state.web3.currentProvider);
+        propertyContract.setProvider(web3.currentProvider);
         this.getName();
         this.getAssets();
     }
@@ -110,7 +100,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             return propertyInstance.getBalance.call();
         }).then((result: any) => {
             this.setState({
-                balance: this.state.web3.utils.fromWei(result.toNumber())
+                balance: result.toNumber()
             });
         });
     }
@@ -187,7 +177,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             assetsContent = <Spinner text="loading assets..." />
         else {
             if (this.state.assets.length > 0) {
-                assetsContent = this.state.assets.map((asset) => <Asset web3={this.state.web3} key={asset.id} id={asset.id} name={asset.name} price={asset.price} currency={asset.currency} url={this.props.match.url} />
+                assetsContent = this.state.assets.map((asset) => <Asset key={asset.id} id={asset.id} name={asset.name} price={asset.price} currency={asset.currency} url={this.props.match.url} />
                 );
             } else {
                 assetsContent =

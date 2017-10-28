@@ -2,6 +2,7 @@ import * as React from 'react';
 import './index.css';
 import { NavLink } from 'react-router-dom';
 
+const web3 = window['web3'];
 const contract = require('truffle-contract');
 const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
@@ -10,7 +11,6 @@ const egoSun1 = require('../img/ego/sun-1.svg');
 export namespace Property {
     export interface Props {
         company: string;
-        web3: any;
         id: string;
     }
 
@@ -38,7 +38,7 @@ class Property extends React.Component<Property.Props, Property.State> {
 
     getName() {
         var propertyInstance: any;
-        propertyContract.setProvider(this.props.web3.currentProvider);
+        propertyContract.setProvider(web3.currentProvider);
         propertyContract.at(this.props.id).then((instance: any) => {
             propertyInstance = instance;
 
@@ -52,7 +52,7 @@ class Property extends React.Component<Property.Props, Property.State> {
             return propertyInstance.getBalance.call();
         }).then((result: any) => {
             this.setState({
-                balance: this.props.web3.utils.fromWei(result.toNumber())
+                balance: result.toNumber()
             });
         });
     }

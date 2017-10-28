@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner';
-import Ethereum from '../utilities/ethereum';
 import './index.css';
 
+const web3 = window['web3'];
 const Modal = require('react-modal');
 const ipfsAPI = require('ipfs-api')
 const bl = require('bl');
@@ -44,7 +44,6 @@ export namespace AssetDetail {
     export interface State {
         loading: boolean,
         dataFound: boolean,
-        web3: any,
         ipfs: any,
         manageAssetModalIsOpen: boolean,
         asset: any
@@ -58,7 +57,6 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         this.state = {
             loading: true,
             dataFound: false,
-            web3: null,
             ipfs: ipfsAPI('localhost', '5001', { protocol: 'http' }),
             manageAssetModalIsOpen: false,
             asset: {
@@ -78,16 +76,8 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         web3: PropTypes.object
     }
 
-    componentWillMount() {
-        var ethereum = new Ethereum();
-        var web3 = ethereum.getWeb3();
-        this.setState({
-            web3: web3
-        });
-    }
-
     componentDidMount() {
-        propertyContract.setProvider(this.state.web3.currentProvider);
+        propertyContract.setProvider(web3.currentProvider);
         this.retrieveLastAssetHash();
     }
 

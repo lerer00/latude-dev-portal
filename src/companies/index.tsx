@@ -4,8 +4,8 @@ import Company from './company';
 import Breadcrumbs from '../breadcrumbs'
 import Spinner from '../spinner';
 import './index.css';
-import Ethereum from '../utilities/ethereum';
 
+const web3 = window['web3'];
 const Modal = require('react-modal');
 const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
@@ -43,7 +43,6 @@ export namespace Companies {
 
   export interface State {
     loading: boolean,
-    web3: any,
     companies: Array<string>,
     addCompanyModalIsOpen: boolean,
     addCompany: any
@@ -56,7 +55,6 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
 
     this.state = {
       loading: true,
-      web3: undefined,
       companies: [],
       addCompanyModalIsOpen: false,
       addCompany: {
@@ -75,14 +73,8 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
   }
 
   componentWillMount() {
-    var ethereum = new Ethereum();
-    var web3 = ethereum.getWeb3();
-    this.setState({
-      web3: web3
-    }, () => {
-      companyFactoryContract.setProvider(this.state.web3.currentProvider);
+      companyFactoryContract.setProvider(web3.currentProvider);
       this.getCompanies();
-    });
   }
 
   getCompanies() {
@@ -152,7 +144,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     else {
       if (this.state.companies.length > 0) {
         companiesContent = this.state.companies.map((id) =>
-          <Company web3={this.state.web3} key={id} id={id} />
+          <Company key={id} id={id} />
         );
       } else {
         companiesContent =

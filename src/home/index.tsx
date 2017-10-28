@@ -20,7 +20,7 @@ export namespace Home {
   }
 
   export interface State {
-    web3: any;
+    // empty
   }
 }
 
