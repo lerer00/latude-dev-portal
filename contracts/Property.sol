@@ -5,85 +5,87 @@ import "./Ownable.sol";
 contract Property is Ownable {
     string public name;
     Asset[] assets;
-    Stay[] stays;
+    mapping(uint => Stays) stays;
+    
+    // this is to bypass the problem related to copying memory struct arrays to storage
+    struct Stays {
+        Stay[] stays;
+    }
 
     // startTime and endTime are in Unix format
     struct Stay {
         uint id;
         uint startTime;
         uint endTime;
-        address person;
+        address client;
     }
 
     struct Asset {
         uint id;
-        // type of an asset like bed or room
+        // room, beds...
         string category;
+        // needed to ask for a payment
         uint price;
         string currency;
-        // ids of stays associated with this particular asset
-        uint[] stayIds;
-        // hashes that represent the last metadata update
+        // needed to retreive metadata from ipfs
         string[] metadataHashes;
+        // all stays
+        uint[] stayIds;
     }
 
-    function Property(string _name, address _owner) payable {
-        // owner of this Property = person who owns the company that Property is associated with
+    function Property(string _name, address _owner) public payable {
+        // owner of this Property = the one who owns the company that Property is associated with
         transferOwnership(_owner);
         name = _name;
     }
 
     // this is metadata for assets, basically an ipfs hash
-    function addMetadataHashForAsset(uint _id, string hash) onlyOwner {
+    function addMetadataHashForAsset(uint _id, string hash) public onlyOwner {
         assets[_id].metadataHashes.push(hash);
     }
 
-    function lastMetadataHashForAsset(uint _id) constant returns (string) {
+    // we keep all history of every metadata files
+    function lastMetadataHashForAsset(uint _id) public constant returns (string) {
         require(assets[_id].metadataHashes.length > 0);
         return assets[_id].metadataHashes[assets[_id].metadataHashes.length - 1];
     }
 
-    function addAsset(string _category, uint _price, string _currency) onlyOwner {
+    function addAsset(string _category, uint _price, string _currency) public onlyOwner {
         uint newAssetId = assets.length;
-        uint[] memory initialStays;
         string[] memory metadataHashes;
-        assets.push(Asset(newAssetId, _category, _price, _currency, initialStays, metadataHashes));
+        uint[] memory stayIds;
+        assets.push(Asset(newAssetId, _category, _price, _currency, metadataHashes, stayIds));
     }
 
-    function getAsset(uint _id) constant returns (uint, string, uint, string, uint[]) {
-        Asset memory currentAsset = assets[_id];
-        return (currentAsset.id, currentAsset.category, currentAsset.price, currentAsset.currency, currentAsset.stayIds);
+    function getAsset(uint _id) public constant returns (uint, string, uint, string) {
+        Asset memory asset = assets[_id];
+        return (asset.id, asset.category, asset.price, asset.currency);
     }
 
-    // add new stay for asset at _id
-    // IN FUTURE will add a file representing the stay in IPFS and push its hash to the array 
-    function addStay(uint _id, uint _startTime, uint _endTime) payable returns(bool) {
+    function addStay(uint _assetId, uint _startTime, uint _endTime) public payable{
         // check if the amount of wei(!) sent is sufficient
-        require(msg.value >= assets[_id].price);
+        require(msg.value >= assets[_assetId].price);
         require(_endTime > _startTime);
-        // here we need an if statement to check if the time of stay is acceptable
-        uint newStayId = stays.length;
-        stays.push(Stay(newStayId, _startTime, _endTime, msg.sender));
 
-        // without storage it was causing a warning on compilation
-        Asset storage currentAsset = assets[_id];
-        currentAsset.stayIds.push(newStayId);
+        uint stayId = stays[_assetId].stays.length;
+        stays[_assetId].stays.push(Stay(stayId, _startTime, _endTime, msg.sender));
+        assets[_assetId].stayIds.push(stayId);
     }
 
-    function getStay(uint _id) constant returns(uint, uint, uint, address) {
-        Stay memory currentStay = stays[_id];
-        return (currentStay.id, currentStay.startTime, currentStay.endTime, currentStay.person);
+    function getStay(uint _assetId, uint _stayId) returns(uint, uint, uint) {
+        Stay memory stay = stays[_assetId].stays[_stayId];
+        return (stay.id, stay.startTime, stay.endTime);
     }
 
-    function numberOfAssets() returns(uint) {
+    function getStays(uint _assetId) public returns(uint[] ) {
+        return assets[_assetId].stayIds;
+    }
+
+    function numberOfAssets() public returns(uint) {
         return assets.length;
     }
 
-    function numberOfStays() returns(uint) {
-        return stays.length;
-    }
-
-    function getBalance() constant returns(uint) {
+    function getBalance() public constant returns(uint) {
         return this.balance;
     }
 }

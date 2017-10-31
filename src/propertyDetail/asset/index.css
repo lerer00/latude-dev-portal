@@ -36,14 +36,6 @@
     font-size: 0.8em;
 }
 
-.asset .bookings{
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 0.8em;
-    color: #A0A0A0;
-}
-
 .asset .detail{
     float: right;
 }

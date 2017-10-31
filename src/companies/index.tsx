@@ -96,7 +96,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
       return;
 
     companyFactoryContract.deployed().then((instance: any) => {
-      return instance.addCompany(this.state.addCompany.name, { from: this.context.web3.accounts[0] });
+      return instance.addCompany(this.state.addCompany.name, { from: this.context.web3.selectedAccount });
     }).then((result: any) => {
       this.setState({
         addCompanyModalIsOpen: false,

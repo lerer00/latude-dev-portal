@@ -1,3 +1,4 @@
+/* MODAL WINDOW ENHANCER */
 .modal-header{
 	position: relative;
 	border-bottom: solid 1px #C0C0C0;
@@ -80,4 +81,44 @@
     outline: 0;
     color: #399AFF !important;
     background-color: #FFFFFF !important;
+}
+
+/* CUSTOM BUTTON */
+.custom-button{
+    position: relative;
+    display: inline-block;
+    outline: 0;
+    height: 40px;
+    line-height: 40px;
+    font-family: 'Ubuntu', sans-serif;
+    border: solid 1px #399AFF;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.custom-button:hover{
+    border: solid 1px transparent;
+    background-color: #399AFF;
+}
+
+.custom-button:hover .text{
+    color: #FFFFFF;
+}
+
+.custom-button .icon{
+    line-height: 40px;
+    vertical-align: middle;
+    margin-left: 16px;
+    margin-top: -8px;
+    width: 20px;
+}
+
+.custom-button .text{
+    line-height: 40px;
+    color: #399AFF;
+    font-size: 1.2em;
+    margin: 0 16px 0 8px;
 }

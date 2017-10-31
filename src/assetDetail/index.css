@@ -9,75 +9,33 @@
     padding: 16px;
 }
 
-.asset-detail .content .manage-asset{
-    position: relative;
-    display: block;
-    outline: 0;
-    height: 40px;
-    line-height: 40px;
-    font-family: 'Ubuntu', sans-serif;
-    border: solid 1px #399AFF;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.asset-detail .content .manage-asset:hover{
-    border: solid 1px transparent;
-    background-color: #399AFF;
-}
-
-.asset-detail .content .manage-asset:hover .manage-asset-text{
-    color: #FFFFFF;
-}
-
-.asset-detail .content .manage-asset .manage-asset-icon{
-    line-height: 40px;
-    vertical-align: middle;
-    margin-left: 16px;
-    margin-top: -8px;
-    width: 20px;
-}
-
-.asset-detail .content .manage-asset .manage-asset-text{
-    line-height: 40px;
-    color: #399AFF;
-    font-size: 1.2em;
-    margin: 0 16px 0 8px;
-}
-
-.asset-detail .content .informations{
+.asset-detail .content .informations {
     position: relative;
     padding: 24px 8px 16px 16px;
-    border-left: solid 1px #399AFF;
     background-color: #FFFFFF;
     border-radius: 3px;
     margin: 8px 8px 8px 0;
     color: #595959;
 }
 
-.asset-detail .content .informations .asset-name{
-    font-size: 1.6em;
-}
-
-.asset-detail .content .informations .asset-description{
-    margin-top: 8px;
-    line-height: 1.4em;
-}
-
-.asset-detail .content .informations .asset-type{
-    margin-top: 8px;
-}
-
-.asset-detail .content .empty .icon{
+.asset-detail .content .empty .icon {
     display: block;
     margin: auto;
     width: 200px;
 }
 
-.asset-detail .content .empty .text{
+.asset-detail .content .empty .text {
     text-align: center;
     margin: 24px auto;
     color: #C0C0C0;
+}
+
+.asset-detail .content .informations .custom-calendar {
+    position: relative;
+    z-index: 0;
+}
+
+.select-range {
+    display: block !important;
+    margin: 36px auto 8px !important;
 }

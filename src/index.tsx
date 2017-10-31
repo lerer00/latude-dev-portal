@@ -7,6 +7,7 @@ import './index.css';
 const { Web3Provider } = require('react-web3');
 const egowindowLock = require('./img/ego/window-lock.svg');
 import './missingProvider.css';
+import './calendarEnhancer.css';
 
 var unlockWalletHtml = <div className='web3-needed'>
   <div className='content'>

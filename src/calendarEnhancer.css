@@ -1,0 +1,96 @@
+/* REACT BIG CALENDAR */
+.rbc-calendar {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.rbc-calendar .rbc-btn-group button {
+    background-color: #FFFFFF;
+    color: #399AFF;
+    border: solid #399AFF 1px;
+    border-radius: 3px;
+    height: 40px;
+    outline: 0;
+    cursor: pointer;
+}
+
+.rbc-calendar .rbc-btn-group button:hover {
+    background-color: #399AFF;
+    color: #FFFFFF;
+}
+
+.rbc-calendar .rbc-btn-group .rbc-active{
+    background-color: #399AFF !important;
+    color: #FFFFFF !important;
+    border: none;
+}
+
+.rbc-calendar .rbc-header{
+    min-height: 48px;
+    line-height: 48px;
+}
+
+.rbc-calendar .rbc-date-cell{
+    padding-top: 4px; 
+    min-height: 72px;
+}
+
+.rbc-calendar .rbc-current, .rbc-calendar .rbc-today{
+    background: repeating-linear-gradient(
+        -55deg,
+        #FFFFFF,
+        #FFFFFF 2px,
+        #F4F4F4 2px,
+        #F4F4F4 4px
+      );
+}
+
+.rbc-calendar .rbc-current{
+    margin: 0 1px 1px 1px;
+}
+
+.rbc-calendar .rbc-label{
+    line-height: 39px;
+    text-align: center;
+}
+
+.rbc-calendar .rbc-event{
+    border-radius: 3px;
+    background-color: #399AFF;
+}
+
+.rbc-calendar .rbc-month-view{
+    border-radius: 3px;
+}
+
+/* REACT DATE RANGE */
+.rdr-Calendar{
+    display: block !important;
+    margin: auto;
+}
+
+.rdr-Calendar .rdr-MonthAndYear-innerWrapper button{
+    cursor: pointer;
+    background-color: transparent !important;
+}
+
+.rdr-Calendar .rdr-Days .is-inRange{
+    background: repeating-linear-gradient(
+        -55deg,
+        #FFFFFF,
+        #FFFFFF 2px,
+        #F4F4F4 2px,
+        #F4F4F4 4px
+      ) !important;
+}
+
+.rdr-Calendar .rdr-Day{
+    color: #595959 !important;
+    border: solid 2px transparent;
+}
+
+.rdr-Calendar .rdr-Days .is-selected{
+    border-radius: 3px;
+    border: solid 2px #399AFF;
+    background-color: transparent !important;
+    background: none !important;
+}

@@ -64,7 +64,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             balance: -1,
             addAsset: {
                 id: 'Room 336',
-                price: 150,
+                price: 0,
                 currency: 'CAD'
             },
             addAssetModalIsOpen: false
@@ -112,7 +112,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             return;
 
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.addAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: this.context.web3.accounts[0] });
+            return instance.addAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             this.setState({
                 addAssetModalIsOpen: false
@@ -134,9 +134,13 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.numberOfAssets.call();
         }).then((result: any) => {
-            for (var i = 0; i < result.toNumber(); i++) {
-                this.getAsset(i);
-            }
+            this.setState({
+                assets: []
+            }, () => {
+                for (var i = 0; i < result.toNumber(); i++) {
+                    this.getAsset(i);
+                }
+            });
         });
     }
 
@@ -144,7 +148,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.getAsset.call(id);
         }).then((result: any) => {
-            var asset: any = { id: result[0].toNumber(), name: result[1], price: result[2].toNumber(), currency: result[3], stay: result[4] };
+            var asset: any = { id: result[0].toNumber(), name: result[1], price: result[2].toNumber(), currency: result[3], stays: result[4] };
             this.setState({
                 assets: this.state.assets.concat([asset])
             });
@@ -177,7 +181,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             assetsContent = <Spinner text="loading assets..." />
         else {
             if (this.state.assets.length > 0) {
-                assetsContent = this.state.assets.map((asset) => <Asset key={asset.id} id={asset.id} name={asset.name} price={asset.price} currency={asset.currency} url={this.props.match.url} />
+                assetsContent = this.state.assets.map((asset) => <Asset key={asset.id} url={this.props.match.url} asset={asset}  />
                 );
             } else {
                 assetsContent =
