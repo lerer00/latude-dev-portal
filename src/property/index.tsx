@@ -15,7 +15,7 @@ export namespace Property {
     }
 
     export interface State {
-        property: any;
+        name: string,
         balance: number;
     }
 }
@@ -25,15 +25,14 @@ class Property extends React.Component<Property.Props, Property.State> {
         super(props, context);
 
         this.state = {
-            property: {
-                name: ''
-            },
+            name: '',
             balance: -1
         };
     }
 
     componentWillMount() {
         this.getName();
+        this.getBalance();
     }
 
     getName() {
@@ -45,14 +44,15 @@ class Property extends React.Component<Property.Props, Property.State> {
             return propertyInstance.name.call();
         }).then((result: any) => {
             this.setState({
-                property: {
-                    name: result,
-                }
+                name: result
             });
-            return propertyInstance.getBalance.call();
-        }).then((result: any) => {
+        });
+    }
+
+    getBalance() {
+        return web3.eth.getBalance(this.props.id, (error: any, balance: any) => {
             this.setState({
-                balance: result.toNumber()
+                balance: balance.toNumber()
             });
         });
     }
@@ -63,7 +63,7 @@ class Property extends React.Component<Property.Props, Property.State> {
                 <div className="description">
                     <span className="address">address: {this.props.id}</span>
                     <span className="balance">balance: {this.state.balance} ether</span>
-                    <p className="name">{this.state.property.name}</p>
+                    <p className="name">{this.state.name}</p>
                     <NavLink className="detail" to={"/companies/" + this.props.company + "/properties/" + this.props.id}>
                         <img className="plus" src={egoSun1} />
                     </NavLink>

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.17;
 
 import "./Ownable.sol";
 import "./Property.sol";
@@ -7,23 +7,19 @@ contract Company is Ownable {
     string public name;
     address[] public properties;
 
-    function Company(string _name, address _owner) payable {
+    function Company(string _name, address _owner) public payable {
         transferOwnership(_owner);
         name = _name;
     }
 
-    function addProperty(string _name) onlyOwner returns (Property) {
+    function addProperty(string _name) onlyOwner public returns (Property) {
         Property newProperty = new Property(_name, owner);
         properties.push(newProperty);
 
         return newProperty;
     }
 
-    function getProperties() constant returns(address[]) {
+    function getProperties() public view returns(address[]) {
         return properties;
-    }
-
-    function getBalance() constant returns(uint) {
-        return this.balance;
     }
 }

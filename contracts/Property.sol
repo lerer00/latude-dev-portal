@@ -1,4 +1,4 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.17;
 
 import "./Ownable.sol";
 
@@ -22,8 +22,6 @@ contract Property is Ownable {
 
     struct Asset {
         uint id;
-        // room, beds...
-        string category;
         // needed to ask for a payment
         uint price;
         string currency;
@@ -40,26 +38,26 @@ contract Property is Ownable {
     }
 
     // this is metadata for assets, basically an ipfs hash
-    function addMetadataHashForAsset(uint _id, string hash) public onlyOwner {
+    function addMetadataHashForAsset(uint _id, string hash) onlyOwner public {
         assets[_id].metadataHashes.push(hash);
     }
 
     // we keep all history of every metadata files
-    function lastMetadataHashForAsset(uint _id) public constant returns (string) {
+    function lastMetadataHashForAsset(uint _id) public view returns (string) {
         require(assets[_id].metadataHashes.length > 0);
         return assets[_id].metadataHashes[assets[_id].metadataHashes.length - 1];
     }
 
-    function addAsset(string _category, uint _price, string _currency) public onlyOwner {
+    function addAsset(uint _price, string _currency) onlyOwner public {
         uint newAssetId = assets.length;
         string[] memory metadataHashes;
         uint[] memory stayIds;
-        assets.push(Asset(newAssetId, _category, _price, _currency, metadataHashes, stayIds));
+        assets.push(Asset(newAssetId, _price, _currency, metadataHashes, stayIds));
     }
 
-    function getAsset(uint _id) public constant returns (uint, string, uint, string) {
+    function getAsset(uint _id) public view returns (uint, uint, string) {
         Asset memory asset = assets[_id];
-        return (asset.id, asset.category, asset.price, asset.currency);
+        return (asset.id, asset.price, asset.currency);
     }
 
     function addStay(uint _assetId, uint _startTime, uint _endTime) public payable{
@@ -72,20 +70,16 @@ contract Property is Ownable {
         assets[_assetId].stayIds.push(stayId);
     }
 
-    function getStay(uint _assetId, uint _stayId) returns(uint, uint, uint) {
+    function getStay(uint _assetId, uint _stayId) public view returns(uint, uint, uint) {
         Stay memory stay = stays[_assetId].stays[_stayId];
         return (stay.id, stay.startTime, stay.endTime);
     }
 
-    function getStays(uint _assetId) public returns(uint[] ) {
+    function getStays(uint _assetId) public view returns(uint[] ) {
         return assets[_assetId].stayIds;
     }
 
-    function numberOfAssets() public returns(uint) {
+    function numberOfAssets() public view returns(uint) {
         return assets.length;
-    }
-
-    function getBalance() public constant returns(uint) {
-        return this.balance;
     }
 }

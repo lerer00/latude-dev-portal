@@ -42,7 +42,7 @@ export namespace PropertyDetail {
     }
 
     export interface State {
-        property: any;
+        name: string;
         assets: Array<any>;
         assetsLoading: boolean;
         balance: number;
@@ -56,14 +56,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         super(props, context);
 
         this.state = {
-            property: {
-                name: ''
-            },
+            name: '',
+            balance: -1,
             assets: [],
             assetsLoading: false,
-            balance: -1,
             addAsset: {
-                id: 'Room 336',
                 price: 0,
                 currency: 'CAD'
             },
@@ -83,6 +80,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     componentDidMount() {
         propertyContract.setProvider(web3.currentProvider);
         this.getName();
+        this.getBalance();
         this.getAssets();
     }
 
@@ -93,14 +91,15 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             return propertyInstance.name.call();
         }).then((result: any) => {
             this.setState({
-                property: {
-                    name: result,
-                }
+                name: result
             });
-            return propertyInstance.getBalance.call();
-        }).then((result: any) => {
+        });
+    }
+
+    getBalance() {
+        return web3.eth.getBalance(this.props.match.params.pid, (error: any, balance: any) => {
             this.setState({
-                balance: result.toNumber()
+                balance: balance.toNumber()
             });
         });
     }
@@ -108,11 +107,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     addAsset(e: any) {
         e.preventDefault();
 
-        if (this.state.addAsset.id === '' && this.state.addAsset.price < 0 && this.state.addAsset.currency === '')
+        if (this.state.addAsset.price < 0 && this.state.addAsset.currency === '')
             return;
 
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.addAsset(this.state.addAsset.id, this.state.addAsset.price, this.state.addAsset.currency, { from: this.context.web3.selectedAccount });
+            return instance.addAsset(this.state.addAsset.price, this.state.addAsset.currency, { from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             this.setState({
                 addAssetModalIsOpen: false
@@ -148,7 +147,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.getAsset.call(id);
         }).then((result: any) => {
-            var asset: any = { id: result[0].toNumber(), name: result[1], price: result[2].toNumber(), currency: result[3], stays: result[4] };
+            var asset: any = { id: result[0].toNumber(), price: result[1].toNumber(), currency: result[2], stays: result[3] };
             this.setState({
                 assets: this.state.assets.concat([asset])
             });
@@ -181,7 +180,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             assetsContent = <Spinner text="loading assets..." />
         else {
             if (this.state.assets.length > 0) {
-                assetsContent = this.state.assets.map((asset) => <Asset key={asset.id} url={this.props.match.url} asset={asset}  />
+                assetsContent = this.state.assets.map((asset) => <Asset key={asset.id} url={this.props.match.url} asset={asset} />
                 );
             } else {
                 assetsContent =
@@ -239,10 +238,6 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td className="label"><label>Id:</label></td>
-                                            <td><input className="value" type="text" value={this.state.addAsset.id} onChange={(e) => this.addAssetHandleChanges('id', e)} /></td>
-                                        </tr>
-                                        <tr>
                                             <td className="label"><label>Price:</label></td>
                                             <td><input className="value" type="text" value={this.state.addAsset.price} onChange={(e) => this.addAssetHandleChanges('price', e)} /></td>
                                         </tr>
@@ -262,7 +257,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                     <div className="description">
                         <span className="address">address: {this.props.match.params.pid}</span>
                         <span className="balance">balance: {this.state.balance} ether</span>
-                        <p className="name">{this.state.property.name}</p>
+                        <p className="name">{this.state.name}</p>
                         <p>This place will be to display the whole asset struct plus metadata from ipfs or ipdb will do that tomorrow enough for tonight.</p>
                         <div className="assets">
                             {assetsContent}

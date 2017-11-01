@@ -34,7 +34,7 @@
     min-height: 72px;
 }
 
-.rbc-calendar .rbc-current, .rbc-calendar .rbc-today{
+.rbc-calendar .rbc-now, .rbc-calendar .rbc-today{
     background: repeating-linear-gradient(
         -55deg,
         #FFFFFF,
@@ -44,7 +44,7 @@
       );
 }
 
-.rbc-calendar .rbc-current{
+.rbc-calendar .rbc-now{
     margin: 0 1px 1px 1px;
 }
 

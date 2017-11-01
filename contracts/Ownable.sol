@@ -1,9 +1,9 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.17;
 
 contract Ownable {
   address public owner;
 
-  function Ownable() {
+  function Ownable() public {
     owner = msg.sender;
   }
 
@@ -17,7 +17,7 @@ contract Ownable {
     owner = newOwner;
   }
 
-  function terminate() onlyOwner {
+  function terminate() onlyOwner public {
     // Transfer Eth to owner and terminate contract
     selfdestruct(owner);
   }

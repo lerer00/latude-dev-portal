@@ -19,6 +19,7 @@ const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
 const egoCursorHand = require('../img/ego/cursor-hand.svg');
+const egoCalendarCheck = require('../img/ego/calendar-check.svg');
 
 const manageAssetModalStyles = {
     content: {
@@ -117,11 +118,11 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             return instance.getAsset.call(this.props.match.params.aid);
         }).then((result: any) => {
             var tmpAsset = {
-                name: result[1],
+                name: 'Asset ' + result[0].toNumber(),
                 description: '',
                 type: '',
-                price: result[2].toNumber(),
-                currency: result[3],
+                price: result[1].toNumber(),
+                currency: result[2],
                 events: []
             };
             this.setState({
@@ -360,7 +361,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                         <span className="text">Manage asset</span>
                     </button>
                     <button className="custom-button" onClick={this.addStayOnRequestOpen}>
-                        <img className="icon" src={egoPenChecklist} />
+                        <img className="icon" src={egoCalendarCheck} />
                         <span className="text">Add stay</span>
                     </button>
                     <Modal

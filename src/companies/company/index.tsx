@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import './index.css';
 import { NavLink } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ export namespace Company {
     }
 
     export interface State {
-        company: any;
+        name: string;
         balance: number;
     }
 }
@@ -24,33 +25,35 @@ class Company extends React.Component<Company.Props, Company.State> {
         super(props, context);
 
         this.state = {
-            company: {
-                name: ''
-            },
+            name: '',
             balance: -1
         };
     }
 
-    componentWillMount() {
-        companyContract.setProvider(web3.currentProvider);
-        this.getPartial();
+    static contextTypes = {
+        web3: PropTypes.object
     }
 
-    getPartial() {
-        var companyInstance: any;
+    componentWillMount() {
+        companyContract.setProvider(web3.currentProvider);
+        this.getName();
+        this.getBalance();
+    }
+
+    getName() {
         companyContract.at(this.props.id).then((instance: any) => {
-            companyInstance = instance;
-            return companyInstance.name.call();
+            return instance.name.call();
         }).then((result: any) => {
             this.setState({
-                company: {
-                    name: result
-                }
+                name: result
             });
-            return companyInstance.getBalance.call();
-        }).then((result: any) => {
+        });
+    }
+
+    getBalance() {
+        return web3.eth.getBalance(this.props.id, (error: any, balance: any) => {
             this.setState({
-                balance: result.toNumber()
+                balance: balance.toNumber()
             });
         });
     }
@@ -61,7 +64,7 @@ class Company extends React.Component<Company.Props, Company.State> {
                 <div className="description">
                     <span className="address">address: {this.props.id}</span>
                     <span className="balance">balance: {this.state.balance} ether</span>
-                    <p className="name">{this.state.company.name}</p>
+                    <p className="name">{this.state.name}</p>
                     <NavLink className="detail" to={"/companies/" + this.props.id}>
                         <img className="plus" src={egoLighthouse} />
                     </NavLink>

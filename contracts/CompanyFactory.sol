@@ -1,4 +1,4 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.17;
 
 import "./Ownable.sol";
 import "./Company.sol";
@@ -6,7 +6,7 @@ import "./Company.sol";
 contract CompanyFactory is Ownable {
     mapping(address => address[]) companies;
 
-    function addCompany(string _name){      
+    function addCompany(string _name) public{      
         // Add a new company contract.
         Company newCompany = new Company(_name, msg.sender);
         
@@ -14,7 +14,7 @@ contract CompanyFactory is Ownable {
         companies[msg.sender].push(newCompany);
     }
 
-    function getCompanies() constant returns(address[]) {
+    function getCompanies() public view returns(address[]) {
         return companies[msg.sender];
     }
 }

@@ -1,11 +1,11 @@
-.company{
+.company {
     display: inline-block;
     border-radius: 3px;
     width: 50%;
     background-color: transparent;
 }
 
-.company .description{
+.company .description {
     position: relative;
     padding: 24px 8px 16px 16px;
     border-left: solid 1px #399AFF;
@@ -15,7 +15,7 @@
     color: #595959;
 }
 
-.company .description .address{
+.company .description .address {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -23,7 +23,7 @@
     color: #A0A0A0;
 }
 
-.company .description .balance{
+.company .description .balance {
     position: absolute;
     top: 20px;
     right: 8px;
@@ -31,7 +31,7 @@
     color: #A0A0A0;
 }
 
-.company .description .name{
+.company .description .name {
     max-width: 75%;
     white-space: nowrap;
     overflow: hidden;
@@ -42,14 +42,14 @@
     font-size: 1.8em;
 }
 
-.company .description .detail{
+.company .description .detail {
     overflow: none;
     position: absolute;
     bottom: 0;
     right: 0;
 }
 
-.company .description .detail .plus{
+.company .description .detail .plus {
     width: 24px;
     margin: none;
 }
