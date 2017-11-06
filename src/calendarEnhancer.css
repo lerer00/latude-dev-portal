@@ -1,4 +1,5 @@
 /* REACT BIG CALENDAR */
+
 .rbc-calendar {
     font-family: 'Ubuntu', sans-serif;
 }
@@ -18,77 +19,67 @@
     color: #FFFFFF;
 }
 
-.rbc-calendar .rbc-btn-group .rbc-active{
+.rbc-calendar .rbc-btn-group .rbc-active {
     background-color: #399AFF !important;
     color: #FFFFFF !important;
     border: none;
 }
 
-.rbc-calendar .rbc-header{
+.rbc-calendar .rbc-header {
     min-height: 48px;
     line-height: 48px;
 }
 
-.rbc-calendar .rbc-date-cell{
-    padding-top: 4px; 
+.rbc-calendar .rbc-date-cell {
+    padding-top: 4px;
     min-height: 72px;
 }
 
-.rbc-calendar .rbc-now, .rbc-calendar .rbc-today{
-    background: repeating-linear-gradient(
-        -55deg,
-        #FFFFFF,
-        #FFFFFF 2px,
-        #F4F4F4 2px,
-        #F4F4F4 4px
-      );
+.rbc-calendar .rbc-now, .rbc-calendar .rbc-today {
+    background: repeating-linear-gradient( -55deg, #FFFFFF, #FFFFFF 2px, #F4F4F4 2px, #F4F4F4 4px);
 }
 
-.rbc-calendar .rbc-now{
+.rbc-calendar .rbc-now {
     margin: 0 1px 1px 1px;
 }
 
-.rbc-calendar .rbc-label{
+.rbc-calendar .rbc-label {
     line-height: 39px;
     text-align: center;
 }
 
-.rbc-calendar .rbc-event{
+.rbc-calendar .rbc-event {
     border-radius: 3px;
     background-color: #399AFF;
 }
 
-.rbc-calendar .rbc-month-view{
+.rbc-calendar .rbc-month-view {
     border-radius: 3px;
 }
 
+
 /* REACT DATE RANGE */
-.rdr-Calendar{
+
+.rdr-Calendar {
     display: block !important;
     margin: auto;
 }
 
-.rdr-Calendar .rdr-MonthAndYear-innerWrapper button{
+.rdr-Calendar .rdr-MonthAndYear-innerWrapper button {
     cursor: pointer;
     background-color: transparent !important;
 }
 
-.rdr-Calendar .rdr-Days .is-inRange{
-    background: repeating-linear-gradient(
-        -55deg,
-        #FFFFFF,
-        #FFFFFF 2px,
-        #F4F4F4 2px,
-        #F4F4F4 4px
-      ) !important;
+.rdr-Calendar .rdr-Days .is-inRange {
+    background: repeating-linear-gradient( -55deg, #FFFFFF, #FFFFFF 2px, #F4F4F4 2px, #F4F4F4 4px) !important;
 }
 
-.rdr-Calendar .rdr-Day{
+.rdr-Calendar .rdr-Day {
     color: #595959 !important;
     border: solid 2px transparent;
 }
 
-.rdr-Calendar .rdr-Days .is-selected{
+.rdr-Calendar .rdr-Days .is-selected {
     border-radius: 3px;
     border: solid 2px #399AFF;
     background-color: transparent !important;

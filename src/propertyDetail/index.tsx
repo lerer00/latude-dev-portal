@@ -99,7 +99,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     getBalance() {
         return web3.eth.getBalance(this.props.match.params.pid, (error: any, balance: any) => {
             this.setState({
-                balance: balance.toNumber()
+                balance: balance.toNumber()/1000/1000/1000/1000/1000/1000
             });
         });
     }

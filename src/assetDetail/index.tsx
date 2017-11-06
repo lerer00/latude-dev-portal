@@ -113,6 +113,14 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         this.retrieveLastAssetHash();
     }
 
+    getRate() {
+        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
+            return instance.getRate.call();
+        }).then((result: any) => {
+            console.log(result);
+        });
+    }
+
     getAsset() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.getAsset.call(this.props.match.params.aid);

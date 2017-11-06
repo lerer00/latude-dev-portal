@@ -53,7 +53,7 @@ class Company extends React.Component<Company.Props, Company.State> {
     getBalance() {
         return web3.eth.getBalance(this.props.id, (error: any, balance: any) => {
             this.setState({
-                balance: balance.toNumber()
+                balance: balance.toNumber()/1000/1000/1000/1000/1000/1000
             });
         });
     }
