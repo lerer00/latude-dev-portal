@@ -4,7 +4,7 @@ import "./Ownable.sol";
 import "./Company.sol";
 
 contract CompanyFactory is Ownable {
-    address exchangeContract;
+    address public exchangeContract;
     mapping(address => address[]) companies;
 
     function CompanyFactory(address _exchangeContract) public {
@@ -14,7 +14,7 @@ contract CompanyFactory is Ownable {
     function addCompany(string _name) public{      
         Company newCompany = new Company(_name, msg.sender, exchangeContract);
 
-        // companies are added under a single address
+        // companies are added under a single owner
         companies[msg.sender].push(newCompany);
     }
 

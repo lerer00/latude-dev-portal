@@ -262,6 +262,22 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         })
     }
 
+    // will need to be moved elsewhere
+    toAscii = function(hex: string) {
+        var str = '',
+            i = 0,
+            l = hex.length;
+        if (hex.substring(0, 2) === '0x') {
+            i = 2;
+        }
+        for (; i < l; i+=2) {
+            var code = parseInt(hex.substr(i, 2), 16);
+            if (code === 0) continue; // this is added
+            str += String.fromCharCode(code);
+        }
+        return str;
+    };
+
     addStayOnRequestOpen() {
         this.setState({
             addStayModalIsOpen: true
@@ -309,7 +325,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                 assetContent = <div className="informations">
                     <p className="asset-name">{this.state.asset.name}</p>
                     <p className="asset-description">Description: {this.state.asset.description}</p>
-                    <p className="asset-price">Price: {this.state.asset.price} {this.state.asset.currency}</p>
+                    <p className="asset-price">Price: {this.state.asset.price} {this.toAscii(this.state.asset.currency)}</p>
                     <p className="asset-type">Type: {this.state.asset.type}</p>
                     <br />
                     <BigCalendar
