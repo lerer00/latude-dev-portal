@@ -184,11 +184,16 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
     // add a stay to a specific asset
     addStay(e: any) {
+        var propertyInstance: any;
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            var start = this.state.dateRange.startDate.format('x');
-            var end = this.state.dateRange.endDate.format('x');
-            return instance.addStay(this.props.match.params.aid, start, end, { from: this.context.web3.selectedAccount, value: 1000000000000000000 });
-        }).then((result: any) => {
+            propertyInstance = instance;
+            var durationInDays = this.state.dateRange.endDate.diff(this.state.dateRange.startDate, 'days');
+            return propertyInstance.getStayPriceInWei.call(this.props.match.params.aid, durationInDays);
+        }).then((priceInWei: any) => {
+            var start = this.state.dateRange.startDate.unix();
+            var end = this.state.dateRange.endDate.unix();
+            return propertyInstance.addStay(this.props.match.params.aid, start, end, { from: this.context.web3.selectedAccount, value: priceInWei.toNumber() });
+        }).then((receipt: any) => {
             this.addStayOnRequestClose();
         });
     }
@@ -263,14 +268,14 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     // will need to be moved elsewhere
-    toAscii = function(hex: string) {
+    toAscii = function (hex: string) {
         var str = '',
             i = 0,
             l = hex.length;
         if (hex.substring(0, 2) === '0x') {
             i = 2;
         }
-        for (; i < l; i+=2) {
+        for (; i < l; i += 2) {
             var code = parseInt(hex.substr(i, 2), 16);
             if (code === 0) continue; // this is added
             str += String.fromCharCode(code);

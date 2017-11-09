@@ -15,15 +15,17 @@ module.exports = function (grunt) {
             local_ipfs: 'start ipfs daemon',
             truffle_compile: 'truffle compile',
             truffle_migrate: 'truffle migrate --reset'
-        }
+        },
+        clean: ['./build/contracts', './src/build/contracts']
     });
 
     // Loading tasks.
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-exec');
 
     // Task definitions.
     grunt.registerTask('bootstrap', ['exec:local_rpc', 'exec:local_ipfs']);
-    grunt.registerTask('truffle', ['exec:truffle_compile', 'exec:truffle_migrate', 'copy:contracts']);
+    grunt.registerTask('truffle', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate', 'copy:contracts']);
     grunt.registerTask('default', []);
 };

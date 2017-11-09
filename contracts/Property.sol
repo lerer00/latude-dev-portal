@@ -64,20 +64,34 @@ contract Property is Ownable {
 
     // stay management ////////////////
     function addStay(uint _assetId, uint _startTime, uint _endTime) public payable {
-        // check if the amount of wei(!) sent is sufficient
-        uint ethCadRate = exchangeRates.getRate(assets[_assetId].currency);
-        uint weiPrice = ((assets[_assetId].price * 100 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000) / ethCadRate);
-        require(msg.value >= ethPrice);
         require(_endTime > _startTime);
+        
+        // check that duration is legitimate
+        uint stayDurationInDays = (_endTime - _startTime) / 60 / 60 / 24;
+        require(stayDurationInDays > 0);
 
-        uint stayId = stays[_assetId].stays.length;
-        stays[_assetId].stays.push(Stay(stayId, _startTime, _endTime, msg.sender));
-        assets[_assetId].stayIds.push(stayId);
+        // check if the amount of wei sent is sufficient
+        uint weiPriceForSingleDay = ((assets[_assetId].price * 100 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000) / exchangeRates.getRate(assets[_assetId].currency));
+        uint weiPriceForTheStay = weiPriceForSingleDay * stayDurationInDays;
+        require(msg.value >= weiPriceForTheStay);
+
+        stays[_assetId].stays.push(Stay(stays[_assetId].stays.length, _startTime, _endTime, msg.sender));
+        assets[_assetId].stayIds.push(stays[_assetId].stays.length);
     }
 
     function getStay(uint _assetId, uint _stayId) public view returns(uint, uint, uint) {
         Stay memory stay = stays[_assetId].stays[_stayId];
         return (stay.id, stay.startTime, stay.endTime);
+    }
+
+    function getStayPriceInWei(uint _assetId, uint _stayDurationInDays) public view returns(uint) {
+        require(_stayDurationInDays > 0);
+
+        Asset memory asset = assets[_assetId];
+        uint weiPriceForSingleDay = ((assets[_assetId].price * 100 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000) / exchangeRates.getRate(assets[_assetId].currency));
+        uint weiPriceForTheStay = weiPriceForSingleDay * _stayDurationInDays;
+
+        return weiPriceForTheStay;
     }
 
     function getStays(uint _assetId) public view returns(uint[] ) {
