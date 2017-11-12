@@ -18,7 +18,6 @@ const propertyContract = contract(PropertyContract);
 const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
-const egoCursorHand = require('../img/ego/cursor-hand.svg');
 const egoCalendarCheck = require('../img/ego/calendar-check.svg');
 
 const manageAssetModalStyles = {
@@ -56,7 +55,6 @@ export namespace AssetDetail {
 
     export interface State {
         loading: boolean,
-        dataFound: boolean,
         ipfs: any,
         addStayModalIsOpen: boolean,
         manageAssetModalIsOpen: boolean,
@@ -74,7 +72,6 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
         this.state = {
             loading: true,
-            dataFound: false,
             ipfs: ipfsAPI('localhost', '5001', { protocol: 'http' }),
             addStayModalIsOpen: false,
             manageAssetModalIsOpen: false,
@@ -113,14 +110,6 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         this.retrieveLastAssetHash();
     }
 
-    getRate() {
-        propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.getRate.call();
-        }).then((result: any) => {
-            console.log(result);
-        });
-    }
-
     getAsset() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.getAsset.call(this.props.match.params.aid);
@@ -151,11 +140,10 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     // this fetch more information about each stay
-    getStay(id: number) {
+    getStay(id: any) {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.getStay.call(this.props.match.params.aid, id);
         }).then((stay: any) => {
-            console.log(stay);
             var event = this.convertStayToEvent(stay);
             var tmpAsset = this.state.asset;
             tmpAsset.events.push(event);
@@ -168,8 +156,8 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     convertStayToEvent(stay: Array<any>): CalendarEvent {
-        var startDate: any = new Date(stay[1].toNumber());
-        var endDate: any = new Date(stay[2].toNumber());
+        var startDate: any = new Date(stay[1].toNumber() * 1000);
+        var endDate: any = new Date(stay[2].toNumber() * 1000);
 
         var event: CalendarEvent = {
             title: 'Booking',
@@ -190,8 +178,10 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             var durationInDays = this.state.dateRange.endDate.diff(this.state.dateRange.startDate, 'days');
             return propertyInstance.getStayPriceInWei.call(this.props.match.params.aid, durationInDays);
         }).then((priceInWei: any) => {
+            console.log('Price', priceInWei.toNumber());
             var start = this.state.dateRange.startDate.unix();
             var end = this.state.dateRange.endDate.unix();
+            console.log(start + ', ' + end);
             return propertyInstance.addStay(this.props.match.params.aid, start, end, { from: this.context.web3.selectedAccount, value: priceInWei.toNumber() });
         }).then((receipt: any) => {
             this.addStayOnRequestClose();
@@ -211,14 +201,12 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             return instance.lastMetadataHashForAsset.call(this.props.match.params.aid);
         }).then((hash: string) => {
             this.setState({
-                loading: false,
-                dataFound: true
+                loading: false
             })
             this.getFile(hash);
         }).catch((error: any) => {
             this.setState({
-                loading: false,
-                dataFound: false
+                loading: false
             })
         });
     }
@@ -234,7 +222,6 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                 }
 
                 var ipfsAsset = JSON.parse(d.toString());
-
                 var tmpAsset = this.state.asset;
                 tmpAsset.description = ipfsAsset.description;
                 tmpAsset.type = ipfsAsset.type;
@@ -326,26 +313,18 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         if (this.state.loading)
             assetContent = <Spinner text="loading asset..." />
         else {
-            if (this.state.dataFound) {
-                assetContent = <div className="informations">
-                    <p className="asset-name">{this.state.asset.name}</p>
-                    <p className="asset-description">Description: {this.state.asset.description}</p>
-                    <p className="asset-price">Price: {this.state.asset.price} {this.toAscii(this.state.asset.currency)}</p>
-                    <p className="asset-type">Type: {this.state.asset.type}</p>
-                    <br />
-                    <BigCalendar
-                        className="custom-calendar"
-                        views={['month', 'week']}
-                        events={this.state.asset.events}
-                    />
-                </div>
-            } else {
-                assetContent =
-                    <div className="empty">
-                        <img className="icon" src={egoCursorHand} />
-                        <p className="text">No data were found please add some more informations before continuing...</p>
-                    </div>;
-            }
+            assetContent = <div className="informations">
+                <p className="asset-name">{this.state.asset.name}</p>
+                <p className="asset-description">Description: {this.state.asset.description}</p>
+                <p className="asset-price">Price: {this.state.asset.price} {this.toAscii(this.state.asset.currency)}</p>
+                <p className="asset-type">Type: {this.state.asset.type}</p>
+                <br />
+                <BigCalendar
+                    className="custom-calendar"
+                    views={['month', 'week']}
+                    events={this.state.asset.events}
+                />
+            </div>
         }
 
         const routes: any = [
