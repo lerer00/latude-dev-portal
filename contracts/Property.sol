@@ -51,6 +51,8 @@ contract Property is Ownable {
 
     // asset management ////////////////
     function addAsset(uint _price, bytes32 _currency) onlyOwner public {
+        require(exchangeRates.isCurrencyAllowed(_currency));
+
         uint newAssetId = assets.length;
         string[] memory metadataHashes;
         uint[] memory stayIds;
@@ -68,7 +70,7 @@ contract Property is Ownable {
         require(now <= _startTime);
         
         // check that duration is legitimate
-        uint stayDurationInDays = (_endTime - _startTime) / minutes / hours / days ;
+        uint stayDurationInDays = (_endTime - _startTime) / 60 / 60 / 24 ;
 
         // check if the amount of wei sent is sufficient
         uint weiPriceForTheStay = getStayPriceInWei(_assetId, stayDurationInDays);
@@ -84,14 +86,14 @@ contract Property is Ownable {
 
     function getStay(uint _assetId, uint _stayId) public view returns(uint, uint, uint, address) {
         Stay memory stay = stays[_assetId].stays[_stayId];
-        return (stay.id, stay.startTime, stay.endTime, address stay.user);
+        return (stay.id, stay.startTime, stay.endTime, stay.user);
     }
 
     function getStayPriceInWei(uint _assetId, uint _stayDurationInDays) public view returns(uint) {
         require(_stayDurationInDays > 0);
 
         Asset memory asset = assets[_assetId];
-        uint weiPriceForSingleDay = ((asset.price * 100 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000) / exchangeRates.getRate(asset.currency));
+        uint weiPriceForSingleDay = ((asset.price * 100 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000) / exchangeRates.getCurrencyRate(asset.currency));
         uint weiPriceForTheStay = weiPriceForSingleDay * _stayDurationInDays;
 
         return weiPriceForTheStay;

@@ -178,10 +178,8 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             var durationInDays = this.state.dateRange.endDate.diff(this.state.dateRange.startDate, 'days');
             return propertyInstance.getStayPriceInWei.call(this.props.match.params.aid, durationInDays);
         }).then((priceInWei: any) => {
-            console.log('Price', priceInWei.toNumber());
             var start = this.state.dateRange.startDate.unix();
             var end = this.state.dateRange.endDate.unix();
-            console.log(start + ', ' + end);
             return propertyInstance.addStay(this.props.match.params.aid, start, end, { from: this.context.web3.selectedAccount, value: priceInWei.toNumber() });
         }).then((receipt: any) => {
             this.addStayOnRequestClose();
