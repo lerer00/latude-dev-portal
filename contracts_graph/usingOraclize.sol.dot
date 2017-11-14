@@ -1,0 +1,51 @@
+strict digraph {
+  query
+  query_withGasLimit
+  query2
+  query2_withGasLimit
+  queryN
+  queryN_withGasLimit
+  getPrice
+  useCoupon
+  setProofType
+  setConfig
+  setCustomGasPrice
+  randomDS_getSessionPubKeyHash
+  getAddress
+  oraclize_setNetwork [color=gray]
+  __callback
+  oraclize_useCoupon [color=gray]
+  oraclize_getPrice [color=gray]
+  oraclize_query [color=gray]
+  oraclize_cbAddress [color=gray]
+  oraclize_setProof [color=gray]
+  oraclize_setCustomGasPrice [color=gray]
+  oraclize_setConfig [color=gray]
+  oraclize_randomDS_getSessionPubKeyHash [color=gray]
+  getCodeSize [color=blue]
+  parseAddr [color=gray]
+  strCompare [color=gray]
+  indexOf [color=gray]
+  strConcat [color=gray]
+  parseInt [color=gray]
+  uint2str [color=gray]
+  stra2cbor [color=gray]
+  ba2cbor [color=gray]
+  oraclize_setNetworkName [color=gray]
+  oraclize_getNetworkName [color=gray]
+  oraclize_newRandomDSQuery [color=gray]
+  oraclize_randomDS_setCommitment [color=gray]
+  verifySig [color=gray]
+  oraclize_randomDS_proofVerify__sessionKeyValidity [color=gray]
+  copyBytes [color=gray]
+  matchBytes32Prefix [color=gray]
+  oraclize_randomDS_proofVerify__main [color=gray]
+  safer_ecrecover [color=gray]
+  ecrecovery [color=gray]
+  __callback -> __callback
+  oraclize_useCoupon -> useCoupon
+  oraclize_newRandomDSQuery -> oraclize_randomDS_setCommitment
+  oraclize_randomDS_proofVerify__sessionKeyValidity -> copyBytes
+  oraclize_randomDS_proofVerify__main -> copyBytes
+}
+

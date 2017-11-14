@@ -1,0 +1,10 @@
+strict digraph {
+  Company
+  transferOwnership
+  addProperty
+  push
+  getProperties
+  Company -> transferOwnership
+  addProperty -> push
+}
+

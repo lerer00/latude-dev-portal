@@ -1,0 +1,13 @@
+strict digraph {
+  ExchangeRates
+  getCurrenciesRate
+  __callback
+  oraclize_query
+  getCurrencyRate
+  isCurrencyAllowed
+  stringToBytes32
+  ExchangeRates -> getCurrenciesRate
+  __callback -> getCurrenciesRate
+  getCurrenciesRate -> oraclize_query
+}
+

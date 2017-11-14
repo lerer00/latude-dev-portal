@@ -1,0 +1,10 @@
+strict digraph {
+  Ownable
+  transferOwnership
+  require
+  terminate
+  selfdestruct
+  transferOwnership -> require
+  terminate -> selfdestruct
+}
+

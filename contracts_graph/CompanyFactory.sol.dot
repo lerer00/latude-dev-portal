@@ -1,0 +1,8 @@
+strict digraph {
+  CompanyFactory
+  addCompany
+  push
+  getCompanies
+  addCompany -> push
+}
+

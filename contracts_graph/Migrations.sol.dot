@@ -1,0 +1,7 @@
+strict digraph {
+  Migrations
+  setCompleted
+  upgrade
+  upgrade -> setCompleted
+}
+
