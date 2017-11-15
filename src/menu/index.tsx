@@ -18,14 +18,14 @@ export namespace Menu {
 class Menu extends React.Component<Menu.Props, Menu.State> {
     render() {
         return (
-            <section className="menu">
-                <div className="content">
-                    <NavLink exact={true} className="link" activeClassName="active" to="/">
-                        <img className="icon" src={egoMultiPlatform} />
+            <section className='menu'>
+                <div className='content'>
+                    <NavLink exact={true} className='link' activeClassName='active' to='/'>
+                        <img className='icon' src={egoMultiPlatform} />
                         <p>Home</p>
                     </NavLink>
-                    <NavLink className="link" activeClassName="active" to="/companies">
-                        <img className="icon" src={egoBuilding1} />
+                    <NavLink className='link' activeClassName='active' to='/companies'>
+                        <img className='icon' src={egoBuilding1} />
                         <p>Companies</p>
                     </NavLink>
                 </div>

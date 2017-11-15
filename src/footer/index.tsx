@@ -22,8 +22,8 @@ class Footer extends React.Component<Footer.Props, Footer.State> {
 
   render() {
     return (
-      <footer className="footer">
-        <div className="content">
+      <footer className='footer'>
+        <div className='content'>
           <p>© latude inc. {this.renderExtra()}</p>
         </div>
       </footer>

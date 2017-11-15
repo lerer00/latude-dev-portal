@@ -31,24 +31,24 @@ class Home extends React.Component<Home.Props, Home.State> {
 
   render() {
     return (
-      <div className="home">
+      <div className='home'>
         <ToastContainer
-          position="top-right"
-          type="default"
+          position='top-right'
+          type='default'
           autoClose={4500}
           hideProgressBar={true}
           newestOnTop={true}
-          closeOnClick
-          pauseOnHover
+          closeOnClick={true}
+          pauseOnHover={true}
         />
         <Header />
         <Menu />
         <Switch>
-          <Route exact={true} path="/" component={Default} />
-          <Route exact={true} path="/companies" component={Companies} />
-          <Route exact={true} path="/companies/:cid" component={CompanyDetail} />
-          <Route exact={true} path="/companies/:cid/properties/:pid" component={PropertyDetail} />
-          <Route exact={true} path="/companies/:cid/properties/:pid/assets/:aid" component={AssetDetail} />
+          <Route exact={true} path='/' component={Default} />
+          <Route exact={true} path='/companies' component={Companies} />
+          <Route exact={true} path='/companies/:cid' component={CompanyDetail} />
+          <Route exact={true} path='/companies/:cid/properties/:pid' component={PropertyDetail} />
+          <Route exact={true} path='/companies/:cid/properties/:pid/assets/:aid' component={AssetDetail} />
         </Switch>
         <Footer />
       </div>

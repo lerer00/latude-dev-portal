@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Asset from './asset';
-import Breadcrumbs from '../breadcrumbs'
+import Breadcrumbs from '../breadcrumbs';
 import Spinner from '../spinner';
 import './index.css';
 
@@ -75,7 +75,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
     static contextTypes = {
         web3: PropTypes.object
-    }
+    };
 
     componentDidMount() {
         propertyContract.setProvider(web3.currentProvider);
@@ -99,7 +99,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     getBalance() {
         return web3.eth.getBalance(this.props.match.params.pid, (error: any, balance: any) => {
             this.setState({
-                balance: balance.toNumber()/1000/1000/1000/1000/1000/1000
+                balance: balance.toNumber() / 1000 / 1000 / 1000 / 1000 / 1000 / 1000
             });
         });
     }
@@ -107,8 +107,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     addAsset(e: any) {
         e.preventDefault();
 
-        if (this.state.addAsset.price < 0 && this.state.addAsset.currency === '')
+        if (this.state.addAsset.price < 0 && this.state.addAsset.currency === '') {
             return;
+        }
 
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.addAsset(this.state.addAsset.price, this.state.addAsset.currency, { from: this.context.web3.selectedAccount });
@@ -121,11 +122,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                     this.getAssets();
 
                     // Notify user from success.
-                    toast.success("Success, asset was added.", {
+                    toast.success('Success, asset was added.', {
                         position: toast.POSITION.BOTTOM_RIGHT
                     });
                 }, 1500);
-            })
+            });
         });
     }
 
@@ -176,18 +177,21 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
     render() {
         var assetsContent;
-        if (this.state.assetsLoading)
-            assetsContent = <Spinner text="loading assets..." />
-        else {
+        if (this.state.assetsLoading) {
+            assetsContent = (
+                <Spinner text='loading assets...' />
+            );
+        } else {
             if (this.state.assets.length > 0) {
                 assetsContent = this.state.assets.map((asset) => <Asset key={asset.id} url={this.props.match.url} asset={asset} />
                 );
             } else {
-                assetsContent =
-                    <div className="empty">
-                        <img className="icon" src={egoCursorHand} />
-                        <p className="text">No assets found...</p>
-                    </div>;
+                assetsContent = (
+                    <div className='empty'>
+                        <img className='icon' src={egoCursorHand} />
+                        <p className='text'>No assets found...</p>
+                    </div>
+                );
             }
         }
 
@@ -212,54 +216,75 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                 path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid,
                 active: true,
             },
-        ]
+        ];
 
         return (
-            <section className="property-detail">
-                <div className="content">
+            <section className='property-detail'>
+                <div className='content'>
                     <Breadcrumbs routes={routes} />
-                    <button className="add-asset" onClick={this.addAssetOnRequestOpen}>
-                        <img className="add-asset-icon" src={egoPenChecklist} />
-                        <span className="add-asset-text">Add asset</span>
+                    <button className='add-asset' onClick={this.addAssetOnRequestOpen}>
+                        <img className='add-asset-icon' src={egoPenChecklist} />
+                        <span className='add-asset-text'>Add asset</span>
                     </button>
                     <Modal
                         isOpen={this.state.addAssetModalIsOpen}
                         onRequestClose={this.addAssetOnRequestClose}
                         style={addAssetModalStyles}
-                        contentLabel="Modal">
-                        <div className="modal-header">
-                            <h1 className="title">Add asset</h1>
-                            <img className="close" src={egoAxe} onClick={this.addAssetOnRequestClose} />
+                        contentLabel='Modal'
+                    >
+                        <div className='modal-header'>
+                            <h1 className='title'>Add asset</h1>
+                            <img className='close' src={egoAxe} onClick={this.addAssetOnRequestClose} />
                         </div>
-                        <div className="modal-content">
-                            <img className="visual-tip" src={egoCheckHexagon} />
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <div className='modal-content'>
+                            <img className='visual-tip' src={egoCheckHexagon} />
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                             <form>
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td className="label"><label>Price:</label></td>
-                                            <td><input className="value" type="text" value={this.state.addAsset.price} onChange={(e) => this.addAssetHandleChanges('price', e)} /></td>
+                                            <td className='label'><label>Price:</label></td>
+                                            <td>
+                                                <input
+                                                    className='value'
+                                                    type='text'
+                                                    value={this.state.addAsset.price}
+                                                    onChange={(e) => this.addAssetHandleChanges('price', e)}
+                                                />
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td className="label"><label>Currency:</label></td>
-                                            <td><input className="value" type="text" value={this.state.addAsset.currency} onChange={(e) => this.addAssetHandleChanges('currency', e)} /></td>
+                                            <td className='label'><label>Currency:</label></td>
+                                            <td>
+                                                <input
+                                                    className='value'
+                                                    type='text'
+                                                    value={this.state.addAsset.currency}
+                                                    onChange={(e) => this.addAssetHandleChanges('currency', e)}
+                                                />
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </form>
                         </div>
-                        <div className="modal-actions">
-                            <button className="action" onClick={(e) => this.addAsset(e)}>Add</button>
-                            <button className="action close" onClick={this.addAssetOnRequestClose}>Close</button>
+                        <div className='modal-actions'>
+                            <button className='action' onClick={(e) => this.addAsset(e)}>Add</button>
+                            <button className='action close' onClick={this.addAssetOnRequestClose}>Close</button>
                         </div>
                     </Modal>
-                    <div className="description">
-                        <span className="address">address: {this.props.match.params.pid}</span>
-                        <span className="balance">balance: {this.state.balance} ether</span>
-                        <p className="name">{this.state.name}</p>
-                        <p>This place will be to display the whole asset struct plus metadata from ipfs or ipdb will do that tomorrow enough for tonight.</p>
-                        <div className="assets">
+                    <div className='description'>
+                        <span className='address'>address: {this.props.match.params.pid}</span>
+                        <span className='balance'>balance: {this.state.balance} ether</span>
+                        <p className='name'>{this.state.name}</p>
+                        <p>
+                            This place will be to display the whole asset struct plus
+                            metadata from ipfs or ipdb will do that tomorrow enough
+                            for tonight.
+                        </p>
+                        <div className='assets'>
                             {assetsContent}
                         </div>
                     </div>

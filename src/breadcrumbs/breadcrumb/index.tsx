@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 export namespace Breadcrumb {
     export interface Props {
-        name: string,
-        path: string,
-        active: boolean
+        name: string;
+        path: string;
+        active: boolean;
     }
 
     export interface State {
@@ -22,19 +22,23 @@ class Breadcrumb extends React.Component<Breadcrumb.Props, Breadcrumb.State> {
     render() {
         var breadcrumbContent;
         if (this.props.active) {
-            breadcrumbContent = <NavLink className="link" to={this.props.path}>
-                <p className="name">
+            breadcrumbContent = (
+                <NavLink className='link' to={this.props.path}>
+                    <p className='name'>
+                        {this.props.name}
+                    </p>
+                </NavLink>
+            );
+        } else {
+            breadcrumbContent = (
+                <p className='disabled-link'>
                     {this.props.name}
                 </p>
-            </NavLink>
-        } else {
-            breadcrumbContent = <p className="disabled-link">
-                {this.props.name}
-            </p>
+            );
         }
 
         return (
-            <section className="breadcrumb">
+            <section className='breadcrumb'>
                 {breadcrumbContent}
             </section>
         );

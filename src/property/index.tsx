@@ -15,7 +15,7 @@ export namespace Property {
     }
 
     export interface State {
-        name: string,
+        name: string;
         balance: number;
     }
 }
@@ -52,20 +52,20 @@ class Property extends React.Component<Property.Props, Property.State> {
     getBalance() {
         return web3.eth.getBalance(this.props.id, (error: any, balance: any) => {
             this.setState({
-                balance: balance.toNumber()/1000/1000/1000/1000/1000/1000
+                balance: balance.toNumber() / 1000 / 1000 / 1000 / 1000 / 1000 / 1000
             });
         });
     }
 
     render() {
         return (
-            <section className="property">
-                <div className="description">
-                    <span className="address">address: {this.props.id}</span>
-                    <span className="balance">balance: {this.state.balance} ether</span>
-                    <p className="name">{this.state.name}</p>
-                    <NavLink className="detail" to={"/companies/" + this.props.company + "/properties/" + this.props.id}>
-                        <img className="plus" src={egoSun1} />
+            <section className='property'>
+                <div className='description'>
+                    <span className='address'>address: {this.props.id}</span>
+                    <span className='balance'>balance: {this.state.balance} ether</span>
+                    <p className='name'>{this.state.name}</p>
+                    <NavLink className='detail' to={'/companies/' + this.props.company + '/properties/' + this.props.id}>
+                        <img className='plus' src={egoSun1} />
                     </NavLink>
                 </div>
             </section>

@@ -32,7 +32,7 @@ class Company extends React.Component<Company.Props, Company.State> {
 
     static contextTypes = {
         web3: PropTypes.object
-    }
+    };
 
     componentWillMount() {
         companyContract.setProvider(web3.currentProvider);
@@ -53,20 +53,20 @@ class Company extends React.Component<Company.Props, Company.State> {
     getBalance() {
         return web3.eth.getBalance(this.props.id, (error: any, balance: any) => {
             this.setState({
-                balance: balance.toNumber()/1000/1000/1000/1000/1000/1000
+                balance: balance.toNumber() / 1000 / 1000 / 1000 / 1000 / 1000 / 1000
             });
         });
     }
 
     render() {
         return (
-            <section className="company">
-                <div className="description">
-                    <span className="address">address: {this.props.id}</span>
-                    <span className="balance">balance: {this.state.balance} ether</span>
-                    <p className="name">{this.state.name}</p>
-                    <NavLink className="detail" to={"/companies/" + this.props.id}>
-                        <img className="plus" src={egoLighthouse} />
+            <section className='company'>
+                <div className='description'>
+                    <span className='address'>address: {this.props.id}</span>
+                    <span className='balance'>balance: {this.state.balance} ether</span>
+                    <p className='name'>{this.state.name}</p>
+                    <NavLink className='detail' to={'/companies/' + this.props.id}>
+                        <img className='plus' src={egoLighthouse} />
                     </NavLink>
                 </div>
             </section>

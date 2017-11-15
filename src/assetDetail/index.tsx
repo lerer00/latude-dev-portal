@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import BigCalendar from 'react-big-calendar';
-import Breadcrumbs from '../breadcrumbs'
+import Breadcrumbs from '../breadcrumbs';
 import Spinner from '../spinner';
 import './index.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const web3 = window['web3'];
 const Modal = require('react-modal');
-const ipfsAPI = require('ipfs-api')
+const ipfsAPI = require('ipfs-api');
 const bl = require('bl');
 const moment = require('moment');
 const DateRange = require('react-date-range').DateRange;
@@ -54,12 +54,12 @@ export namespace AssetDetail {
     }
 
     export interface State {
-        loading: boolean,
-        ipfs: any,
-        addStayModalIsOpen: boolean,
-        manageAssetModalIsOpen: boolean,
-        asset: any,
-        dateRange: any
+        loading: boolean;
+        ipfs: any;
+        addStayModalIsOpen: boolean;
+        manageAssetModalIsOpen: boolean;
+        asset: any;
+        dateRange: any;
     }
 }
 
@@ -68,7 +68,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         super(props, context);
 
         // initializing the calendar
-        BigCalendar.momentLocalizer(moment)
+        BigCalendar.momentLocalizer(moment);
 
         this.state = {
             loading: true,
@@ -87,7 +87,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                 startDate: null,
                 endDate: null
             }
-        }
+        };
 
         this.upsertAsset = this.upsertAsset.bind(this);
         this.manageAssetOnRequestClose = this.manageAssetOnRequestClose.bind(this);
@@ -101,7 +101,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
     static contextTypes = {
         web3: PropTypes.object
-    }
+    };
 
     componentDidMount() {
         propertyContract.setProvider(web3.currentProvider);
@@ -180,7 +180,14 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         }).then((priceInWei: any) => {
             var start = this.state.dateRange.startDate.unix();
             var end = this.state.dateRange.endDate.unix();
-            return propertyInstance.addStay(this.props.match.params.aid, start, end, { from: this.context.web3.selectedAccount, value: priceInWei.toNumber() });
+            return propertyInstance.addStay(
+                this.props.match.params.aid,
+                start,
+                end,
+                {
+                    from: this.context.web3.selectedAccount,
+                    value: priceInWei.toNumber()
+                });
         }).then((receipt: any) => {
             this.addStayOnRequestClose();
         });
@@ -189,7 +196,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     addAssetHash(hash: string) {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.addMetadataHashForAsset(this.props.match.params.aid, hash, { from: this.context.web3.selectedAccount });
-        }).then((hash: string) => {
+        }).then(() => {
             this.manageAssetOnRequestClose();
         });
     }
@@ -200,12 +207,12 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         }).then((hash: string) => {
             this.setState({
                 loading: false
-            })
+            });
             this.getFile(hash);
         }).catch((error: any) => {
             this.setState({
                 loading: false
-            })
+            });
         });
     }
 
@@ -236,20 +243,21 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         var filteredAsset = {
             description: this.state.asset.description,
             type: this.state.asset.type
-        }
+        };
 
         const files = [
             {
                 path: this.props.match.url + '.json',
                 content: JSON.stringify(filteredAsset)
             }
-        ]
+        ];
         this.state.ipfs.files.add(files, null, (err: any, result: any) => {
-            if (err)
+            if (err) {
                 throw err;
+            }
 
             this.addAssetHash(result[0].hash);
-        })
+        });
     }
 
     // will need to be moved elsewhere
@@ -262,7 +270,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         }
         for (; i < l; i += 2) {
             var code = parseInt(hex.substr(i, 2), 16);
-            if (code === 0) continue; // this is added
+            if (code === 0) { continue; } // this is added
             str += String.fromCharCode(code);
         }
         return str;
@@ -277,7 +285,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     addStayOnRequestClose() {
         this.setState({
             addStayModalIsOpen: false
-        })
+        });
     }
 
     manageAssetOnRequestClose() {
@@ -303,26 +311,30 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     handleDateRangeSelect(range: any) {
         this.setState({
             dateRange: range
-        })
+        });
     }
 
     render() {
         var assetContent;
-        if (this.state.loading)
-            assetContent = <Spinner text="loading asset..." />
-        else {
-            assetContent = <div className="informations">
-                <p className="asset-name">{this.state.asset.name}</p>
-                <p className="asset-description">Description: {this.state.asset.description}</p>
-                <p className="asset-price">Price: {this.state.asset.price} {this.toAscii(this.state.asset.currency)}</p>
-                <p className="asset-type">Type: {this.state.asset.type}</p>
-                <br />
-                <BigCalendar
-                    className="custom-calendar"
-                    views={['month', 'week']}
-                    events={this.state.asset.events}
-                />
-            </div>
+        if (this.state.loading) {
+            assetContent = (
+                <Spinner text='loading asset...' />
+            );
+        } else {
+            assetContent = (
+                <div className='informations'>
+                    <p className='asset-name'>{this.state.asset.name}</p>
+                    <p className='asset-description'>Description: {this.state.asset.description}</p>
+                    <p className='asset-price'>Price: {this.state.asset.price} {this.toAscii(this.state.asset.currency)}</p>
+                    <p className='asset-type'>Type: {this.state.asset.type}</p>
+                    <br />
+                    <BigCalendar
+                        className='custom-calendar'
+                        views={['month', 'week']}
+                        events={this.state.asset.events}
+                    />
+                </div>
+            );
         }
 
         const routes: any = [
@@ -343,89 +355,123 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             },
             {
                 name: this.props.match.params.pid,
-                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid,
+                path: '/companies/' + this.props.match.params.cid +
+                '/properties/' + this.props.match.params.pid,
                 active: true,
             },
             {
                 name: 'Assets',
-                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid + '/assets',
+                path: '/companies/' + this.props.match.params.cid +
+                '/properties/' + this.props.match.params.pid + '/assets',
                 active: false,
             },
             {
                 name: this.props.match.params.aid,
-                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid + '/assets/' + this.props.match.params.aid,
+                path: '/companies/' + this.props.match.params.cid +
+                '/properties/' + this.props.match.params.pid +
+                '/assets/' + this.props.match.params.aid,
                 active: true,
             },
-        ]
+        ];
 
         return (
-            <section className="asset-detail">
-                <div className="content">
+            <section className='asset-detail'>
+                <div className='content'>
                     <Breadcrumbs routes={routes} />
-                    <button className="custom-button" onClick={this.manageAssetOnRequestOpen}>
-                        <img className="icon" src={egoPenChecklist} />
-                        <span className="text">Manage asset</span>
+                    <button className='custom-button' onClick={this.manageAssetOnRequestOpen}>
+                        <img className='icon' src={egoPenChecklist} />
+                        <span className='text'>Manage asset</span>
                     </button>
-                    <button className="custom-button" onClick={this.addStayOnRequestOpen}>
-                        <img className="icon" src={egoCalendarCheck} />
-                        <span className="text">Add stay</span>
+                    <button className='custom-button' onClick={this.addStayOnRequestOpen}>
+                        <img className='icon' src={egoCalendarCheck} />
+                        <span className='text'>Add stay</span>
                     </button>
                     <Modal
                         isOpen={this.state.manageAssetModalIsOpen}
                         onRequestClose={this.manageAssetOnRequestClose}
                         style={manageAssetModalStyles}
-                        contentLabel="Modal">
-                        <div className="modal-header">
-                            <h1 className="title">Manage asset</h1>
-                            <img className="close" src={egoAxe} onClick={this.manageAssetOnRequestClose} />
+                        contentLabel='Modal'
+                    >
+                        <div className='modal-header'>
+                            <h1 className='title'>Manage asset</h1>
+                            <img className='close' src={egoAxe} onClick={this.manageAssetOnRequestClose} />
                         </div>
-                        <div className="modal-content">
-                            <img className="visual-tip" src={egoCheckHexagon} />
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <div className='modal-content'>
+                            <img className='visual-tip' src={egoCheckHexagon} />
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                             <form>
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td className="label"><label>Description:</label></td>
-                                            <td><input className="value" type="text" value={this.state.asset.description} onChange={(e) => this.manageAssetHandleChanges('description', e)} /></td>
+                                            <td className='label'><label>Description:</label></td>
+                                            <td>
+                                                <input
+                                                    className='value'
+                                                    type='text'
+                                                    value={this.state.asset.description}
+                                                    onChange={(e) => this.manageAssetHandleChanges('description', e)}
+                                                />
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td className="label"><label>Type:</label></td>
-                                            <td><input className="value" type="text" value={this.state.asset.type} onChange={(e) => this.manageAssetHandleChanges('type', e)} /></td>
+                                            <td className='label'><label>Type:</label></td>
+                                            <td>
+                                                <input
+                                                    className='value'
+                                                    type='text'
+                                                    value={this.state.asset.type}
+                                                    onChange={(e) => this.manageAssetHandleChanges('type', e)}
+                                                />
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </form>
                         </div>
-                        <div className="modal-actions">
-                            <button className="action" onClick={(e) => this.upsertAsset(e)}>Save</button>
-                            <button className="action close" onClick={this.manageAssetOnRequestClose}>Close</button>
+                        <div className='modal-actions'>
+                            <button className='action' onClick={(e) => this.upsertAsset(e)}>Save</button>
+                            <button className='action close' onClick={this.manageAssetOnRequestClose}>Close</button>
                         </div>
                     </Modal>
                     <Modal
                         isOpen={this.state.addStayModalIsOpen}
                         onRequestClose={this.addStayOnRequestClose}
                         style={manageAssetModalStyles}
-                        contentLabel="Modal">
-                        <div className="modal-header">
-                            <h1 className="title">Add stay</h1>
-                            <img className="close" src={egoAxe} onClick={this.addStayOnRequestClose} />
+                        contentLabel='Modal'
+                    >
+                        <div className='modal-header'>
+                            <h1 className='title'>Add stay</h1>
+                            <img className='close' src={egoAxe} onClick={this.addStayOnRequestClose} />
                         </div>
-                        <div className="modal-content">
-                            <img className="visual-tip" src={egoCheckHexagon} />
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <div className='modal-content'>
+                            <img className='visual-tip' src={egoCheckHexagon} />
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                             <DateRange
-                                className="select-range"
+                                className='select-range'
                                 calendars={1}
                                 onInit={this.handleDateRangeSelect}
                                 onChange={this.handleDateRangeSelect}
                             />
-                            <p>Arrival: {this.state.dateRange.startDate && this.state.dateRange.startDate.format('dddd, D MMMM YYYY').toString()}</p>
-                            <p>Departure: {this.state.dateRange.endDate && this.state.dateRange.endDate.format('dddd, D MMMM YYYY').toString()}</p>
+                            <p>
+                                Arrival: {
+                                    this.state.dateRange.startDate &&
+                                    this.state.dateRange.startDate.format('dddd, D MMMM YYYY').toString()
+                                }
+                            </p>
+                            <p>
+                                Departure: {
+                                    this.state.dateRange.endDate &&
+                                    this.state.dateRange.endDate.format('dddd, D MMMM YYYY').toString()
+                                }
+                            </p>
                         </div>
-                        <div className="modal-actions">
-                            <button className="action" onClick={(e) => this.addStay(e)}>Save</button>
-                            <button className="action close" onClick={this.addStayOnRequestClose}>Close</button>
+                        <div className='modal-actions'>
+                            <button className='action' onClick={(e) => this.addStay(e)}>Save</button>
+                            <button className='action close' onClick={this.addStayOnRequestClose}>Close</button>
                         </div>
                     </Modal>
                     {assetContent}
