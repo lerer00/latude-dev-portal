@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import BigCalendar from 'react-big-calendar';
-import Breadcrumbs from '../breadcrumbs';
+import { Breadcrumbs } from '../breadcrumbs';
 import Spinner from '../spinner';
 import './index.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -337,7 +337,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             );
         }
 
-        const routes: any = [
+        const routes: Breadcrumbs.Crumb[] = [
             {
                 name: 'Companies',
                 path: '/companies',

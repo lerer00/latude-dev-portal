@@ -12,10 +12,14 @@ export namespace Breadcrumb {
     export interface State {
         // empty
     }
+
+    export interface Context {
+        // empty
+    }
 }
 
 class Breadcrumb extends React.Component<Breadcrumb.Props, Breadcrumb.State> {
-    constructor(props?: Breadcrumb.Props, context?: any) {
+    constructor(props?: Breadcrumb.Props, context?: Breadcrumb.Context) {
         super(props, context);
     }
 

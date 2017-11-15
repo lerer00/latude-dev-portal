@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Asset from './asset';
-import Breadcrumbs from '../breadcrumbs';
+import { Breadcrumbs } from '../breadcrumbs';
 import Spinner from '../spinner';
 import './index.css';
 
@@ -195,7 +195,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             }
         }
 
-        const routes: any = [
+        const routes: Breadcrumbs.Crumb[] = [
             {
                 name: 'Companies',
                 path: '/companies',

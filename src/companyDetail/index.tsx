@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Property from '../property';
-import Breadcrumbs from '../breadcrumbs';
+import { Breadcrumbs } from '../breadcrumbs';
 import Spinner from '../spinner';
 import './index.css';
 
@@ -160,7 +160,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
             }
         }
 
-        const routes: any = [
+        const routes: Breadcrumbs.Crumb[] = [
             {
                 name: 'Companies',
                 path: '/companies',

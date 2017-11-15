@@ -2,24 +2,28 @@ import * as React from 'react';
 import Breadcrumb from './breadcrumb';
 import './index.css';
 
-export interface Breabcrumb {
-    name: string;
-    path: string;
-    active: boolean;
-}
-
 export namespace Breadcrumbs {
     export interface Props {
-        routes: Array<Breabcrumb>;
+        routes: Array<Crumb>;
     }
 
     export interface State {
-        breadcrumbs: any;
+        // empty
+    }
+
+    export interface Context {
+        // empty
+    }
+
+    export interface Crumb {
+        name: string;
+        path: string;
+        active: boolean;
     }
 }
 
-class Breadcrumbs extends React.Component<Breadcrumbs.Props, Breadcrumbs.State> {
-    constructor(props?: Breadcrumbs.Props, context?: any) {
+export class Breadcrumbs extends React.Component<Breadcrumbs.Props, Breadcrumbs.State> {
+    constructor(props?: Breadcrumbs.Props, context?: Breadcrumbs.Context) {
         super(props, context);
     }
 
@@ -31,5 +35,3 @@ class Breadcrumbs extends React.Component<Breadcrumbs.Props, Breadcrumbs.State> 
         );
     }
 }
-
-export default Breadcrumbs;
