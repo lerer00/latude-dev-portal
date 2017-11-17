@@ -11,7 +11,7 @@ contract CompanyFactory is Ownable {
         exchangeContract = _exchangeContract;
     }
 
-    function addCompany(string _name) public{      
+    function addCompany(string _name) public {
         Company newCompany = new Company(_name, msg.sender, exchangeContract);
 
         // companies are added under a single owner
