@@ -131,11 +131,26 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     // this returns all stays id
     getStays() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.getStays.call(this.props.match.params.aid);
-        }).then((result: Array<number>) => {
-            result.forEach(id => {
-                this.getStay(id);
-            });
+            // Get unix date -30 days from now and +30 days from now.
+            var start = new Date();
+            var end = new Date();
+            start.setDate(start.getDate() - 30);
+            end.setDate(end.getDate() + 30);
+            
+            // Unix format.
+            var startUnix = Math.round(start.getTime() / 1000);
+            var endUnix = Math.round(end.getTime() / 1000);
+
+            return instance.getStays.call(this.props.match.params.aid, startUnix, endUnix);
+        }).then((result: Array<any>) => {
+            // For now we are getting an array with a maximum of 64 stays wich can be empty.
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].toNumber() === 0) {
+                    break;
+                }
+
+                this.getStay(result[i]);
+            }
         });
     }
 
@@ -156,8 +171,8 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     convertStayToEvent(stay: Array<any>): CalendarEvent {
-        var startDate: any = new Date(stay[1].toNumber() * 1000);
-        var endDate: any = new Date(stay[2].toNumber() * 1000);
+        var startDate: any = new Date(stay[0].toNumber() * 1000);
+        var endDate: any = new Date(stay[1].toNumber() * 1000);
 
         var event: CalendarEvent = {
             title: 'Booking',

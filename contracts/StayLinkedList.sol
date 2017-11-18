@@ -51,11 +51,13 @@ contract StayLinkedList {
     }
 
     function getNodesBetween(uint assetId, uint from, uint to) public constant returns(uint[]) {
+        require(to > 0);
         require(to > from);
 
         // For now we can on check for 64 days.
         require((to - from) <= 64 * 60 * 60 * 24); 
 
+        // Go up the list until we hit something within range.
         Node memory currentNode = lists[assetId][tails[assetId]];
         while (currentNode.key > to) {
             currentNode = lists[assetId][currentNode.previous];
@@ -65,6 +67,7 @@ contract StayLinkedList {
         uint index = 0;
         while (currentNode.key >= from) {
             nodesBetween[index] = currentNode.key;
+            currentNode = lists[assetId][currentNode.previous];
             index++;
         }
 

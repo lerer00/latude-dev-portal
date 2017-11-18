@@ -51,6 +51,7 @@ contract Property is Ownable, StayLinkedList {
         require(exchangeRates.isCurrencyAllowed(currency));
 
         uint newAssetId = assets.length;
+        StayLinkedList.initializeAssetList(newAssetId);
         string[] memory metadataHashes;
         assets.push(Asset(newAssetId, price, currency, metadataHashes));
     }
