@@ -21,6 +21,6 @@ module.exports = function (deployer) {
   // });
 
 
-  // exchange need to be passed manually, this is shit well this is only for test...
+  // exchange need to be passed manually, this is shit!
   deployer.deploy(CompanyFactory, "0x746535b7e5b157aee6e83eee76420d5130cf90dc");
 };
