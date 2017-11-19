@@ -1,8 +1,8 @@
 pragma solidity ^0.4.17;
 
 contract StayLinkedList {
-    mapping(uint => uint) tails;
-    mapping(uint => mapping( uint => Node)) lists;
+    mapping(uint => uint) internal tails;
+    mapping(uint => mapping( uint => Node)) internal lists;
 
     struct Node {
         uint previous;
@@ -50,6 +50,7 @@ contract StayLinkedList {
         return(node.previous, node.next, node.weight, node.key);
     }
 
+    // This function is public for us to gather availabilities.
     function getNodesBetween(uint assetId, uint from, uint to) public constant returns(uint[]) {
         require(to > 0);
         require(to > from);

@@ -15,6 +15,9 @@ contract Company is Ownable {
     }
 
     function addProperty(string _name) onlyOwner public returns (Property) {
+        // Validate that name is not empty.
+        require(bytes(_name).length > 0);
+
         Property newProperty = new Property(_name, owner, exchangeContract);
         properties.push(newProperty);
         return newProperty;
