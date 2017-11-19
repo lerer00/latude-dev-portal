@@ -34,10 +34,10 @@ contract("CompanyFactory", function (accounts) {
 		return CompanyFactory.deployed().then(function (instance) {
 			return instance.addCompany("", { from: accounts[0] });
 		}).then(function (unknown) {
-			assert(true, "Error should have been thrown since name length is 0.")
+			assert(true, "error should have been thrown since name length is 0.")
 		}).catch(function (error) {
 			if(error.toString().indexOf("invalid opcode") == -1)
-				assert(true, "An error occur but it was not the intended one.")
+				assert(true, "an error occur but it was not the intended one.")
 		});
 	});
 });

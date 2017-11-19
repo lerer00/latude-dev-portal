@@ -21,7 +21,7 @@ contract("Property", function (accounts) {
         return Property.deployed().then(function (instance) {
             return instance.owner.call();
         }).then(function (owner) {
-            assert.equal(owner, "0xbb27c74cf46c7a418484824e4a1515435b084f32", "Owner does not match");
+            assert.equal(owner, accounts[0], "Owner does not match");
         });
     });
 
@@ -56,10 +56,10 @@ contract("Property", function (accounts) {
         return Property.deployed().then(function (instance) {
             return instance.addAsset(assetPrice, assetCurrency);
         }).then(function (unknown) {
-            assert(true, "Error should have been thrown since the currency is not supported.");
+            assert(true, "error should have been thrown since the currency is not supported.");
         }).catch(function (error) {
             if (error.toString().indexOf("invalid opcode") == -1)
-                assert(true, "An error occur but it was not the intended one.")
+                assert(true, "an error occur but it was not the intended one.")
         });
     });
 
@@ -88,10 +88,10 @@ contract("Property", function (accounts) {
         return Property.deployed().then(function (instance) {
             return tmpInstance.addMetadataHashForAsset(20, ipfsHash);
         }).then(function (unknown) {
-            assert(true, "Error should have been thrown since asset does not exist.");
+            assert(true, "error should have been thrown since asset does not exist.");
         }).catch(function (error) {
             if (error.toString().indexOf("invalid opcode") == -1)
-                assert(true, "An error occur but it was not the intended one.");
+                assert(true, "an error occur but it was not the intended one.");
         });
     });
 
@@ -150,10 +150,10 @@ contract("Property", function (accounts) {
         }).then(function (priceInWei) {
             return tmpInstance.addStay(assetId, 0, endUnix, { value: priceInWei });
         }).then(function (unknown) {
-            assert(true, "Error should have been thrown since the start date is lower than today.");
+            assert(true, "error should have been thrown since the start date is lower than today.");
         }).catch(function (error) {
             if (error.toString().indexOf("invalid opcode") == -1)
-                assert(true, "An error occur but it was not the intended one.");
+                assert(true, "an error occur but it was not the intended one.");
         });
     });
 
@@ -182,10 +182,10 @@ contract("Property", function (accounts) {
         }).then(function (priceInWei) {
             return tmpInstance.addStay(assetId, startUnix, endUnix, { value: priceInWei });
         }).then(function (unknown) {
-            assert(true, "Error should have been thrown since the end date is lower than the start date.");
+            assert(true, "error should have been thrown since the end date is lower than the start date.");
         }).catch(function (error) {
             if (error.toString().indexOf("invalid opcode") == -1)
-                assert(true, "An error occur but it was not the intended one.");
+                assert(true, "an error occur but it was not the intended one.");
         });
     });
 
@@ -210,10 +210,10 @@ contract("Property", function (accounts) {
         }).then(function (priceInWei) {
             return tmpInstance.addStay(assetId, dateUnix, dateUnix, { value: priceInWei });
         }).then(function (unknown) {
-            assert(true, "Error should have been thrown since the stay duration is equal to 0.");
+            assert(true, "error should have been thrown since the stay duration is equal to 0.");
         }).catch(function (error) {
             if (error.toString().indexOf("invalid opcode") == -1)
-                assert(true, "An error occur but it was not the intended one.");
+                assert(true, "an error occur but it was not the intended one.");
         });
     });
 
@@ -242,10 +242,10 @@ contract("Property", function (accounts) {
         }).then(function (priceInWei) {
             return tmpInstance.addStay(assetId, startUnix, endUnix, { value: 1 });
         }).then(function (unknown) {
-            assert(true, "Error should have been thrown since the msg.value is lower than the price of the stay.");
+            assert(true, "error should have been thrown since the msg.value is lower than the price of the stay.");
         }).catch(function (error) {
             if (error.toString().indexOf("invalid opcode") == -1)
-                assert(true, "An error occur but it was not the intended one.");
+                assert(true, "an error occur but it was not the intended one.");
         });
     });
 });

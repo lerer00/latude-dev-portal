@@ -30,7 +30,7 @@ contract("Company", function (accounts) {
 		return Company.deployed().then(function (instance) {
 			return instance.owner.call();
 		}).then(function (owner) {
-			assert.equal(owner, "0xbb27c74cf46c7a418484824e4a1515435b084f32", "Owner does not match");
+			assert.equal(owner, accounts[0], "Owner does not match");
 		});
 	});
 
@@ -50,10 +50,10 @@ contract("Company", function (accounts) {
 		return Company.deployed().then(function (instance) {
 			return instance.addProperty(companyName, { from: accounts[0] });
 		}).then(function (unknown) {
-			assert(true, "Error should have been thrown since name length is 0.");
+			assert(true, "error should have been thrown since name length is 0.");
 		}).catch(function (error) {
 			if (error.toString().indexOf("invalid opcode") == -1)
-				assert(true, "An error occur but it was not the intended one.");
+				assert(true, "an error occur but it was not the intended one.");
 		});
 	});
-})
+});
