@@ -11,10 +11,13 @@ contract CompanyFactory is Ownable {
         exchangeContract = _exchangeContract;
     }
 
-    function addCompany(string _name) public {
-        Company newCompany = new Company(_name, msg.sender, exchangeContract);
+    function addCompany(string name) public {
+        // Validate that name is not empty.
+        require(bytes(name).length > 0);
 
-        // companies are added under a single owner
+        Company newCompany = new Company(name, msg.sender, exchangeContract);
+
+        // Companies are added under a single owner.
         companies[msg.sender].push(newCompany);
     }
 

@@ -6,11 +6,12 @@ import "./StayLinkedList.sol";
 
 contract Property is Ownable, StayLinkedList {
     string public name;
-    Asset[] assets;
-    mapping(uint => mapping(uint => Stay)) stays;
-
+    mapping(uint => mapping(uint => Stay)) public stays;
+    
+    // All assets are tracked within this array.
+    Asset[] private assets;
     // We need to query an already deployed exhange.
-    ExchangeRates exchangeRates;
+    ExchangeRates private exchangeRates;
 
     // We are using the unix epoch format.
     struct Stay {
@@ -38,6 +39,8 @@ contract Property is Ownable, StayLinkedList {
 
     // Ipfs hashes are used to retreive further information about an asset.
     function addMetadataHashForAsset(uint id, string hash) onlyOwner public {
+        // Since assetIds are always incremented by 1, we can validate this way.
+        require(id < numberOfAssets());
         assets[id].metadataHashes.push(hash);
     }
 
