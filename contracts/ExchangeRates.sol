@@ -9,8 +9,8 @@ contract ExchangeRates is usingOraclize, Ownable {
     
     uint private delay;
     mapping(bytes32 => uint) private rates; 
-    mapping(bytes32 => bool) public supportedCurrencies;
-    mapping(bytes32=>bool) validIds;
+    mapping(bytes32 => bool) private supportedCurrencies;
+    mapping(bytes32=>bool) private validIds;
 
     function ExchangeRates() public payable {
         // Initialize the delay
@@ -23,18 +23,20 @@ contract ExchangeRates is usingOraclize, Ownable {
         // Make sure the call was done through our service.
         require(validIds[myid]);
         delete validIds[myid];
-        require(msg.sender == oraclize_cbAddress());
 
-        // this flatten the whole string into an array ['l','a','t','u','d','e']
+        // Try to uncomment when we'll try on geth or ropsten testrpc seems to run out of gas.
+        //require(msg.sender == oraclize_cbAddress());
+
+        // This flatten the whole string into an array ['l','a','t','u','d','e'].
         var currenciesRateStringArray = currencies.toSlice();
         var currenciesDelimiter = "|".toSlice();
         uint numberOfParts = currenciesRateStringArray.count(currenciesDelimiter) + 1;
         
-        // navigate through all parts that were seperated with an |
+        // Navigate through all parts that were seperated with an |.
         for (uint i = 0; i < numberOfParts; i++) {
             var currency = currenciesRateStringArray.split(currenciesDelimiter).toString();    
             var currencyStringArray = currency.toSlice();
-            // slice the CAD;398.05
+            // Slice the CAD;398.05
             var currencyDelimeter = ";".toSlice();
             
             bytes32 sigle = stringToBytes32(currencyStringArray.split(currencyDelimeter).toString());
