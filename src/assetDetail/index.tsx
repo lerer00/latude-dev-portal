@@ -195,13 +195,17 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         }).then((priceInWei: any) => {
             var start = this.state.dateRange.startDate.unix();
             var end = this.state.dateRange.endDate.unix();
+
+            // This is only to ease development, we can copy paste it later.
+            console.log(start + ', ' + end);
+            
             return propertyInstance.addStay(
                 this.props.match.params.aid,
                 start,
                 end,
                 {
                     from: this.context.web3.selectedAccount,
-                    value: priceInWei.toNumber()
+                    value: priceInWei
                 });
         }).then((receipt: any) => {
             this.addStayOnRequestClose();
