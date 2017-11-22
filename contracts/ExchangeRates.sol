@@ -1,29 +1,42 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
+import "./Authorization.sol";
 import "./strings.sol";
 import "./usingOraclize.sol";
 
-contract ExchangeRates is usingOraclize {
+contract ExchangeRates is usingOraclize, Authorization {
     using strings for *;
     
-    mapping(bytes32 => uint) rates; 
-    mapping(bytes32 => bool) supportedCurrencies;
+    uint private delay;
+    mapping(bytes32 => uint) private rates; 
+    mapping(bytes32 => bool) private supportedCurrencies;
+    mapping(bytes32=>bool) private validIds;
 
     function ExchangeRates() public payable {
+        // Initialize the delay
+        delay = 60;
         OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
         getCurrenciesRate();
     }
 
     function __callback(bytes32 myid, string currencies) public {
-        // this flatten the whole string into an array ['l','a','t','u','d','e']
+        // Make sure the call was done through our service.
+        require(validIds[myid]);
+        delete validIds[myid];
+
+        // Try to uncomment when we'll try on geth or ropsten testrpc seems to run out of gas.
+        //require(msg.sender == oraclize_cbAddress());
+
+        // This flatten the whole string into an array ['l','a','t','u','d','e'].
         var currenciesRateStringArray = currencies.toSlice();
         var currenciesDelimiter = "|".toSlice();
         uint numberOfParts = currenciesRateStringArray.count(currenciesDelimiter) + 1;
-        // navigate through all parts that were seperated with an |
+        
+        // Navigate through all parts that were seperated with an |.
         for (uint i = 0; i < numberOfParts; i++) {
             var currency = currenciesRateStringArray.split(currenciesDelimiter).toString();    
             var currencyStringArray = currency.toSlice();
-            // slice the CAD;398.05
+            // Slice the CAD;398.05
             var currencyDelimeter = ";".toSlice();
             
             bytes32 sigle = stringToBytes32(currencyStringArray.split(currencyDelimeter).toString());
@@ -36,8 +49,9 @@ contract ExchangeRates is usingOraclize {
         getCurrenciesRate();
     }
 
-    function getCurrenciesRate() public payable {
-        oraclize_query(60, "URL", "json(https://gnnbpjivgd.localtunnel.me/currency).rates");
+    function getCurrenciesRate() internal {
+        bytes32 queryId = oraclize_query(delay, "URL", "json(https://imixjabalm.localtunnel.me/currency).rates");
+        validIds[queryId] = true;
     }
 
     function getCurrencyRate(bytes32 _currency) public view returns(uint) {
@@ -46,6 +60,10 @@ contract ExchangeRates is usingOraclize {
     
     function isCurrencyAllowed(bytes32 _currency) public view returns(bool) {
         return supportedCurrencies[_currency];
+    }
+
+    function setDelay(uint newDelay) onlyOwner public {
+        delay = newDelay;
     }
     
     function stringToBytes32(string memory source) private pure returns (bytes32 result) {

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 contract StayLinkedList {
     mapping(uint => uint) internal tails;

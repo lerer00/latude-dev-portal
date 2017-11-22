@@ -1,9 +1,8 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
-import "./Ownable.sol";
 import "./Company.sol";
 
-contract CompanyFactory is Ownable {
+contract CompanyFactory {
     address public exchangeContract;
     mapping(address => address[]) companies;
 
@@ -15,6 +14,7 @@ contract CompanyFactory is Ownable {
         // Validate that name is not empty.
         require(bytes(name).length > 0);
 
+        // Create new company.
         Company newCompany = new Company(name, msg.sender, exchangeContract);
 
         // Companies are added under a single owner.
