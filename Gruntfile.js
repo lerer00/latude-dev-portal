@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         copy: {
@@ -26,5 +26,5 @@ module.exports = function (grunt) {
     // Tasks.
     grunt.registerTask('bootstrap', ['exec:local_rpc', 'exec:local_ipfs']);
     grunt.registerTask('truffle', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate', 'copy:contracts']);
-    grunt.registerTask('default', []);
+    grunt.registerTask('default', ['truffle']);
 };

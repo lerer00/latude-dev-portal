@@ -75,6 +75,20 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
   componentWillMount() {
     companyFactoryContract.setProvider(web3.currentProvider);
     this.getCompanies();
+    companyFactoryContract.deployed().then((instance: any) => {
+      instance.companyCreated('latest').watch(() => {
+        this.getCompanies();
+        this.setState({
+          addCompanyModalIsOpen: false,
+          addCompany: {
+            name: 'latude inc. (todo)',
+          }
+        });
+        toast.success('Success, company was added.', {
+          position: toast.POSITION.BOTTOM_RIGHT
+        });
+      });
+    });
   }
 
   getCompanies() {
@@ -97,25 +111,10 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     }
 
     companyFactoryContract.deployed().then((instance: any) => {
+      debugger;
       return instance.addCompany(this.state.addCompany.name, { from: this.context.web3.selectedAccount });
     }).then((result: any) => {
-      this.setState({
-        addCompanyModalIsOpen: false,
-        addCompany: {
-          name: '',
-        }
-      },
-        () => {
-          // This is only until the total mess of events is resolved...
-          setTimeout(() => {
-            this.getCompanies();
-
-            // Notify user from success.
-            toast.success('Success, company was added.', {
-              position: toast.POSITION.BOTTOM_RIGHT
-            });
-          }, 1500);
-        });
+      web3.eth.getTransaction(result.tx, console.log);
     });
   }
 
@@ -131,9 +130,9 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     });
   }
 
-  addCompanyHandleChanges(company: string, e: any) {
+  addCompanyHandleChanges(propertyName: string, event: any) {
     var tmp = this.state.addCompany;
-    tmp[company] = e.target.value;
+    tmp[propertyName] = event.target.value;
     this.setState({
       addCompany: tmp
     });
