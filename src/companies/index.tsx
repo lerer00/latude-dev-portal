@@ -111,7 +111,6 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     }
 
     companyFactoryContract.deployed().then((instance: any) => {
-      debugger;
       return instance.addCompany(this.state.addCompany.name, { from: this.context.web3.selectedAccount });
     });
   }
