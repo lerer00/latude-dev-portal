@@ -1,10 +1,11 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
-import "./Ownable.sol";
+import "./Authorization.sol";
+import "./PropertyAuthority.sol";
 import "./ExchangeRates.sol";
 import "./StayLinkedList.sol";
 
-contract Property is Ownable, StayLinkedList {
+contract Property is Authorization, StayLinkedList {
     string public name;
     mapping(uint => mapping(uint => Stay)) public stays;
     
@@ -12,6 +13,8 @@ contract Property is Ownable, StayLinkedList {
     Asset[] private assets;
     // We need to query an already deployed exhange.
     ExchangeRates private exchangeRates;
+    // We need to attach to the good authority
+    PropertyAuthority private propertyAuthority;
 
     // We are using the unix epoch format.
     struct Stay {
@@ -29,12 +32,11 @@ contract Property is Ownable, StayLinkedList {
     }
 
     function Property(string _name, address _owner, address _exchangeContract) public payable {
-        // The owner of this Property = the one who owns the company that Property is associated with.
-        transferOwnership(_owner);
+        setOwner(_owner);
+        setAuthority(propertyAuthority);
         name = _name;
-
         // Make sure this contract is always calling the same exchange to convert user currency into ETH.
-        exchangeRates = ExchangeRates(_exchangeContract);
+        exchangeRates = ExchangeRates(_exchangeContract);        
     }
 
     // Ipfs hashes are used to retreive further information about an asset.

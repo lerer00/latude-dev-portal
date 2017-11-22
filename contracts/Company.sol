@@ -1,20 +1,23 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
-import "./Ownable.sol";
+import "./Authorization.sol";
+import "./CompanyAuthority.sol";
 import "./Property.sol";
 
-contract Company is Ownable {
+contract Company is Authorization {
     string public name;
     address public exchangeContract;
     address[] public properties;
+    CompanyAuthority private companyAuthority;
 
     function Company(string _name, address _owner, address _exchangeContract) public payable {
-        transferOwnership(_owner);
+        setOwner(_owner);
+        setAuthority(companyAuthority);
         name = _name;
         exchangeContract = _exchangeContract;
     }
 
-    function addProperty(string _name) onlyOwner public returns (Property) {
+    function addProperty(string _name) onlyAuthorized public returns (Property) {
         // Validate that name is not empty.
         require(bytes(_name).length > 0);
 
