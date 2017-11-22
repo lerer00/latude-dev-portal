@@ -1,10 +1,10 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
-import "./Ownable.sol";
+import "./Authorization.sol";
 import "./strings.sol";
 import "./usingOraclize.sol";
 
-contract ExchangeRates is usingOraclize, Ownable {
+contract ExchangeRates is usingOraclize, Authorization {
     using strings for *;
     
     uint private delay;
