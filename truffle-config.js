@@ -1,10 +1,16 @@
 module.exports = {
-  networks: {
-    development: {
-      host: "localhost",
-      port: 8545,
-      network_id: "*", // testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch"
-      gas: 4712388
+    networks: {
+        development: {
+            host: "localhost",
+            port: 8545,
+            network_id: "*", // testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch"
+            gas: 4712388
+        },
+        ganache: {
+            host: "localhost",
+            port: 7545,
+            network_id: "*", // testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch"
+            gas: 4712388
+        }
     }
-  }
 };
