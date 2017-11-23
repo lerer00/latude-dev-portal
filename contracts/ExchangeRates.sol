@@ -50,7 +50,7 @@ contract ExchangeRates is usingOraclize, Authorization {
     }
 
     function getCurrenciesRate() internal {
-        bytes32 queryId = oraclize_query(delay, "URL", "json(https://amnvduxerk.localtunnel.me/currency).rates");
+        bytes32 queryId = oraclize_query(delay, "URL", "json(https://pcnicdybsv.localtunnel.me/currency).rates");
         validIds[queryId] = true;
     }
 

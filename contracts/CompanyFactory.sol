@@ -17,7 +17,7 @@ contract CompanyFactory {
 
         // Companies are added under a single owner.
         companies[msg.sender].push(newCompany);
-        companyCreated(_name);
+        companyCreated(name);
     }
 
     function getCompanies() public view returns(address[]) {
