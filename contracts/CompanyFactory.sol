@@ -11,9 +11,6 @@ contract CompanyFactory {
     }
 
     function addCompany(string name) public {
-        // Validate that name is not empty.
-        require(bytes(name).length > 0);
-
         // Create new company.
         Company newCompany = new Company(name, msg.sender, exchangeContract);
 
