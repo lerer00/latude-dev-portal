@@ -2,9 +2,9 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://still-tor-33624.herokuapp.com/",
   "dependencies": {
     "bl": "^1.2.1",
-    "ipfs-api": "^14.3.5",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
