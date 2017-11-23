@@ -8,8 +8,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const web3 = window['web3'];
 const Modal = require('react-modal');
-const ipfsAPI = require('ipfs-api');
-const bl = require('bl');
+// const ipfsAPI = require('ipfs-api');
+// const bl = require('bl');
 const moment = require('moment');
 const DateRange = require('react-date-range').DateRange;
 const contract = require('truffle-contract');
@@ -55,7 +55,7 @@ export namespace AssetDetail {
 
     export interface State {
         loading: boolean;
-        ipfs: any;
+        // ipfs: any;
         addStayModalIsOpen: boolean;
         manageAssetModalIsOpen: boolean;
         asset: any;
@@ -72,7 +72,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
         this.state = {
             loading: true,
-            ipfs: ipfsAPI('localhost', '5001', { protocol: 'http' }),
+            // ipfs: ipfsAPI('localhost', '5001', { protocol: 'http' }),
             addStayModalIsOpen: false,
             manageAssetModalIsOpen: false,
             asset: {
@@ -236,47 +236,47 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     getFile(hash: string) {
-        this.state.ipfs.files.cat(hash, (err: any, stream: any) => {
-            if (err) {
-                throw err;
-            }
-            stream.pipe(bl((e: any, d: any) => {
-                if (e) {
-                    throw err;
-                }
+        // this.state.ipfs.files.cat(hash, (err: any, stream: any) => {
+        //     if (err) {
+        //         throw err;
+        //     }
+        //     stream.pipe(bl((e: any, d: any) => {
+        //         if (e) {
+        //             throw err;
+        //         }
 
-                var ipfsAsset = JSON.parse(d.toString());
-                var tmpAsset = this.state.asset;
-                tmpAsset.description = ipfsAsset.description;
-                tmpAsset.type = ipfsAsset.type;
-                this.setState({
-                    asset: tmpAsset
-                });
-            }));
-        });
+        //         var ipfsAsset = JSON.parse(d.toString());
+        //         var tmpAsset = this.state.asset;
+        //         tmpAsset.description = ipfsAsset.description;
+        //         tmpAsset.type = ipfsAsset.type;
+        //         this.setState({
+        //             asset: tmpAsset
+        //         });
+        //     }));
+        // });
     }
 
     upsertAsset(e: any) {
         e.preventDefault();
 
-        var filteredAsset = {
-            description: this.state.asset.description,
-            type: this.state.asset.type
-        };
+        // var filteredAsset = {
+        //     description: this.state.asset.description,
+        //     type: this.state.asset.type
+        // };
 
-        const files = [
-            {
-                path: this.props.match.url + '.json',
-                content: JSON.stringify(filteredAsset)
-            }
-        ];
-        this.state.ipfs.files.add(files, null, (err: any, result: any) => {
-            if (err) {
-                throw err;
-            }
+        // const files = [
+        //     {
+        //         path: this.props.match.url + '.json',
+        //         content: JSON.stringify(filteredAsset)
+        //     }
+        // ];
+        // this.state.ipfs.files.add(files, null, (err: any, result: any) => {
+        //     if (err) {
+        //         throw err;
+        //     }
 
-            this.addAssetHash(result[0].hash);
-        });
+        //     this.addAssetHash(result[0].hash);
+        // });
     }
 
     // will need to be moved elsewhere
