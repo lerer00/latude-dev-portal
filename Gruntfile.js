@@ -5,7 +5,7 @@ module.exports = function(grunt) {
             contracts: {
                 files: [
                     // includes files within path and its sub-directories
-                    { expand: true, src: ['build/**'], dest: 'src/' }
+                    { expand: true, src: ['build/contracts'], dest: 'src/' }
                 ],
             }
         },
