@@ -15,8 +15,8 @@ contract ExchangeRates is usingOraclize, Authorization {
     function ExchangeRates() public payable {
         // Initialize the delay
         delay = 60;
-        OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
-        getCurrenciesRate();
+        // OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
+        // getCurrenciesRate();
     }
 
     function __callback(bytes32 myid, string currencies) public {
