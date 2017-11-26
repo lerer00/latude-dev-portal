@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import BigCalendar from 'react-big-calendar';
 import { Breadcrumbs } from '../breadcrumbs';
-import Spinner from '../spinner';
+import Spinner from '../components/spinner';
 import './index.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 

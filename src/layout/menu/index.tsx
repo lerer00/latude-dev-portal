@@ -2,8 +2,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import './index.css';
 
-const egoBuilding1 = require('../img/ego/building-1.svg');
-const egoMultiPlatform = require('../img/ego/multi-platform.svg');
+import { egoMultiPlatform, egoBuilding1 } from '../../img/index';
 
 export namespace Menu {
     export interface Props {

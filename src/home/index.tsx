@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Companies from '../companies';
+import Companies from '../containers/companies';
 import CompanyDetail from '../companyDetail';
 import PropertyDetail from '../propertyDetail';
 import AssetDetail from '../assetDetail';
-import Header from '../header';
-import Footer from '../footer';
+import Header from '../layout/header';
+import Footer from '../layout/footer';
 import Default from './default';
-import Menu from '../menu';
+import Menu from '../layout/menu';
 import './index.css';
 
 const { ToastContainer } = require('react-toastify');

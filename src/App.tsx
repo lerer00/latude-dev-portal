@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Home from './home';
 import './App.css';
-
+import store from './store';
 class App extends React.Component {
   render() {
     return (
+      <Provider store={store}>
       <div className='App'>
         <div>
           <BrowserRouter>
@@ -13,6 +15,7 @@ class App extends React.Component {
           </BrowserRouter>
         </div>
       </div>
+      </Provider>
     );
   }
 }
