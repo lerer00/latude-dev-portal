@@ -112,7 +112,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
     getAsset() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.getAsset.call(this.props.match.params.aid);
+            return instance.getAsset.call(this.props.match.params.aid, { from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             var tmpAsset = {
                 name: 'Asset ' + result[0].toNumber(),
@@ -141,7 +141,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             var startUnix = Math.round(start.getTime() / 1000);
             var endUnix = Math.round(end.getTime() / 1000);
 
-            return instance.getStays.call(this.props.match.params.aid, startUnix, endUnix);
+            return instance.getStays.call(this.props.match.params.aid, startUnix, endUnix, { from: this.context.web3.selectedAccount });
         }).then((result: Array<any>) => {
             // For now we are getting an array with a maximum of 64 stays wich can be empty.
             for (let i = 0; i < result.length; i++) {
@@ -157,7 +157,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     // this fetch more information about each stay
     getStay(id: any) {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.getStay.call(this.props.match.params.aid, id);
+            return instance.getStay.call(this.props.match.params.aid, id, { from: this.context.web3.selectedAccount });
         }).then((stay: any) => {
             var event = this.convertStayToEvent(stay);
             var tmpAsset = this.state.asset;
@@ -191,7 +191,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             propertyInstance = instance;
             var durationInDays = this.state.dateRange.endDate.diff(this.state.dateRange.startDate, 'days');
-            return propertyInstance.getStayPriceInWei.call(this.props.match.params.aid, durationInDays);
+            return propertyInstance.getStayPriceInWei.call(this.props.match.params.aid, durationInDays, { from: this.context.web3.selectedAccount });
         }).then((priceInWei: any) => {
             var start = this.state.dateRange.startDate.unix();
             var end = this.state.dateRange.endDate.unix();
@@ -222,7 +222,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
     retrieveLastAssetHash() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.lastMetadataHashForAsset.call(this.props.match.params.aid);
+            return instance.lastMetadataHashForAsset.call(this.props.match.params.aid, { from: this.context.web3.selectedAccount });
         }).then((hash: string) => {
             this.setState({
                 loading: false

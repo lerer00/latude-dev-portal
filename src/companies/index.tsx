@@ -93,7 +93,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
 
   getCompanies() {
     companyFactoryContract.deployed().then((instance: any) => {
-      return instance.getCompanies.call();
+      return instance.getCompanies.call({ from: this.context.web3.selectedAccount });
     }).then((result: any) => {
       this.setState({
         companies: result,

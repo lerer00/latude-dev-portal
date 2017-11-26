@@ -4,15 +4,19 @@ module.exports = function(grunt) {
         copy: {
             contracts: {
                 files: [
-                    // includes files within path and its sub-directories
-                    { expand: true, src: ['build/contracts'], dest: 'src/' }
+                    { 
+                        expand: true,
+                        src: ['build/contracts'],
+                        dest: 'src/' }
                 ],
             }
         },
         exec: {
-            local_rpc: 'start testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch" --accounts 50',
+            local_geth_rinkeby: 'start geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="0x3a980bD986b0E55758151B34A8CE6e32189D35DE"',
+            local_testrpc: 'start testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch" --accounts 50',
             truffle_compile: 'truffle compile',
-            truffle_migrate: 'truffle migrate --reset'
+            truffle_migrate_local: 'truffle migrate',
+            truffle_migrate_rinkeby: 'truffle migrate --network rinkeby'
         },
         clean: ['./build/contracts', './src/build/contracts']
     });
@@ -23,7 +27,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
 
     // Tasks.
-    grunt.registerTask('bootstrap', ['exec:local_rpc']);
-    grunt.registerTask('truffle', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate', 'copy:contracts']);
-    grunt.registerTask('default', ['truffle']);
+    grunt.registerTask('start_localrpc', ['exec:local_testrpc'])
+    grunt.registerTask('start_rinkeby', ['exec:local_geth_rinkeby'])
+    grunt.registerTask('localrpc', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_local', 'copy:contracts']);
+    grunt.registerTask('rinkeby', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_rinkeby', 'copy:contracts'])
+    grunt.registerTask('default', ['localrpc']);
 };

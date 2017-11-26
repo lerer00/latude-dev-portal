@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import './index.css';
 import { NavLink } from 'react-router-dom';
 
@@ -30,6 +31,10 @@ class Property extends React.Component<Property.Props, Property.State> {
         };
     }
 
+    static contextTypes = {
+        web3: PropTypes.object
+    };
+
     componentWillMount() {
         this.getName();
         this.getBalance();
@@ -41,7 +46,7 @@ class Property extends React.Component<Property.Props, Property.State> {
         propertyContract.at(this.props.id).then((instance: any) => {
             propertyInstance = instance;
 
-            return propertyInstance.name.call();
+            return propertyInstance.name.call({ from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             this.setState({
                 name: result
