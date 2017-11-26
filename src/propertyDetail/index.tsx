@@ -88,7 +88,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         var propertyInstance: any;
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             propertyInstance = instance;
-            return propertyInstance.name.call();
+            return propertyInstance.name.call({ from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             this.setState({
                 name: result
@@ -132,7 +132,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
     getAssets() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.numberOfAssets.call();
+            return instance.numberOfAssets.call({ from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             this.setState({
                 assets: []
@@ -146,7 +146,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
     getAsset(id: number) {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.getAsset.call(id);
+            return instance.getAsset.call(id, { from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             var asset: any = { id: result[0].toNumber(), price: result[1].toNumber(), currency: result[2], stays: result[3] };
             this.setState({

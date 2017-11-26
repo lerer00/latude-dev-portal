@@ -8,8 +8,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const web3 = window['web3'];
 const Modal = require('react-modal');
-const ipfsAPI = require('ipfs-api');
-const bl = require('bl');
+// const ipfsAPI = require('ipfs-api');
+// const bl = require('bl');
 const moment = require('moment');
 const DateRange = require('react-date-range').DateRange;
 const contract = require('truffle-contract');
@@ -55,7 +55,7 @@ export namespace AssetDetail {
 
     export interface State {
         loading: boolean;
-        ipfs: any;
+        // ipfs: any;
         addStayModalIsOpen: boolean;
         manageAssetModalIsOpen: boolean;
         asset: any;
@@ -72,7 +72,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
         this.state = {
             loading: true,
-            ipfs: ipfsAPI('localhost', '5001', { protocol: 'http' }),
+            // ipfs: ipfsAPI('localhost', '5001', { protocol: 'http' }),
             addStayModalIsOpen: false,
             manageAssetModalIsOpen: false,
             asset: {
@@ -112,7 +112,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
     getAsset() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.getAsset.call(this.props.match.params.aid);
+            return instance.getAsset.call(this.props.match.params.aid, { from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             var tmpAsset = {
                 name: 'Asset ' + result[0].toNumber(),
@@ -141,7 +141,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             var startUnix = Math.round(start.getTime() / 1000);
             var endUnix = Math.round(end.getTime() / 1000);
 
-            return instance.getStays.call(this.props.match.params.aid, startUnix, endUnix);
+            return instance.getStays.call(this.props.match.params.aid, startUnix, endUnix, { from: this.context.web3.selectedAccount });
         }).then((result: Array<any>) => {
             // For now we are getting an array with a maximum of 64 stays wich can be empty.
             for (let i = 0; i < result.length; i++) {
@@ -157,7 +157,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     // this fetch more information about each stay
     getStay(id: any) {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.getStay.call(this.props.match.params.aid, id);
+            return instance.getStay.call(this.props.match.params.aid, id, { from: this.context.web3.selectedAccount });
         }).then((stay: any) => {
             var event = this.convertStayToEvent(stay);
             var tmpAsset = this.state.asset;
@@ -191,7 +191,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             propertyInstance = instance;
             var durationInDays = this.state.dateRange.endDate.diff(this.state.dateRange.startDate, 'days');
-            return propertyInstance.getStayPriceInWei.call(this.props.match.params.aid, durationInDays);
+            return propertyInstance.getStayPriceInWei.call(this.props.match.params.aid, durationInDays, { from: this.context.web3.selectedAccount });
         }).then((priceInWei: any) => {
             var start = this.state.dateRange.startDate.unix();
             var end = this.state.dateRange.endDate.unix();
@@ -222,7 +222,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
     retrieveLastAssetHash() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
-            return instance.lastMetadataHashForAsset.call(this.props.match.params.aid);
+            return instance.lastMetadataHashForAsset.call(this.props.match.params.aid, { from: this.context.web3.selectedAccount });
         }).then((hash: string) => {
             this.setState({
                 loading: false
@@ -236,47 +236,47 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     getFile(hash: string) {
-        this.state.ipfs.files.cat(hash, (err: any, stream: any) => {
-            if (err) {
-                throw err;
-            }
-            stream.pipe(bl((e: any, d: any) => {
-                if (e) {
-                    throw err;
-                }
+        // this.state.ipfs.files.cat(hash, (err: any, stream: any) => {
+        //     if (err) {
+        //         throw err;
+        //     }
+        //     stream.pipe(bl((e: any, d: any) => {
+        //         if (e) {
+        //             throw err;
+        //         }
 
-                var ipfsAsset = JSON.parse(d.toString());
-                var tmpAsset = this.state.asset;
-                tmpAsset.description = ipfsAsset.description;
-                tmpAsset.type = ipfsAsset.type;
-                this.setState({
-                    asset: tmpAsset
-                });
-            }));
-        });
+        //         var ipfsAsset = JSON.parse(d.toString());
+        //         var tmpAsset = this.state.asset;
+        //         tmpAsset.description = ipfsAsset.description;
+        //         tmpAsset.type = ipfsAsset.type;
+        //         this.setState({
+        //             asset: tmpAsset
+        //         });
+        //     }));
+        // });
     }
 
     upsertAsset(e: any) {
         e.preventDefault();
 
-        var filteredAsset = {
-            description: this.state.asset.description,
-            type: this.state.asset.type
-        };
+        // var filteredAsset = {
+        //     description: this.state.asset.description,
+        //     type: this.state.asset.type
+        // };
 
-        const files = [
-            {
-                path: this.props.match.url + '.json',
-                content: JSON.stringify(filteredAsset)
-            }
-        ];
-        this.state.ipfs.files.add(files, null, (err: any, result: any) => {
-            if (err) {
-                throw err;
-            }
+        // const files = [
+        //     {
+        //         path: this.props.match.url + '.json',
+        //         content: JSON.stringify(filteredAsset)
+        //     }
+        // ];
+        // this.state.ipfs.files.add(files, null, (err: any, result: any) => {
+        //     if (err) {
+        //         throw err;
+        //     }
 
-            this.addAssetHash(result[0].hash);
-        });
+        //     this.addAssetHash(result[0].hash);
+        // });
     }
 
     // will need to be moved elsewhere

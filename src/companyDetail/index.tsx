@@ -79,7 +79,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
 
     getProperties() {
         companyContract.at(this.props.match.params.cid).then((instance: any) => {
-            return instance.getProperties.call();
+            return instance.getProperties.call({ from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             this.setState({
                 properties: result,

@@ -17,7 +17,7 @@ contract Authorization {
         owner = newOwner;
     }
 
-    function setAuthority(Authority newAuthority) onlyAuthorized public {
+    function setAuthority(Authority newAuthority) internal {
         authority = newAuthority;
     }
 

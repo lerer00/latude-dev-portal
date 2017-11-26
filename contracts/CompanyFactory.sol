@@ -12,15 +12,12 @@ contract CompanyFactory {
     }
 
     function addCompany(string name) public {
-        // Validate that name is not empty.
-        require(bytes(name).length > 0);
-
         // Create new company.
         Company newCompany = new Company(name, msg.sender, exchangeContract);
 
         // Companies are added under a single owner.
         companies[msg.sender].push(newCompany);
-        companyCreated(_name);
+        companyCreated(name);
     }
 
     function getCompanies() public view returns(address[]) {
