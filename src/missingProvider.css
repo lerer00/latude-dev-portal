@@ -1,47 +1,32 @@
-.web3-needed, .unlock-account-needed{
+.web3-needed {
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url("./img/bg1.jpg");
+    background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
     background-size: cover;
     font-family: 'Ubuntu', sans-serif;
 }
 
-.web3-needed .content{
+.web3-needed .content {
     position: absolute;
     top: 50%;
     left: 50%;
-    border-radius: 3px;
-    transform: translate(-50%, -50%);
     padding: 24px 48px;
     width: 400px;
-    border-left: solid 1px #399AFF;
     background-color: #FFFFFF;
+    overflow: none;
+    border-radius: 3px;
+    border-color: #C0C0C0;
     box-shadow: 3px 3px 15px #7F7F7F;
+    transform: translate(-50%, -50%);
 }
 
-.web3-needed .content .icon{
-    position: relative;
-    display: block;
-    margin: auto;
-    width: 100px;
+.web3-needed .provider-link {
+    padding: 0 0 0 4px;
+    color: #399AFF;
+    text-decoration: none; 
 }
 
-.web3-needed .content .title{
-    text-align: center;
-    font-size: 1.6em;
-    color: #595959;
-    margin: 16px 0 0 0;
-}
-
-.web3-needed .content .description{
-    padding: 24px;
-    color: #B3B3B3;
-    line-height: 1.6em;
-    text-align: justify;
-}
-
-.web3-needed .content .description a{
-    text-decoration: underline;
-    color: #808080;
+.web3-needed .provider-link:visited {
+    color: #399AFF;
 }

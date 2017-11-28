@@ -6,8 +6,9 @@ module.exports = function(grunt) {
                 files: [
                     { 
                         expand: true,
-                        src: ['build/contracts'],
-                        dest: 'src/' }
+                        src: ['build/contracts/*'],
+                        dest: 'src/' 
+                    }
                 ],
             }
         },

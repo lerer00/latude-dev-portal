@@ -6,17 +6,27 @@ import './index.css';
 
 const { Web3Provider } = require('react-web3');
 const egowindowLock = require('./img/ego/window-lock.svg');
+const bubbleChatTyping = require('./img/ego/bubble-chat-typing.svg');
 import './missingProvider.css';
 import './calendarEnhancer.css';
 
 var unlockWalletHtml = (
   <div className='web3-needed'>
     <div className='content'>
-      <img className='icon' src={egowindowLock} />
-      <h1 className='title'>Web3 account is locked</h1>
-      <p className='description'>This application requires at least one valid account to be
+      <div className='modal-header'>
+        <h1 className='title'>Web3 account is locked</h1>
+      </div>
+      <div className='modal-content'>
+        <img className='visual-tip' src={egowindowLock} />
+        <p>
+          This application requires at least one valid account to be
         unlocked within your desired provider. This is needed to interact with the
-        blockchain as the person you claim to be and no one else.</p>
+        blockchain as the person you claim to be and no one else.
+        </p>
+      </div>
+      <div className='modal-actions'>
+        <button className='action'>Info</button>
+      </div>
     </div>
   </div>
 );
@@ -24,12 +34,20 @@ var unlockWalletHtml = (
 var web3NeededHtml = (
   <div className='web3-needed'>
     <div className='content'>
-      <img className='icon' src={egowindowLock} />
-      <h1 className='title'>Web3 provider not found</h1>
-      <p className='description'>This is a decentralized web application which requires an ethereum provider. You can use
-        <a target='_blank' href='https://metamask.io/'>Metamask</a> chrome extension or the
-        <a target='_blank' href='https://github.com/ethereum/mist/releases'>Mist</a> browser to interact with this application.
-      </p>
+      <div className='modal-header'>
+        <h1 className='title'>Web3 provider not found</h1>
+      </div>
+      <div className='modal-content'>
+        <img className='visual-tip' src={bubbleChatTyping} />
+        <p>
+          This is a decentralized web application which requires an ethereum provider. You can use
+        <a target='_blank' className='provider-link' href='https://metamask.io/'>Metamask</a> chrome extension or the
+        <a target='_blank' className='provider-link' href='https://github.com/ethereum/mist/releases'>Mist</a> browser to interact with this application.
+        </p>
+      </div>
+      <div className='modal-actions'>
+        <button className='action'>Info</button>
+      </div>
     </div>
   </div>
 );
