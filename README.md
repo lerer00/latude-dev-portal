@@ -1,6 +1,6 @@
 # latude-dev-portal
 
-latude-dev-portal is created to help us bootstrap the idea of removing third-parties within the accommodation industry.
+This repo is created to help us bootstrap the idea of removing third-parties within the accommodation industry. This application is the one that hotel manager will use to manage companies, properties and assets.
 
 ### Prerequisites
 
@@ -9,64 +9,70 @@ This is what you need to install before building the application
 ```
 npm ^5.3.0
 node ^6.11.2
-testrpc ^4.1.1
-ipfs ^0.4.11
-truffle ^3.4.9
-metamask ^3.11.0
-ethereum-bridge ^0.5.4
+testrpc ^4.1.3
+truffle ^4.0.0
+metamask ^3.12.0
+geth 1.7.2
 ```
-
-You'll also need to deploy a contract first named ExchangeRates.sol that is used to retreived currencies rates against ETH. 
-``` 
-git clone https://github.com/lerer00/latude-currency-api
-npm install
-npm run dev
-```
-
-This will start the api on you localhost, but it's not enough since oraclized need a valid https public endpoint. That's why we need to use a tool like localtunnel(https://www.npmjs.com/package/localtunnel).
-
-```
-lt --port 8000
-```
-
-Note the resulting address and deploy the ExchangeRates.sol contract with this address. Note the resulting contract address and modify the 2_deploy_contracts.js file to give CompanyFactory.sol the good ExchangeRates address. 
-
-This is a huge mess for now, I'll improve this procedure.
 
 ### Installing
 
-Here's how to setup you dev environment using testrpc. Other networks haven't been tested out yet.
-Note that testrpc will always run with the same mnemonic phrase since metamask require 12 words.
+Here's how to setup you dev environment using testrpc or RinkeBy. Other environment haven't been tested out yet.
+
+#### Get and Build sources
 
 ```
-Festch sources and dependencies
 git clone https://github.com/lerer00/latude-dev-portal.git
-npm install -msvs_version=2015 *this is a problem with the web3 library, does not accept other version... pretty weird!
+npm install -msvs_version=2015 //this is a problem with the web3 library, it does not accept other version... pretty weird!
+```
 
-Automated process
-grunt bootstrap (start testrpc & ipfs)
-grunt truffle (compile, migrate and copy to go location)
+#### Developing localy with testrpc
+
+First there's a line in the ExchangeRates.sol constructor that you need to uncomment.
+```
+OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
+```
+
+Follow those grunt commands.
+
+This command start the local rpc with mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch".
+```
+grunt start_localrpc
+```
+This command clean previous build, compile all solidity contract with truffle and migrate them against the desired rpc.
+```
+grunt localrpc
+```
+This should start the application in your prefered browser.
+```
 npm start
+```
 
-Manuel process
-testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch" --accounts 50
-ipfs daemon
-truffle compile
-truffle migrate
-*copy the /build/contract folder into the /src/build
+#### Developing with RinkeBy
+
+This line in the ExchangeRates.sol constructor should be commented.
+```
+OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
+```
+
+Follow those grunt commands.
+
+This command start the rinkeby rpc using geth. You'll need to create yourself an account first following those [instructions](https://github.com/ethereum/go-ethereum/wiki/Managing-your-accounts#creating-an-account). Take your account address and paste it in the appropriate location in the gruntfile.js exec:local_geth_rinkeby function. Make sure to remember your passphrase because you'll need it.
+```
+grunt start_rinkeby
+```
+This command clean previous build, compile all solidity contract with truffle and migrate them against the desired rpc.
+```
+grunt rinkeby
+```
+This should start the application in your prefered browser.
+```
 npm start
-
 ```
 
-And if you are doing changes to your solidity contract simply do those step.
+### Authors
 
-```
-truffle compile
-truffle migrate
-```
-
-## Authors
-
-* **Francis Boily** - *Initial work*
-* **Vadim Stepanov** - *Work on contracts*
+[**Francis Boily**](https://github.com/lerer00) - *Initial work*
+[**Simon B.Robert**](https://github.com/carte7000) - *Active development*
+[**Vadim Stepanov**](https://github.com/vadimkerr) - *Work on contracts*
 
