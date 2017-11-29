@@ -23,7 +23,7 @@ Here's how to setup you dev environment using testrpc or RinkeBy. Other environm
 
 ```
 git clone https://github.com/lerer00/latude-dev-portal.git
-npm install -msvs_version=2015 //this is a problem with the web3 library, it does not accept other version... pretty weird!
+npm install -msvs_version=2015 //problem with the web3 library
 ```
 
 #### Developing localy with testrpc
@@ -39,7 +39,7 @@ This command start the local rpc with mnemonic "clog banana trophy city sunset b
 ```
 grunt start_localrpc
 ```
-This command clean previous build, compile all solidity contract with truffle and migrate them against the desired rpc.
+This command clean previous build, compile all solidity contracts with truffle and migrate them against the desired rpc.
 ```
 grunt localrpc
 ```
@@ -61,7 +61,7 @@ This command start the rinkeby rpc using geth. You'll need to create yourself an
 ```
 grunt start_rinkeby
 ```
-This command clean previous build, compile all solidity contract with truffle and migrate them against the desired rpc.
+This command clean previous build, compile all solidity contracts with truffle and migrate them against the desired rpc.
 ```
 grunt rinkeby
 ```
