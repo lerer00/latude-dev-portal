@@ -2,7 +2,7 @@
 
 This repo is created to help us bootstrap the idea of removing third-parties within the accommodation industry. This application is the one that hotel manager will use to manage companies, properties and assets.
 
-### Prerequisites
+## Prerequisites
 
 This is what you need to install before building the application
 
@@ -15,26 +15,23 @@ metamask ^3.12.0
 geth 1.7.2
 ```
 
-### Installing
+## Installing
 
 Here's how to setup you dev environment using testrpc or RinkeBy. Other environment haven't been tested out yet.
 
-#### Get and Build sources
+### Get and Build sources
 
 ```
 git clone https://github.com/lerer00/latude-dev-portal.git
 npm install -msvs_version=2015 //problem with the web3 library
 ```
 
-#### Developing localy with testrpc
+### Developing localy with **testrpc**
 
 First there's a line in the ExchangeRates.sol constructor that you need to uncomment.
 ```
 OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
 ```
-
-Follow those grunt commands.
-
 This command start the local rpc with mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch".
 ```
 grunt start_localrpc
@@ -48,7 +45,7 @@ This should start the application in your prefered browser.
 npm start
 ```
 
-#### Developing with RinkeBy
+### Developing with **RinkeBy**
 
 This line in the ExchangeRates.sol constructor should be commented.
 ```
@@ -70,7 +67,7 @@ This should start the application in your prefered browser.
 npm start
 ```
 
-### Authors
+## Authors
 
 * [**Francis Boily**](https://github.com/lerer00) - *Initial work*
 * [**Simon B.Robert**](https://github.com/carte7000) - *Active development*
