@@ -72,7 +72,7 @@ npm start
 
 ### Authors
 
-[**Francis Boily**](https://github.com/lerer00) - *Initial work*
-[**Simon B.Robert**](https://github.com/carte7000) - *Active development*
-[**Vadim Stepanov**](https://github.com/vadimkerr) - *Work on contracts*
+* [**Francis Boily**](https://github.com/lerer00) - *Initial work*
+* [**Simon B.Robert**](https://github.com/carte7000) - *Active development*
+* [**Vadim Stepanov**](https://github.com/vadimkerr) - *Work on contracts*
 
