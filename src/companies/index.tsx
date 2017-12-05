@@ -51,6 +51,9 @@ export namespace Companies {
 }
 
 class Companies extends React.Component<Companies.Props, Companies.State> {
+  
+  private companyFactory = new CompanyFactory();
+  
   constructor() {
     super();
 
@@ -93,8 +96,10 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
   }
 
   async getCompanies() {
-    const companies = await (new CompanyFactory()).getCompanies({
-      senderAddress: this.context.web3.selectedAccount
+    const companies = await this.companyFactory.getCompanies({
+      options: {
+        from: this.context.web3.selectedAccount,
+      }
     }) as string[];
     this.setState({
       companies,
@@ -109,9 +114,11 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     if (this.state.addCompany.name === '') {
       return;
     }
-    (new CompanyFactory()).addCompany({
+    this.companyFactory.addCompany({
       name: this.state.addCompany.name,
-      senderAddress: this.context.web3.selectedAccount,
+      options: {
+        from: this.context.web3.selectedAccount,
+      }
     });
   }
 
