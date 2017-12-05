@@ -5,8 +5,8 @@ module.exports = function(grunt) {
             contracts: {
                 files: [{
                     expand: true,
-                    src: ['build/contracts/*'],
-                    dest: 'src/'
+                    src: ['./build/contracts/*.json'],
+                    dest: './src'
                 }],
             }
         },
