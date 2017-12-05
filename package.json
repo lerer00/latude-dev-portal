@@ -11,6 +11,7 @@
         "react-date-range": "^0.9.4",
         "react-dom": "^16.0.0",
         "react-modal": "^3.0.0",
+        "react-redux": "^5.0.6",
         "react-router-dom": "^4.2.2",
         "react-scripts-ts": "2.7.0",
         "react-toastify": "^2.1.0",
@@ -25,17 +26,18 @@
         "eject": "react-scripts-ts eject"
     },
     "devDependencies": {
-        "@types/react-redux": "^5.0.13",
         "@types/jest": "^21.1.2",
         "@types/node": "^8.0.32",
         "@types/prop-types": "^15.5.2",
         "@types/react": "^16.0.9",
         "@types/react-big-calendar": "^0.15.0",
         "@types/react-dom": "^16.0.0",
+        "@types/react-redux": "^5.0.13",
         "@types/react-router-dom": "^4.0.8",
         "grunt": "^1.0.1",
         "grunt-contrib-clean": "^1.1.0",
         "grunt-contrib-copy": "^1.0.0",
-        "grunt-exec": "^3.0.0"
+        "grunt-exec": "^3.0.0",
+        "truffle-contract-typescript": "^1.0.0"
     }
 }

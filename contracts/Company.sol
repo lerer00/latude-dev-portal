@@ -11,8 +11,8 @@ contract Company is Authorization {
     CompanyAuthority private companyAuthority;
 
     function Company(string _name, address _owner, address _exchangeContract) public payable {
-        setOwner(_owner);
-        setAuthority(companyAuthority);
+        // setOwner(_owner);
+        // setAuthority(companyAuthority);
         name = _name;
         exchangeContract = _exchangeContract;
     }

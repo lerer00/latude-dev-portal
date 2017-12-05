@@ -3,12 +3,11 @@ module.exports = function(grunt) {
     grunt.initConfig({
         copy: {
             contracts: {
-                files: [
-                    { 
-                        expand: true,
-                        src: ['build/contracts'],
-                        dest: 'src/' }
-                ],
+                files: [{
+                    expand: true,
+                    src: ['./build/contracts/*.json'],
+                    dest: './src'
+                }],
             }
         },
         exec: {

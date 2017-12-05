@@ -29,18 +29,18 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6101128061001e6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820e281b1259ce790e46a6cb6d6a9965a0352933e01a7a115a27db7d5ab031e5c8e0029",
-  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820e281b1259ce790e46a6cb6d6a9965a0352933e01a7a115a27db7d5ab031e5c8e0029",
+  "bytecode": "0x6060604052341561000f57600080fd5b6101128061001e6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a723058200b952545d44e3fd714b19a7f762ccba19667d419521d84a1006ea044398737a80029",
+  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a723058200b952545d44e3fd714b19a7f762ccba19667d419521d84a1006ea044398737a80029",
   "sourceMap": "61:167:2:-;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "61:167:2:-;;;;;;;;;;;;;;;;;;;;;;;;107:118;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;189:4;213;206:11;;107:118;;;;;:::o",
   "source": "pragma solidity ^0.4.18;\r\n\r\nimport \"./Authorization.sol\";\r\n\r\ncontract CompanyAuthority is Authority {\r\n    function canCall(address caller, address target, bytes4 sig) public view returns (bool) {\r\n        return true;\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-dev-portal\\contracts\\CompanyAuthority.sol",
+  "sourcePath": "C:\\Source\\latude-dev-portal\\contracts\\CompanyAuthority.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/CompanyAuthority.sol",
+      "absolutePath": "/C/Source/latude-dev-portal/contracts/CompanyAuthority.sol",
       "exportedSymbols": {
         "CompanyAuthority": [
-          233
+          225
         ]
       }
     },
@@ -54,22 +54,22 @@
             ".18"
           ]
         },
-        "id": 215,
+        "id": 207,
         "name": "PragmaDirective",
         "src": "0:24:2"
       },
       {
         "attributes": {
           "SourceUnit": 135,
-          "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+          "absolutePath": "/C/Source/latude-dev-portal/contracts/Authorization.sol",
           "file": "./Authorization.sol",
-          "scope": 234,
+          "scope": 226,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 216,
+        "id": 208,
         "name": "ImportDirective",
         "src": "28:29:2"
       },
@@ -82,11 +82,11 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            233,
+            225,
             13
           ],
           "name": "CompanyAuthority",
-          "scope": 234
+          "scope": 226
         },
         "children": [
           {
@@ -103,12 +103,12 @@
                   "referencedDeclaration": 13,
                   "type": "contract Authority"
                 },
-                "id": 217,
+                "id": 209,
                 "name": "UserDefinedTypeName",
                 "src": "90:9:2"
               }
             ],
-            "id": 218,
+            "id": 210,
             "name": "InheritanceSpecifier",
             "src": "90:9:2"
           },
@@ -122,7 +122,7 @@
               ],
               "name": "canCall",
               "payable": false,
-              "scope": 233,
+              "scope": 225,
               "stateMutability": "view",
               "superFunction": 12,
               "visibility": "public"
@@ -134,7 +134,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "caller",
-                      "scope": 232,
+                      "scope": 224,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -147,12 +147,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 219,
+                        "id": 211,
                         "name": "ElementaryTypeName",
                         "src": "124:7:2"
                       }
                     ],
-                    "id": 220,
+                    "id": 212,
                     "name": "VariableDeclaration",
                     "src": "124:14:2"
                   },
@@ -160,7 +160,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "target",
-                      "scope": 232,
+                      "scope": 224,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -173,12 +173,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 221,
+                        "id": 213,
                         "name": "ElementaryTypeName",
                         "src": "140:7:2"
                       }
                     ],
-                    "id": 222,
+                    "id": 214,
                     "name": "VariableDeclaration",
                     "src": "140:14:2"
                   },
@@ -186,7 +186,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "sig",
-                      "scope": 232,
+                      "scope": 224,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -199,17 +199,17 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 223,
+                        "id": 215,
                         "name": "ElementaryTypeName",
                         "src": "156:6:2"
                       }
                     ],
-                    "id": 224,
+                    "id": 216,
                     "name": "VariableDeclaration",
                     "src": "156:10:2"
                   }
                 ],
-                "id": 225,
+                "id": 217,
                 "name": "ParameterList",
                 "src": "123:44:2"
               },
@@ -219,7 +219,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 232,
+                      "scope": 224,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -232,17 +232,17 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 226,
+                        "id": 218,
                         "name": "ElementaryTypeName",
                         "src": "189:4:2"
                       }
                     ],
-                    "id": 227,
+                    "id": 219,
                     "name": "VariableDeclaration",
                     "src": "189:4:2"
                   }
                 ],
-                "id": 228,
+                "id": 220,
                 "name": "ParameterList",
                 "src": "188:6:2"
               },
@@ -250,7 +250,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 228
+                      "functionReturnParameters": 220
                     },
                     "children": [
                       {
@@ -266,32 +266,32 @@
                           "type": "bool",
                           "value": "true"
                         },
-                        "id": 229,
+                        "id": 221,
                         "name": "Literal",
                         "src": "213:4:2"
                       }
                     ],
-                    "id": 230,
+                    "id": 222,
                     "name": "Return",
                     "src": "206:11:2"
                   }
                 ],
-                "id": 231,
+                "id": 223,
                 "name": "Block",
                 "src": "195:30:2"
               }
             ],
-            "id": 232,
+            "id": 224,
             "name": "FunctionDefinition",
             "src": "107:118:2"
           }
         ],
-        "id": 233,
+        "id": 225,
         "name": "ContractDefinition",
         "src": "61:167:2"
       }
     ],
-    "id": 234,
+    "id": 226,
     "name": "SourceUnit",
     "src": "0:228:2"
   },
@@ -301,5 +301,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-26T16:57:54.168Z"
+  "updatedAt": "2017-11-26T17:59:37.835Z"
 }

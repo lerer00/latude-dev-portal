@@ -17,10 +17,10 @@ export const companiesFetched = (companies: any[]) => ({
     payload: companies,
 });
 
-export const fetchCompaniesAction = () => {
+export const fetchCompaniesAction = (context: any) => {
     return {
         type: t.FETCH_COMPANIES,
-        payload: null
+        payload: { context }
     };
 };
 

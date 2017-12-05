@@ -25,12 +25,10 @@ export default (state = initialState, action: AnyAction): State => {
       });
     case t.FETCH_COMPANIES:
       // This should be in a middleware
-      companiesService.init();
-      companiesService.getCompanies();
+      companiesService.getCompanies(action.payload.context);
       return isLoading();
     case t.ADD:
       // This should be in a middleware
-      companiesService.init();
       companiesService.addCompany(action.payload.newCompany.name, action.payload.context, action.payload.cb);
       return resetNewCompany(isLoading());
     case t.TOGGLE_MODAL:

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Property from '../property';
-import { Breadcrumbs } from '../breadcrumbs';
-import Spinner from '../components/spinner';
+import Property from '../../property';
+import { Breadcrumbs } from '../../breadcrumbs';
+import Spinner from '../../components/spinner';
 import './index.css';
 
 const web3 = window['web3'];

@@ -1,44 +1,46 @@
-const contract = require('truffle-contract');
 const CompanyFactoryContract = require('../build/contracts/CompanyFactory.json');
-const companyFactoryContract = contract(CompanyFactoryContract);
-const web3 = window['web3'];
+import Web3Contract from './web3.contract';
+import companyContract from './company.contract';
 import store from '../store';
+import * as test from '../test';
 
-class CompaniesService {
-    public init() {
-        companyFactoryContract.setProvider(web3.currentProvider);
+class CompaniesService extends Web3Contract {
+
+    constructor() {
+        super(CompanyFactoryContract);
     }
 
     private waitingCompany = new Map();
 
-    private _instance: Promise<any>;
-
-    public getInstance(): Promise<any> {
-        if (!this._instance) {
-            this._instance = companyFactoryContract.deployed();
-            this._instance.then((instance) => {
-                instance.companyCreated('latest').watch((error: Error, result: any) => {
-                    store.dispatch({type: 'companies/FETCH_COMPANIES' });
-                    const name = result.args.name;
-                    if (this.waitingCompany.has(name)) {
-                        this.waitingCompany.get(name)();
-                        this.waitingCompany.delete(name);
-                    }
-                });
-            });
-        }
-        return this._instance;
+    protected onRegisterEvent(instance: any) {
+        instance.companyCreated('latest').watch((error: Error, result: any) => {
+            store.dispatch({type: 'companies/FETCH_COMPANIES' });
+            const name = result.args.name;
+            if (this.waitingCompany.has(name)) {
+                this.waitingCompany.get(name)();
+                this.waitingCompany.delete(name);
+            }
+        });
     }
 
-    public async getCompanies() {
-        const instance = await this.getInstance();
+    public async getCompanies(context: any) {
+        const contract = new test.CompanyFactory();
+        console.log(await contract.getCompanies({}));
+        this.init();
+        const instance = await this._getInstance();
         const companies = await instance.getCompanies.call();
-        store.dispatch({type: 'companies/COMPANIES_FETCHED', payload: companies });
+        const mappedCompanies = [];
+        for (const id of companies) {
+            const company = await companyContract.getCompany(id, context);
+            mappedCompanies.push(company);
+        }
+        store.dispatch({type: 'companies/COMPANIES_FETCHED', payload: mappedCompanies });
         return companies;
     }
 
     public async addCompany(name: string, context: any, cb: () => void) {
-        const instance = await this.getInstance();
+        this.init();
+        const instance = await this._getInstance();
         this.waitingCompany.set(name, cb);
         return await instance.addCompany(name, { from: context.web3.selectedAccount });
     }

@@ -33,13 +33,13 @@ class Companies extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.props.fetchCompanies();
+    this.props.fetchCompanies(this.context);
   }
 
   render() {
     const spinner = <Spinner text={'Loading'} />;
-    const companies = this.props.companies.map((id) =>
-      <Company key={id} id={id} />
+    const companies = this.props.companies.map((company: any) =>
+      <Company key={company.id} company={company} />
     );
 
     const content = this.props.isLoading ? spinner : companies;
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     },
     openAddCompanyModal: () => { dispatch(toggleModalAction(true)); },
     closeAddCompanyModal: () => { dispatch(toggleModalAction(false)); },
-    fetchCompanies: () => { dispatch(fetchCompaniesAction()); },
+    fetchCompanies: (context: any) => { dispatch(fetchCompaniesAction(context)); },
     updateNewCompany: (prop: string, value: string) => { dispatch(updateNewCompanyAction(prop, value)); },
   };
 };

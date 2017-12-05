@@ -34,10 +34,10 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.18;\r\n\r\ncontract Authority {\r\n    function canCall(address caller, address target, bytes4 sig) public view returns (bool);\r\n}\r\n\r\ncontract Authorization {\r\n    Authority public authority;\r\n    address public owner;\r\n\r\n    function Authorization() public {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    function setOwner(address newOwner) onlyOwner public {\r\n        require(newOwner != address(0));\r\n        owner = newOwner;\r\n    }\r\n\r\n    function setAuthority(Authority newAuthority) internal {\r\n        authority = newAuthority;\r\n    }\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner);\r\n        _;\r\n    }\r\n\r\n    modifier onlyAuthorized {\r\n        require(isAuthorized(msg.sender, msg.sig));\r\n        _;\r\n    }\r\n\r\n    function terminate() onlyOwner public {\r\n        selfdestruct(owner);\r\n    }\r\n\r\n    function isAuthorized(address caller, bytes4 sig) internal view returns (bool) {\r\n        if (caller == address(this)) {\r\n            return true;\r\n        } else if (caller == owner) {\r\n            return true;\r\n        } else if (authority == Authority(0)) {\r\n            return false;\r\n        } else {\r\n            return authority.canCall(caller, this, sig);\r\n        }\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-dev-portal\\contracts\\Authorization.sol",
+  "sourcePath": "C:\\Source\\latude-dev-portal\\contracts\\Authorization.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+      "absolutePath": "/C/Source/latude-dev-portal/contracts/Authorization.sol",
       "exportedSymbols": {
         "Authority": [
           13
@@ -381,7 +381,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 8706,
+                                  "referencedDeclaration": 8688,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -527,7 +527,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8709,
+                              "referencedDeclaration": 8691,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -868,7 +868,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8709,
+                              "referencedDeclaration": 8691,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -909,7 +909,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 8706,
+                                      "referencedDeclaration": 8688,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1013,7 +1013,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8709,
+                              "referencedDeclaration": 8691,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1077,7 +1077,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 8706,
+                                      "referencedDeclaration": 8688,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1108,7 +1108,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 8706,
+                                      "referencedDeclaration": 8688,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1242,7 +1242,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8712,
+                              "referencedDeclaration": 8694,
                               "type": "function (address)",
                               "value": "selfdestruct"
                             },
@@ -1465,7 +1465,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 8719,
+                                  "referencedDeclaration": 8701,
                                   "type": "contract Authorization",
                                   "value": "this"
                                 },
@@ -1813,7 +1813,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 8719,
+                                              "referencedDeclaration": 8701,
                                               "type": "contract Authorization",
                                               "value": "this"
                                             },
@@ -1891,5 +1891,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-26T16:57:54.148Z"
+  "updatedAt": "2017-11-26T17:59:37.828Z"
 }

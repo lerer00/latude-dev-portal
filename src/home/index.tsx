@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Companies from '../containers/companies';
-import CompanyDetail from '../companyDetail';
+import CompanyDetail from '../containers/companyDetail';
 import PropertyDetail from '../propertyDetail';
 import AssetDetail from '../assetDetail';
 import Header from '../layout/header';
