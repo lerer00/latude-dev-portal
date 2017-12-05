@@ -15,6 +15,7 @@ const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
 const egoCursorHand = require('../img/ego/cursor-hand.svg');
+import { CompanyFactory } from '../contracts';
 
 const addCompanyModalStyles = {
   content: {
@@ -91,16 +92,15 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     });
   }
 
-  getCompanies() {
-    companyFactoryContract.deployed().then((instance: any) => {
-      return instance.getCompanies.call({ from: this.context.web3.selectedAccount });
-    }).then((result: any) => {
-      this.setState({
-        companies: result,
-        loading: false
-      });
-      this.forceUpdate();
+  async getCompanies() {
+    const companies = await (new CompanyFactory()).getCompanies({
+      senderAddress: this.context.web3.selectedAccount
+    }) as string[];
+    this.setState({
+      companies,
+      loading: false
     });
+    this.forceUpdate();
   }
 
   addCompany(e: any) {
@@ -109,9 +109,9 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     if (this.state.addCompany.name === '') {
       return;
     }
-
-    companyFactoryContract.deployed().then((instance: any) => {
-      return instance.addCompany(this.state.addCompany.name, { from: this.context.web3.selectedAccount });
+    (new CompanyFactory()).addCompany({
+      name: this.state.addCompany.name,
+      senderAddress: this.context.web3.selectedAccount,
     });
   }
 
