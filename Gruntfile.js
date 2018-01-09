@@ -1,13 +1,13 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         copy: {
             contracts: {
                 files: [
-                    { 
+                    {
                         expand: true,
                         src: ['build/contracts/*'],
-                        dest: 'src/' 
+                        dest: 'src/'
                     }
                 ],
             }
@@ -15,6 +15,7 @@ module.exports = function(grunt) {
         exec: {
             local_geth_rinkeby: 'start geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="0x3a980bD986b0E55758151B34A8CE6e32189D35DE"',
             local_testrpc: 'start testrpc --mnemonic "clog banana trophy city sunset busy citizen biology cash orchard better couch" --accounts 50',
+            local_bridge: 'cd C:/Users/Francis/Desktop/ethereum-bridge & start node bridge -a 49 --dev mode',
             truffle_compile: 'truffle compile',
             truffle_migrate_local: 'truffle migrate',
             truffle_migrate_rinkeby: 'truffle migrate --network rinkeby'
@@ -28,9 +29,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
 
     // Tasks.
-    grunt.registerTask('start_localrpc', ['exec:local_testrpc'])
+    grunt.registerTask('start_localrpc', ['exec:local_testrpc', 'exec:local_bridge'])
     grunt.registerTask('start_rinkeby', ['exec:local_geth_rinkeby'])
     grunt.registerTask('localrpc', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_local', 'copy:contracts']);
     grunt.registerTask('rinkeby', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_rinkeby', 'copy:contracts'])
-    grunt.registerTask('default', ['localrpc']);
+    grunt.registerTask('default', []);
 };

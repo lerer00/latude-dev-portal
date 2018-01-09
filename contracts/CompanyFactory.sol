@@ -4,8 +4,8 @@ import "./Company.sol";
 
 contract CompanyFactory {
     address public exchangeContract;
-    event companyCreated (string name);
     mapping(address => address[]) companies;
+    event CompanyCreated (address company);
 
     function CompanyFactory(address _exchangeContract) public {
         exchangeContract = _exchangeContract;
@@ -17,7 +17,7 @@ contract CompanyFactory {
 
         // Companies are added under a single owner.
         companies[msg.sender].push(newCompany);
-        companyCreated(name);
+        CompanyCreated(newCompany);
     }
 
     function getCompanies() public view returns(address[]) {

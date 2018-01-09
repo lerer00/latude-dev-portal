@@ -40,7 +40,7 @@
       "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/CompanyAuthority.sol",
       "exportedSymbols": {
         "CompanyAuthority": [
-          233
+          241
         ]
       }
     },
@@ -54,7 +54,7 @@
             ".18"
           ]
         },
-        "id": 215,
+        "id": 223,
         "name": "PragmaDirective",
         "src": "0:24:2"
       },
@@ -63,13 +63,13 @@
           "SourceUnit": 135,
           "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
           "file": "./Authorization.sol",
-          "scope": 234,
+          "scope": 242,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 216,
+        "id": 224,
         "name": "ImportDirective",
         "src": "28:29:2"
       },
@@ -82,11 +82,11 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            233,
+            241,
             13
           ],
           "name": "CompanyAuthority",
-          "scope": 234
+          "scope": 242
         },
         "children": [
           {
@@ -103,12 +103,12 @@
                   "referencedDeclaration": 13,
                   "type": "contract Authority"
                 },
-                "id": 217,
+                "id": 225,
                 "name": "UserDefinedTypeName",
                 "src": "90:9:2"
               }
             ],
-            "id": 218,
+            "id": 226,
             "name": "InheritanceSpecifier",
             "src": "90:9:2"
           },
@@ -122,7 +122,7 @@
               ],
               "name": "canCall",
               "payable": false,
-              "scope": 233,
+              "scope": 241,
               "stateMutability": "view",
               "superFunction": 12,
               "visibility": "public"
@@ -134,7 +134,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "caller",
-                      "scope": 232,
+                      "scope": 240,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -147,12 +147,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 219,
+                        "id": 227,
                         "name": "ElementaryTypeName",
                         "src": "124:7:2"
                       }
                     ],
-                    "id": 220,
+                    "id": 228,
                     "name": "VariableDeclaration",
                     "src": "124:14:2"
                   },
@@ -160,7 +160,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "target",
-                      "scope": 232,
+                      "scope": 240,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -173,12 +173,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 221,
+                        "id": 229,
                         "name": "ElementaryTypeName",
                         "src": "140:7:2"
                       }
                     ],
-                    "id": 222,
+                    "id": 230,
                     "name": "VariableDeclaration",
                     "src": "140:14:2"
                   },
@@ -186,7 +186,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "sig",
-                      "scope": 232,
+                      "scope": 240,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -199,17 +199,17 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 223,
+                        "id": 231,
                         "name": "ElementaryTypeName",
                         "src": "156:6:2"
                       }
                     ],
-                    "id": 224,
+                    "id": 232,
                     "name": "VariableDeclaration",
                     "src": "156:10:2"
                   }
                 ],
-                "id": 225,
+                "id": 233,
                 "name": "ParameterList",
                 "src": "123:44:2"
               },
@@ -219,7 +219,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 232,
+                      "scope": 240,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -232,17 +232,17 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 226,
+                        "id": 234,
                         "name": "ElementaryTypeName",
                         "src": "189:4:2"
                       }
                     ],
-                    "id": 227,
+                    "id": 235,
                     "name": "VariableDeclaration",
                     "src": "189:4:2"
                   }
                 ],
-                "id": 228,
+                "id": 236,
                 "name": "ParameterList",
                 "src": "188:6:2"
               },
@@ -250,7 +250,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 228
+                      "functionReturnParameters": 236
                     },
                     "children": [
                       {
@@ -266,32 +266,32 @@
                           "type": "bool",
                           "value": "true"
                         },
-                        "id": 229,
+                        "id": 237,
                         "name": "Literal",
                         "src": "213:4:2"
                       }
                     ],
-                    "id": 230,
+                    "id": 238,
                     "name": "Return",
                     "src": "206:11:2"
                   }
                 ],
-                "id": 231,
+                "id": 239,
                 "name": "Block",
                 "src": "195:30:2"
               }
             ],
-            "id": 232,
+            "id": 240,
             "name": "FunctionDefinition",
             "src": "107:118:2"
           }
         ],
-        "id": 233,
+        "id": 241,
         "name": "ContractDefinition",
         "src": "61:167:2"
       }
     ],
-    "id": 234,
+    "id": 242,
     "name": "SourceUnit",
     "src": "0:228:2"
   },
@@ -301,5 +301,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-27T03:54:45.209Z"
+  "updatedAt": "2018-01-09T03:27:02.201Z"
 }

@@ -15,6 +15,8 @@ contract Property is Authorization, StayLinkedList {
     ExchangeRates private exchangeRates;
     // We need to attach to the good authority
     PropertyAuthority private propertyAuthority;
+    event AssetCreated (uint asset);
+    event StayCreated (uint stay, uint id);
 
     // We are using the unix epoch format.
     struct Stay {
@@ -59,6 +61,7 @@ contract Property is Authorization, StayLinkedList {
         StayLinkedList.initializeAssetList(newAssetId);
         string[] memory metadataHashes;
         assets.push(Asset(newAssetId, price, currency, metadataHashes));
+        AssetCreated(newAssetId);
     }
 
     function getAsset(uint id) public view returns (uint, uint, bytes32) {
@@ -86,6 +89,7 @@ contract Property is Authorization, StayLinkedList {
         
         // Map it within stays.
         stays[assetId][startTime] = Stay(startTime, endTime, msg.sender);
+        StayCreated(assetId, startTime);
     }
 
     function getStay(uint assetId, uint stayId) public view returns(uint, uint, address) {

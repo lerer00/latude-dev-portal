@@ -9,6 +9,7 @@ contract Company is Authorization {
     address public exchangeContract;
     address[] public properties;
     CompanyAuthority private companyAuthority;
+    event PropertyCreated (address property);
 
     function Company(string _name, address _owner, address _exchangeContract) public payable {
         setOwner(_owner);
@@ -20,6 +21,7 @@ contract Company is Authorization {
     function addProperty(string _name) onlyAuthorized public returns (Property) {
         Property newProperty = new Property(_name, owner, exchangeContract);
         properties.push(newProperty);
+        PropertyCreated(newProperty);
         return newProperty;
     }
 

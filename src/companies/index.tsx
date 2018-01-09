@@ -76,7 +76,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
     companyFactoryContract.setProvider(web3.currentProvider);
     this.getCompanies();
     companyFactoryContract.deployed().then((instance: any) => {
-      instance.companyCreated('latest').watch(() => {
+      instance.CompanyCreated('latest').watch(() => {
         this.getCompanies();
         this.setState({
           addCompanyModalIsOpen: false,
