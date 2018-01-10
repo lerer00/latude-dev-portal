@@ -3,21 +3,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         copy: {
             contracts: {
-<<<<<<< HEAD
-                files: [
-                    {
-                        expand: true,
-                        src: ['build/contracts/*'],
-                        dest: 'src/'
-                    }
-                ],
-=======
                 files: [{
                     expand: true,
                     src: ['./build/contracts/*.json'],
                     dest: './src'
                 }],
->>>>>>> 9e49bdacb8ad90a6bcf80d9ed19c2b877feab32d
             }
         },
         exec: {
@@ -40,13 +30,7 @@ module.exports = function (grunt) {
     // Tasks.
     grunt.registerTask('start_localrpc', ['exec:local_testrpc', 'exec:local_bridge'])
     grunt.registerTask('start_rinkeby', ['exec:local_geth_rinkeby'])
-<<<<<<< HEAD
-    grunt.registerTask('localrpc', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_local', 'copy:contracts']);
-    grunt.registerTask('rinkeby', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_rinkeby', 'copy:contracts'])
-    grunt.registerTask('default', []);
-=======
     grunt.registerTask('localrpc', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_local', 'copy:contracts', 'exec:truffle_typescript']);
     grunt.registerTask('rinkeby', ['clean', 'exec:truffle_compile', 'exec:truffle_migrate_rinkeby', 'copy:contracts', 'exec:truffle_typescript']);
     grunt.registerTask('default', ['localrpc']);
->>>>>>> 9e49bdacb8ad90a6bcf80d9ed19c2b877feab32d
 };
