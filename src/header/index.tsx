@@ -21,7 +21,7 @@ class Header extends React.Component<Header.Props, Header.State> {
             <header className='header'>
                 <div className='content'>
                     <h1 className='title'>latude</h1>
-                    <p className='subtitle'>dev</p>
+                    <p className='subtitle'>owner</p>
                 </div>
             </header>
         );

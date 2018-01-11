@@ -16,7 +16,7 @@ contract Property is Authorization, StayLinkedList {
     // We need to attach to the good authority
     PropertyAuthority private propertyAuthority;
     event AssetCreated (uint asset);
-    event StayCreated (uint stay, uint id);
+    event StayCreated (uint asset, uint stay);
 
     // We are using the unix epoch format.
     struct Stay {
