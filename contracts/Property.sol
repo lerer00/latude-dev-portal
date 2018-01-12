@@ -16,7 +16,7 @@ contract Property is Authorization, StayLinkedList {
     // We need to attach to the good authority
     PropertyAuthority private propertyAuthority;
     event AssetCreated (uint asset);
-    event StayCreated (uint asset, uint stay);
+    event StayCreated (uint asset, uint id, uint duration);
 
     // We are using the unix epoch format.
     struct Stay {
@@ -89,7 +89,7 @@ contract Property is Authorization, StayLinkedList {
         
         // Map it within stays.
         stays[assetId][startTime] = Stay(startTime, endTime, msg.sender);
-        StayCreated(assetId, startTime);
+        StayCreated(assetId, startTime, stayDurationInDays);
     }
 
     function getStay(uint assetId, uint stayId) public view returns(uint, uint, address) {
