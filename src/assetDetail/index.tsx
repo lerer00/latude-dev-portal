@@ -8,8 +8,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const web3 = window['web3'];
 const Modal = require('react-modal');
-// const ipfsAPI = require('ipfs-api');
-// const bl = require('bl');
 const moment = require('moment');
 const DateRange = require('react-date-range').DateRange;
 const contract = require('truffle-contract');
@@ -136,7 +134,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             var end = new Date();
             start.setDate(start.getDate() - 30);
             end.setDate(end.getDate() + 30);
-            
+
             // Unix format.
             var startUnix = Math.round(start.getTime() / 1000);
             var endUnix = Math.round(end.getTime() / 1000);
@@ -198,7 +196,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
             // This is only to ease development, we can copy paste it later.
             console.log(start + ', ' + end);
-            
+
             return propertyInstance.addStay(
                 this.props.match.params.aid,
                 start,
@@ -375,20 +373,20 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
             {
                 name: this.props.match.params.pid,
                 path: '/companies/' + this.props.match.params.cid +
-                '/properties/' + this.props.match.params.pid,
+                    '/properties/' + this.props.match.params.pid,
                 active: true,
             },
             {
                 name: 'Assets',
                 path: '/companies/' + this.props.match.params.cid +
-                '/properties/' + this.props.match.params.pid + '/assets',
+                    '/properties/' + this.props.match.params.pid + '/assets',
                 active: false,
             },
             {
                 name: this.props.match.params.aid,
                 path: '/companies/' + this.props.match.params.cid +
-                '/properties/' + this.props.match.params.pid +
-                '/assets/' + this.props.match.params.aid,
+                    '/properties/' + this.props.match.params.pid +
+                    '/assets/' + this.props.match.params.aid,
                 active: true,
             },
         ];
