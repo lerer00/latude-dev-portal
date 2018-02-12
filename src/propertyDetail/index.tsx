@@ -48,6 +48,7 @@ export namespace PropertyDetail {
         balance: number;
         addAsset: any;
         addAssetModalIsOpen: boolean;
+        manageAssetModalIsOpen: boolean;
     }
 }
 
@@ -64,13 +65,17 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                 price: 0,
                 currency: 'CAD'
             },
-            addAssetModalIsOpen: false
+            addAssetModalIsOpen: false,
+            manageAssetModalIsOpen: false
         };
 
         this.addAsset = this.addAsset.bind(this);
         this.addAssetOnRequestClose = this.addAssetOnRequestClose.bind(this);
         this.addAssetOnRequestOpen = this.addAssetOnRequestOpen.bind(this);
         this.addAssetHandleChanges = this.addAssetHandleChanges.bind(this);
+        this.saveAsset = this.saveAsset.bind(this);
+        this.manageAssetOnRequestClose = this.manageAssetOnRequestClose.bind(this);
+        this.manageAssetOnRequestOpen = this.manageAssetOnRequestOpen.bind(this);
     }
 
     static contextTypes = {
@@ -130,6 +135,26 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         });
     }
 
+    saveAsset(e: any) {
+        e.preventDefault();
+
+        var data = this.toHex('latude');
+        web3.currentProvider.sendAsync({ id: 1, method: 'personal_sign', params: [this.context.web3.selectedAccount, data] },
+            function (err: any, result: any) {
+                console.log(result);
+            });
+
+        this.setState({
+            manageAssetModalIsOpen: false
+        });
+    }
+
+    toHex(s: string) {
+        var hex = '';
+        for (var i = 0; i < s.length; i++) { hex += '' + s.charCodeAt(i).toString(16); }
+        return `0x${hex}`;
+    }
+
     getAssets() {
         propertyContract.at(this.props.match.params.pid).then((instance: any) => {
             return instance.numberOfAssets.call({ from: this.context.web3.selectedAccount });
@@ -173,6 +198,22 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         this.setState({
             addAsset: tmp
         });
+    }
+
+    manageAssetOnRequestClose() {
+        this.setState({
+            manageAssetModalIsOpen: false
+        });
+    }
+
+    manageAssetOnRequestOpen() {
+        this.setState({
+            manageAssetModalIsOpen: true
+        });
+    }
+
+    manageAssetHandleChanges(asset: string, e: any) {
+        console.log(asset);
     }
 
     render() {
@@ -226,6 +267,10 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                         <img className='add-asset-icon' src={egoPenChecklist} />
                         <span className='add-asset-text'>Add asset</span>
                     </button>
+                    <button className='add-asset' onClick={this.manageAssetOnRequestOpen}>
+                        <img className='add-asset-icon' src={egoPenChecklist} />
+                        <span className='add-asset-text'>Manage asset</span>
+                    </button>
                     <Modal
                         isOpen={this.state.addAssetModalIsOpen}
                         onRequestClose={this.addAssetOnRequestClose}
@@ -273,6 +318,27 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                         <div className='modal-actions'>
                             <button className='action' onClick={(e) => this.addAsset(e)}>Add</button>
                             <button className='action close' onClick={this.addAssetOnRequestClose}>Close</button>
+                        </div>
+                    </Modal>
+                    <Modal
+                        isOpen={this.state.manageAssetModalIsOpen}
+                        onRequestClose={this.manageAssetOnRequestClose}
+                        style={addAssetModalStyles}
+                        contentLabel='Modal'
+                    >
+                        <div className='modal-header'>
+                            <h1 className='title'>Manage asset</h1>
+                            <img className='close' src={egoAxe} onClick={this.manageAssetOnRequestClose} />
+                        </div>
+                        <div className='modal-content'>
+                            <img className='visual-tip' src={egoCheckHexagon} />
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                        <div className='modal-actions'>
+                            <button className='action' onClick={(e) => this.saveAsset(e)}>Save</button>
+                            <button className='action close' onClick={this.manageAssetOnRequestClose}>Close</button>
                         </div>
                     </Modal>
                     <div className='description'>

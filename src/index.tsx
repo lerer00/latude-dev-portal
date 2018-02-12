@@ -53,10 +53,7 @@ var web3NeededHtml = (
 );
 
 ReactDOM.render(
-  <Web3Provider
-    accountUnavailableScreen={() => unlockWalletHtml}
-    web3UnavailableScreen={() => web3NeededHtml}
-  >
+  <Web3Provider accountUnavailableScreen={() => unlockWalletHtml} web3UnavailableScreen={() => web3NeededHtml}>
     <App />
   </Web3Provider>,
   document.getElementById('root') as HTMLElement
