@@ -22,7 +22,7 @@
             "spaces"
         ],
         "interface-name": [
-            true,
+            false,
             "never-prefix"
         ],
         "jsdoc-format": true,

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <title>logout-1</title>
+  <g id="Duotone">
+    <polyline points="3.5 15.5 3.5 18 13.5 23.5 23.5 18 23.5 7 13.5 1.5 3.5 7 3.5 9.5" fill="#fff"/>
+    <polygon points="21.385 16.663 13.5 21 5.615 16.663 3.5 18 13.5 23.5 23.5 18 21.385 16.663" fill="#cce7ff"/>
+    <line x1="0.5" y1="12.5" x2="16" y2="12.5" fill="none" stroke="#1078ff" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="12 8.5 16 12.5 12 16.5" fill="none" stroke="#1078ff" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="3.5 15.5 3.5 18 13.5 23.5 23.5 18 23.5 7 13.5 1.5 3.5 7 3.5 9.5" fill="none" stroke="#1078ff" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="Frames-24px">
+    <rect width="24" height="24" fill="none"/>
+  </g>
+</svg>

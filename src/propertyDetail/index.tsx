@@ -138,21 +138,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     saveAsset(e: any) {
         e.preventDefault();
 
-        var data = this.toHex('latude');
-        web3.currentProvider.sendAsync({ id: 1, method: 'personal_sign', params: [this.context.web3.selectedAccount, data] },
-            function (err: any, result: any) {
-                console.log(result);
-            });
-
         this.setState({
             manageAssetModalIsOpen: false
         });
-    }
-
-    toHex(s: string) {
-        var hex = '';
-        for (var i = 0; i < s.length; i++) { hex += '' + s.charCodeAt(i).toString(16); }
-        return `0x${hex}`;
     }
 
     getAssets() {
