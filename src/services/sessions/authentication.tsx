@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as Cookies from 'js-cookie';
 const Web3 = window['web3'];
 
 interface IAuthenticatePayload {
@@ -13,7 +14,6 @@ interface IWeb3Signature {
 }
 
 class Authentication {
-    public isAuthenticate: boolean = false;
     public web3: any;
 
     constructor(web3: any) {
@@ -21,23 +21,33 @@ class Authentication {
     }
 
     public authenticate() {
-        this.getAuthenticatePayload().then((result: IAuthenticatePayload) => {
+        return this.getAuthenticationPayload().then((result: IAuthenticatePayload) => {
             return axios.post('http://localhost:3001/authenticate', result);
         }).then((result) => {
-            console.log(result);
-            if (result.status === 200) {
-                this.createAuthenticateCookie(result.data);
-            }
+            this.createAuthenticationCookie(result.data);
         }).catch((error) => {
             console.log(error);
         });
     }
 
-    private createAuthenticateCookie(data: any) {
-        console.log('CREATE COOKIE', data);
+    public isAuthenticated(): boolean {
+        var authenticationCookie = Cookies.get('authentication');
+        if (authenticationCookie === undefined) {
+            return false;
+        }
+
+        return true;
     }
 
-    private getAuthenticatePayload(): Promise<any> {
+    public getAuthenticationToken(): string | undefined {
+        return Cookies.get('authentication');
+    }
+
+    private createAuthenticationCookie(data: any) {
+        Cookies.set('authentication', data.token, { expires: 7 });
+    }
+
+    private getAuthenticationPayload(): Promise<any> {
         return this.getUserSignature().then((result: any) => {
             console.log(result);
             return {

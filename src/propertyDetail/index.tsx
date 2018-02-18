@@ -3,6 +3,8 @@ import * as PropTypes from 'prop-types';
 import Asset from './asset';
 import { Breadcrumbs } from '../breadcrumbs';
 import Spinner from '../spinner';
+import Authentication from '../services/sessions/authentication';
+import HubRequest from '../services/rest/hubRequest';
 import './index.css';
 
 const web3 = window['web3'];
@@ -48,7 +50,7 @@ export namespace PropertyDetail {
         balance: number;
         addAsset: any;
         addAssetModalIsOpen: boolean;
-        manageAssetModalIsOpen: boolean;
+        managePropertyModalIsOpen: boolean;
     }
 }
 
@@ -66,16 +68,16 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                 currency: 'CAD'
             },
             addAssetModalIsOpen: false,
-            manageAssetModalIsOpen: false
+            managePropertyModalIsOpen: false
         };
 
         this.addAsset = this.addAsset.bind(this);
         this.addAssetOnRequestClose = this.addAssetOnRequestClose.bind(this);
         this.addAssetOnRequestOpen = this.addAssetOnRequestOpen.bind(this);
         this.addAssetHandleChanges = this.addAssetHandleChanges.bind(this);
-        this.saveAsset = this.saveAsset.bind(this);
-        this.manageAssetOnRequestClose = this.manageAssetOnRequestClose.bind(this);
-        this.manageAssetOnRequestOpen = this.manageAssetOnRequestOpen.bind(this);
+        this.saveProperty = this.saveProperty.bind(this);
+        this.managePropertyOnRequestClose = this.managePropertyOnRequestClose.bind(this);
+        this.managePropertyOnRequestOpen = this.managePropertyOnRequestOpen.bind(this);
     }
 
     static contextTypes = {
@@ -135,11 +137,21 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         });
     }
 
-    saveAsset(e: any) {
+    saveProperty(e: any) {
         e.preventDefault();
 
+        var authentication = new Authentication(this.context.web3);
+        var hubRequest = new HubRequest(authentication);
+        hubRequest.postProperty({ id: this.props.match.params.pid }).then(
+            (result) => {
+                console.log(result);
+            }).catch(
+            (error) => {
+                console.log(error);
+            });
+
         this.setState({
-            manageAssetModalIsOpen: false
+            managePropertyModalIsOpen: false
         });
     }
 
@@ -188,20 +200,20 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         });
     }
 
-    manageAssetOnRequestClose() {
+    managePropertyOnRequestClose() {
         this.setState({
-            manageAssetModalIsOpen: false
+            managePropertyModalIsOpen: false
         });
     }
 
-    manageAssetOnRequestOpen() {
+    managePropertyOnRequestOpen() {
         this.setState({
-            manageAssetModalIsOpen: true
+            managePropertyModalIsOpen: true
         });
     }
 
-    manageAssetHandleChanges(asset: string, e: any) {
-        console.log(asset);
+    managePropertyHandleChanges(property: string, e: any) {
+        console.log(property);
     }
 
     render() {
@@ -251,13 +263,13 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             <section className='property-detail'>
                 <div className='content'>
                     <Breadcrumbs routes={routes} />
+                    <button className='add-asset' onClick={this.managePropertyOnRequestOpen}>
+                        <img className='add-asset-icon' src={egoPenChecklist} />
+                        <span className='add-asset-text'>Manage property</span>
+                    </button>
                     <button className='add-asset' onClick={this.addAssetOnRequestOpen}>
                         <img className='add-asset-icon' src={egoPenChecklist} />
                         <span className='add-asset-text'>Add asset</span>
-                    </button>
-                    <button className='add-asset' onClick={this.manageAssetOnRequestOpen}>
-                        <img className='add-asset-icon' src={egoPenChecklist} />
-                        <span className='add-asset-text'>Manage asset</span>
                     </button>
                     <Modal
                         isOpen={this.state.addAssetModalIsOpen}
@@ -309,14 +321,14 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                         </div>
                     </Modal>
                     <Modal
-                        isOpen={this.state.manageAssetModalIsOpen}
-                        onRequestClose={this.manageAssetOnRequestClose}
+                        isOpen={this.state.managePropertyModalIsOpen}
+                        onRequestClose={this.managePropertyOnRequestClose}
                         style={addAssetModalStyles}
                         contentLabel='Modal'
                     >
                         <div className='modal-header'>
-                            <h1 className='title'>Manage asset</h1>
-                            <img className='close' src={egoAxe} onClick={this.manageAssetOnRequestClose} />
+                            <h1 className='title'>Manage property</h1>
+                            <img className='close' src={egoAxe} onClick={this.managePropertyOnRequestClose} />
                         </div>
                         <div className='modal-content'>
                             <img className='visual-tip' src={egoCheckHexagon} />
@@ -325,19 +337,14 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                         </div>
                         <div className='modal-actions'>
-                            <button className='action' onClick={(e) => this.saveAsset(e)}>Save</button>
-                            <button className='action close' onClick={this.manageAssetOnRequestClose}>Close</button>
+                            <button className='action' onClick={(e) => this.saveProperty(e)}>Save</button>
+                            <button className='action close' onClick={this.managePropertyOnRequestClose}>Close</button>
                         </div>
                     </Modal>
                     <div className='description'>
                         <span className='address'>address: {this.props.match.params.pid}</span>
                         <span className='balance'>balance: {this.state.balance} ether</span>
                         <p className='name'>{this.state.name}</p>
-                        <p>
-                            This place will be to display the whole asset struct plus
-                            metadata from ipfs or ipdb will do that tomorrow enough
-                            for tonight.
-                        </p>
                         <div className='assets'>
                             {assetsContent}
                         </div>

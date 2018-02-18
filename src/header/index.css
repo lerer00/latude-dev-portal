@@ -31,19 +31,3 @@
     margin-right: 4px;
     background-color: #1abc9c;
 }
-
-.header .content .right-menu {
-    height: 100%;
-    display: block;
-    float: right;
-}
-
-.header .content .right-menu .login-action {
-    height: 100%;
-}
-
-.header .content .right-menu .login-action img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
