@@ -411,7 +411,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 8739,
+                                  "referencedDeclaration": 8742,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -557,7 +557,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -898,7 +898,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -939,7 +939,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 8739,
+                                      "referencedDeclaration": 8742,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1043,7 +1043,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1107,7 +1107,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 8739,
+                                      "referencedDeclaration": 8742,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1138,7 +1138,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 8739,
+                                      "referencedDeclaration": 8742,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1272,7 +1272,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8745,
+                              "referencedDeclaration": 8748,
                               "type": "function (address)",
                               "value": "selfdestruct"
                             },
@@ -1495,7 +1495,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 8752,
+                                  "referencedDeclaration": 8755,
                                   "type": "contract Authorization",
                                   "value": "this"
                                 },
@@ -1843,7 +1843,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 8752,
+                                              "referencedDeclaration": 8755,
                                               "type": "contract Authorization",
                                               "value": "this"
                                             },
@@ -1921,5 +1921,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-11T03:21:01.522Z"
+  "updatedAt": "2018-02-21T22:59:19.753Z"
 }

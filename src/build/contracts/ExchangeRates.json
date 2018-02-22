@@ -197,7 +197,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 2980,
+          "SourceUnit": 2983,
           "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/strings.sol",
           "file": "./strings.sol",
           "scope": 537,
@@ -212,7 +212,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 8728,
+          "SourceUnit": 8731,
           "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/usingOraclize.sol",
           "file": "./usingOraclize.sol",
           "scope": 537,
@@ -229,7 +229,7 @@
         "attributes": {
           "contractDependencies": [
             134,
-            8727
+            8730
           ],
           "contractKind": "contract",
           "documentation": null,
@@ -237,7 +237,7 @@
           "linearizedBaseContracts": [
             536,
             134,
-            8727
+            8730
           ],
           "name": "ExchangeRates",
           "scope": 537
@@ -254,7 +254,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "usingOraclize",
-                  "referencedDeclaration": 8727,
+                  "referencedDeclaration": 8730,
                   "type": "contract usingOraclize"
                 },
                 "id": 312,
@@ -298,7 +298,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "strings",
-                  "referencedDeclaration": 2979,
+                  "referencedDeclaration": 2982,
                   "type": "library strings"
                 },
                 "id": 316,
@@ -584,7 +584,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 3167,
+                              "referencedDeclaration": 3170,
                               "type": "contract OraclizeAddrResolverI",
                               "value": "OAR"
                             },
@@ -618,7 +618,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 3107,
+                                  "referencedDeclaration": 3110,
                                   "type": "type(contract OraclizeAddrResolverI)",
                                   "value": "OraclizeAddrResolverI"
                                 },
@@ -743,7 +743,7 @@
               "payable": false,
               "scope": 536,
               "stateMutability": "nonpayable",
-              "superFunction": 3369,
+              "superFunction": 3372,
               "visibility": "public"
             },
             "children": [
@@ -847,7 +847,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1027,7 +1027,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "toSlice",
-                              "referencedDeclaration": 1471,
+                              "referencedDeclaration": 1474,
                               "type": "function (string memory) returns (struct strings.slice memory)"
                             },
                             "children": [
@@ -1112,7 +1112,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "toSlice",
-                              "referencedDeclaration": 1471,
+                              "referencedDeclaration": 1474,
                               "type": "function (string memory) returns (struct strings.slice memory)"
                             },
                             "children": [
@@ -1215,7 +1215,7 @@
                                 "attributes": {
                                   "argumentTypes": [
                                     {
-                                      "typeIdentifier": "t_struct$_slice_$1411_memory_ptr",
+                                      "typeIdentifier": "t_struct$_slice_$1414_memory_ptr",
                                       "typeString": "struct strings.slice memory"
                                     }
                                   ],
@@ -1224,7 +1224,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "count",
-                                  "referencedDeclaration": 2796,
+                                  "referencedDeclaration": 2799,
                                   "type": "function (struct strings.slice memory,struct strings.slice memory) returns (uint256)"
                                 },
                                 "children": [
@@ -1490,7 +1490,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "toString",
-                                      "referencedDeclaration": 1648,
+                                      "referencedDeclaration": 1651,
                                       "type": "function (struct strings.slice memory) returns (string memory)"
                                     },
                                     "children": [
@@ -1513,7 +1513,7 @@
                                             "attributes": {
                                               "argumentTypes": [
                                                 {
-                                                  "typeIdentifier": "t_struct$_slice_$1411_memory_ptr",
+                                                  "typeIdentifier": "t_struct$_slice_$1414_memory_ptr",
                                                   "typeString": "struct strings.slice memory"
                                                 }
                                               ],
@@ -1522,7 +1522,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "split",
-                                              "referencedDeclaration": 2652,
+                                              "referencedDeclaration": 2655,
                                               "type": "function (struct strings.slice memory,struct strings.slice memory) returns (struct strings.slice memory)"
                                             },
                                             "children": [
@@ -1631,7 +1631,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "toSlice",
-                                      "referencedDeclaration": 1471,
+                                      "referencedDeclaration": 1474,
                                       "type": "function (string memory) returns (struct strings.slice memory)"
                                     },
                                     "children": [
@@ -1716,7 +1716,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "toSlice",
-                                      "referencedDeclaration": 1471,
+                                      "referencedDeclaration": 1474,
                                       "type": "function (string memory) returns (struct strings.slice memory)"
                                     },
                                     "children": [
@@ -1847,7 +1847,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "toString",
-                                          "referencedDeclaration": 1648,
+                                          "referencedDeclaration": 1651,
                                           "type": "function (struct strings.slice memory) returns (string memory)"
                                         },
                                         "children": [
@@ -1870,7 +1870,7 @@
                                                 "attributes": {
                                                   "argumentTypes": [
                                                     {
-                                                      "typeIdentifier": "t_struct$_slice_$1411_memory_ptr",
+                                                      "typeIdentifier": "t_struct$_slice_$1414_memory_ptr",
                                                       "typeString": "struct strings.slice memory"
                                                     }
                                                   ],
@@ -1879,7 +1879,7 @@
                                                   "isPure": false,
                                                   "lValueRequested": false,
                                                   "member_name": "split",
-                                                  "referencedDeclaration": 2652,
+                                                  "referencedDeclaration": 2655,
                                                   "type": "function (struct strings.slice memory,struct strings.slice memory) returns (struct strings.slice memory)"
                                                 },
                                                 "children": [
@@ -2002,7 +2002,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "toString",
-                                      "referencedDeclaration": 1648,
+                                      "referencedDeclaration": 1651,
                                       "type": "function (struct strings.slice memory) returns (string memory)"
                                     },
                                     "children": [
@@ -2025,7 +2025,7 @@
                                             "attributes": {
                                               "argumentTypes": [
                                                 {
-                                                  "typeIdentifier": "t_struct$_slice_$1411_memory_ptr",
+                                                  "typeIdentifier": "t_struct$_slice_$1414_memory_ptr",
                                                   "typeString": "struct strings.slice memory"
                                                 }
                                               ],
@@ -2034,7 +2034,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "split",
-                                              "referencedDeclaration": 2652,
+                                              "referencedDeclaration": 2655,
                                               "type": "function (struct strings.slice memory,struct strings.slice memory) returns (struct strings.slice memory)"
                                             },
                                             "children": [
@@ -2175,10 +2175,10 @@
                                             }
                                           ],
                                           "overloadedDeclarations": [
-                                            7125,
-                                            7224
+                                            7128,
+                                            7227
                                           ],
-                                          "referencedDeclaration": 7224,
+                                          "referencedDeclaration": 7227,
                                           "type": "function (string memory,uint256) returns (uint256)",
                                           "value": "parseInt"
                                         },
@@ -2522,64 +2522,64 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                3466,
-                                3508,
-                                3554,
-                                3598,
-                                3641,
-                                3686,
-                                3735,
-                                3782,
-                                3829,
-                                3878,
-                                3931,
-                                3982,
-                                4019,
-                                4059,
-                                4102,
-                                4142,
-                                4187,
-                                4235,
-                                4286,
-                                4334,
-                                4387,
-                                4443,
-                                4502,
-                                4558,
-                                4619,
-                                4683,
-                                4750,
-                                4814,
-                                4883,
-                                4955,
-                                5030,
-                                5102,
-                                5149,
-                                5198,
-                                5251,
-                                5302,
-                                5339,
-                                5379,
-                                5422,
-                                5462,
-                                5507,
-                                5555,
-                                5606,
-                                5654,
-                                5707,
-                                5763,
-                                5822,
-                                5878,
-                                5939,
-                                6003,
-                                6070,
-                                6134,
-                                6203,
-                                6275,
-                                6350,
-                                6422
+                                3469,
+                                3511,
+                                3557,
+                                3601,
+                                3644,
+                                3689,
+                                3738,
+                                3785,
+                                3832,
+                                3881,
+                                3934,
+                                3985,
+                                4022,
+                                4062,
+                                4105,
+                                4145,
+                                4190,
+                                4238,
+                                4289,
+                                4337,
+                                4390,
+                                4446,
+                                4505,
+                                4561,
+                                4622,
+                                4686,
+                                4753,
+                                4817,
+                                4886,
+                                4958,
+                                5033,
+                                5105,
+                                5152,
+                                5201,
+                                5254,
+                                5305,
+                                5342,
+                                5382,
+                                5425,
+                                5465,
+                                5510,
+                                5558,
+                                5609,
+                                5657,
+                                5710,
+                                5766,
+                                5825,
+                                5881,
+                                5942,
+                                6006,
+                                6073,
+                                6137,
+                                6206,
+                                6278,
+                                6353,
+                                6425
                               ],
-                              "referencedDeclaration": 3508,
+                              "referencedDeclaration": 3511,
                               "type": "function (uint256,string memory,string memory) returns (bytes32)",
                               "value": "oraclize_query"
                             },
@@ -3519,12 +3519,12 @@
     "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
   },
   "networks": {
-    "1515640666104": {
+    "5777": {
       "events": {},
       "links": {},
       "address": "0xa6a62dc045af340fcb675097e1f19392509d8152"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-11T03:21:05.783Z"
+  "updatedAt": "2018-02-21T22:59:37.488Z"
 }

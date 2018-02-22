@@ -40,7 +40,7 @@
       "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/StayLinkedList.sol",
       "exportedSymbols": {
         "StayLinkedList": [
-          1404
+          1407
         ]
       }
     },
@@ -54,7 +54,7 @@
             ".18"
           ]
         },
-        "id": 1019,
+        "id": 1022,
         "name": "PragmaDirective",
         "src": "0:24:8"
       },
@@ -70,17 +70,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            1404
+            1407
           ],
           "name": "StayLinkedList",
-          "scope": 1405
+          "scope": 1408
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "tails",
-              "scope": 1404,
+              "scope": 1407,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(uint256 => uint256)",
@@ -98,7 +98,7 @@
                       "name": "uint",
                       "type": "uint256"
                     },
-                    "id": 1020,
+                    "id": 1023,
                     "name": "ElementaryTypeName",
                     "src": "67:4:8"
                   },
@@ -107,17 +107,17 @@
                       "name": "uint",
                       "type": "uint256"
                     },
-                    "id": 1021,
+                    "id": 1024,
                     "name": "ElementaryTypeName",
                     "src": "75:4:8"
                   }
                 ],
-                "id": 1022,
+                "id": 1025,
                 "name": "Mapping",
                 "src": "59:21:8"
               }
             ],
-            "id": 1023,
+            "id": 1026,
             "name": "VariableDeclaration",
             "src": "59:36:8"
           },
@@ -125,7 +125,7 @@
             "attributes": {
               "constant": false,
               "name": "lists",
-              "scope": 1404,
+              "scope": 1407,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
@@ -143,7 +143,7 @@
                       "name": "uint",
                       "type": "uint256"
                     },
-                    "id": 1024,
+                    "id": 1027,
                     "name": "ElementaryTypeName",
                     "src": "110:4:8"
                   },
@@ -157,7 +157,7 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1025,
+                        "id": 1028,
                         "name": "ElementaryTypeName",
                         "src": "127:4:8"
                       },
@@ -165,25 +165,25 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Node",
-                          "referencedDeclaration": 1038,
+                          "referencedDeclaration": 1041,
                           "type": "struct StayLinkedList.Node storage pointer"
                         },
-                        "id": 1026,
+                        "id": 1029,
                         "name": "UserDefinedTypeName",
                         "src": "135:4:8"
                       }
                     ],
-                    "id": 1027,
+                    "id": 1030,
                     "name": "Mapping",
                     "src": "118:22:8"
                   }
                 ],
-                "id": 1028,
+                "id": 1031,
                 "name": "Mapping",
                 "src": "102:39:8"
               }
             ],
-            "id": 1029,
+            "id": 1032,
             "name": "VariableDeclaration",
             "src": "102:54:8"
           },
@@ -191,7 +191,7 @@
             "attributes": {
               "canonicalName": "StayLinkedList.Node",
               "name": "Node",
-              "scope": 1404,
+              "scope": 1407,
               "visibility": "public"
             },
             "children": [
@@ -199,7 +199,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "previous",
-                  "scope": 1038,
+                  "scope": 1041,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -212,12 +212,12 @@
                       "name": "uint",
                       "type": "uint256"
                     },
-                    "id": 1030,
+                    "id": 1033,
                     "name": "ElementaryTypeName",
                     "src": "188:4:8"
                   }
                 ],
-                "id": 1031,
+                "id": 1034,
                 "name": "VariableDeclaration",
                 "src": "188:13:8"
               },
@@ -225,7 +225,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "next",
-                  "scope": 1038,
+                  "scope": 1041,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -238,12 +238,12 @@
                       "name": "uint",
                       "type": "uint256"
                     },
-                    "id": 1032,
+                    "id": 1035,
                     "name": "ElementaryTypeName",
                     "src": "212:4:8"
                   }
                 ],
-                "id": 1033,
+                "id": 1036,
                 "name": "VariableDeclaration",
                 "src": "212:9:8"
               },
@@ -251,7 +251,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "weight",
-                  "scope": 1038,
+                  "scope": 1041,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -264,12 +264,12 @@
                       "name": "uint",
                       "type": "uint256"
                     },
-                    "id": 1034,
+                    "id": 1037,
                     "name": "ElementaryTypeName",
                     "src": "303:4:8"
                   }
                 ],
-                "id": 1035,
+                "id": 1038,
                 "name": "VariableDeclaration",
                 "src": "303:11:8"
               },
@@ -277,7 +277,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "key",
-                  "scope": 1038,
+                  "scope": 1041,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -290,17 +290,17 @@
                       "name": "uint",
                       "type": "uint256"
                     },
-                    "id": 1036,
+                    "id": 1039,
                     "name": "ElementaryTypeName",
                     "src": "373:4:8"
                   }
                 ],
-                "id": 1037,
+                "id": 1040,
                 "name": "VariableDeclaration",
                 "src": "373:8:8"
               }
             ],
-            "id": 1038,
+            "id": 1041,
             "name": "StructDefinition",
             "src": "165:224:8"
           },
@@ -314,7 +314,7 @@
               ],
               "name": "initializeAssetList",
               "payable": false,
-              "scope": 1404,
+              "scope": 1407,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "internal"
@@ -326,7 +326,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "assetId",
-                      "scope": 1063,
+                      "scope": 1066,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -339,17 +339,17 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1039,
+                        "id": 1042,
                         "name": "ElementaryTypeName",
                         "src": "426:4:8"
                       }
                     ],
-                    "id": 1040,
+                    "id": 1043,
                     "name": "VariableDeclaration",
                     "src": "426:12:8"
                   }
                 ],
-                "id": 1041,
+                "id": 1044,
                 "name": "ParameterList",
                 "src": "425:14:8"
               },
@@ -360,7 +360,7 @@
                   ]
                 },
                 "children": [],
-                "id": 1042,
+                "id": 1045,
                 "name": "ParameterList",
                 "src": "449:0:8"
               },
@@ -405,11 +405,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1029,
+                                      "referencedDeclaration": 1032,
                                       "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                       "value": "lists"
                                     },
-                                    "id": 1043,
+                                    "id": 1046,
                                     "name": "Identifier",
                                     "src": "460:5:8"
                                   },
@@ -419,16 +419,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1040,
+                                      "referencedDeclaration": 1043,
                                       "type": "uint256",
                                       "value": "assetId"
                                     },
-                                    "id": 1044,
+                                    "id": 1047,
                                     "name": "Identifier",
                                     "src": "466:7:8"
                                   }
                                 ],
-                                "id": 1046,
+                                "id": 1049,
                                 "name": "IndexAccess",
                                 "src": "460:14:8"
                               },
@@ -445,12 +445,12 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1045,
+                                "id": 1048,
                                 "name": "Literal",
                                 "src": "475:1:8"
                               }
                             ],
-                            "id": 1047,
+                            "id": 1050,
                             "name": "IndexAccess",
                             "src": "460:17:8"
                           },
@@ -492,11 +492,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1038,
+                                  "referencedDeclaration": 1041,
                                   "type": "type(struct StayLinkedList.Node storage pointer)",
                                   "value": "Node"
                                 },
-                                "id": 1048,
+                                "id": 1051,
                                 "name": "Identifier",
                                 "src": "480:4:8"
                               },
@@ -513,7 +513,7 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1049,
+                                "id": 1052,
                                 "name": "Literal",
                                 "src": "485:1:8"
                               },
@@ -530,7 +530,7 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1050,
+                                "id": 1053,
                                 "name": "Literal",
                                 "src": "487:1:8"
                               },
@@ -547,7 +547,7 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1051,
+                                "id": 1054,
                                 "name": "Literal",
                                 "src": "489:1:8"
                               },
@@ -564,22 +564,22 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1052,
+                                "id": 1055,
                                 "name": "Literal",
                                 "src": "491:1:8"
                               }
                             ],
-                            "id": 1053,
+                            "id": 1056,
                             "name": "FunctionCall",
                             "src": "480:13:8"
                           }
                         ],
-                        "id": 1054,
+                        "id": 1057,
                         "name": "Assignment",
                         "src": "460:33:8"
                       }
                     ],
-                    "id": 1055,
+                    "id": 1058,
                     "name": "ExpressionStatement",
                     "src": "460:33:8"
                   },
@@ -612,11 +612,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1023,
+                                  "referencedDeclaration": 1026,
                                   "type": "mapping(uint256 => uint256)",
                                   "value": "tails"
                                 },
-                                "id": 1056,
+                                "id": 1059,
                                 "name": "Identifier",
                                 "src": "504:5:8"
                               },
@@ -626,16 +626,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1040,
+                                  "referencedDeclaration": 1043,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1057,
+                                "id": 1060,
                                 "name": "Identifier",
                                 "src": "510:7:8"
                               }
                             ],
-                            "id": 1058,
+                            "id": 1061,
                             "name": "IndexAccess",
                             "src": "504:14:8"
                           },
@@ -652,27 +652,27 @@
                               "type": "int_const 0",
                               "value": "0"
                             },
-                            "id": 1059,
+                            "id": 1062,
                             "name": "Literal",
                             "src": "521:1:8"
                           }
                         ],
-                        "id": 1060,
+                        "id": 1063,
                         "name": "Assignment",
                         "src": "504:18:8"
                       }
                     ],
-                    "id": 1061,
+                    "id": 1064,
                     "name": "ExpressionStatement",
                     "src": "504:18:8"
                   }
                 ],
-                "id": 1062,
+                "id": 1065,
                 "name": "Block",
                 "src": "449:81:8"
               }
             ],
-            "id": 1063,
+            "id": 1066,
             "name": "FunctionDefinition",
             "src": "397:133:8"
           },
@@ -686,7 +686,7 @@
               ],
               "name": "insertNode",
               "payable": false,
-              "scope": 1404,
+              "scope": 1407,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "internal"
@@ -698,7 +698,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "assetId",
-                      "scope": 1169,
+                      "scope": 1172,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -711,12 +711,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1064,
+                        "id": 1067,
                         "name": "ElementaryTypeName",
                         "src": "558:4:8"
                       }
                     ],
-                    "id": 1065,
+                    "id": 1068,
                     "name": "VariableDeclaration",
                     "src": "558:12:8"
                   },
@@ -724,7 +724,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "key",
-                      "scope": 1169,
+                      "scope": 1172,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -737,12 +737,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1066,
+                        "id": 1069,
                         "name": "ElementaryTypeName",
                         "src": "572:4:8"
                       }
                     ],
-                    "id": 1067,
+                    "id": 1070,
                     "name": "VariableDeclaration",
                     "src": "572:8:8"
                   },
@@ -750,7 +750,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "weight",
-                      "scope": 1169,
+                      "scope": 1172,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -763,17 +763,17 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1068,
+                        "id": 1071,
                         "name": "ElementaryTypeName",
                         "src": "582:4:8"
                       }
                     ],
-                    "id": 1069,
+                    "id": 1072,
                     "name": "VariableDeclaration",
                     "src": "582:11:8"
                   }
                 ],
-                "id": 1070,
+                "id": 1073,
                 "name": "ParameterList",
                 "src": "557:37:8"
               },
@@ -784,7 +784,7 @@
                   ]
                 },
                 "children": [],
-                "id": 1071,
+                "id": 1074,
                 "name": "ParameterList",
                 "src": "604:0:8"
               },
@@ -818,11 +818,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1072,
+                            "id": 1075,
                             "name": "Identifier",
                             "src": "615:7:8"
                           },
@@ -847,11 +847,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1067,
+                                  "referencedDeclaration": 1070,
                                   "type": "uint256",
                                   "value": "key"
                                 },
-                                "id": 1073,
+                                "id": 1076,
                                 "name": "Identifier",
                                 "src": "623:3:8"
                               },
@@ -868,22 +868,22 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1074,
+                                "id": 1077,
                                 "name": "Literal",
                                 "src": "629:1:8"
                               }
                             ],
-                            "id": 1075,
+                            "id": 1078,
                             "name": "BinaryOperation",
                             "src": "623:7:8"
                           }
                         ],
-                        "id": 1076,
+                        "id": 1079,
                         "name": "FunctionCall",
                         "src": "615:16:8"
                       }
                     ],
-                    "id": 1077,
+                    "id": 1080,
                     "name": "ExpressionStatement",
                     "src": "615:16:8"
                   },
@@ -915,11 +915,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1078,
+                            "id": 1081,
                             "name": "Identifier",
                             "src": "642:7:8"
                           },
@@ -944,11 +944,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1069,
+                                  "referencedDeclaration": 1072,
                                   "type": "uint256",
                                   "value": "weight"
                                 },
-                                "id": 1079,
+                                "id": 1082,
                                 "name": "Identifier",
                                 "src": "650:6:8"
                               },
@@ -965,29 +965,29 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1080,
+                                "id": 1083,
                                 "name": "Literal",
                                 "src": "659:1:8"
                               }
                             ],
-                            "id": 1081,
+                            "id": 1084,
                             "name": "BinaryOperation",
                             "src": "650:10:8"
                           }
                         ],
-                        "id": 1082,
+                        "id": 1085,
                         "name": "FunctionCall",
                         "src": "642:19:8"
                       }
                     ],
-                    "id": 1083,
+                    "id": 1086,
                     "name": "ExpressionStatement",
                     "src": "642:19:8"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        1085
+                        1088
                       ]
                     },
                     "children": [
@@ -995,7 +995,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "currentNode",
-                          "scope": 1169,
+                          "scope": 1172,
                           "stateVariable": false,
                           "storageLocation": "storage",
                           "type": "struct StayLinkedList.Node storage pointer",
@@ -1007,15 +1007,15 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "Node",
-                              "referencedDeclaration": 1038,
+                              "referencedDeclaration": 1041,
                               "type": "struct StayLinkedList.Node storage pointer"
                             },
-                            "id": 1084,
+                            "id": 1087,
                             "name": "UserDefinedTypeName",
                             "src": "709:4:8"
                           }
                         ],
-                        "id": 1085,
+                        "id": 1088,
                         "name": "VariableDeclaration",
                         "src": "709:24:8"
                       },
@@ -1045,11 +1045,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1029,
+                                  "referencedDeclaration": 1032,
                                   "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                   "value": "lists"
                                 },
-                                "id": 1086,
+                                "id": 1089,
                                 "name": "Identifier",
                                 "src": "736:5:8"
                               },
@@ -1059,16 +1059,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1065,
+                                  "referencedDeclaration": 1068,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1087,
+                                "id": 1090,
                                 "name": "Identifier",
                                 "src": "742:7:8"
                               }
                             ],
-                            "id": 1088,
+                            "id": 1091,
                             "name": "IndexAccess",
                             "src": "736:14:8"
                           },
@@ -1088,11 +1088,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1023,
+                                  "referencedDeclaration": 1026,
                                   "type": "mapping(uint256 => uint256)",
                                   "value": "tails"
                                 },
-                                "id": 1089,
+                                "id": 1092,
                                 "name": "Identifier",
                                 "src": "751:5:8"
                               },
@@ -1102,26 +1102,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1065,
+                                  "referencedDeclaration": 1068,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1090,
+                                "id": 1093,
                                 "name": "Identifier",
                                 "src": "757:7:8"
                               }
                             ],
-                            "id": 1091,
+                            "id": 1094,
                             "name": "IndexAccess",
                             "src": "751:14:8"
                           }
                         ],
-                        "id": 1092,
+                        "id": 1095,
                         "name": "IndexAccess",
                         "src": "736:30:8"
                       }
                     ],
-                    "id": 1093,
+                    "id": 1096,
                     "name": "VariableDeclarationStatement",
                     "src": "709:57:8"
                   },
@@ -1149,7 +1149,7 @@
                             "attributes": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_struct$_Node_$1038_storage_ptr",
+                                  "typeIdentifier": "t_struct$_Node_$1041_storage_ptr",
                                   "typeString": "struct StayLinkedList.Node storage pointer"
                                 },
                                 {
@@ -1160,11 +1160,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1328,
+                              "referencedDeclaration": 1331,
                               "type": "function (struct StayLinkedList.Node memory,uint256) pure returns (bool)",
                               "value": "isTail"
                             },
-                            "id": 1094,
+                            "id": 1097,
                             "name": "Identifier",
                             "src": "831:6:8"
                           },
@@ -1174,11 +1174,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1085,
+                              "referencedDeclaration": 1088,
                               "type": "struct StayLinkedList.Node storage pointer",
                               "value": "currentNode"
                             },
-                            "id": 1095,
+                            "id": 1098,
                             "name": "Identifier",
                             "src": "838:11:8"
                           },
@@ -1188,16 +1188,16 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1067,
+                              "referencedDeclaration": 1070,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1096,
+                            "id": 1099,
                             "name": "Identifier",
                             "src": "851:3:8"
                           }
                         ],
-                        "id": 1097,
+                        "id": 1100,
                         "name": "FunctionCall",
                         "src": "831:24:8"
                       },
@@ -1228,7 +1228,7 @@
                                           "typeString": "uint256"
                                         },
                                         {
-                                          "typeIdentifier": "t_struct$_Node_$1038_storage_ptr",
+                                          "typeIdentifier": "t_struct$_Node_$1041_storage_ptr",
                                           "typeString": "struct StayLinkedList.Node storage pointer"
                                         },
                                         {
@@ -1243,11 +1243,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1403,
+                                      "referencedDeclaration": 1406,
                                       "type": "function (uint256,struct StayLinkedList.Node storage pointer,uint256,uint256)",
                                       "value": "appendTail"
                                     },
-                                    "id": 1098,
+                                    "id": 1101,
                                     "name": "Identifier",
                                     "src": "872:10:8"
                                   },
@@ -1257,11 +1257,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1065,
+                                      "referencedDeclaration": 1068,
                                       "type": "uint256",
                                       "value": "assetId"
                                     },
-                                    "id": 1099,
+                                    "id": 1102,
                                     "name": "Identifier",
                                     "src": "883:7:8"
                                   },
@@ -1271,11 +1271,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1085,
+                                      "referencedDeclaration": 1088,
                                       "type": "struct StayLinkedList.Node storage pointer",
                                       "value": "currentNode"
                                     },
-                                    "id": 1100,
+                                    "id": 1103,
                                     "name": "Identifier",
                                     "src": "892:11:8"
                                   },
@@ -1285,11 +1285,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1067,
+                                      "referencedDeclaration": 1070,
                                       "type": "uint256",
                                       "value": "key"
                                     },
-                                    "id": 1101,
+                                    "id": 1104,
                                     "name": "Identifier",
                                     "src": "905:3:8"
                                   },
@@ -1299,40 +1299,40 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1069,
+                                      "referencedDeclaration": 1072,
                                       "type": "uint256",
                                       "value": "weight"
                                     },
-                                    "id": 1102,
+                                    "id": 1105,
                                     "name": "Identifier",
                                     "src": "910:6:8"
                                   }
                                 ],
-                                "id": 1103,
+                                "id": 1106,
                                 "name": "FunctionCall",
                                 "src": "872:45:8"
                               }
                             ],
-                            "id": 1104,
+                            "id": 1107,
                             "name": "ExpressionStatement",
                             "src": "872:45:8"
                           },
                           {
                             "attributes": {
                               "expression": null,
-                              "functionReturnParameters": 1071
+                              "functionReturnParameters": 1074
                             },
-                            "id": 1105,
+                            "id": 1108,
                             "name": "Return",
                             "src": "932:7:8"
                           }
                         ],
-                        "id": 1106,
+                        "id": 1109,
                         "name": "Block",
                         "src": "857:93:8"
                       }
                     ],
-                    "id": 1107,
+                    "id": 1110,
                     "name": "IfStatement",
                     "src": "827:123:8"
                   },
@@ -1361,7 +1361,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "key",
-                              "referencedDeclaration": 1037,
+                              "referencedDeclaration": 1040,
                               "type": "uint256"
                             },
                             "children": [
@@ -1371,16 +1371,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1085,
+                                  "referencedDeclaration": 1088,
                                   "type": "struct StayLinkedList.Node storage pointer",
                                   "value": "currentNode"
                                 },
-                                "id": 1108,
+                                "id": 1111,
                                 "name": "Identifier",
                                 "src": "1024:11:8"
                               }
                             ],
-                            "id": 1109,
+                            "id": 1112,
                             "name": "MemberAccess",
                             "src": "1024:15:8"
                           },
@@ -1390,16 +1390,16 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1067,
+                              "referencedDeclaration": 1070,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1110,
+                            "id": 1113,
                             "name": "Identifier",
                             "src": "1043:3:8"
                           }
                         ],
-                        "id": 1111,
+                        "id": 1114,
                         "name": "BinaryOperation",
                         "src": "1024:22:8"
                       },
@@ -1424,11 +1424,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1085,
+                                      "referencedDeclaration": 1088,
                                       "type": "struct StayLinkedList.Node storage pointer",
                                       "value": "currentNode"
                                     },
-                                    "id": 1112,
+                                    "id": 1115,
                                     "name": "Identifier",
                                     "src": "1063:11:8"
                                   },
@@ -1458,11 +1458,11 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1029,
+                                              "referencedDeclaration": 1032,
                                               "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                               "value": "lists"
                                             },
-                                            "id": 1113,
+                                            "id": 1116,
                                             "name": "Identifier",
                                             "src": "1077:5:8"
                                           },
@@ -1472,16 +1472,16 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1065,
+                                              "referencedDeclaration": 1068,
                                               "type": "uint256",
                                               "value": "assetId"
                                             },
-                                            "id": 1114,
+                                            "id": 1117,
                                             "name": "Identifier",
                                             "src": "1083:7:8"
                                           }
                                         ],
-                                        "id": 1115,
+                                        "id": 1118,
                                         "name": "IndexAccess",
                                         "src": "1077:14:8"
                                       },
@@ -1493,7 +1493,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "previous",
-                                          "referencedDeclaration": 1031,
+                                          "referencedDeclaration": 1034,
                                           "type": "uint256"
                                         },
                                         "children": [
@@ -1503,48 +1503,48 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1085,
+                                              "referencedDeclaration": 1088,
                                               "type": "struct StayLinkedList.Node storage pointer",
                                               "value": "currentNode"
                                             },
-                                            "id": 1116,
+                                            "id": 1119,
                                             "name": "Identifier",
                                             "src": "1092:11:8"
                                           }
                                         ],
-                                        "id": 1117,
+                                        "id": 1120,
                                         "name": "MemberAccess",
                                         "src": "1092:20:8"
                                       }
                                     ],
-                                    "id": 1118,
+                                    "id": 1121,
                                     "name": "IndexAccess",
                                     "src": "1077:36:8"
                                   }
                                 ],
-                                "id": 1119,
+                                "id": 1122,
                                 "name": "Assignment",
                                 "src": "1063:50:8"
                               }
                             ],
-                            "id": 1120,
+                            "id": 1123,
                             "name": "ExpressionStatement",
                             "src": "1063:50:8"
                           }
                         ],
-                        "id": 1121,
+                        "id": 1124,
                         "name": "Block",
                         "src": "1048:77:8"
                       }
                     ],
-                    "id": 1122,
+                    "id": 1125,
                     "name": "WhileStatement",
                     "src": "1017:108:8"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        1124
+                        1127
                       ]
                     },
                     "children": [
@@ -1552,7 +1552,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "nextNode",
-                          "scope": 1169,
+                          "scope": 1172,
                           "stateVariable": false,
                           "storageLocation": "storage",
                           "type": "struct StayLinkedList.Node storage pointer",
@@ -1564,15 +1564,15 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "Node",
-                              "referencedDeclaration": 1038,
+                              "referencedDeclaration": 1041,
                               "type": "struct StayLinkedList.Node storage pointer"
                             },
-                            "id": 1123,
+                            "id": 1126,
                             "name": "UserDefinedTypeName",
                             "src": "1137:4:8"
                           }
                         ],
-                        "id": 1124,
+                        "id": 1127,
                         "name": "VariableDeclaration",
                         "src": "1137:21:8"
                       },
@@ -1602,11 +1602,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1029,
+                                  "referencedDeclaration": 1032,
                                   "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                   "value": "lists"
                                 },
-                                "id": 1125,
+                                "id": 1128,
                                 "name": "Identifier",
                                 "src": "1161:5:8"
                               },
@@ -1616,16 +1616,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1065,
+                                  "referencedDeclaration": 1068,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1126,
+                                "id": 1129,
                                 "name": "Identifier",
                                 "src": "1167:7:8"
                               }
                             ],
-                            "id": 1127,
+                            "id": 1130,
                             "name": "IndexAccess",
                             "src": "1161:14:8"
                           },
@@ -1637,7 +1637,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "next",
-                              "referencedDeclaration": 1033,
+                              "referencedDeclaration": 1036,
                               "type": "uint256"
                             },
                             "children": [
@@ -1647,26 +1647,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1085,
+                                  "referencedDeclaration": 1088,
                                   "type": "struct StayLinkedList.Node storage pointer",
                                   "value": "currentNode"
                                 },
-                                "id": 1128,
+                                "id": 1131,
                                 "name": "Identifier",
                                 "src": "1176:11:8"
                               }
                             ],
-                            "id": 1129,
+                            "id": 1132,
                             "name": "MemberAccess",
                             "src": "1176:16:8"
                           }
                         ],
-                        "id": 1130,
+                        "id": 1133,
                         "name": "IndexAccess",
                         "src": "1161:32:8"
                       }
                     ],
-                    "id": 1131,
+                    "id": 1134,
                     "name": "VariableDeclarationStatement",
                     "src": "1137:56:8"
                   },
@@ -1698,11 +1698,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1132,
+                            "id": 1135,
                             "name": "Identifier",
                             "src": "1204:7:8"
                           },
@@ -1725,7 +1725,7 @@
                                 "attributes": {
                                   "argumentTypes": [
                                     {
-                                      "typeIdentifier": "t_struct$_Node_$1038_storage_ptr",
+                                      "typeIdentifier": "t_struct$_Node_$1041_storage_ptr",
                                       "typeString": "struct StayLinkedList.Node storage pointer"
                                     },
                                     {
@@ -1737,18 +1737,18 @@
                                       "typeString": "uint256"
                                     },
                                     {
-                                      "typeIdentifier": "t_struct$_Node_$1038_storage_ptr",
+                                      "typeIdentifier": "t_struct$_Node_$1041_storage_ptr",
                                       "typeString": "struct StayLinkedList.Node storage pointer"
                                     }
                                   ],
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1365,
+                                  "referencedDeclaration": 1368,
                                   "type": "function (struct StayLinkedList.Node memory,uint256,uint256,struct StayLinkedList.Node memory) pure returns (bool)",
                                   "value": "isInsertable"
                                 },
-                                "id": 1133,
+                                "id": 1136,
                                 "name": "Identifier",
                                 "src": "1212:12:8"
                               },
@@ -1758,11 +1758,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1085,
+                                  "referencedDeclaration": 1088,
                                   "type": "struct StayLinkedList.Node storage pointer",
                                   "value": "currentNode"
                                 },
-                                "id": 1134,
+                                "id": 1137,
                                 "name": "Identifier",
                                 "src": "1225:11:8"
                               },
@@ -1772,11 +1772,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1067,
+                                  "referencedDeclaration": 1070,
                                   "type": "uint256",
                                   "value": "key"
                                 },
-                                "id": 1135,
+                                "id": 1138,
                                 "name": "Identifier",
                                 "src": "1238:3:8"
                               },
@@ -1786,11 +1786,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1069,
+                                  "referencedDeclaration": 1072,
                                   "type": "uint256",
                                   "value": "weight"
                                 },
-                                "id": 1136,
+                                "id": 1139,
                                 "name": "Identifier",
                                 "src": "1243:6:8"
                               },
@@ -1800,26 +1800,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1124,
+                                  "referencedDeclaration": 1127,
                                   "type": "struct StayLinkedList.Node storage pointer",
                                   "value": "nextNode"
                                 },
-                                "id": 1137,
+                                "id": 1140,
                                 "name": "Identifier",
                                 "src": "1251:8:8"
                               }
                             ],
-                            "id": 1138,
+                            "id": 1141,
                             "name": "FunctionCall",
                             "src": "1212:48:8"
                           }
                         ],
-                        "id": 1139,
+                        "id": 1142,
                         "name": "FunctionCall",
                         "src": "1204:57:8"
                       }
                     ],
-                    "id": 1140,
+                    "id": 1143,
                     "name": "ExpressionStatement",
                     "src": "1204:57:8"
                   },
@@ -1844,7 +1844,7 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "next",
-                              "referencedDeclaration": 1033,
+                              "referencedDeclaration": 1036,
                               "type": "uint256"
                             },
                             "children": [
@@ -1854,16 +1854,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1085,
+                                  "referencedDeclaration": 1088,
                                   "type": "struct StayLinkedList.Node storage pointer",
                                   "value": "currentNode"
                                 },
-                                "id": 1141,
+                                "id": 1144,
                                 "name": "Identifier",
                                 "src": "1323:11:8"
                               }
                             ],
-                            "id": 1143,
+                            "id": 1146,
                             "name": "MemberAccess",
                             "src": "1323:16:8"
                           },
@@ -1873,21 +1873,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1067,
+                              "referencedDeclaration": 1070,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1144,
+                            "id": 1147,
                             "name": "Identifier",
                             "src": "1342:3:8"
                           }
                         ],
-                        "id": 1145,
+                        "id": 1148,
                         "name": "Assignment",
                         "src": "1323:22:8"
                       }
                     ],
-                    "id": 1146,
+                    "id": 1149,
                     "name": "ExpressionStatement",
                     "src": "1323:22:8"
                   },
@@ -1912,7 +1912,7 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "previous",
-                              "referencedDeclaration": 1031,
+                              "referencedDeclaration": 1034,
                               "type": "uint256"
                             },
                             "children": [
@@ -1922,16 +1922,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1124,
+                                  "referencedDeclaration": 1127,
                                   "type": "struct StayLinkedList.Node storage pointer",
                                   "value": "nextNode"
                                 },
-                                "id": 1147,
+                                "id": 1150,
                                 "name": "Identifier",
                                 "src": "1356:8:8"
                               }
                             ],
-                            "id": 1149,
+                            "id": 1152,
                             "name": "MemberAccess",
                             "src": "1356:17:8"
                           },
@@ -1941,21 +1941,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1067,
+                              "referencedDeclaration": 1070,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1150,
+                            "id": 1153,
                             "name": "Identifier",
                             "src": "1376:3:8"
                           }
                         ],
-                        "id": 1151,
+                        "id": 1154,
                         "name": "Assignment",
                         "src": "1356:23:8"
                       }
                     ],
-                    "id": 1152,
+                    "id": 1155,
                     "name": "ExpressionStatement",
                     "src": "1356:23:8"
                   },
@@ -1998,11 +1998,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1029,
+                                      "referencedDeclaration": 1032,
                                       "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                       "value": "lists"
                                     },
-                                    "id": 1153,
+                                    "id": 1156,
                                     "name": "Identifier",
                                     "src": "1390:5:8"
                                   },
@@ -2012,16 +2012,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1065,
+                                      "referencedDeclaration": 1068,
                                       "type": "uint256",
                                       "value": "assetId"
                                     },
-                                    "id": 1154,
+                                    "id": 1157,
                                     "name": "Identifier",
                                     "src": "1396:7:8"
                                   }
                                 ],
-                                "id": 1156,
+                                "id": 1159,
                                 "name": "IndexAccess",
                                 "src": "1390:14:8"
                               },
@@ -2031,16 +2031,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1067,
+                                  "referencedDeclaration": 1070,
                                   "type": "uint256",
                                   "value": "key"
                                 },
-                                "id": 1155,
+                                "id": 1158,
                                 "name": "Identifier",
                                 "src": "1405:3:8"
                               }
                             ],
-                            "id": 1157,
+                            "id": 1160,
                             "name": "IndexAccess",
                             "src": "1390:19:8"
                           },
@@ -2082,11 +2082,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1038,
+                                  "referencedDeclaration": 1041,
                                   "type": "type(struct StayLinkedList.Node storage pointer)",
                                   "value": "Node"
                                 },
-                                "id": 1158,
+                                "id": 1161,
                                 "name": "Identifier",
                                 "src": "1412:4:8"
                               },
@@ -2098,7 +2098,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "key",
-                                  "referencedDeclaration": 1037,
+                                  "referencedDeclaration": 1040,
                                   "type": "uint256"
                                 },
                                 "children": [
@@ -2108,16 +2108,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1085,
+                                      "referencedDeclaration": 1088,
                                       "type": "struct StayLinkedList.Node storage pointer",
                                       "value": "currentNode"
                                     },
-                                    "id": 1159,
+                                    "id": 1162,
                                     "name": "Identifier",
                                     "src": "1417:11:8"
                                   }
                                 ],
-                                "id": 1160,
+                                "id": 1163,
                                 "name": "MemberAccess",
                                 "src": "1417:15:8"
                               },
@@ -2129,7 +2129,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "key",
-                                  "referencedDeclaration": 1037,
+                                  "referencedDeclaration": 1040,
                                   "type": "uint256"
                                 },
                                 "children": [
@@ -2139,16 +2139,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1124,
+                                      "referencedDeclaration": 1127,
                                       "type": "struct StayLinkedList.Node storage pointer",
                                       "value": "nextNode"
                                     },
-                                    "id": 1161,
+                                    "id": 1164,
                                     "name": "Identifier",
                                     "src": "1434:8:8"
                                   }
                                 ],
-                                "id": 1162,
+                                "id": 1165,
                                 "name": "MemberAccess",
                                 "src": "1434:12:8"
                               },
@@ -2158,11 +2158,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1069,
+                                  "referencedDeclaration": 1072,
                                   "type": "uint256",
                                   "value": "weight"
                                 },
-                                "id": 1163,
+                                "id": 1166,
                                 "name": "Identifier",
                                 "src": "1448:6:8"
                               },
@@ -2172,36 +2172,36 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1067,
+                                  "referencedDeclaration": 1070,
                                   "type": "uint256",
                                   "value": "key"
                                 },
-                                "id": 1164,
+                                "id": 1167,
                                 "name": "Identifier",
                                 "src": "1456:3:8"
                               }
                             ],
-                            "id": 1165,
+                            "id": 1168,
                             "name": "FunctionCall",
                             "src": "1412:48:8"
                           }
                         ],
-                        "id": 1166,
+                        "id": 1169,
                         "name": "Assignment",
                         "src": "1390:70:8"
                       }
                     ],
-                    "id": 1167,
+                    "id": 1170,
                     "name": "ExpressionStatement",
                     "src": "1390:70:8"
                   }
                 ],
-                "id": 1168,
+                "id": 1171,
                 "name": "Block",
                 "src": "604:864:8"
               }
             ],
-            "id": 1169,
+            "id": 1172,
             "name": "FunctionDefinition",
             "src": "538:930:8"
           },
@@ -2215,7 +2215,7 @@
               ],
               "name": "getNode",
               "payable": false,
-              "scope": 1404,
+              "scope": 1407,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "internal"
@@ -2227,7 +2227,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "assetId",
-                      "scope": 1203,
+                      "scope": 1206,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2240,12 +2240,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1170,
+                        "id": 1173,
                         "name": "ElementaryTypeName",
                         "src": "1493:4:8"
                       }
                     ],
-                    "id": 1171,
+                    "id": 1174,
                     "name": "VariableDeclaration",
                     "src": "1493:12:8"
                   },
@@ -2253,40 +2253,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "key",
-                      "scope": 1203,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "uint256",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "uint",
-                          "type": "uint256"
-                        },
-                        "id": 1172,
-                        "name": "ElementaryTypeName",
-                        "src": "1507:4:8"
-                      }
-                    ],
-                    "id": 1173,
-                    "name": "VariableDeclaration",
-                    "src": "1507:8:8"
-                  }
-                ],
-                "id": 1174,
-                "name": "ParameterList",
-                "src": "1492:24:8"
-              },
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "",
-                      "scope": 1203,
+                      "scope": 1206,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2301,10 +2268,43 @@
                         },
                         "id": 1175,
                         "name": "ElementaryTypeName",
-                        "src": "1539:4:8"
+                        "src": "1507:4:8"
                       }
                     ],
                     "id": 1176,
+                    "name": "VariableDeclaration",
+                    "src": "1507:8:8"
+                  }
+                ],
+                "id": 1177,
+                "name": "ParameterList",
+                "src": "1492:24:8"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1206,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1178,
+                        "name": "ElementaryTypeName",
+                        "src": "1539:4:8"
+                      }
+                    ],
+                    "id": 1179,
                     "name": "VariableDeclaration",
                     "src": "1539:4:8"
                   },
@@ -2312,7 +2312,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1203,
+                      "scope": 1206,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2325,12 +2325,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1177,
+                        "id": 1180,
                         "name": "ElementaryTypeName",
                         "src": "1545:4:8"
                       }
                     ],
-                    "id": 1178,
+                    "id": 1181,
                     "name": "VariableDeclaration",
                     "src": "1545:4:8"
                   },
@@ -2338,7 +2338,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1203,
+                      "scope": 1206,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2351,12 +2351,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1179,
+                        "id": 1182,
                         "name": "ElementaryTypeName",
                         "src": "1551:4:8"
                       }
                     ],
-                    "id": 1180,
+                    "id": 1183,
                     "name": "VariableDeclaration",
                     "src": "1551:4:8"
                   },
@@ -2364,7 +2364,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1203,
+                      "scope": 1206,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2377,17 +2377,17 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1181,
+                        "id": 1184,
                         "name": "ElementaryTypeName",
                         "src": "1557:4:8"
                       }
                     ],
-                    "id": 1182,
+                    "id": 1185,
                     "name": "VariableDeclaration",
                     "src": "1557:4:8"
                   }
                 ],
-                "id": 1183,
+                "id": 1186,
                 "name": "ParameterList",
                 "src": "1538:24:8"
               },
@@ -2396,7 +2396,7 @@
                   {
                     "attributes": {
                       "assignments": [
-                        1185
+                        1188
                       ]
                     },
                     "children": [
@@ -2404,7 +2404,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "node",
-                          "scope": 1203,
+                          "scope": 1206,
                           "stateVariable": false,
                           "storageLocation": "memory",
                           "type": "struct StayLinkedList.Node memory",
@@ -2416,15 +2416,15 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "Node",
-                              "referencedDeclaration": 1038,
+                              "referencedDeclaration": 1041,
                               "type": "struct StayLinkedList.Node storage pointer"
                             },
-                            "id": 1184,
+                            "id": 1187,
                             "name": "UserDefinedTypeName",
                             "src": "1574:4:8"
                           }
                         ],
-                        "id": 1185,
+                        "id": 1188,
                         "name": "VariableDeclaration",
                         "src": "1574:16:8"
                       },
@@ -2454,11 +2454,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1029,
+                                  "referencedDeclaration": 1032,
                                   "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                   "value": "lists"
                                 },
-                                "id": 1186,
+                                "id": 1189,
                                 "name": "Identifier",
                                 "src": "1593:5:8"
                               },
@@ -2468,16 +2468,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1171,
+                                  "referencedDeclaration": 1174,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1187,
+                                "id": 1190,
                                 "name": "Identifier",
                                 "src": "1599:7:8"
                               }
                             ],
-                            "id": 1188,
+                            "id": 1191,
                             "name": "IndexAccess",
                             "src": "1593:14:8"
                           },
@@ -2487,27 +2487,27 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1173,
+                              "referencedDeclaration": 1176,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1189,
+                            "id": 1192,
                             "name": "Identifier",
                             "src": "1608:3:8"
                           }
                         ],
-                        "id": 1190,
+                        "id": 1193,
                         "name": "IndexAccess",
                         "src": "1593:19:8"
                       }
                     ],
-                    "id": 1191,
+                    "id": 1194,
                     "name": "VariableDeclarationStatement",
                     "src": "1574:38:8"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1183
+                      "functionReturnParameters": 1186
                     },
                     "children": [
                       {
@@ -2529,7 +2529,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "previous",
-                              "referencedDeclaration": 1031,
+                              "referencedDeclaration": 1034,
                               "type": "uint256"
                             },
                             "children": [
@@ -2539,16 +2539,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1185,
+                                  "referencedDeclaration": 1188,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "node"
                                 },
-                                "id": 1192,
+                                "id": 1195,
                                 "name": "Identifier",
                                 "src": "1630:4:8"
                               }
                             ],
-                            "id": 1193,
+                            "id": 1196,
                             "name": "MemberAccess",
                             "src": "1630:13:8"
                           },
@@ -2560,7 +2560,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "next",
-                              "referencedDeclaration": 1033,
+                              "referencedDeclaration": 1036,
                               "type": "uint256"
                             },
                             "children": [
@@ -2570,16 +2570,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1185,
+                                  "referencedDeclaration": 1188,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "node"
                                 },
-                                "id": 1194,
+                                "id": 1197,
                                 "name": "Identifier",
                                 "src": "1645:4:8"
                               }
                             ],
-                            "id": 1195,
+                            "id": 1198,
                             "name": "MemberAccess",
                             "src": "1645:9:8"
                           },
@@ -2591,7 +2591,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "weight",
-                              "referencedDeclaration": 1035,
+                              "referencedDeclaration": 1038,
                               "type": "uint256"
                             },
                             "children": [
@@ -2601,16 +2601,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1185,
+                                  "referencedDeclaration": 1188,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "node"
                                 },
-                                "id": 1196,
+                                "id": 1199,
                                 "name": "Identifier",
                                 "src": "1656:4:8"
                               }
                             ],
-                            "id": 1197,
+                            "id": 1200,
                             "name": "MemberAccess",
                             "src": "1656:11:8"
                           },
@@ -2622,7 +2622,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "key",
-                              "referencedDeclaration": 1037,
+                              "referencedDeclaration": 1040,
                               "type": "uint256"
                             },
                             "children": [
@@ -2632,36 +2632,36 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1185,
+                                  "referencedDeclaration": 1188,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "node"
                                 },
-                                "id": 1198,
+                                "id": 1201,
                                 "name": "Identifier",
                                 "src": "1669:4:8"
                               }
                             ],
-                            "id": 1199,
+                            "id": 1202,
                             "name": "MemberAccess",
                             "src": "1669:8:8"
                           }
                         ],
-                        "id": 1200,
+                        "id": 1203,
                         "name": "TupleExpression",
                         "src": "1629:49:8"
                       }
                     ],
-                    "id": 1201,
+                    "id": 1204,
                     "name": "Return",
                     "src": "1623:55:8"
                   }
                 ],
-                "id": 1202,
+                "id": 1205,
                 "name": "Block",
                 "src": "1563:123:8"
               }
             ],
-            "id": 1203,
+            "id": 1206,
             "name": "FunctionDefinition",
             "src": "1476:210:8"
           },
@@ -2675,7 +2675,7 @@
               ],
               "name": "getNodesBetween",
               "payable": false,
-              "scope": 1404,
+              "scope": 1407,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -2687,7 +2687,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "assetId",
-                      "scope": 1309,
+                      "scope": 1312,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2700,12 +2700,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1204,
+                        "id": 1207,
                         "name": "ElementaryTypeName",
                         "src": "1784:4:8"
                       }
                     ],
-                    "id": 1205,
+                    "id": 1208,
                     "name": "VariableDeclaration",
                     "src": "1784:12:8"
                   },
@@ -2713,7 +2713,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "from",
-                      "scope": 1309,
+                      "scope": 1312,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2726,12 +2726,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1206,
+                        "id": 1209,
                         "name": "ElementaryTypeName",
                         "src": "1798:4:8"
                       }
                     ],
-                    "id": 1207,
+                    "id": 1210,
                     "name": "VariableDeclaration",
                     "src": "1798:9:8"
                   },
@@ -2739,7 +2739,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "to",
-                      "scope": 1309,
+                      "scope": 1312,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2752,17 +2752,17 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1208,
+                        "id": 1211,
                         "name": "ElementaryTypeName",
                         "src": "1809:4:8"
                       }
                     ],
-                    "id": 1209,
+                    "id": 1212,
                     "name": "VariableDeclaration",
                     "src": "1809:7:8"
                   }
                 ],
-                "id": 1210,
+                "id": 1213,
                 "name": "ParameterList",
                 "src": "1783:34:8"
               },
@@ -2772,7 +2772,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1309,
+                      "scope": 1312,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256[] memory",
@@ -2791,22 +2791,22 @@
                               "name": "uint",
                               "type": "uint256"
                             },
-                            "id": 1211,
+                            "id": 1214,
                             "name": "ElementaryTypeName",
                             "src": "1842:4:8"
                           }
                         ],
-                        "id": 1212,
+                        "id": 1215,
                         "name": "ArrayTypeName",
                         "src": "1842:6:8"
                       }
                     ],
-                    "id": 1213,
+                    "id": 1216,
                     "name": "VariableDeclaration",
                     "src": "1842:6:8"
                   }
                 ],
-                "id": 1214,
+                "id": 1217,
                 "name": "ParameterList",
                 "src": "1841:8:8"
               },
@@ -2840,11 +2840,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1215,
+                            "id": 1218,
                             "name": "Identifier",
                             "src": "1861:7:8"
                           },
@@ -2869,11 +2869,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1209,
+                                  "referencedDeclaration": 1212,
                                   "type": "uint256",
                                   "value": "to"
                                 },
-                                "id": 1216,
+                                "id": 1219,
                                 "name": "Identifier",
                                 "src": "1869:2:8"
                               },
@@ -2890,22 +2890,22 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1217,
+                                "id": 1220,
                                 "name": "Literal",
                                 "src": "1874:1:8"
                               }
                             ],
-                            "id": 1218,
+                            "id": 1221,
                             "name": "BinaryOperation",
                             "src": "1869:6:8"
                           }
                         ],
-                        "id": 1219,
+                        "id": 1222,
                         "name": "FunctionCall",
                         "src": "1861:15:8"
                       }
                     ],
-                    "id": 1220,
+                    "id": 1223,
                     "name": "ExpressionStatement",
                     "src": "1861:15:8"
                   },
@@ -2937,11 +2937,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1221,
+                            "id": 1224,
                             "name": "Identifier",
                             "src": "1887:7:8"
                           },
@@ -2966,11 +2966,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1209,
+                                  "referencedDeclaration": 1212,
                                   "type": "uint256",
                                   "value": "to"
                                 },
-                                "id": 1222,
+                                "id": 1225,
                                 "name": "Identifier",
                                 "src": "1895:2:8"
                               },
@@ -2980,26 +2980,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1207,
+                                  "referencedDeclaration": 1210,
                                   "type": "uint256",
                                   "value": "from"
                                 },
-                                "id": 1223,
+                                "id": 1226,
                                 "name": "Identifier",
                                 "src": "1900:4:8"
                               }
                             ],
-                            "id": 1224,
+                            "id": 1227,
                             "name": "BinaryOperation",
                             "src": "1895:9:8"
                           }
                         ],
-                        "id": 1225,
+                        "id": 1228,
                         "name": "FunctionCall",
                         "src": "1887:18:8"
                       }
                     ],
-                    "id": 1226,
+                    "id": 1229,
                     "name": "ExpressionStatement",
                     "src": "1887:18:8"
                   },
@@ -3031,11 +3031,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8742,
+                              "referencedDeclaration": 8745,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 1227,
+                            "id": 1230,
                             "name": "Identifier",
                             "src": "1967:7:8"
                           },
@@ -3086,11 +3086,11 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1209,
+                                          "referencedDeclaration": 1212,
                                           "type": "uint256",
                                           "value": "to"
                                         },
-                                        "id": 1228,
+                                        "id": 1231,
                                         "name": "Identifier",
                                         "src": "1976:2:8"
                                       },
@@ -3100,21 +3100,21 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1207,
+                                          "referencedDeclaration": 1210,
                                           "type": "uint256",
                                           "value": "from"
                                         },
-                                        "id": 1229,
+                                        "id": 1232,
                                         "name": "Identifier",
                                         "src": "1981:4:8"
                                       }
                                     ],
-                                    "id": 1230,
+                                    "id": 1233,
                                     "name": "BinaryOperation",
                                     "src": "1976:9:8"
                                   }
                                 ],
-                                "id": 1231,
+                                "id": 1234,
                                 "name": "TupleExpression",
                                 "src": "1975:11:8"
                               },
@@ -3176,7 +3176,7 @@
                                               "type": "int_const 64",
                                               "value": "64"
                                             },
-                                            "id": 1232,
+                                            "id": 1235,
                                             "name": "Literal",
                                             "src": "1990:2:8"
                                           },
@@ -3193,12 +3193,12 @@
                                               "type": "int_const 60",
                                               "value": "60"
                                             },
-                                            "id": 1233,
+                                            "id": 1236,
                                             "name": "Literal",
                                             "src": "1995:2:8"
                                           }
                                         ],
-                                        "id": 1234,
+                                        "id": 1237,
                                         "name": "BinaryOperation",
                                         "src": "1990:7:8"
                                       },
@@ -3215,12 +3215,12 @@
                                           "type": "int_const 60",
                                           "value": "60"
                                         },
-                                        "id": 1235,
+                                        "id": 1238,
                                         "name": "Literal",
                                         "src": "2000:2:8"
                                       }
                                     ],
-                                    "id": 1236,
+                                    "id": 1239,
                                     "name": "BinaryOperation",
                                     "src": "1990:12:8"
                                   },
@@ -3237,34 +3237,34 @@
                                       "type": "int_const 24",
                                       "value": "24"
                                     },
-                                    "id": 1237,
+                                    "id": 1240,
                                     "name": "Literal",
                                     "src": "2005:2:8"
                                   }
                                 ],
-                                "id": 1238,
+                                "id": 1241,
                                 "name": "BinaryOperation",
                                 "src": "1990:17:8"
                               }
                             ],
-                            "id": 1239,
+                            "id": 1242,
                             "name": "BinaryOperation",
                             "src": "1975:32:8"
                           }
                         ],
-                        "id": 1240,
+                        "id": 1243,
                         "name": "FunctionCall",
                         "src": "1967:41:8"
                       }
                     ],
-                    "id": 1241,
+                    "id": 1244,
                     "name": "ExpressionStatement",
                     "src": "1967:41:8"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        1243
+                        1246
                       ]
                     },
                     "children": [
@@ -3272,7 +3272,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "currentNode",
-                          "scope": 1309,
+                          "scope": 1312,
                           "stateVariable": false,
                           "storageLocation": "memory",
                           "type": "struct StayLinkedList.Node memory",
@@ -3284,15 +3284,15 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "Node",
-                              "referencedDeclaration": 1038,
+                              "referencedDeclaration": 1041,
                               "type": "struct StayLinkedList.Node storage pointer"
                             },
-                            "id": 1242,
+                            "id": 1245,
                             "name": "UserDefinedTypeName",
                             "src": "2086:4:8"
                           }
                         ],
-                        "id": 1243,
+                        "id": 1246,
                         "name": "VariableDeclaration",
                         "src": "2086:23:8"
                       },
@@ -3322,11 +3322,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1029,
+                                  "referencedDeclaration": 1032,
                                   "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                   "value": "lists"
                                 },
-                                "id": 1244,
+                                "id": 1247,
                                 "name": "Identifier",
                                 "src": "2112:5:8"
                               },
@@ -3336,16 +3336,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1205,
+                                  "referencedDeclaration": 1208,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1245,
+                                "id": 1248,
                                 "name": "Identifier",
                                 "src": "2118:7:8"
                               }
                             ],
-                            "id": 1246,
+                            "id": 1249,
                             "name": "IndexAccess",
                             "src": "2112:14:8"
                           },
@@ -3365,11 +3365,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1023,
+                                  "referencedDeclaration": 1026,
                                   "type": "mapping(uint256 => uint256)",
                                   "value": "tails"
                                 },
-                                "id": 1247,
+                                "id": 1250,
                                 "name": "Identifier",
                                 "src": "2127:5:8"
                               },
@@ -3379,26 +3379,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1205,
+                                  "referencedDeclaration": 1208,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1248,
+                                "id": 1251,
                                 "name": "Identifier",
                                 "src": "2133:7:8"
                               }
                             ],
-                            "id": 1249,
+                            "id": 1252,
                             "name": "IndexAccess",
                             "src": "2127:14:8"
                           }
                         ],
-                        "id": 1250,
+                        "id": 1253,
                         "name": "IndexAccess",
                         "src": "2112:30:8"
                       }
                     ],
-                    "id": 1251,
+                    "id": 1254,
                     "name": "VariableDeclarationStatement",
                     "src": "2086:56:8"
                   },
@@ -3427,7 +3427,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "key",
-                              "referencedDeclaration": 1037,
+                              "referencedDeclaration": 1040,
                               "type": "uint256"
                             },
                             "children": [
@@ -3437,16 +3437,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1243,
+                                  "referencedDeclaration": 1246,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "currentNode"
                                 },
-                                "id": 1252,
+                                "id": 1255,
                                 "name": "Identifier",
                                 "src": "2160:11:8"
                               }
                             ],
-                            "id": 1253,
+                            "id": 1256,
                             "name": "MemberAccess",
                             "src": "2160:15:8"
                           },
@@ -3456,16 +3456,16 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1209,
+                              "referencedDeclaration": 1212,
                               "type": "uint256",
                               "value": "to"
                             },
-                            "id": 1254,
+                            "id": 1257,
                             "name": "Identifier",
                             "src": "2178:2:8"
                           }
                         ],
-                        "id": 1255,
+                        "id": 1258,
                         "name": "BinaryOperation",
                         "src": "2160:20:8"
                       },
@@ -3490,11 +3490,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1243,
+                                      "referencedDeclaration": 1246,
                                       "type": "struct StayLinkedList.Node memory",
                                       "value": "currentNode"
                                     },
-                                    "id": 1256,
+                                    "id": 1259,
                                     "name": "Identifier",
                                     "src": "2197:11:8"
                                   },
@@ -3524,11 +3524,11 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1029,
+                                              "referencedDeclaration": 1032,
                                               "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                               "value": "lists"
                                             },
-                                            "id": 1257,
+                                            "id": 1260,
                                             "name": "Identifier",
                                             "src": "2211:5:8"
                                           },
@@ -3538,16 +3538,16 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1205,
+                                              "referencedDeclaration": 1208,
                                               "type": "uint256",
                                               "value": "assetId"
                                             },
-                                            "id": 1258,
+                                            "id": 1261,
                                             "name": "Identifier",
                                             "src": "2217:7:8"
                                           }
                                         ],
-                                        "id": 1259,
+                                        "id": 1262,
                                         "name": "IndexAccess",
                                         "src": "2211:14:8"
                                       },
@@ -3559,7 +3559,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "previous",
-                                          "referencedDeclaration": 1031,
+                                          "referencedDeclaration": 1034,
                                           "type": "uint256"
                                         },
                                         "children": [
@@ -3569,48 +3569,48 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1243,
+                                              "referencedDeclaration": 1246,
                                               "type": "struct StayLinkedList.Node memory",
                                               "value": "currentNode"
                                             },
-                                            "id": 1260,
+                                            "id": 1263,
                                             "name": "Identifier",
                                             "src": "2226:11:8"
                                           }
                                         ],
-                                        "id": 1261,
+                                        "id": 1264,
                                         "name": "MemberAccess",
                                         "src": "2226:20:8"
                                       }
                                     ],
-                                    "id": 1262,
+                                    "id": 1265,
                                     "name": "IndexAccess",
                                     "src": "2211:36:8"
                                   }
                                 ],
-                                "id": 1263,
+                                "id": 1266,
                                 "name": "Assignment",
                                 "src": "2197:50:8"
                               }
                             ],
-                            "id": 1264,
+                            "id": 1267,
                             "name": "ExpressionStatement",
                             "src": "2197:50:8"
                           }
                         ],
-                        "id": 1265,
+                        "id": 1268,
                         "name": "Block",
                         "src": "2182:77:8"
                       }
                     ],
-                    "id": 1266,
+                    "id": 1269,
                     "name": "WhileStatement",
                     "src": "2153:106:8"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        1270
+                        1273
                       ]
                     },
                     "children": [
@@ -3618,7 +3618,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "nodesBetween",
-                          "scope": 1309,
+                          "scope": 1312,
                           "stateVariable": false,
                           "storageLocation": "memory",
                           "type": "uint256[] memory",
@@ -3637,17 +3637,17 @@
                                   "name": "uint",
                                   "type": "uint256"
                                 },
-                                "id": 1268,
+                                "id": 1271,
                                 "name": "ElementaryTypeName",
                                 "src": "2271:4:8"
                               }
                             ],
-                            "id": 1269,
+                            "id": 1272,
                             "name": "ArrayTypeName",
                             "src": "2271:6:8"
                           }
                         ],
-                        "id": 1270,
+                        "id": 1273,
                         "name": "VariableDeclaration",
                         "src": "2271:26:8"
                       },
@@ -3692,17 +3692,17 @@
                                       "name": "uint",
                                       "type": "uint256"
                                     },
-                                    "id": 1271,
+                                    "id": 1274,
                                     "name": "ElementaryTypeName",
                                     "src": "2304:4:8"
                                   }
                                 ],
-                                "id": 1272,
+                                "id": 1275,
                                 "name": "ArrayTypeName",
                                 "src": "2304:6:8"
                               }
                             ],
-                            "id": 1273,
+                            "id": 1276,
                             "name": "NewExpression",
                             "src": "2300:10:8"
                           },
@@ -3719,24 +3719,24 @@
                               "type": "int_const 64",
                               "value": "64"
                             },
-                            "id": 1274,
+                            "id": 1277,
                             "name": "Literal",
                             "src": "2311:2:8"
                           }
                         ],
-                        "id": 1275,
+                        "id": 1278,
                         "name": "FunctionCall",
                         "src": "2300:14:8"
                       }
                     ],
-                    "id": 1276,
+                    "id": 1279,
                     "name": "VariableDeclarationStatement",
                     "src": "2271:43:8"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        1278
+                        1281
                       ]
                     },
                     "children": [
@@ -3744,7 +3744,7 @@
                         "attributes": {
                           "constant": false,
                           "name": "index",
-                          "scope": 1309,
+                          "scope": 1312,
                           "stateVariable": false,
                           "storageLocation": "default",
                           "type": "uint256",
@@ -3757,12 +3757,12 @@
                               "name": "uint",
                               "type": "uint256"
                             },
-                            "id": 1277,
+                            "id": 1280,
                             "name": "ElementaryTypeName",
                             "src": "2325:4:8"
                           }
                         ],
-                        "id": 1278,
+                        "id": 1281,
                         "name": "VariableDeclaration",
                         "src": "2325:10:8"
                       },
@@ -3779,12 +3779,12 @@
                           "type": "int_const 0",
                           "value": "0"
                         },
-                        "id": 1279,
+                        "id": 1282,
                         "name": "Literal",
                         "src": "2338:1:8"
                       }
                     ],
-                    "id": 1280,
+                    "id": 1283,
                     "name": "VariableDeclarationStatement",
                     "src": "2325:14:8"
                   },
@@ -3813,7 +3813,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "key",
-                              "referencedDeclaration": 1037,
+                              "referencedDeclaration": 1040,
                               "type": "uint256"
                             },
                             "children": [
@@ -3823,16 +3823,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1243,
+                                  "referencedDeclaration": 1246,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "currentNode"
                                 },
-                                "id": 1281,
+                                "id": 1284,
                                 "name": "Identifier",
                                 "src": "2357:11:8"
                               }
                             ],
-                            "id": 1282,
+                            "id": 1285,
                             "name": "MemberAccess",
                             "src": "2357:15:8"
                           },
@@ -3842,16 +3842,16 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1207,
+                              "referencedDeclaration": 1210,
                               "type": "uint256",
                               "value": "from"
                             },
-                            "id": 1283,
+                            "id": 1286,
                             "name": "Identifier",
                             "src": "2376:4:8"
                           }
                         ],
-                        "id": 1284,
+                        "id": 1287,
                         "name": "BinaryOperation",
                         "src": "2357:23:8"
                       },
@@ -3886,11 +3886,11 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1270,
+                                          "referencedDeclaration": 1273,
                                           "type": "uint256[] memory",
                                           "value": "nodesBetween"
                                         },
-                                        "id": 1285,
+                                        "id": 1288,
                                         "name": "Identifier",
                                         "src": "2397:12:8"
                                       },
@@ -3900,16 +3900,16 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1278,
+                                          "referencedDeclaration": 1281,
                                           "type": "uint256",
                                           "value": "index"
                                         },
-                                        "id": 1286,
+                                        "id": 1289,
                                         "name": "Identifier",
                                         "src": "2410:5:8"
                                       }
                                     ],
-                                    "id": 1287,
+                                    "id": 1290,
                                     "name": "IndexAccess",
                                     "src": "2397:19:8"
                                   },
@@ -3921,7 +3921,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "key",
-                                      "referencedDeclaration": 1037,
+                                      "referencedDeclaration": 1040,
                                       "type": "uint256"
                                     },
                                     "children": [
@@ -3931,26 +3931,26 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1243,
+                                          "referencedDeclaration": 1246,
                                           "type": "struct StayLinkedList.Node memory",
                                           "value": "currentNode"
                                         },
-                                        "id": 1288,
+                                        "id": 1291,
                                         "name": "Identifier",
                                         "src": "2419:11:8"
                                       }
                                     ],
-                                    "id": 1289,
+                                    "id": 1292,
                                     "name": "MemberAccess",
                                     "src": "2419:15:8"
                                   }
                                 ],
-                                "id": 1290,
+                                "id": 1293,
                                 "name": "Assignment",
                                 "src": "2397:37:8"
                               }
                             ],
-                            "id": 1291,
+                            "id": 1294,
                             "name": "ExpressionStatement",
                             "src": "2397:37:8"
                           },
@@ -3973,11 +3973,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1243,
+                                      "referencedDeclaration": 1246,
                                       "type": "struct StayLinkedList.Node memory",
                                       "value": "currentNode"
                                     },
-                                    "id": 1292,
+                                    "id": 1295,
                                     "name": "Identifier",
                                     "src": "2449:11:8"
                                   },
@@ -4007,11 +4007,11 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1029,
+                                              "referencedDeclaration": 1032,
                                               "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                               "value": "lists"
                                             },
-                                            "id": 1293,
+                                            "id": 1296,
                                             "name": "Identifier",
                                             "src": "2463:5:8"
                                           },
@@ -4021,16 +4021,16 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1205,
+                                              "referencedDeclaration": 1208,
                                               "type": "uint256",
                                               "value": "assetId"
                                             },
-                                            "id": 1294,
+                                            "id": 1297,
                                             "name": "Identifier",
                                             "src": "2469:7:8"
                                           }
                                         ],
-                                        "id": 1295,
+                                        "id": 1298,
                                         "name": "IndexAccess",
                                         "src": "2463:14:8"
                                       },
@@ -4042,7 +4042,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "previous",
-                                          "referencedDeclaration": 1031,
+                                          "referencedDeclaration": 1034,
                                           "type": "uint256"
                                         },
                                         "children": [
@@ -4052,31 +4052,31 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1243,
+                                              "referencedDeclaration": 1246,
                                               "type": "struct StayLinkedList.Node memory",
                                               "value": "currentNode"
                                             },
-                                            "id": 1296,
+                                            "id": 1299,
                                             "name": "Identifier",
                                             "src": "2478:11:8"
                                           }
                                         ],
-                                        "id": 1297,
+                                        "id": 1300,
                                         "name": "MemberAccess",
                                         "src": "2478:20:8"
                                       }
                                     ],
-                                    "id": 1298,
+                                    "id": 1301,
                                     "name": "IndexAccess",
                                     "src": "2463:36:8"
                                   }
                                 ],
-                                "id": 1299,
+                                "id": 1302,
                                 "name": "Assignment",
                                 "src": "2449:50:8"
                               }
                             ],
-                            "id": 1300,
+                            "id": 1303,
                             "name": "ExpressionStatement",
                             "src": "2449:50:8"
                           },
@@ -4100,37 +4100,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1278,
+                                      "referencedDeclaration": 1281,
                                       "type": "uint256",
                                       "value": "index"
                                     },
-                                    "id": 1301,
+                                    "id": 1304,
                                     "name": "Identifier",
                                     "src": "2514:5:8"
                                   }
                                 ],
-                                "id": 1302,
+                                "id": 1305,
                                 "name": "UnaryOperation",
                                 "src": "2514:7:8"
                               }
                             ],
-                            "id": 1303,
+                            "id": 1306,
                             "name": "ExpressionStatement",
                             "src": "2514:7:8"
                           }
                         ],
-                        "id": 1304,
+                        "id": 1307,
                         "name": "Block",
                         "src": "2382:151:8"
                       }
                     ],
-                    "id": 1305,
+                    "id": 1308,
                     "name": "WhileStatement",
                     "src": "2350:183:8"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1214
+                      "functionReturnParameters": 1217
                     },
                     "children": [
                       {
@@ -4139,26 +4139,26 @@
                           "overloadedDeclarations": [
                             null
                           ],
-                          "referencedDeclaration": 1270,
+                          "referencedDeclaration": 1273,
                           "type": "uint256[] memory",
                           "value": "nodesBetween"
                         },
-                        "id": 1306,
+                        "id": 1309,
                         "name": "Identifier",
                         "src": "2552:12:8"
                       }
                     ],
-                    "id": 1307,
+                    "id": 1310,
                     "name": "Return",
                     "src": "2545:19:8"
                   }
                 ],
-                "id": 1308,
+                "id": 1311,
                 "name": "Block",
                 "src": "1850:722:8"
               }
             ],
-            "id": 1309,
+            "id": 1312,
             "name": "FunctionDefinition",
             "src": "1759:813:8"
           },
@@ -4172,7 +4172,7 @@
               ],
               "name": "isTail",
               "payable": false,
-              "scope": 1404,
+              "scope": 1407,
               "stateMutability": "pure",
               "superFunction": null,
               "visibility": "private"
@@ -4184,7 +4184,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "node",
-                      "scope": 1328,
+                      "scope": 1331,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "struct StayLinkedList.Node memory",
@@ -4196,15 +4196,15 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Node",
-                          "referencedDeclaration": 1038,
+                          "referencedDeclaration": 1041,
                           "type": "struct StayLinkedList.Node storage pointer"
                         },
-                        "id": 1310,
+                        "id": 1313,
                         "name": "UserDefinedTypeName",
                         "src": "2646:4:8"
                       }
                     ],
-                    "id": 1311,
+                    "id": 1314,
                     "name": "VariableDeclaration",
                     "src": "2646:9:8"
                   },
@@ -4212,7 +4212,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "key",
-                      "scope": 1328,
+                      "scope": 1331,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -4225,17 +4225,17 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1312,
+                        "id": 1315,
                         "name": "ElementaryTypeName",
                         "src": "2657:4:8"
                       }
                     ],
-                    "id": 1313,
+                    "id": 1316,
                     "name": "VariableDeclaration",
                     "src": "2657:8:8"
                   }
                 ],
-                "id": 1314,
+                "id": 1317,
                 "name": "ParameterList",
                 "src": "2645:21:8"
               },
@@ -4245,7 +4245,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1328,
+                      "scope": 1331,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -4258,17 +4258,17 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 1315,
+                        "id": 1318,
                         "name": "ElementaryTypeName",
                         "src": "2688:4:8"
                       }
                     ],
-                    "id": 1316,
+                    "id": 1319,
                     "name": "VariableDeclaration",
                     "src": "2688:4:8"
                   }
                 ],
-                "id": 1317,
+                "id": 1320,
                 "name": "ParameterList",
                 "src": "2687:6:8"
               },
@@ -4302,7 +4302,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "key",
-                              "referencedDeclaration": 1037,
+                              "referencedDeclaration": 1040,
                               "type": "uint256"
                             },
                             "children": [
@@ -4312,16 +4312,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1311,
+                                  "referencedDeclaration": 1314,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "node"
                                 },
-                                "id": 1318,
+                                "id": 1321,
                                 "name": "Identifier",
                                 "src": "2709:4:8"
                               }
                             ],
-                            "id": 1319,
+                            "id": 1322,
                             "name": "MemberAccess",
                             "src": "2709:8:8"
                           },
@@ -4331,22 +4331,22 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1313,
+                              "referencedDeclaration": 1316,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1320,
+                            "id": 1323,
                             "name": "Identifier",
                             "src": "2720:3:8"
                           }
                         ],
-                        "id": 1321,
+                        "id": 1324,
                         "name": "BinaryOperation",
                         "src": "2709:14:8"
                       },
                       {
                         "attributes": {
-                          "functionReturnParameters": 1317
+                          "functionReturnParameters": 1320
                         },
                         "children": [
                           {
@@ -4362,23 +4362,23 @@
                               "type": "bool",
                               "value": "true"
                             },
-                            "id": 1322,
+                            "id": 1325,
                             "name": "Literal",
                             "src": "2745:4:8"
                           }
                         ],
-                        "id": 1323,
+                        "id": 1326,
                         "name": "Return",
                         "src": "2738:11:8"
                       }
                     ],
-                    "id": 1324,
+                    "id": 1327,
                     "name": "IfStatement",
                     "src": "2705:44:8"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1317
+                      "functionReturnParameters": 1320
                     },
                     "children": [
                       {
@@ -4394,22 +4394,22 @@
                           "type": "bool",
                           "value": "false"
                         },
-                        "id": 1325,
+                        "id": 1328,
                         "name": "Literal",
                         "src": "2777:5:8"
                       }
                     ],
-                    "id": 1326,
+                    "id": 1329,
                     "name": "Return",
                     "src": "2770:12:8"
                   }
                 ],
-                "id": 1327,
+                "id": 1330,
                 "name": "Block",
                 "src": "2694:96:8"
               }
             ],
-            "id": 1328,
+            "id": 1331,
             "name": "FunctionDefinition",
             "src": "2630:160:8"
           },
@@ -4423,7 +4423,7 @@
               ],
               "name": "isInsertable",
               "payable": false,
-              "scope": 1404,
+              "scope": 1407,
               "stateMutability": "pure",
               "superFunction": null,
               "visibility": "private"
@@ -4435,7 +4435,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "previousNode",
-                      "scope": 1365,
+                      "scope": 1368,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "struct StayLinkedList.Node memory",
@@ -4447,15 +4447,15 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Node",
-                          "referencedDeclaration": 1038,
+                          "referencedDeclaration": 1041,
                           "type": "struct StayLinkedList.Node storage pointer"
                         },
-                        "id": 1329,
+                        "id": 1332,
                         "name": "UserDefinedTypeName",
                         "src": "2905:4:8"
                       }
                     ],
-                    "id": 1330,
+                    "id": 1333,
                     "name": "VariableDeclaration",
                     "src": "2905:17:8"
                   },
@@ -4463,7 +4463,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "newKey",
-                      "scope": 1365,
+                      "scope": 1368,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -4476,12 +4476,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1331,
+                        "id": 1334,
                         "name": "ElementaryTypeName",
                         "src": "2924:4:8"
                       }
                     ],
-                    "id": 1332,
+                    "id": 1335,
                     "name": "VariableDeclaration",
                     "src": "2924:11:8"
                   },
@@ -4489,7 +4489,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "newWeight",
-                      "scope": 1365,
+                      "scope": 1368,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -4502,12 +4502,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1333,
+                        "id": 1336,
                         "name": "ElementaryTypeName",
                         "src": "2937:4:8"
                       }
                     ],
-                    "id": 1334,
+                    "id": 1337,
                     "name": "VariableDeclaration",
                     "src": "2937:14:8"
                   },
@@ -4515,7 +4515,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "nextNode",
-                      "scope": 1365,
+                      "scope": 1368,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "struct StayLinkedList.Node memory",
@@ -4527,20 +4527,20 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Node",
-                          "referencedDeclaration": 1038,
+                          "referencedDeclaration": 1041,
                           "type": "struct StayLinkedList.Node storage pointer"
                         },
-                        "id": 1335,
+                        "id": 1338,
                         "name": "UserDefinedTypeName",
                         "src": "2953:4:8"
                       }
                     ],
-                    "id": 1336,
+                    "id": 1339,
                     "name": "VariableDeclaration",
                     "src": "2953:13:8"
                   }
                 ],
-                "id": 1337,
+                "id": 1340,
                 "name": "ParameterList",
                 "src": "2904:63:8"
               },
@@ -4550,7 +4550,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1365,
+                      "scope": 1368,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -4563,17 +4563,17 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 1338,
+                        "id": 1341,
                         "name": "ElementaryTypeName",
                         "src": "2989:4:8"
                       }
                     ],
-                    "id": 1339,
+                    "id": 1342,
                     "name": "VariableDeclaration",
                     "src": "2989:4:8"
                   }
                 ],
-                "id": 1340,
+                "id": 1343,
                 "name": "ParameterList",
                 "src": "2988:6:8"
               },
@@ -4633,7 +4633,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "key",
-                                      "referencedDeclaration": 1037,
+                                      "referencedDeclaration": 1040,
                                       "type": "uint256"
                                     },
                                     "children": [
@@ -4643,16 +4643,16 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1330,
+                                          "referencedDeclaration": 1333,
                                           "type": "struct StayLinkedList.Node memory",
                                           "value": "previousNode"
                                         },
-                                        "id": 1341,
+                                        "id": 1344,
                                         "name": "Identifier",
                                         "src": "3057:12:8"
                                       }
                                     ],
-                                    "id": 1342,
+                                    "id": 1345,
                                     "name": "MemberAccess",
                                     "src": "3057:16:8"
                                   },
@@ -4664,7 +4664,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "weight",
-                                      "referencedDeclaration": 1035,
+                                      "referencedDeclaration": 1038,
                                       "type": "uint256"
                                     },
                                     "children": [
@@ -4674,26 +4674,26 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1330,
+                                          "referencedDeclaration": 1333,
                                           "type": "struct StayLinkedList.Node memory",
                                           "value": "previousNode"
                                         },
-                                        "id": 1343,
+                                        "id": 1346,
                                         "name": "Identifier",
                                         "src": "3076:12:8"
                                       }
                                     ],
-                                    "id": 1344,
+                                    "id": 1347,
                                     "name": "MemberAccess",
                                     "src": "3076:19:8"
                                   }
                                 ],
-                                "id": 1345,
+                                "id": 1348,
                                 "name": "BinaryOperation",
                                 "src": "3057:38:8"
                               }
                             ],
-                            "id": 1346,
+                            "id": 1349,
                             "name": "TupleExpression",
                             "src": "3056:40:8"
                           },
@@ -4703,22 +4703,22 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1332,
+                              "referencedDeclaration": 1335,
                               "type": "uint256",
                               "value": "newKey"
                             },
-                            "id": 1347,
+                            "id": 1350,
                             "name": "Identifier",
                             "src": "3099:6:8"
                           }
                         ],
-                        "id": 1348,
+                        "id": 1351,
                         "name": "BinaryOperation",
                         "src": "3056:49:8"
                       },
                       {
                         "attributes": {
-                          "functionReturnParameters": 1340
+                          "functionReturnParameters": 1343
                         },
                         "children": [
                           {
@@ -4734,17 +4734,17 @@
                               "type": "bool",
                               "value": "false"
                             },
-                            "id": 1349,
+                            "id": 1352,
                             "name": "Literal",
                             "src": "3127:5:8"
                           }
                         ],
-                        "id": 1350,
+                        "id": 1353,
                         "name": "Return",
                         "src": "3120:12:8"
                       }
                     ],
-                    "id": 1351,
+                    "id": 1354,
                     "name": "IfStatement",
                     "src": "3052:80:8"
                   },
@@ -4800,11 +4800,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1332,
+                                      "referencedDeclaration": 1335,
                                       "type": "uint256",
                                       "value": "newKey"
                                     },
-                                    "id": 1352,
+                                    "id": 1355,
                                     "name": "Identifier",
                                     "src": "3200:6:8"
                                   },
@@ -4814,21 +4814,21 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1334,
+                                      "referencedDeclaration": 1337,
                                       "type": "uint256",
                                       "value": "newWeight"
                                     },
-                                    "id": 1353,
+                                    "id": 1356,
                                     "name": "Identifier",
                                     "src": "3209:9:8"
                                   }
                                 ],
-                                "id": 1354,
+                                "id": 1357,
                                 "name": "BinaryOperation",
                                 "src": "3200:18:8"
                               }
                             ],
-                            "id": 1355,
+                            "id": 1358,
                             "name": "TupleExpression",
                             "src": "3199:20:8"
                           },
@@ -4840,7 +4840,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "key",
-                              "referencedDeclaration": 1037,
+                              "referencedDeclaration": 1040,
                               "type": "uint256"
                             },
                             "children": [
@@ -4850,27 +4850,27 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1336,
+                                  "referencedDeclaration": 1339,
                                   "type": "struct StayLinkedList.Node memory",
                                   "value": "nextNode"
                                 },
-                                "id": 1356,
+                                "id": 1359,
                                 "name": "Identifier",
                                 "src": "3222:8:8"
                               }
                             ],
-                            "id": 1357,
+                            "id": 1360,
                             "name": "MemberAccess",
                             "src": "3222:12:8"
                           }
                         ],
-                        "id": 1358,
+                        "id": 1361,
                         "name": "BinaryOperation",
                         "src": "3199:35:8"
                       },
                       {
                         "attributes": {
-                          "functionReturnParameters": 1340
+                          "functionReturnParameters": 1343
                         },
                         "children": [
                           {
@@ -4886,23 +4886,23 @@
                               "type": "bool",
                               "value": "false"
                             },
-                            "id": 1359,
+                            "id": 1362,
                             "name": "Literal",
                             "src": "3256:5:8"
                           }
                         ],
-                        "id": 1360,
+                        "id": 1363,
                         "name": "Return",
                         "src": "3249:12:8"
                       }
                     ],
-                    "id": 1361,
+                    "id": 1364,
                     "name": "IfStatement",
                     "src": "3195:66:8"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1340
+                      "functionReturnParameters": 1343
                     },
                     "children": [
                       {
@@ -4918,22 +4918,22 @@
                           "type": "bool",
                           "value": "true"
                         },
-                        "id": 1362,
+                        "id": 1365,
                         "name": "Literal",
                         "src": "3281:4:8"
                       }
                     ],
-                    "id": 1363,
+                    "id": 1366,
                     "name": "Return",
                     "src": "3274:11:8"
                   }
                 ],
-                "id": 1364,
+                "id": 1367,
                 "name": "Block",
                 "src": "2995:298:8"
               }
             ],
-            "id": 1365,
+            "id": 1368,
             "name": "FunctionDefinition",
             "src": "2883:410:8"
           },
@@ -4947,7 +4947,7 @@
               ],
               "name": "appendTail",
               "payable": false,
-              "scope": 1404,
+              "scope": 1407,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "private"
@@ -4959,7 +4959,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "assetId",
-                      "scope": 1403,
+                      "scope": 1406,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -4972,12 +4972,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1366,
+                        "id": 1369,
                         "name": "ElementaryTypeName",
                         "src": "3321:4:8"
                       }
                     ],
-                    "id": 1367,
+                    "id": 1370,
                     "name": "VariableDeclaration",
                     "src": "3321:12:8"
                   },
@@ -4985,7 +4985,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "previousNode",
-                      "scope": 1403,
+                      "scope": 1406,
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "type": "struct StayLinkedList.Node storage pointer",
@@ -4997,15 +4997,15 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Node",
-                          "referencedDeclaration": 1038,
+                          "referencedDeclaration": 1041,
                           "type": "struct StayLinkedList.Node storage pointer"
                         },
-                        "id": 1368,
+                        "id": 1371,
                         "name": "UserDefinedTypeName",
                         "src": "3335:4:8"
                       }
                     ],
-                    "id": 1369,
+                    "id": 1372,
                     "name": "VariableDeclaration",
                     "src": "3335:25:8"
                   },
@@ -5013,7 +5013,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "key",
-                      "scope": 1403,
+                      "scope": 1406,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -5026,12 +5026,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1370,
+                        "id": 1373,
                         "name": "ElementaryTypeName",
                         "src": "3362:4:8"
                       }
                     ],
-                    "id": 1371,
+                    "id": 1374,
                     "name": "VariableDeclaration",
                     "src": "3362:8:8"
                   },
@@ -5039,7 +5039,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "weight",
-                      "scope": 1403,
+                      "scope": 1406,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -5052,17 +5052,17 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 1372,
+                        "id": 1375,
                         "name": "ElementaryTypeName",
                         "src": "3372:4:8"
                       }
                     ],
-                    "id": 1373,
+                    "id": 1376,
                     "name": "VariableDeclaration",
                     "src": "3372:11:8"
                   }
                 ],
-                "id": 1374,
+                "id": 1377,
                 "name": "ParameterList",
                 "src": "3320:64:8"
               },
@@ -5073,7 +5073,7 @@
                   ]
                 },
                 "children": [],
-                "id": 1375,
+                "id": 1378,
                 "name": "ParameterList",
                 "src": "3393:0:8"
               },
@@ -5100,7 +5100,7 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "next",
-                              "referencedDeclaration": 1033,
+                              "referencedDeclaration": 1036,
                               "type": "uint256"
                             },
                             "children": [
@@ -5110,16 +5110,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1369,
+                                  "referencedDeclaration": 1372,
                                   "type": "struct StayLinkedList.Node storage pointer",
                                   "value": "previousNode"
                                 },
-                                "id": 1376,
+                                "id": 1379,
                                 "name": "Identifier",
                                 "src": "3404:12:8"
                               }
                             ],
-                            "id": 1378,
+                            "id": 1381,
                             "name": "MemberAccess",
                             "src": "3404:17:8"
                           },
@@ -5129,21 +5129,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1371,
+                              "referencedDeclaration": 1374,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1379,
+                            "id": 1382,
                             "name": "Identifier",
                             "src": "3424:3:8"
                           }
                         ],
-                        "id": 1380,
+                        "id": 1383,
                         "name": "Assignment",
                         "src": "3404:23:8"
                       }
                     ],
-                    "id": 1381,
+                    "id": 1384,
                     "name": "ExpressionStatement",
                     "src": "3404:23:8"
                   },
@@ -5186,11 +5186,11 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1029,
+                                      "referencedDeclaration": 1032,
                                       "type": "mapping(uint256 => mapping(uint256 => struct StayLinkedList.Node storage ref))",
                                       "value": "lists"
                                     },
-                                    "id": 1382,
+                                    "id": 1385,
                                     "name": "Identifier",
                                     "src": "3438:5:8"
                                   },
@@ -5200,16 +5200,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1367,
+                                      "referencedDeclaration": 1370,
                                       "type": "uint256",
                                       "value": "assetId"
                                     },
-                                    "id": 1383,
+                                    "id": 1386,
                                     "name": "Identifier",
                                     "src": "3444:7:8"
                                   }
                                 ],
-                                "id": 1385,
+                                "id": 1388,
                                 "name": "IndexAccess",
                                 "src": "3438:14:8"
                               },
@@ -5219,16 +5219,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1371,
+                                  "referencedDeclaration": 1374,
                                   "type": "uint256",
                                   "value": "key"
                                 },
-                                "id": 1384,
+                                "id": 1387,
                                 "name": "Identifier",
                                 "src": "3453:3:8"
                               }
                             ],
-                            "id": 1386,
+                            "id": 1389,
                             "name": "IndexAccess",
                             "src": "3438:19:8"
                           },
@@ -5270,11 +5270,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1038,
+                                  "referencedDeclaration": 1041,
                                   "type": "type(struct StayLinkedList.Node storage pointer)",
                                   "value": "Node"
                                 },
-                                "id": 1387,
+                                "id": 1390,
                                 "name": "Identifier",
                                 "src": "3460:4:8"
                               },
@@ -5286,7 +5286,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "key",
-                                  "referencedDeclaration": 1037,
+                                  "referencedDeclaration": 1040,
                                   "type": "uint256"
                                 },
                                 "children": [
@@ -5296,16 +5296,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1369,
+                                      "referencedDeclaration": 1372,
                                       "type": "struct StayLinkedList.Node storage pointer",
                                       "value": "previousNode"
                                     },
-                                    "id": 1388,
+                                    "id": 1391,
                                     "name": "Identifier",
                                     "src": "3465:12:8"
                                   }
                                 ],
-                                "id": 1389,
+                                "id": 1392,
                                 "name": "MemberAccess",
                                 "src": "3465:16:8"
                               },
@@ -5322,7 +5322,7 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 1390,
+                                "id": 1393,
                                 "name": "Literal",
                                 "src": "3483:1:8"
                               },
@@ -5332,11 +5332,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1373,
+                                  "referencedDeclaration": 1376,
                                   "type": "uint256",
                                   "value": "weight"
                                 },
-                                "id": 1391,
+                                "id": 1394,
                                 "name": "Identifier",
                                 "src": "3486:6:8"
                               },
@@ -5346,26 +5346,26 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1371,
+                                  "referencedDeclaration": 1374,
                                   "type": "uint256",
                                   "value": "key"
                                 },
-                                "id": 1392,
+                                "id": 1395,
                                 "name": "Identifier",
                                 "src": "3494:3:8"
                               }
                             ],
-                            "id": 1393,
+                            "id": 1396,
                             "name": "FunctionCall",
                             "src": "3460:38:8"
                           }
                         ],
-                        "id": 1394,
+                        "id": 1397,
                         "name": "Assignment",
                         "src": "3438:60:8"
                       }
                     ],
-                    "id": 1395,
+                    "id": 1398,
                     "name": "ExpressionStatement",
                     "src": "3438:60:8"
                   },
@@ -5398,11 +5398,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1023,
+                                  "referencedDeclaration": 1026,
                                   "type": "mapping(uint256 => uint256)",
                                   "value": "tails"
                                 },
-                                "id": 1396,
+                                "id": 1399,
                                 "name": "Identifier",
                                 "src": "3509:5:8"
                               },
@@ -5412,16 +5412,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1367,
+                                  "referencedDeclaration": 1370,
                                   "type": "uint256",
                                   "value": "assetId"
                                 },
-                                "id": 1397,
+                                "id": 1400,
                                 "name": "Identifier",
                                 "src": "3515:7:8"
                               }
                             ],
-                            "id": 1398,
+                            "id": 1401,
                             "name": "IndexAccess",
                             "src": "3509:14:8"
                           },
@@ -5431,41 +5431,41 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1371,
+                              "referencedDeclaration": 1374,
                               "type": "uint256",
                               "value": "key"
                             },
-                            "id": 1399,
+                            "id": 1402,
                             "name": "Identifier",
                             "src": "3526:3:8"
                           }
                         ],
-                        "id": 1400,
+                        "id": 1403,
                         "name": "Assignment",
                         "src": "3509:20:8"
                       }
                     ],
-                    "id": 1401,
+                    "id": 1404,
                     "name": "ExpressionStatement",
                     "src": "3509:20:8"
                   }
                 ],
-                "id": 1402,
+                "id": 1405,
                 "name": "Block",
                 "src": "3393:144:8"
               }
             ],
-            "id": 1403,
+            "id": 1406,
             "name": "FunctionDefinition",
             "src": "3301:236:8"
           }
         ],
-        "id": 1404,
+        "id": 1407,
         "name": "ContractDefinition",
         "src": "28:3512:8"
       }
     ],
-    "id": 1405,
+    "id": 1408,
     "name": "SourceUnit",
     "src": "0:3540:8"
   },
@@ -5475,5 +5475,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-11T03:21:01.540Z"
+  "updatedAt": "2018-02-21T22:59:19.845Z"
 }
