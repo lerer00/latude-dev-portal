@@ -1,4 +1,4 @@
-# latude-dev-portal
+# latude-owner-portal
 
 This repo is created to help us bootstrap the idea of removing third-parties within the accommodation industry. This application is the one that hotel manager will use to manage companies, properties and assets.
 
@@ -21,9 +21,16 @@ Here's how to setup you dev environment using ganache or rinkeby. Other environm
 
 ### Get and Build sources
 
+For an unknown reason I did recommand to run this command. This will help when installing the web3 package. Otherwise there's an error.
 ```
-git clone https://github.com/lerer00/latude-dev-portal.git
-npm install -msvs_version=2015 //problem with the web3 library
+npm install --global --production windows-build-tools
+```
+
+Clone the current repo.
+
+```
+git clone https://github.com/lerer00/latude-owner-portal.git
+npm install
 ```
 
 ### Developing localy with **ganache**
