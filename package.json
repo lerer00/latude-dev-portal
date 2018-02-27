@@ -2,6 +2,9 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "8.9.4"
+  },
   "dependencies": {
     "axios": "^0.17.1",
     "bl": "^1.2.1",
