@@ -11,18 +11,18 @@ const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
 const CompanyContract = require('../build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
-const ReactMapboxGl = require('react-mapbox-gl').default;
+// const ReactMapboxGl = require('react-mapbox-gl').default;
 const egoPenChecklist = require('../img/ego/pen-checklist.svg');
 const egoAxe = require('../img/ego/axe.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoCursorHand = require('../img/ego/cursor-hand.svg');
-const egoLocation = require('../img/ego/location.svg');
+// const egoLocation = require('../img/ego/location.svg');
 
-const Map = ReactMapboxGl({
-    accessToken: 'pk.eyJ1IjoibGVyZXIwMCIsImEiOiJjamNvNTI3MzkxdmFnMnJuM2licjNsYmM3In0.sR6op3azARBpWg_-JkDf-Q',
-    attributionControl: false,
-    logoPosition: 'top-left'
-});
+// const Map = ReactMapboxGl({
+//     accessToken: 'pk.eyJ1IjoibGVyZXIwMCIsImEiOiJjamNvNTI3MzkxdmFnMnJuM2licjNsYmM3In0.sR6op3azARBpWg_-JkDf-Q',
+//     attributionControl: false,
+//     logoPosition: 'top-left'
+// });
 
 const addPropertyModalStyles = {
     content: {
@@ -54,7 +54,7 @@ export namespace CompanyDetail {
         properties: Array<string>;
         addPropertyModalIsOpen: boolean;
         addProperty: any;
-        mapOptions: any;
+        // mapOptions: any;
     }
 }
 
@@ -68,11 +68,11 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
             addPropertyModalIsOpen: false,
             addProperty: {
                 name: 'latude québec (todo)'
-            },
-            mapOptions: {
-                zoom: [8],
-                center: [-71.4817734, 46.856283]
             }
+            // mapOptions: {
+            //     zoom: [8],
+            //     center: [-71.4817734, 46.856283]
+            // }
         };
 
         this.addProperty = this.addProperty.bind(this);
@@ -224,7 +224,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                                     </tbody>
                                 </table>
                             </form>
-                            <div className='map-selector'>
+                            {/* <div className='map-selector'>
                                 <img className='map-cursor' src={egoLocation} />
                                 <Map
                                     style='mapbox://styles/mapbox/streets-v9'
@@ -234,12 +234,12 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                                     }}
                                     center={this.state.mapOptions.center}
                                     zoom={this.state.mapOptions.zoom}
-                                // onMove={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
-                                // onClick={(map: any, event: React.SyntheticEvent<any>) => { this.onMapClick(map, event); }}
-                                // onStyleLoad={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
+                                onMove={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
+                                onClick={(map: any, event: React.SyntheticEvent<any>) => { this.onMapClick(map, event); }}
+                                onStyleLoad={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
                                 />
                                 <p>Drag the map to your property location. Please be as precise as possible.</p>
-                            </div>
+                            </div> */}
                         </div>
                         <div className='modal-actions'>
                             <button className='action' onClick={(e) => this.addProperty(e)}>Add</button>
