@@ -22,7 +22,7 @@ class Authentication {
 
     public authenticate() {
         return this.getAuthenticationPayload().then((result: IAuthenticatePayload) => {
-            return axios.post('http://localhost:3001/authenticate', result);
+            return axios.post(process.env.REACT_APP_HUB_URL + '/authenticate', result);
         }).then((result) => {
             this.createAuthenticationCookie(result.data);
         }).catch((error) => {

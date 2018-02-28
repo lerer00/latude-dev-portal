@@ -8,7 +8,7 @@ class HubRequest {
     }
 
     public postProperty(property: any) {
-        return axios.post('http://localhost:3001/properties/' + property.id, property, { headers: { 'Authorization': this.authentication.getAuthenticationToken() } })
+        return axios.post(process.env.REACT_APP_HUB_URL + '/properties/' + property.id, property, { headers: { 'Authorization': this.authentication.getAuthenticationToken() } })
             .then((result) => {
                 console.log(result);
             }).catch((error) => {
