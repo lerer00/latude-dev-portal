@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import Asset from './asset';
 import { Breadcrumbs } from '../breadcrumbs';
 import Spinner from '../spinner';
-import Authentication from '../services/sessions/authentication';
+import Authentication from '../services/authentication/authentication';
 import HubRequest from '../services/rest/hubRequest';
 import './index.css';
 
@@ -140,8 +140,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     saveProperty(e: any) {
         e.preventDefault();
 
-        var authentication = new Authentication(this.context.web3);
-        var hubRequest = new HubRequest(authentication);
+        var hubRequest = new HubRequest(Authentication.getInstance());
         hubRequest.postProperty({ id: this.props.match.params.pid }).then(
             (result) => {
                 console.log(result);

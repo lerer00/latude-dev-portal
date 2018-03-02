@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './home';
-import Authentication from './services/sessions/authentication';
+import Authentication from './services/authentication/authentication';
 import './App.css';
 
 class App extends React.Component {
@@ -14,19 +14,8 @@ class App extends React.Component {
     web3: PropTypes.object
   };
 
-  componentDidMount() {
-    var authentication = new Authentication(this.context.web3);
-    if (authentication.isAuthenticated()) {
-      return;
-    }
-
-    authentication.authenticate()
-      .then((result) => {
-        console.log('Authentication success: ' + result);
-      })
-      .catch((error) => {
-        console.log('Authentication error: ' + error);
-      });
+  componentWillMount() {
+    Authentication.getInstance().setWeb3(this.context.web3);
   }
 
   render() {

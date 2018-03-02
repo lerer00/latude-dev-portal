@@ -14,13 +14,25 @@ interface IWeb3Signature {
 }
 
 class Authentication {
-    public web3: any;
+    private static _instance: Authentication;
+    private web3: any;
+    private constructor() {
+        // singleton constructor cannot be called
+    }
 
-    constructor(web3: any) {
+    public static getInstance() {
+        if (!this._instance) {
+            this._instance = new Authentication();
+        }
+
+        return this._instance;
+    }
+
+    public setWeb3(web3: any) {
         this.web3 = web3;
     }
 
-    public authenticate() {
+    public login() {
         return this.getAuthenticationPayload().then((result: IAuthenticatePayload) => {
             return axios.post(process.env.REACT_APP_HUB_URL + '/authenticate', result);
         }).then((result) => {
@@ -30,13 +42,25 @@ class Authentication {
         });
     }
 
-    public isAuthenticated(): boolean {
+    public logout() {
+        this.deleteAuthenticationCookie();
+    }
+
+    public isLogin(): boolean {
         var authenticationCookie = Cookies.get('authentication');
         if (authenticationCookie === undefined) {
             return false;
         }
 
         return true;
+    }
+
+    public getSelectedAccount(): string {
+        if (!this.web3) {
+            return 'searching...';
+        }
+
+        return this.web3.selectedAccount;
     }
 
     public getAuthenticationToken(): string | undefined {
@@ -47,9 +71,12 @@ class Authentication {
         Cookies.set('authentication', data.token, { expires: 7 });
     }
 
+    private deleteAuthenticationCookie() {
+        Cookies.remove('authentication');
+    }
+
     private getAuthenticationPayload(): Promise<any> {
         return this.getUserSignature().then((result: any) => {
-            console.log(result);
             return {
                 signature: result.result,
                 owner: this.web3.selectedAccount

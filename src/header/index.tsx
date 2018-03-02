@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import LoginControl from '../components/loginControl';
 import './index.css';
 
 export namespace Header {
@@ -16,17 +16,17 @@ class Header extends React.Component<Header.Props, Header.State> {
     constructor(props?: Header.Props, context?: any) {
         super(props, context);
     }
-
-    static contextTypes = {
-        web3: PropTypes.object
-    };
-
     render() {
         return (
             <header className='header'>
-                <div className='content'>
-                    <h1 className='title'>latude</h1>
-                    <p className='subtitle'>owner</p>
+                <div className='container'>
+                    <div className='left content'>
+                        <h1 className='title'>latude</h1>
+                        <p className='subtitle'>owner</p>
+                    </div>
+                    <div className='right content'>
+                        <LoginControl />
+                    </div>
                 </div>
             </header>
         );

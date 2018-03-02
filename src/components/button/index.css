@@ -1,0 +1,124 @@
+.button {
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+    padding: 0 16px;
+    outline: 0;
+    height: 32px;
+    line-height: 32px;
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.1s;
+    box-shadow: 0 2px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)
+}
+
+.button .button-icon {
+    line-height: 32px;
+    vertical-align: middle;
+    margin-top: -3px;
+    padding: 0 8px 0 0;
+    width: 18px;
+}
+
+.button .button-text {
+    line-height: 32px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .025em;
+}
+
+/* Default styling */
+.button.default {
+    border: solid 1px #399aff;
+    background-color: #ffffff;
+}
+
+.button.default .button-text {
+    color: #399aff;
+}
+
+.button.default:hover {
+    border: solid 1px transparent;
+    background-color: #399aff;
+}
+
+.button.default:hover .button-text {
+    color: #ffffff;
+}
+
+/* Success styling */
+.button.success {
+    border: solid 1px #43a047;
+    background-color: #ffffff;
+}
+
+.button.success .button-text {
+    color: #43a047;
+}
+
+.button.success:hover {
+    border: solid 1px transparent;
+    background-color: #43a047;
+}
+
+.button.success:hover .button-text {
+    color: #ffffff;
+}
+
+/* Error styling */
+.button.error {
+    border: solid 1px #f4511e;
+    background-color: #ffffff;
+}
+
+.button.error .button-text {
+    color: #f4511e;
+}
+
+.button.error:hover {
+    border: solid 1px transparent;
+    background-color: #f4511e;
+}
+
+.button.error:hover .button-text {
+    color: #ffffff;
+}
+
+/* Warning styling */
+.button.warning {
+    border: solid 1px #fdd835;
+    background-color: #ffffff;
+}
+
+.button.warning .button-text {
+    color: #fdd835;
+}
+
+.button.warning:hover {
+    border: solid 1px transparent;
+    background-color: #fdd835;
+}
+
+.button.warning:hover .button-text {
+    color: #ffffff;
+}
+
+/* Info styling */
+.button.info {
+    border: solid 1px #399aff;
+    background-color: #ffffff;
+}
+
+.button.info .button-text {
+    color: #399aff;
+}
+
+.button.info:hover {
+    border: solid 1px transparent;
+    background-color: #399aff;
+}
+
+.button.info:hover .button-text {
+    color: #ffffff;
+}

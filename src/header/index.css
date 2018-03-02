@@ -4,26 +4,39 @@
     color: #FFFFFF;
 }
 
-.header .content {
+.header .container {
     position: relative;
     height: 70px;
     width: 1180px;
     margin: auto;
 }
 
-.header .content .title {
+.header .container .left{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.header .container .right{
+    width: 50%;
+    height: 100%;
+    float: right;
+    text-align: right;
+}
+
+.header .container .content .title {
     display: inline-block;
     line-height: 70px;
     font-size: 1.8em;
     margin-right: 4px;
 }
 
-.header .content .subtitle {
+.header .container .content .subtitle {
     display: inline-block;
     font-size: 1.2em;
 }
 
-.header .content .subtitle::before {
+.header .container .content .subtitle::before {
     content: "";
     display: inline-block;
     width: 14px;

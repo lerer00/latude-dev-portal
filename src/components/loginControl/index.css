@@ -1,0 +1,17 @@
+.login-control {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.login-control .button {
+    display: inline-block;
+}
+
+.login-control .greeter {
+    justify-content: center;
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 0.8em;
+}
