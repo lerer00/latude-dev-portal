@@ -7,7 +7,7 @@ const web3 = window['web3'];
 const contract = require('truffle-contract');
 const CompanyContract = require('../../build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
-const egoLighthouse = require('../../img/ego/lighthouse.svg');
+const egoCogDouble = require('../../img/ego/cog-double-2.svg');
 
 export namespace Company {
     export interface Props {
@@ -66,7 +66,7 @@ class Company extends React.Component<Company.Props, Company.State> {
                     <span className='balance'>balance: {this.state.balance} ether</span>
                     <p className='name'>{this.state.name}</p>
                     <NavLink className='detail' to={'/companies/' + this.props.id}>
-                        <img className='plus' src={egoLighthouse} />
+                        <img className='plus' src={egoCogDouble} />
                     </NavLink>
                 </div>
             </section>

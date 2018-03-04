@@ -1,54 +1,19 @@
-.property-detail{
+.property-detail {
     background-color: transparent;
 }
 
-.property-detail .content{
+.property-detail .container {
     position: relative;
     width: 1180px;
     margin: auto;
     padding: 16px;
 }
 
-.property-detail .content .add-asset{
-    position: relative;
-    display: inline-block;
-    outline: 0;
-    height: 40px;
-    line-height: 40px;
-    font-family: 'Ubuntu', sans-serif;
-    border: solid 1px #399AFF;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.2s;
+.property-detail .container .button {
     margin-right: 8px;
 }
 
-.property-detail .content .add-asset:hover{
-    border: solid 1px transparent;
-    background-color: #399AFF;
-}
-
-.property-detail .content .add-asset:hover .add-asset-text{
-    color: #FFFFFF;
-}
-
-.property-detail .content .add-asset .add-asset-icon{
-    line-height: 40px;
-    vertical-align: middle;
-    margin-left: 16px;
-    margin-top: -8px;
-    width: 20px;
-}
-
-.property-detail .content .add-asset .add-asset-text{
-    line-height: 40px;
-    color: #399AFF;
-    font-size: 1.2em;
-    margin: 0 16px 0 8px;
-}
-
-.property-detail .content .description{
+.property-detail .container .content .description {
     position: relative;
     padding: 24px 8px 16px 16px;
     border-left: solid 1px #399AFF;
@@ -58,7 +23,7 @@
     color: #595959;
 }
 
-.property-detail .content .description .address{
+.property-detail .container .content .description .address {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -66,7 +31,7 @@
     color: #A0A0A0;
 }
 
-.property-detail .content .description .balance{
+.property-detail .container .content .description .balance {
     position: absolute;
     top: 20px;
     right: 8px;
@@ -74,29 +39,12 @@
     color: #A0A0A0;
 }
 
-.property-detail .content .description .name{
-    max-width: 75%;
+.property-detail .container .content .description .name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
-    margin-top: 4px;
+    margin: 8px 0 16px 8px;
     line-height: 1.2em;
-    font-size: 1.8em;
-}
-
-.property-detail .content .description .assets{
-    margin-top: 36px;
-}
-
-.property-detail .content .description .assets .empty .icon{
-    display: block;
-    margin: auto;
-    width: 150px;
-}
-
-.property-detail .content .description .assets .empty .text{
-    text-align: center;
-    margin: 24px auto;
-    color: #C0C0C0;
+    font-size: 2em;
 }

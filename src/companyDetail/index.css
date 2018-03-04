@@ -2,82 +2,19 @@
     background-color: transparent;
 }
 
-.company-detail .content{
+.company-detail .container{
     position: relative;
     width: 1180px;
     margin: auto;
     padding: 16px;
 }
 
-.company-detail .content .add-property{
-    position: relative;
-    display: block;
-    outline: 0;
-    height: 40px;
-    line-height: 40px;
-    font-family: 'Ubuntu', sans-serif;
-    border: solid 1px #399AFF;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.company-detail .content .add-property:hover{
-    border: solid 1px transparent;
-    background-color: #399AFF;
-}
-
-.company-detail .content .add-property:hover .add-property-text{
-    color: #FFFFFF;
-}
-
-.company-detail .content .add-property .add-property-icon{
-    line-height: 40px;
-    vertical-align: middle;
-    margin-left: 16px;
-    margin-top: -8px;
-    width: 20px;
-}
-
-.company-detail .content .add-property .add-property-text{
-    line-height: 40px;
-    color: #399AFF;
-    font-size: 1.2em;
-    margin: 0 16px 0 8px;
-}
-
-.company-detail .content .empty .icon{
-    display: block;
-    margin: auto;
-    width: 200px;
-}
-
-.company-detail .content .empty .text{
-    text-align: center;
-    margin: 24px auto;
-    color: #C0C0C0;
-}
-
-.company-detail .content p{
-    text-align: justify;
-    width: 50%;
-    margin: auto;
-    line-height: 1.6em;
-}
-
-.company-detail .content .icon{
-    display: block;
-    margin: auto auto 36px auto;
-    width: 100px;
-}
-
-.modal-content .company-detail .content .map-selector {
+.modal-content .company-detail .container .map-selector {
     position: relative;
     background-color: red;
 }
 
-.modal-content .company-detail .content .map-selector .map-cursor {
+.modal-content .company-detail .container .map-selector .map-cursor {
     position: absolute;
     top: 50%;
     left: 50%;

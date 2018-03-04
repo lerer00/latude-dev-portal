@@ -53,21 +53,18 @@ class LoginControl extends React.Component<LoginControl.Props, LoginControl.Stat
     render() {
         let greeting = null;
         if (this.state.isLogin) {
-            greeting = (
-                <div>
-                    <p className='greeter'> current account:
-                        <span>
-                            {Authentication.getInstance().getSelectedAccount()}
-                        </span>
-                    </p>
-                    <Button text='Logout' state={IButtonState.error} action={this.handleLogoutClick} />
-                </div>);
+            greeting = <Button text='Logout' state={IButtonState.error} action={this.handleLogoutClick} />;
         } else {
             greeting = <Button text='Login' state={IButtonState.default} action={this.handleLoginClick} />;
         }
 
         return (
             <div className='login-control'>
+                {this.state.isLogin && <p className='greeter'> current account<br/>
+                    <span>
+                        {Authentication.getInstance().getSelectedAccount()}
+                    </span>
+                </p>}
                 {greeting}
             </div>
         );

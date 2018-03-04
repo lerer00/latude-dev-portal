@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Asset from './asset';
+import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
+import { Button, IButtonState } from '../components/button';
 import Spinner from '../spinner';
 import Authentication from '../services/authentication/authentication';
 import HubRequest from '../services/rest/hubRequest';
@@ -13,10 +15,8 @@ const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
 const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
-const egoAxe = require('../img/ego/axe.svg');
+const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
-const egoPenChecklist = require('../img/ego/pen-checklist.svg');
-const egoCursorHand = require('../img/ego/cursor-hand.svg');
 
 const addAssetModalStyles = {
     content: {
@@ -64,8 +64,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             assets: [],
             assetsLoading: false,
             addAsset: {
-                price: 0,
-                currency: 'CAD'
+                price: undefined,
+                currency: ''
             },
             addAssetModalIsOpen: false,
             managePropertyModalIsOpen: false
@@ -145,9 +145,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             (result) => {
                 console.log(result);
             }).catch(
-            (error) => {
-                console.log(error);
-            });
+                (error) => {
+                    console.log(error);
+                });
 
         this.setState({
             managePropertyModalIsOpen: false
@@ -216,22 +216,17 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     }
 
     render() {
-        var assetsContent;
+        var content;
         if (this.state.assetsLoading) {
-            assetsContent = (
+            content = (
                 <Spinner text='loading assets...' />
             );
         } else {
             if (this.state.assets.length > 0) {
-                assetsContent = this.state.assets.map((asset) => <Asset key={asset.id} url={this.props.match.url} asset={asset} />
+                content = this.state.assets.map((asset) => <Asset key={asset.id} url={this.props.match.url} asset={asset} />
                 );
             } else {
-                assetsContent = (
-                    <div className='empty'>
-                        <img className='icon' src={egoCursorHand} />
-                        <p className='text'>No assets found...</p>
-                    </div>
-                );
+                content = <EmptySearch text='You do not have any assets...' />;
             }
         }
 
@@ -260,16 +255,23 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
         return (
             <section className='property-detail'>
-                <div className='content'>
+                <div className='container'>
                     <Breadcrumbs routes={routes} />
-                    <button className='add-asset' onClick={this.managePropertyOnRequestOpen}>
-                        <img className='add-asset-icon' src={egoPenChecklist} />
-                        <span className='add-asset-text'>Manage property</span>
-                    </button>
-                    <button className='add-asset' onClick={this.addAssetOnRequestOpen}>
-                        <img className='add-asset-icon' src={egoPenChecklist} />
-                        <span className='add-asset-text'>Add asset</span>
-                    </button>
+                    <div className='actions'>
+                        <Button text='Add asset' state={IButtonState.default} action={this.addAssetOnRequestOpen} />
+                        <Button text='Manage property' state={IButtonState.default} action={this.managePropertyOnRequestOpen} />
+                    </div>
+                    <div className='content'>
+                        <div className='description'>
+                            <span className='address'>address: {this.props.match.params.pid}</span>
+                            <span className='balance'>balance: {this.state.balance} ether</span>
+                            <p className='name'>{this.state.name}</p>
+                            <div className='assets'>
+                                {content}
+                            </div>
+                        </div>
+                    </div>
+
                     <Modal
                         isOpen={this.state.addAssetModalIsOpen}
                         onRequestClose={this.addAssetOnRequestClose}
@@ -278,7 +280,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                     >
                         <div className='modal-header'>
                             <h1 className='title'>Add asset</h1>
-                            <img className='close' src={egoAxe} onClick={this.addAssetOnRequestClose} />
+                            <img className='close' src={egoCloseHexagon} onClick={this.addAssetOnRequestClose} />
                         </div>
                         <div className='modal-content'>
                             <img className='visual-tip' src={egoCheckHexagon} />
@@ -295,6 +297,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                     className='value'
                                                     type='text'
                                                     value={this.state.addAsset.price}
+                                                    placeholder='asset value for 1 night'
                                                     onChange={(e) => this.addAssetHandleChanges('price', e)}
                                                 />
                                             </td>
@@ -306,6 +309,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                     className='value'
                                                     type='text'
                                                     value={this.state.addAsset.currency}
+                                                    placeholder='desired currency'
                                                     onChange={(e) => this.addAssetHandleChanges('currency', e)}
                                                 />
                                             </td>
@@ -327,7 +331,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                     >
                         <div className='modal-header'>
                             <h1 className='title'>Manage property</h1>
-                            <img className='close' src={egoAxe} onClick={this.managePropertyOnRequestClose} />
+                            <img className='close' src={egoCloseHexagon} onClick={this.managePropertyOnRequestClose} />
                         </div>
                         <div className='modal-content'>
                             <img className='visual-tip' src={egoCheckHexagon} />
@@ -340,14 +344,6 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                             <button className='action close' onClick={this.managePropertyOnRequestClose}>Close</button>
                         </div>
                     </Modal>
-                    <div className='description'>
-                        <span className='address'>address: {this.props.match.params.pid}</span>
-                        <span className='balance'>balance: {this.state.balance} ether</span>
-                        <p className='name'>{this.state.name}</p>
-                        <div className='assets'>
-                            {assetsContent}
-                        </div>
-                    </div>
                 </div>
             </section>
         );

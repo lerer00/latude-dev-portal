@@ -1,20 +1,20 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Company from './company';
+import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
+import { Button, IButtonState } from '../components/button';
 import Spinner from '../spinner';
 import './index.css';
 
 const web3 = window['web3'];
 const Modal = require('react-modal');
-const { toast } = require('react-toastify');
+// const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
 const CompanyFactoryContract = require('../build/contracts/CompanyFactory.json');
 const companyFactoryContract = contract(CompanyFactoryContract);
-const egoAxe = require('../img/ego/axe.svg');
+const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
-const egoPenChecklist = require('../img/ego/pen-checklist.svg');
-const egoCursorHand = require('../img/ego/cursor-hand.svg');
 
 const addCompanyModalStyles = {
   content: {
@@ -58,7 +58,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
       companies: [],
       addCompanyModalIsOpen: false,
       addCompany: {
-        name: 'latude inc. (todo)'
+        name: ''
       }
     };
 
@@ -75,20 +75,20 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
   componentWillMount() {
     companyFactoryContract.setProvider(web3.currentProvider);
     this.getCompanies();
-    companyFactoryContract.deployed().then((instance: any) => {
-      instance.CompanyCreated('latest').watch(() => {
-        this.getCompanies();
-        this.setState({
-          addCompanyModalIsOpen: false,
-          addCompany: {
-            name: 'latude inc. (todo)',
-          }
-        });
-        toast.success('Success, company was added.', {
-          position: toast.POSITION.BOTTOM_RIGHT
-        });
-      });
-    });
+    // companyFactoryContract.deployed().then((instance: any) => {
+    //   instance.CompanyCreated('latest').watch(() => {
+    //     this.getCompanies();
+    //     this.setState({
+    //       addCompanyModalIsOpen: false,
+    //       addCompany: {
+    //         name: 'latude inc.',
+    //       }
+    //     });
+    //     toast.success('Success, company was added.', {
+    //       position: toast.POSITION.BOTTOM_RIGHT
+    //     });
+    //   });
+    // });
   }
 
   getCompanies() {
@@ -136,23 +136,18 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
   }
 
   render() {
-    var companiesContent;
+    var content;
     if (this.state.loading) {
-      companiesContent = (
+      content = (
         <Spinner text='loading companies...' />
       );
     } else {
       if (this.state.companies.length > 0) {
-        companiesContent = this.state.companies.map((id) =>
+        content = this.state.companies.map((id) =>
           <Company key={id} id={id} />
         );
       } else {
-        companiesContent = (
-          <div className='empty'>
-            <img className='icon' src={egoCursorHand} />
-            <p className='text'>No companies found...</p>
-          </div>
-        );
+        content = <EmptySearch text='You do not have any companies...' />;
       }
     }
 
@@ -166,12 +161,15 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
 
     return (
       <div className='companies' >
-        <div className='content'>
+        <div className='container'>
           <Breadcrumbs routes={routes} />
-          <button className='add-company' onClick={this.addCompanyOnRequestOpen}>
-            <img className='add-company-icon' src={egoPenChecklist} />
-            <span className='add-company-text'>Add company</span>
-          </button>
+          <div className='actions'>
+            <Button text='Add company' state={IButtonState.default} action={this.addCompanyOnRequestOpen} />
+          </div>
+          <div>
+            {content}
+          </div>
+
           <Modal
             isOpen={this.state.addCompanyModalIsOpen}
             onRequestClose={this.addCompanyOnRequestClose}
@@ -180,7 +178,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
           >
             <div className='modal-header'>
               <h1 className='title'>Add company</h1>
-              <img className='close' src={egoAxe} onClick={this.addCompanyOnRequestClose} />
+              <img className='close' src={egoCloseHexagon} onClick={this.addCompanyOnRequestClose} />
             </div>
             <div className='modal-content'>
               <img className='visual-tip' src={egoCheckHexagon} />
@@ -197,6 +195,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
                           className='value'
                           type='text'
                           value={this.state.addCompany.name}
+                          placeholder='insert company name'
                           onChange={(e) => this.addCompanyHandleChanges('name', e)}
                         />
                       </td>
@@ -210,7 +209,6 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
               <button className='action close' onClick={this.addCompanyOnRequestClose}>Close</button>
             </div>
           </Modal>
-          {companiesContent}
         </div>
       </div>
     );

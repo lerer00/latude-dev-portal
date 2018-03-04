@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import BigCalendar from 'react-big-calendar';
 import { Breadcrumbs } from '../breadcrumbs';
+import { Button, IButtonState } from '../components/button';
 import Spinner from '../spinner';
 import './index.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -13,10 +14,8 @@ const DateRange = require('react-date-range').DateRange;
 const contract = require('truffle-contract');
 const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
-const egoAxe = require('../img/ego/axe.svg');
+const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
-const egoPenChecklist = require('../img/ego/pen-checklist.svg');
-const egoCalendarCheck = require('../img/ego/calendar-check.svg');
 
 const manageAssetModalStyles = {
     content: {
@@ -332,13 +331,11 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     render() {
-        var assetContent;
+        var content;
         if (this.state.loading) {
-            assetContent = (
-                <Spinner text='loading asset...' />
-            );
+            content = <Spinner text='loading asset...' />;
         } else {
-            assetContent = (
+            content = (
                 <div className='informations'>
                     <p className='asset-name'>{this.state.asset.name}</p>
                     <p className='asset-description'>Description: {this.state.asset.description}</p>
@@ -393,16 +390,16 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
 
         return (
             <section className='asset-detail'>
-                <div className='content'>
+                <div className='container'>
                     <Breadcrumbs routes={routes} />
-                    <button className='custom-button' onClick={this.manageAssetOnRequestOpen}>
-                        <img className='icon' src={egoPenChecklist} />
-                        <span className='text'>Manage asset</span>
-                    </button>
-                    <button className='custom-button' onClick={this.addStayOnRequestOpen}>
-                        <img className='icon' src={egoCalendarCheck} />
-                        <span className='text'>Add stay</span>
-                    </button>
+                    <div className='action'>
+                        <Button text='Manage asset' state={IButtonState.default} action={this.manageAssetOnRequestOpen} />
+                        <Button text='Add stay' state={IButtonState.default} action={this.addStayOnRequestOpen} />
+                    </div>
+                    <div className='content'>
+                        {content}
+                    </div>
+
                     <Modal
                         isOpen={this.state.manageAssetModalIsOpen}
                         onRequestClose={this.manageAssetOnRequestClose}
@@ -411,7 +408,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                     >
                         <div className='modal-header'>
                             <h1 className='title'>Manage asset</h1>
-                            <img className='close' src={egoAxe} onClick={this.manageAssetOnRequestClose} />
+                            <img className='close' src={egoCloseHexagon} onClick={this.manageAssetOnRequestClose} />
                         </div>
                         <div className='modal-content'>
                             <img className='visual-tip' src={egoCheckHexagon} />
@@ -428,6 +425,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                                                     className='value'
                                                     type='text'
                                                     value={this.state.asset.description}
+                                                    placeholder='small description'
                                                     onChange={(e) => this.manageAssetHandleChanges('description', e)}
                                                 />
                                             </td>
@@ -439,6 +437,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                                                     className='value'
                                                     type='text'
                                                     value={this.state.asset.type}
+                                                    placeholder='room, bed or conference room'
                                                     onChange={(e) => this.manageAssetHandleChanges('type', e)}
                                                 />
                                             </td>
@@ -460,7 +459,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                     >
                         <div className='modal-header'>
                             <h1 className='title'>Add stay</h1>
-                            <img className='close' src={egoAxe} onClick={this.addStayOnRequestClose} />
+                            <img className='close' src={egoCloseHexagon} onClick={this.addStayOnRequestClose} />
                         </div>
                         <div className='modal-content'>
                             <img className='visual-tip' src={egoCheckHexagon} />
@@ -491,7 +490,6 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             <button className='action close' onClick={this.addStayOnRequestClose}>Close</button>
                         </div>
                     </Modal>
-                    {assetContent}
                 </div>
             </section>
         );

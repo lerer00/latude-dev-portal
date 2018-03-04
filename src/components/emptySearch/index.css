@@ -1,0 +1,18 @@
+.empty-search .icon{
+    display: block;
+    margin: auto;
+    width: 184px;
+}
+
+.empty-search .text{
+    text-align: center;
+    margin: 24px auto;
+    color: #C0C0C0;
+}
+
+.empty-search p{
+    text-align: justify;
+    width: 50%;
+    margin: auto;
+    line-height: 1.6em;
+}

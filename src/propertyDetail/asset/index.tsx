@@ -2,7 +2,7 @@ import * as React from 'react';
 import './index.css';
 import { NavLink } from 'react-router-dom';
 
-const egoBuilding2 = require('../../img/ego/building-2.svg');
+const egoCogDouble = require('../../img/ego/cog-double-2.svg');
 
 export namespace Asset {
     export interface Props {
@@ -42,7 +42,7 @@ class Asset extends React.Component<any, Asset.State> {
                 <p className='id'>Asset {this.props.asset.id}</p>
                 <p className='price'>{this.props.asset.price}<span className='currency'>{this.toAscii(this.props.asset.currency)}</span></p>
                 <NavLink className='detail' to={this.props.url + '/assets/' + this.props.asset.id}>
-                    <img className='plus' src={egoBuilding2} />
+                    <img className='plus' src={egoCogDouble} />
                 </NavLink>
             </section>
         );

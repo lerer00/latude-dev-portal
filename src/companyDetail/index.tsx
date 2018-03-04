@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Property from '../property';
+import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
+import { Button, IButtonState } from '../components/button';
 import Spinner from '../spinner';
 import './index.css';
 
@@ -12,10 +14,8 @@ const contract = require('truffle-contract');
 const CompanyContract = require('../build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
 // const ReactMapboxGl = require('react-mapbox-gl').default;
-const egoPenChecklist = require('../img/ego/pen-checklist.svg');
-const egoAxe = require('../img/ego/axe.svg');
+const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
-const egoCursorHand = require('../img/ego/cursor-hand.svg');
 // const egoLocation = require('../img/ego/location.svg');
 
 // const Map = ReactMapboxGl({
@@ -67,7 +67,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
             properties: [],
             addPropertyModalIsOpen: false,
             addProperty: {
-                name: 'latude québec (todo)'
+                name: ''
             }
             // mapOptions: {
             //     zoom: [8],
@@ -153,23 +153,18 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
     }
 
     render() {
-        var propertiesContent;
+        var content;
         if (this.state.loading) {
-            propertiesContent = (
+            content = (
                 <Spinner text='loading company...' />
             );
         } else {
             if (this.state.properties.length > 0) {
-                propertiesContent = this.state.properties.map((id) =>
+                content = this.state.properties.map((id) =>
                     <Property company={this.props.match.params.cid} key={id} id={id} />
                 );
             } else {
-                propertiesContent = (
-                    <div className='empty'>
-                        <img className='icon' src={egoCursorHand} />
-                        <p className='text'>No properties found...</p>
-                    </div>
-                );
+                content = <EmptySearch text='You do not have any properties...' />;
             }
         }
 
@@ -188,12 +183,15 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
 
         return (
             <section className='company-detail'>
-                <div className='content'>
+                <div className='container'>
                     <Breadcrumbs routes={routes} />
-                    <button className='add-property' onClick={this.addPropertyOnRequestOpen}>
-                        <img className='add-property-icon' src={egoPenChecklist} />
-                        <span className='add-property-text'>Add property</span>
-                    </button>
+                    <div className='actions'>
+                        <Button text='Add property' state={IButtonState.default} action={this.addPropertyOnRequestOpen} />
+                    </div>
+                    <div className='content'>
+                        {content}
+                    </div>
+
                     <Modal
                         isOpen={this.state.addPropertyModalIsOpen}
                         onRequestClose={this.addPropertyOnRequestClose}
@@ -202,7 +200,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                     >
                         <div className='modal-header'>
                             <h1 className='title'>Add property</h1>
-                            <img className='close' src={egoAxe} onClick={this.addPropertyOnRequestClose} />
+                            <img className='close' src={egoCloseHexagon} onClick={this.addPropertyOnRequestClose} />
                         </div>
                         <div className='modal-content'>
                             <img className='visual-tip' src={egoCheckHexagon} />
@@ -217,6 +215,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                                                     className='value'
                                                     type='text'
                                                     value={this.state.addProperty.name}
+                                                    placeholder='insert property name'
                                                     onChange={(e) => this.addPropertyHandleChanges('name', e)}
                                                 />
                                             </td>
@@ -246,7 +245,6 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                             <button className='action close' onClick={this.addPropertyOnRequestClose}>Close</button>
                         </div>
                     </Modal>
-                    {propertiesContent}
                 </div>
             </section>
         );
