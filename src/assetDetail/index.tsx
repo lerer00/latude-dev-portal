@@ -393,8 +393,8 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                 <div className='container'>
                     <Breadcrumbs routes={routes} />
                     <div className='action'>
-                        <Button text='Manage asset' state={IButtonState.default} action={this.manageAssetOnRequestOpen} />
                         <Button text='Add stay' state={IButtonState.default} action={this.addStayOnRequestOpen} />
+                        <Button text='Manage asset' state={IButtonState.default} action={this.manageAssetOnRequestOpen} />
                     </div>
                     <div className='content'>
                         {content}

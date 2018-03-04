@@ -21,9 +21,10 @@ const ReactMapboxGl = require('react-mapbox-gl').default;
 const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoLocation = require('../img/ego/location.svg');
+const egoConstructionFence = require('../img/ego/caution-fence.svg');
 
 const Map = ReactMapboxGl({
-    accessToken: 'pk.eyJ1IjoibGVyZXIwMCIsImEiOiJjamNvNTI3MzkxdmFnMnJuM2licjNsYmM3In0.sR6op3azARBpWg_-JkDf-Q',
+    accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
     attributionControl: false,
     logoPosition: 'bottom-left'
 });
@@ -96,7 +97,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             managePropertyModalIsOpen: false,
             mapOptions: {
                 zoom: [8],
-                center: [-71.4817734, 46.856283]
+                center: [-122.419416, 37.774929]
             }
         };
 
@@ -107,6 +108,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         this.saveProperty = this.saveProperty.bind(this);
         this.managePropertyOnRequestClose = this.managePropertyOnRequestClose.bind(this);
         this.managePropertyOnRequestOpen = this.managePropertyOnRequestOpen.bind(this);
+        this.onMapZoomDragEnd = this.onMapZoomDragEnd.bind(this);
     }
 
     static contextTypes = {
@@ -117,6 +119,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         // call hub to retrieve current information for that property
         axios.get(process.env.REACT_APP_HUB_URL + '/properties/' + this.props.match.params.pid).then((result) => {
             this.setState({
+                mapOptions: {
+                    center: result.data.location.coordinates
+                },
                 property: result.data
             });
         }).catch((error) => {
@@ -188,6 +193,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         });
 
         this.setState({
+            mapOptions: {
+                center: this.state.property.location.coordinates
+            },
             managePropertyModalIsOpen: false
         });
     }
@@ -252,6 +260,18 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     managePropertyHandleChanges(property: string, e: any) {
         var tmp = this.state.property;
         tmp[property] = e.target.value;
+        this.setState({
+            property: tmp
+        });
+    }
+
+    onMapZoomDragEnd(map: any, event: any) {
+        var center = map.getCenter();
+        var tmp = this.state.property;
+        tmp.location = {
+            coordinates: [center.lng, center.lat],
+            type: 'Point'
+        };
         this.setState({
             property: tmp
         });
@@ -386,9 +406,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                     }}
                                     center={this.state.mapOptions.center}
                                     zoom={this.state.mapOptions.zoom}
-                                // onMove={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
-                                // onClick={(map: any, event: React.SyntheticEvent<any>) => { this.onMapClick(map, event); }}
-                                // onStyleLoad={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
+                                    onDragEnd={(map: any, event: React.SyntheticEvent<any>) => { this.onMapZoomDragEnd(map, event); }}
+                                    onZoomEnd={(map: any, event: React.SyntheticEvent<any>) => { this.onMapZoomDragEnd(map, event); }}
                                 />
                             </div>
                             <form>
@@ -416,6 +435,42 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                     placeholder='description'
                                                     onChange={(e) => this.managePropertyHandleChanges('description', e)}
                                                 />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='label'><label>Images:</label></td>
+                                            <td>
+                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='label'><label>Facilities:</label></td>
+                                            <td>
+                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='label'><label>Accepted paiement:</label></td>
+                                            <td>
+                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='label'><label>Landmarks:</label></td>
+                                            <td>
+                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='label'><label>Restaurant on site:</label></td>
+                                            <td>
+                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='label'><label>Pets allowed:</label></td>
+                                            <td>
+                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
                                             </td>
                                         </tr>
                                     </tbody>
