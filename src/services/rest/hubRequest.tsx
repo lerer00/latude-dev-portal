@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IProperty } from '../../models/property';
 
 class HubRequest {
     private authentication: any;
@@ -7,7 +8,7 @@ class HubRequest {
         this.authentication = authentication;
     }
 
-    public postProperty(property: any) {
+    public postProperty(property: IProperty) {
         return axios.post(process.env.REACT_APP_HUB_URL + '/properties/' + property.id, property, { headers: { 'Authorization': this.authentication.getAuthenticationToken() } })
             .then((result) => {
                 console.log(result);

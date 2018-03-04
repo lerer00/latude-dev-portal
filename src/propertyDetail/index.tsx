@@ -4,9 +4,11 @@ import Asset from './asset';
 import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
 import { Button, IButtonState } from '../components/button';
+import { IProperty } from '../models/property';
 import Spinner from '../spinner';
 import Authentication from '../services/authentication/authentication';
 import HubRequest from '../services/rest/hubRequest';
+import axios from 'axios';
 import './index.css';
 
 const web3 = window['web3'];
@@ -15,8 +17,16 @@ const { toast } = require('react-toastify');
 const contract = require('truffle-contract');
 const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
+const ReactMapboxGl = require('react-mapbox-gl').default;
 const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
 const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
+const egoLocation = require('../img/ego/location.svg');
+
+const Map = ReactMapboxGl({
+    accessToken: 'pk.eyJ1IjoibGVyZXIwMCIsImEiOiJjamNvNTI3MzkxdmFnMnJuM2licjNsYmM3In0.sR6op3azARBpWg_-JkDf-Q',
+    attributionControl: false,
+    logoPosition: 'bottom-left'
+});
 
 const addAssetModalStyles = {
     content: {
@@ -44,6 +54,7 @@ export namespace PropertyDetail {
     }
 
     export interface State {
+        property: IProperty;
         name: string;
         assets: Array<any>;
         assetsLoading: boolean;
@@ -51,6 +62,7 @@ export namespace PropertyDetail {
         addAsset: any;
         addAssetModalIsOpen: boolean;
         managePropertyModalIsOpen: boolean;
+        mapOptions: any;
     }
 }
 
@@ -59,6 +71,19 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         super(props, context);
 
         this.state = {
+            property: {
+                active: false,
+                comments: [],
+                description: '',
+                id: '',
+                location: {
+                    coordinates: [],
+                    type: ''
+                },
+                name: '',
+                parent: '',
+                rating: ''
+            },
             name: '',
             balance: -1,
             assets: [],
@@ -68,7 +93,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                 currency: ''
             },
             addAssetModalIsOpen: false,
-            managePropertyModalIsOpen: false
+            managePropertyModalIsOpen: false,
+            mapOptions: {
+                zoom: [8],
+                center: [-71.4817734, 46.856283]
+            }
         };
 
         this.addAsset = this.addAsset.bind(this);
@@ -83,6 +112,17 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     static contextTypes = {
         web3: PropTypes.object
     };
+
+    componentWillMount() {
+        // call hub to retrieve current information for that property
+        axios.get(process.env.REACT_APP_HUB_URL + '/properties/' + this.props.match.params.pid).then((result) => {
+            this.setState({
+                property: result.data
+            });
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 
     componentDidMount() {
         propertyContract.setProvider(web3.currentProvider);
@@ -141,13 +181,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         e.preventDefault();
 
         var hubRequest = new HubRequest(Authentication.getInstance());
-        hubRequest.postProperty({ id: this.props.match.params.pid }).then(
-            (result) => {
-                console.log(result);
-            }).catch(
-                (error) => {
-                    console.log(error);
-                });
+        hubRequest.postProperty(this.state.property).then((result) => {
+            console.log(result);
+        }).catch((error) => {
+            console.log(error);
+        });
 
         this.setState({
             managePropertyModalIsOpen: false
@@ -212,7 +250,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     }
 
     managePropertyHandleChanges(property: string, e: any) {
-        console.log(property);
+        var tmp = this.state.property;
+        tmp[property] = e.target.value;
+        this.setState({
+            property: tmp
+        });
     }
 
     render() {
@@ -262,13 +304,12 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                         <Button text='Manage property' state={IButtonState.default} action={this.managePropertyOnRequestOpen} />
                     </div>
                     <div className='content'>
-                        <div className='description'>
-                            <span className='address'>address: {this.props.match.params.pid}</span>
-                            <span className='balance'>balance: {this.state.balance} ether</span>
-                            <p className='name'>{this.state.name}</p>
-                            <div className='assets'>
-                                {content}
-                            </div>
+                        <span className='address'>address: {this.props.match.params.pid}</span>
+                        <span className='balance'>balance: {this.state.balance} ether</span>
+                        <p className='name'>{this.state.property.name || this.state.name}</p>
+                        <p className='description'>{this.state.property.description}</p>
+                        <div className='assets'>
+                            {content}
                         </div>
                     </div>
 
@@ -334,10 +375,52 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                             <img className='close' src={egoCloseHexagon} onClick={this.managePropertyOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                            <img className='visual-tip' src={egoCheckHexagon} />
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <div className='map-selector'>
+                                <p>Drag the map to your property location. Please be as precise as possible.</p>
+                                <img className='map-cursor' src={egoLocation} />
+                                <Map
+                                    style='mapbox://styles/mapbox/streets-v9'
+                                    containerStyle={{
+                                        height: '280px',
+                                        width: '100%'
+                                    }}
+                                    center={this.state.mapOptions.center}
+                                    zoom={this.state.mapOptions.zoom}
+                                // onMove={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
+                                // onClick={(map: any, event: React.SyntheticEvent<any>) => { this.onMapClick(map, event); }}
+                                // onStyleLoad={(map: any, event: React.SyntheticEvent<any>) => { this.onMapMove(map, event); }}
+                                />
+                            </div>
+                            <form>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td className='label'><label>Name:</label></td>
+                                            <td>
+                                                <input
+                                                    className='value'
+                                                    type='text'
+                                                    value={this.state.property.name}
+                                                    placeholder='name'
+                                                    onChange={(e) => this.managePropertyHandleChanges('name', e)}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='label'><label>Description:</label></td>
+                                            <td>
+                                                <input
+                                                    className='value'
+                                                    type='text'
+                                                    value={this.state.property.description}
+                                                    placeholder='description'
+                                                    onChange={(e) => this.managePropertyHandleChanges('description', e)}
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
                         </div>
                         <div className='modal-actions'>
                             <button className='action' onClick={(e) => this.saveProperty(e)}>Save</button>

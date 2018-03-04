@@ -13,7 +13,7 @@
     margin-right: 8px;
 }
 
-.property-detail .container .content .description {
+.property-detail .container .content {
     position: relative;
     padding: 24px 8px 16px 16px;
     border-left: solid 1px #399AFF;
@@ -23,7 +23,7 @@
     color: #595959;
 }
 
-.property-detail .container .content .description .address {
+.property-detail .container .content .address {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -31,7 +31,7 @@
     color: #A0A0A0;
 }
 
-.property-detail .container .content .description .balance {
+.property-detail .container .content .balance {
     position: absolute;
     top: 20px;
     right: 8px;
@@ -39,7 +39,7 @@
     color: #A0A0A0;
 }
 
-.property-detail .container .content .description .name {
+.property-detail .container .content .name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -47,4 +47,13 @@
     margin: 8px 0 16px 8px;
     line-height: 1.2em;
     font-size: 2em;
+}
+
+.property-detail .container .content .description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    margin: 0 0 16px 8px;
+    font-size: 1;
 }
