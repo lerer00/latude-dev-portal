@@ -23,6 +23,7 @@ const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
 const egoLocation = require('../img/ego/location.svg');
 const egoConstructionFence = require('../img/ego/caution-fence.svg');
 
+console.log(process.env.REACT_APP_MAPBOX_TOKEN);
 const Map = ReactMapboxGl({
     accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
     attributionControl: false,
