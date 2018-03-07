@@ -25,6 +25,7 @@
 }
 
 .header .container .content .title {
+    font-family: 'Ubuntu', sans-serif;
     display: inline-block;
     line-height: 70px;
     font-size: 1.8em;

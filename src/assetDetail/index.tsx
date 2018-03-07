@@ -15,7 +15,8 @@ const contract = require('truffle-contract');
 const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
 const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
-const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
+const egoCalendar2 = require('../img/ego/calendar-2.svg');
+const egoAddHexagon1 = require('../img/ego/add-hexagon-1.svg');
 
 const manageAssetModalStyles = {
     content: {
@@ -411,8 +412,11 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             <img className='close' src={egoCloseHexagon} onClick={this.manageAssetOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                            <img className='visual-tip' src={egoCheckHexagon} />
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        <div className='visual-tip'>
+                                <img className='tip' src={egoCalendar2} />
+                                <img className='action' src={egoAddHexagon1} />
+                            </div>
+                            <p className='description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                             <form>
@@ -447,7 +451,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             </form>
                         </div>
                         <div className='modal-actions'>
-                            <button className='action' onClick={(e) => this.upsertAsset(e)}>Save</button>
+                            <button className='button' onClick={(e) => this.upsertAsset(e)}>Save</button>
                             <button className='action close' onClick={this.manageAssetOnRequestClose}>Close</button>
                         </div>
                     </Modal>
@@ -462,8 +466,11 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             <img className='close' src={egoCloseHexagon} onClick={this.addStayOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                            <img className='visual-tip' src={egoCheckHexagon} />
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        <div className='visual-tip'>
+                                <img className='tip' src={egoCalendar2} />
+                                <img className='action' src={egoAddHexagon1} />
+                            </div>
+                            <p className='description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                             <DateRange
@@ -486,7 +493,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             </p>
                         </div>
                         <div className='modal-actions'>
-                            <button className='action' onClick={(e) => this.addStay(e)}>Save</button>
+                            <button className='button' onClick={(e) => this.addStay(e)}>Save</button>
                             <button className='action close' onClick={this.addStayOnRequestClose}>Close</button>
                         </div>
                     </Modal>

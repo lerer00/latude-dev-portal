@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 
 const web3 = window['web3'];
 const contract = require('truffle-contract');
-const PropertyContract = require('../build/contracts/Property.json');
+const PropertyContract = require('../../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
-const egoCogDouble = require('../img/ego/cog-double-2.svg');
+const egoCogDouble = require('../../img/ego/cog-double-2.svg');
 
 export namespace Property {
     export interface Props {

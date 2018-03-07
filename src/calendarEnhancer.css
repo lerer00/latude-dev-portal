@@ -1,17 +1,32 @@
 /* REACT BIG CALENDAR */
 
 .rbc-calendar {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'CircularStdBook', sans-serif;
 }
 
-.rbc-calendar .rbc-btn-group button {
-    background-color: #FFFFFF;
-    color: #399AFF;
-    border: solid #399AFF 1px;
-    border-radius: 3px;
-    height: 40px;
+.rbc-calendar .rbc-btn-group  button {
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: 0 16px;
     outline: 0;
+    height: 32px !important;
+    line-height: 32px;
+    font-family: 'CircularStdBlack', sans-serif;
+    border-radius: 3px;
     cursor: pointer;
+    transition: all 0.1s;
+    box-shadow: 0 2px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    border: solid 1px #399aff;
+    background-color: #ffffff;
+    color: #399aff;
+}
+
+.rbc-calendar .rbc-btn-group  button .button-text {
+    line-height: 32px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .025em;
 }
 
 .rbc-calendar .rbc-btn-group button:hover {
@@ -20,9 +35,9 @@
 }
 
 .rbc-calendar .rbc-btn-group .rbc-active {
+    border: solid 1px transparent;
     background-color: #399AFF !important;
     color: #FFFFFF !important;
-    border: none;
 }
 
 .rbc-calendar .rbc-header {

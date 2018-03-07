@@ -14,7 +14,8 @@ const contract = require('truffle-contract');
 const CompanyFactoryContract = require('../build/contracts/CompanyFactory.json');
 const companyFactoryContract = contract(CompanyFactoryContract);
 const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
-const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
+const egoBuilding3 = require('../img/ego/building-3.svg');
+const egoAddHexagon1 = require('../img/ego/add-hexagon-1.svg');
 
 const addCompanyModalStyles = {
   content: {
@@ -166,7 +167,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
           <div className='actions'>
             <Button text='Add company' state={IButtonState.default} action={this.addCompanyOnRequestOpen} />
           </div>
-          <div>
+          <div className='content'>
             {content}
           </div>
 
@@ -181,10 +182,12 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
               <img className='close' src={egoCloseHexagon} onClick={this.addCompanyOnRequestClose} />
             </div>
             <div className='modal-content'>
-              <img className='visual-tip' src={egoCheckHexagon} />
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+              <div className='visual-tip'>
+                <img className='tip' src={egoBuilding3} />
+                <img className='action' src={egoAddHexagon1} />
+              </div>
+              <p className='description'>Create the contract who will act as your company on the blockchain.
+               This is only for architectural purpose since every property will now be created within this company.</p>
               <form>
                 <table>
                   <tbody>
@@ -205,7 +208,7 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
               </form>
             </div>
             <div className='modal-actions'>
-              <button className='action' onClick={(e) => this.addCompany(e)}>Add</button>
+              <button className='button' onClick={(e) => this.addCompany(e)}>Add</button>
               <button className='action close' onClick={this.addCompanyOnRequestClose}>Close</button>
             </div>
           </Modal>

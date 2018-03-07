@@ -19,9 +19,10 @@ const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
 const ReactMapboxGl = require('react-mapbox-gl').default;
 const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
-const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
+const egoStoreMobile = require('../img/ego/store-mobile.svg');
+const egoAddHexagon1 = require('../img/ego/add-hexagon-1.svg');
 const egoLocation = require('../img/ego/location.svg');
-const egoConstructionFence = require('../img/ego/caution-fence.svg');
+// const egoConstructionFence = require('../img/ego/caution-fence.svg');
 
 const Map = ReactMapboxGl({
     accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -344,8 +345,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                             <img className='close' src={egoCloseHexagon} onClick={this.addAssetOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                            <img className='visual-tip' src={egoCheckHexagon} />
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <div className='visual-tip'>
+                                <img className='tip' src={egoStoreMobile} />
+                                <img className='action' src={egoAddHexagon1} />
+                            </div>
+                            <p className='description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                             <form>
@@ -380,7 +384,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                             </form>
                         </div>
                         <div className='modal-actions'>
-                            <button className='action' onClick={(e) => this.addAsset(e)}>Add</button>
+                            <button className='button' onClick={(e) => this.addAsset(e)}>Add</button>
                             <button className='action close' onClick={this.addAssetOnRequestClose}>Close</button>
                         </div>
                     </Modal>
@@ -437,7 +441,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr>
+                                        {/* <tr>
                                             <td className='label'><label>Images:</label></td>
                                             <td>
                                                 <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
@@ -472,13 +476,13 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                             <td>
                                                 <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
                                             </td>
-                                        </tr>
+                                        </tr> */}
                                     </tbody>
                                 </table>
                             </form>
                         </div>
                         <div className='modal-actions'>
-                            <button className='action' onClick={(e) => this.saveProperty(e)}>Save</button>
+                            <button className='button' onClick={(e) => this.saveProperty(e)}>Save</button>
                             <button className='action close' onClick={this.managePropertyOnRequestClose}>Close</button>
                         </div>
                     </Modal>

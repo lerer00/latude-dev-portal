@@ -8,11 +8,11 @@
 .company .description {
     position: relative;
     padding: 24px 8px 16px 16px;
-    border-left: solid 1px #399AFF;
     background-color: #FFFFFF;
     border-radius: 3px;
     margin: 8px 8px 8px 0;
     color: #595959;
+    box-shadow: 0 2px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)
 }
 
 .company .description .address {

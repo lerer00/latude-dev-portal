@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Property from '../property';
+import Property from './property';
 import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
 import { Button, IButtonState } from '../components/button';
@@ -14,7 +14,8 @@ const contract = require('truffle-contract');
 const CompanyContract = require('../build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
 const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
-const egoCheckHexagon = require('../img/ego/check-hexagon.svg');
+const egoBuilding10 = require('../img/ego/building-10.svg');
+const egoAddHexagon1 = require('../img/ego/add-hexagon-1.svg');
 
 const addPropertyModalStyles = {
     content: {
@@ -190,8 +191,13 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                             <img className='close' src={egoCloseHexagon} onClick={this.addPropertyOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                            <img className='visual-tip' src={egoCheckHexagon} />
-                            <p>Those are only basic information needed to create a property. You'll always be able to manage this property freely after creation.</p>
+                            <div className='visual-tip'>
+                                <img className='tip' src={egoBuilding10} />
+                                <img className='action' src={egoAddHexagon1} />
+                            </div>
+                            <p className='description'>Those are only basic information needed to create a property. 
+                                You'll always be able to manage this property freely after creation.
+                                In order for everyone to see it, you'll need to activate it first.</p>
                             <form className='addPropertyForm'>
                                 <table>
                                     <tbody>
@@ -212,7 +218,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                             </form>
                         </div>
                         <div className='modal-actions'>
-                            <button className='action' onClick={(e) => this.addProperty(e)}>Add</button>
+                            <button className='button' onClick={(e) => this.addProperty(e)}>Add</button>
                             <button className='action close' onClick={this.addPropertyOnRequestClose}>Close</button>
                         </div>
                     </Modal>

@@ -1,47 +1,67 @@
 /* MODAL WINDOW ENHANCER */
-.modal-header{
-	position: relative;
-	border-bottom: solid 1px #C0C0C0;
+
+.modal-header {
+    position: relative;
+    border-bottom: solid 1px #C0C0C0;
 }
 
-.modal-header .title{
-	font-size: 1.4em;
-	color: #C0C0C0;
-	margin-bottom: 8px;
+.modal-header .title {
+    font-size: 1.4em;
+    color: #212529;
+    margin-bottom: 8px;
 }
 
-.modal-header .close{
-	position: absolute;
-	right: 4px;
-	top: 0;
-	width: 20px;
-	cursor: pointer;
+.modal-header .close {
+    position: absolute;
+    right: 4px;
+    top: 0;
+    width: 20px;
+    cursor: pointer;
 }
 
-.modal-content{
-	padding: 24px;
-	line-height: 1.6em;
-	color: #B3B3B3;
+.modal-content {
+    padding: 24px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #212529;
 }
 
-.modal-content .visual-tip{
+.modal-content .visual-tip {
+    position: relative;
     display: block;
-    width: 100px;
-    margin: auto;
-    margin-bottom: 24px;
+    width: 200px;
+    margin: 32px auto 48px auto;
 }
 
-.modal-content .map-selector{
+.modal-content .visual-tip .tip {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.modal-content .visual-tip .action {
+    position: absolute;
+    bottom: -16px;
+    right: 32px;
+    height: 40px;
+    stroke: #ffffff;
+}
+
+.modal-content .description {
+    text-align: center;
+}
+
+.modal-content .map-selector {
     position: relative;
     width: 100%;
     margin: 16px 0;
 }
 
-.modal-content .map-selector p{
+.modal-content .map-selector p {
     margin: 8px 0;
 }
 
-.modal-content .map-selector .map-cursor{
+.modal-content .map-selector .map-cursor {
     position: absolute;
     z-index: 2;
     top: 50%;
@@ -50,94 +70,60 @@
     transform: translate(-50%, -50%);
 }
 
-.modal-content form{
+.modal-content form {
     margin: 16px 0 24px 16px;
 }
 
-.modal-content table tbody tr .label{
+.modal-content table {
+    width: 100%;
+}
+
+.modal-content table tbody tr .label {
     text-align: right;
+    color: #c0c0c0;
     margin-right: 8px;
 }
 
-.modal-content table tbody tr .value{
-    width: 100%;
+.modal-content table tbody tr .value {
+    width: 80%;
     margin-left: 8px;
     margin-top: 8px;
+    padding: 8px;
     border: none;
-    border-bottom: solid 1px #399AFF;
+    background-color: #f4f4f4;
     outline: 0;
     font-size: 1.2em;
+    border-radius: 3px;
 }
 
-.modal-actions{
-	display: flex;
-	justify-content: center;
-	border:none;
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    border: none;
 }
 
-.modal-actions button{
-	background-color: #FFFFFF;
-	border: solid #399AFF 1px;
-	color: #399AFF;
-	padding: 8px 24px;
-	border-radius: 3px;
-	margin: 4px;
-	font-size: 1em;
-	cursor: pointer;
+.modal-actions button {
+    background-color: #ffffff;
+    border: solid #399aff 1px;
+    color: #399aff;
+    border-radius: 3px;
+    margin: 4px 8px;
+    cursor: pointer;
 }
 
-.modal-actions button:hover{
-	background-color: #399AFF;
-	color: #FFFFFF;
+.modal-actions button:hover {
+    background-color: #399aff;
+    color: #ffffff;
 }
 
-.modal-actions .close{
+.modal-actions .close {
+    font-family: 'CircularStdBook', sans-serif !important;
     font-size: 0.8em !important;
     border-color: transparent !important;
 }
 
-.modal-actions .close:hover, .modal-actions .close:active{
+.modal-actions .close:hover, .modal-actions .close:active {
     outline: 0;
-    color: #399AFF !important;
-    background-color: #FFFFFF !important;
-}
-
-/* CUSTOM BUTTON */
-.custom-button{
-    position: relative;
-    display: inline-block;
-    outline: 0;
-    height: 40px;
-    line-height: 40px;
-    font-family: 'Ubuntu', sans-serif;
-    border: solid 1px #399AFF;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    margin-right: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.custom-button:hover{
-    border: solid 1px transparent;
-    background-color: #399AFF;
-}
-
-.custom-button:hover .text{
-    color: #FFFFFF;
-}
-
-.custom-button .icon{
-    line-height: 40px;
-    vertical-align: middle;
-    margin-left: 16px;
-    margin-top: -8px;
-    width: 20px;
-}
-
-.custom-button .text{
-    line-height: 40px;
-    color: #399AFF;
-    font-size: 1.2em;
-    margin: 0 16px 0 8px;
+    color: #399aff !important;
+    background-color: #ffffff !important;
 }

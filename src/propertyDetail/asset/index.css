@@ -1,34 +1,38 @@
 .asset {
     width: calc(50% - 46px);
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     position: relative;
     display: inline-block;
-    padding: 4px 8px 4px 24px;
+    padding: 8px 8px 8px 28px;
     margin: 4px;
     border-radius: 3px;
     cursor: pointer;
+    min-height: 56px;
+    box-shadow: 0 2px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)
 }
 
 .asset:before{
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 8px;
+    left: 8px;
     content: "";
     display: inline-block;
     width: 14px;
     height: 14px;
-    margin-right: 4px;
+    margin-right: 8px;
     background-color: #2ecc71;
 }
 
 .asset .id{
-    margin-top: -2px;
+    display: inline-block;
+    margin-top: 0px;
     margin-bottom: 4px;
     font-size: 1.1em;
     font-weight: 700;
 }
 
 .asset .price{
+    float: right;
     color: #A0A0A0;
 }
 
@@ -37,10 +41,13 @@
 }
 
 .asset .detail{
-    float: right;
+    overflow: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .asset .detail .plus{
     width: 24px;
-    margin: none;
+    margin: 4px 8px;
 }
