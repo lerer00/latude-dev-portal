@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LoginControl from '../components/loginControl';
+import LoginControl from '../../components/loginControl';
 import './index.css';
 
 export namespace Header {

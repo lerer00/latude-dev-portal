@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import './index.css';
 import { NavLink } from 'react-router-dom';
+import { egoCogDouble } from '../../../img/index';
 
 const web3 = window['web3'];
 const contract = require('truffle-contract');
-const CompanyContract = require('../../build/contracts/Company.json');
+const CompanyContract = require('../../../build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
-const egoCogDouble = require('../../img/ego/cog-double-2.svg');
 
 export namespace Company {
     export interface Props {

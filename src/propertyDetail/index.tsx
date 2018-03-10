@@ -5,7 +5,7 @@ import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
 import { Button, IButtonState } from '../components/button';
 import { IProperty } from '../models/property';
-import Spinner from '../spinner';
+import Spinner from '../components/spinner';
 import Authentication from '../services/authentication/authentication';
 import HubRequest from '../services/rest/hubRequest';
 import axios from 'axios';

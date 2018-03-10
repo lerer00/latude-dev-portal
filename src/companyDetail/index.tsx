@@ -4,7 +4,7 @@ import Property from './property';
 import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
 import { Button, IButtonState } from '../components/button';
-import Spinner from '../spinner';
+import Spinner from '../components/spinner';
 import './index.css';
 
 const web3 = window['web3'];
