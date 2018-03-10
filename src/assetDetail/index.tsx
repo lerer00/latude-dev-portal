@@ -412,7 +412,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             <img className='close' src={egoCloseHexagon} onClick={this.manageAssetOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                        <div className='visual-tip'>
+                            <div className='visual-tip'>
                                 <img className='tip' src={egoCalendar2} />
                                 <img className='action' src={egoAddHexagon1} />
                             </div>
@@ -466,7 +466,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                             <img className='close' src={egoCloseHexagon} onClick={this.addStayOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                        <div className='visual-tip'>
+                            <div className='visual-tip'>
                                 <img className='tip' src={egoCalendar2} />
                                 <img className='action' src={egoAddHexagon1} />
                             </div>

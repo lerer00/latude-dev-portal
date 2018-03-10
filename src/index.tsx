@@ -7,6 +7,7 @@ import './index.css';
 const { Web3Provider } = require('react-web3');
 const egowindowLock = require('./img/ego/window-lock.svg');
 const bubbleChatTyping = require('./img/ego/bubble-chat-typing.svg');
+const egoWarning = require('./img/ego/report-problem-warning-hexagon.svg');
 import './missingProvider.css';
 import './calendarEnhancer.css';
 
@@ -17,7 +18,10 @@ var unlockWalletHtml = (
         <h1 className='title'>Web3 account is locked</h1>
       </div>
       <div className='modal-content'>
-        <img className='visual-tip' src={egowindowLock} />
+        <div className='visual-tip'>
+          <img className='tip' src={egowindowLock} />
+          <img className='action' src={egoWarning} />
+        </div>
         <p>
           This application requires at least one valid account to be
         unlocked within your desired provider. This is needed to interact with the
@@ -25,7 +29,7 @@ var unlockWalletHtml = (
         </p>
       </div>
       <div className='modal-actions'>
-        <button className='action'>Info</button>
+        <button className='button'>Info</button>
       </div>
     </div>
   </div>
@@ -38,7 +42,10 @@ var web3NeededHtml = (
         <h1 className='title'>Web3 provider not found</h1>
       </div>
       <div className='modal-content'>
-        <img className='visual-tip' src={bubbleChatTyping} />
+        <div className='visual-tip'>
+          <img className='tip' src={bubbleChatTyping} />
+          <img className='action' src={egoWarning} />
+        </div>
         <p>
           This is a decentralized web application which requires an ethereum provider. You can use
         <a target='_blank' className='provider-link' href='https://metamask.io/'>Metamask</a> chrome extension or the
@@ -46,7 +53,7 @@ var web3NeededHtml = (
         </p>
       </div>
       <div className='modal-actions'>
-        <button className='action'>Info</button>
+        <button className='button'>Info</button>
       </div>
     </div>
   </div>

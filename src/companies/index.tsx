@@ -76,20 +76,6 @@ class Companies extends React.Component<Companies.Props, Companies.State> {
   componentWillMount() {
     companyFactoryContract.setProvider(web3.currentProvider);
     this.getCompanies();
-    // companyFactoryContract.deployed().then((instance: any) => {
-    //   instance.CompanyCreated('latest').watch(() => {
-    //     this.getCompanies();
-    //     this.setState({
-    //       addCompanyModalIsOpen: false,
-    //       addCompany: {
-    //         name: 'latude inc.',
-    //       }
-    //     });
-    //     toast.success('Success, company was added.', {
-    //       position: toast.POSITION.BOTTOM_RIGHT
-    //     });
-    //   });
-    // });
   }
 
   getCompanies() {
