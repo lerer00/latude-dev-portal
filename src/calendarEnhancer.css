@@ -5,7 +5,7 @@
 }
 
 .rbc-calendar .rbc-btn-group  button {
-    text-transform: uppercase;
+    text-transform: capitalize;
     position: relative;
     display: inline-block;
     padding: 0 16px;

@@ -1,4 +1,6 @@
 .header {
+    position: relative;
+    z-index: 10;
     height: 70px;
     background-color: #0667d0;
     color: #FFFFFF;
