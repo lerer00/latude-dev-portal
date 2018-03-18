@@ -15,7 +15,7 @@ contract Property is Authorization, StayLinkedList {
     ExchangeRates private exchangeRates;
     // We need to attach to the good authority
     PropertyAuthority private propertyAuthority;
-    event AssetCreated (uint asset);
+    event AssetCreated (uint asset, uint price, bytes32 currency);
     event StayCreated (uint asset, uint id, uint duration);
 
     // We are using the unix epoch format.
@@ -30,7 +30,6 @@ contract Property is Authorization, StayLinkedList {
         uint id;
         uint price;
         bytes32 currency;
-        string[] metadataHashes;
     }
 
     function Property(string _name, address _owner, address _exchangeContract) public payable {
@@ -41,27 +40,14 @@ contract Property is Authorization, StayLinkedList {
         exchangeRates = ExchangeRates(_exchangeContract);        
     }
 
-    // Ipfs hashes are used to retreive further information about an asset.
-    function addMetadataHashForAsset(uint id, string hash) onlyOwner public {
-        // Since assetIds are always incremented by 1, we can validate this way.
-        require(id < numberOfAssets());
-        assets[id].metadataHashes.push(hash);
-    }
-
-    function lastMetadataHashForAsset(uint id) public view returns (string) {
-        require(assets[id].metadataHashes.length > 0);
-        return assets[id].metadataHashes[assets[id].metadataHashes.length - 1];
-    }
-
     // Asset management ////////////////
     function addAsset(uint price, bytes32 currency) onlyOwner public {
         require(exchangeRates.isCurrencyAllowed(currency));
 
         uint newAssetId = assets.length;
         StayLinkedList.initializeAssetList(newAssetId);
-        string[] memory metadataHashes;
-        assets.push(Asset(newAssetId, price, currency, metadataHashes));
-        AssetCreated(newAssetId);
+        assets.push(Asset(newAssetId, price, currency));
+        AssetCreated(newAssetId, price, currency);
     }
 
     function getAsset(uint id) public view returns (uint, uint, bytes32) {

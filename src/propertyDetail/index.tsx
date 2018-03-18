@@ -4,6 +4,7 @@ import Asset from './asset';
 import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
 import { Button, IButtonState } from '../components/button';
+import { egoCloseHexagon, egoAddHexagon1, egoStoreMobile, egoLocation } from '../img/index';
 import { IProperty } from '../models/property';
 import Spinner from '../components/spinner';
 import Authentication from '../services/authentication/authentication';
@@ -18,11 +19,6 @@ const contract = require('truffle-contract');
 const PropertyContract = require('../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
 const ReactMapboxGl = require('react-mapbox-gl').default;
-const egoCloseHexagon = require('../img/ego/close-hexagon.svg');
-const egoStoreMobile = require('../img/ego/store-mobile.svg');
-const egoAddHexagon1 = require('../img/ego/add-hexagon-1.svg');
-const egoLocation = require('../img/ego/location.svg');
-// const egoConstructionFence = require('../img/ego/caution-fence.svg');
 
 const Map = ReactMapboxGl({
     accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -117,6 +113,17 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     };
 
     componentWillMount() {
+        this.getPropertyDetail();
+    }
+
+    componentDidMount() {
+        propertyContract.setProvider(web3.currentProvider);
+        this.getName();
+        this.getBalance();
+        this.getAssets();
+    }
+
+    getPropertyDetail() {
         // call hub to retrieve current information for that property
         axios.get(process.env.REACT_APP_HUB_URL + '/properties/' + this.props.match.params.pid).then((result) => {
             this.setState({
@@ -128,13 +135,6 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         }).catch((error) => {
             console.log(error);
         });
-    }
-
-    componentDidMount() {
-        propertyContract.setProvider(web3.currentProvider);
-        this.getName();
-        this.getBalance();
-        this.getAssets();
     }
 
     getName() {
@@ -441,42 +441,6 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        {/* <tr>
-                                            <td className='label'><label>Images:</label></td>
-                                            <td>
-                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className='label'><label>Facilities:</label></td>
-                                            <td>
-                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className='label'><label>Accepted paiement:</label></td>
-                                            <td>
-                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className='label'><label>Landmarks:</label></td>
-                                            <td>
-                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className='label'><label>Restaurant on site:</label></td>
-                                            <td>
-                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className='label'><label>Pets allowed:</label></td>
-                                            <td>
-                                                <p><img className='under-construction' src={egoConstructionFence} /> Work in progress...</p>
-                                            </td>
-                                        </tr> */}
                                     </tbody>
                                 </table>
                             </form>
