@@ -50,12 +50,12 @@
 }
 
 .property-detail .container .content .description {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #a7a7a7;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
     display: block;
     margin: 0 0 16px 8px;
-    font-size: 1;
 }
 
 .under-construction {
