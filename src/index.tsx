@@ -1,13 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-
+import { egowindowLock, egoWarning, egoBubbleChatTyping } from './img/index';
 import './index.css';
 
 const { Web3Provider } = require('react-web3');
-const egowindowLock = require('./img/ego/window-lock.svg');
-const bubbleChatTyping = require('./img/ego/bubble-chat-typing.svg');
-const egoWarning = require('./img/ego/report-problem-warning-hexagon.svg');
 import './missingProvider.css';
 import './calendarEnhancer.css';
 
@@ -43,7 +40,7 @@ var web3NeededHtml = (
       </div>
       <div className='modal-content'>
         <div className='visual-tip'>
-          <img className='tip' src={bubbleChatTyping} />
+          <img className='tip' src={egoBubbleChatTyping} />
           <img className='action' src={egoWarning} />
         </div>
         <p>
