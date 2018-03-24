@@ -208,22 +208,6 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
         });
     }
 
-    // will need to be moved elsewhere
-    toAscii = function (hex: string) {
-        var str = '',
-            i = 0,
-            l = hex.length;
-        if (hex.substring(0, 2) === '0x') {
-            i = 2;
-        }
-        for (; i < l; i += 2) {
-            var code = parseInt(hex.substr(i, 2), 16);
-            if (code === 0) { continue; } // this is added
-            str += String.fromCharCode(code);
-        }
-        return str;
-    };
-
     addStayOnRequestOpen() {
         this.setState({
             addStayModalIsOpen: true
@@ -263,7 +247,6 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
     }
 
     render() {
-        console.log(this.state.stays);
         var content;
         if (this.state.loading) {
             content = <Spinner text='loading asset...' />;
@@ -272,7 +255,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                 <div className='informations'>
                     <p className='asset-name'>Name: {this.state.asset.name || 'Asset ' + this.props.match.params.aid}</p>
                     <p className='asset-description'>Description: {this.state.asset.description}</p>
-                    <p className='asset-price'>Price: {this.state.asset.price} {this.toAscii(this.state.asset.currency)}</p>
+                    <p className='asset-price'>Price: {this.state.asset.price} {this.state.asset.currency}</p>
                     <br />
                     <BigCalendar
                         className='custom-calendar'
