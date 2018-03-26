@@ -75,6 +75,27 @@ table {
 	color: #c0c0c0;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 10px; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #d4d4d4; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #a7a7a7; 
+}
+
 input{
 	font-family: 'CircularStdBook', sans-serif;
 }

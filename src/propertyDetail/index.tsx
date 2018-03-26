@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import Toggle from 'react-toggle';
 import Asset from './asset';
 import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
@@ -9,6 +10,7 @@ import { IProperty } from '../models/property';
 import Spinner from '../components/spinner';
 import Authentication from '../services/authentication/authentication';
 import HubRequest from '../services/rest/hubRequest';
+import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import './index.css';
 
@@ -30,6 +32,26 @@ const addAssetModalStyles = {
     content: {
         padding: '16px',
         width: '600px',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        overflow: 'none',
+        borderRadius: '3px',
+        borderColor: '#C0C0C0',
+        boxShadow: '3px 3px 15px #7F7F7F',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    },
+    overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.25)'
+    }
+};
+
+const managePropertyModalStyles = {
+    content: {
+        padding: '16px',
+        width: '800px',
         top: '50%',
         left: '50%',
         right: 'auto',
@@ -78,9 +100,39 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                     coordinates: [],
                     type: ''
                 },
+                amenities: {
+                    accessibility: {
+                        value: false
+                    },
+                    computers: {
+                        value: false
+                    },
+                    conferenceVenues: {
+                        value: false
+                    },
+                    library: {
+                        value: false
+                    },
+                    lockers: {
+                        value: false
+                    },
+                    pet: {
+                        value: false
+                    },
+                    restaurants: {
+                        value: false
+                    },
+                    smoking: {
+                        value: false
+                    },
+                    wifi: {
+                        value: false
+                    }
+                },
                 name: '',
                 parent: '',
-                rating: ''
+                rating: 0,
+                images: []
             },
             name: '',
             balance: -1,
@@ -106,6 +158,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         this.managePropertyOnRequestClose = this.managePropertyOnRequestClose.bind(this);
         this.managePropertyOnRequestOpen = this.managePropertyOnRequestOpen.bind(this);
         this.onMapZoomDragEnd = this.onMapZoomDragEnd.bind(this);
+        this.onDrop = this.onDrop.bind(this);
     }
 
     static contextTypes = {
@@ -258,14 +311,6 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
         });
     }
 
-    managePropertyHandleChanges(property: string, e: any) {
-        var tmp = this.state.property;
-        tmp[property] = e.target.value;
-        this.setState({
-            property: tmp
-        });
-    }
-
     onMapZoomDragEnd(map: any, event: any) {
         var center = map.getCenter();
         var tmp = this.state.property;
@@ -273,6 +318,15 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             coordinates: [center.lng, center.lat],
             type: 'Point'
         };
+        this.setState({
+            property: tmp
+        });
+    }
+
+    onDrop(files: any) {
+        console.log(files);
+        var tmp = this.state.property;
+        tmp.images = files;
         this.setState({
             property: tmp
         });
@@ -349,9 +403,10 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                 <img className='tip' src={egoStoreMobile} />
                                 <img className='action' src={egoAddHexagon1} />
                             </div>
-                            <p className='description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p className='description'>
+                                Price and Currency is the only needed information we need to create you asset smart contract.
+                                Further details can be added afterward.
+                            </p>
                             <form>
                                 <table>
                                     <tbody>
@@ -391,7 +446,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                     <Modal
                         isOpen={this.state.managePropertyModalIsOpen}
                         onRequestClose={this.managePropertyOnRequestClose}
-                        style={addAssetModalStyles}
+                        style={managePropertyModalStyles}
                         contentLabel='Modal'
                     >
                         <div className='modal-header'>
@@ -425,7 +480,13 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                     type='text'
                                                     value={this.state.property.name}
                                                     placeholder='name'
-                                                    onChange={(e) => this.managePropertyHandleChanges('name', e)}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.name = e.target.value;
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
                                                 />
                                             </td>
                                         </tr>
@@ -437,8 +498,187 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                     type='text'
                                                     value={this.state.property.description}
                                                     placeholder='description'
-                                                    onChange={(e) => this.managePropertyHandleChanges('description', e)}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.description = e.target.value;
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
                                                 />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Disabled access:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.accessibility.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.accessibility = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Computers available:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.computers.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.computers = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Conference venues:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.conferenceVenues.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.conferenceVenues = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Library:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.library.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.library = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Lockers:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.lockers.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.lockers = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Pet allowed:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.pet.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.pet = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Restaurants:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.restaurants.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.restaurants = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Smoke free:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.smoking.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.smoking = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='amenity'>
+                                            <td className='label'><label>Wifi available:</label></td>
+                                            <td className='toggle'>
+                                                <Toggle
+                                                    defaultChecked={this.state.property.amenities.wifi.value}
+                                                    icons={false}
+                                                    onChange={(e) => {
+                                                        var tmp = this.state.property;
+                                                        tmp.amenities.wifi = {
+                                                            value: e.target.checked
+                                                        };
+                                                        this.setState({
+                                                            property: tmp
+                                                        });
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr className='images'>
+                                            <td className='label'><label>Upload images:</label></td>
+                                            <td className='upload'>
+                                                <Dropzone className='drop-zone' onDrop={this.onDrop}>
+                                                    <p>Drap or click here to upload some images.</p>
+                                                </Dropzone>
+                                                <ul className='drop-zone-files'>
+                                                    {this.state.property.images && this.state.property.images.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)}
+                                                </ul>
                                             </td>
                                         </tr>
                                     </tbody>

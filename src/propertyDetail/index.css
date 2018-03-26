@@ -16,7 +16,7 @@
 .property-detail .container .content {
     position: relative;
     padding: 24px 8px 16px 16px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 3px;
     margin: 16px 8px 8px 0;
     color: #595959;
@@ -28,7 +28,7 @@
     top: 8px;
     right: 8px;
     font-size: 0.8em;
-    color: #A0A0A0;
+    color: #a0a0a0;
 }
 
 .property-detail .container .content .balance {
@@ -36,7 +36,7 @@
     top: 20px;
     right: 8px;
     font-size: 0.8em;
-    color: #A0A0A0;
+    color: #a0a0a0;
 }
 
 .property-detail .container .content .name {
@@ -56,9 +56,4 @@
     text-align: justify;
     display: block;
     margin: 0 0 16px 8px;
-}
-
-.under-construction {
-    margin: 4px 0px 0px 8px;
-    width: 16px;
 }

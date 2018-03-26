@@ -20,10 +20,13 @@
 }
 
 .modal-content {
+    overflow-x: hidden;
     padding: 24px;
     font-size: 18px;
     line-height: 1.5;
     color: #212529;
+    max-height: 60vh;
+    margin-bottom: 16px;
 }
 
 .modal-content .visual-tip {
@@ -68,6 +71,7 @@
     left: 50%;
     height: 32px;
     transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 .modal-content form {
@@ -94,6 +98,32 @@
     outline: 0;
     font-size: 1.2em;
     border-radius: 3px;
+}
+
+.modal-content table tbody .amenity {
+    height: 50px;
+}
+
+.modal-content table tbody .amenity .label {
+    padding-top: 16px;
+}
+
+.modal-content table tbody .amenity .toggle {
+    padding-left: 8px;
+    padding-top: 16px;
+    vertical-align: middle;
+}
+
+.modal-content table tbody .images .drop-zone{
+    border: dashed 2px #a7a7a7;
+    border-radius: 3px;
+    padding: 8px;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+.modal-content table tbody .images .drop-zone-files{
+    margin-top: 8px;
+    margin-left: 8px;
 }
 
 .modal-actions {

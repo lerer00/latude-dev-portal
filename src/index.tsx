@@ -7,6 +7,7 @@ import './index.css';
 const { Web3Provider } = require('react-web3');
 import './missingProvider.css';
 import './calendarEnhancer.css';
+import './reactToggle.css';
 
 var unlockWalletHtml = (
   <div className='web3-needed'>

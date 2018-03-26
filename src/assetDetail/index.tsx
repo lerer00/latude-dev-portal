@@ -370,9 +370,11 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                                 <img className='tip' src={egoCalendar2} />
                                 <img className='action' src={egoAddHexagon1} />
                             </div>
-                            <p className='description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p className='description'>
+                                Add a stay for this asset.
+                                Choose a starting and ending date.
+                                Note that the last day is not included within your stay, it's the date your are checking out.
+                            </p>
                             <DateRange
                                 className='select-range'
                                 calendars={1}
