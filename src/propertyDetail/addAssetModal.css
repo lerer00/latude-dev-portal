@@ -1,0 +1,35 @@
+.add-asset-modal-form {
+    margin-top: 16px;
+}
+
+.add-asset-modal-form table {
+    width: 100%;
+}
+
+.add-asset-modal-form table tbody tr td:first-child {
+    text-align: right;
+    color: #c0c0c0;
+}
+
+.add-asset-modal-form table tbody tr td:last-child {
+    padding: 8px 0;
+}
+
+.add-asset-modal-form table tbody tr td:last-child .react-toggle {
+    vertical-align: middle;
+}
+
+.add-asset-modal-form table tbody tr td label {
+    padding-right: 8px;
+}
+
+.add-asset-modal-form table tbody tr td .value {
+    box-sizing: border-box;
+    width: 80%;
+    padding: 8px;
+    border: none;
+    background-color: #f4f4f4;
+    outline: 0;
+    font-size: 18px;
+    border-radius: 3px;
+}

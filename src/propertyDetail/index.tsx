@@ -5,7 +5,10 @@ import Asset from './asset';
 import EmptySearch from '../components/emptySearch';
 import { Breadcrumbs } from '../breadcrumbs';
 import { Button, IButtonState } from '../components/button';
-import { egoCloseHexagon, egoAddHexagon1, egoStoreMobile, egoLocation } from '../img/index';
+import {
+    egoCloseHexagon, egoAddHexagon1, egoStoreMobile, egoLocation,
+    egoUpload, egoAdd
+} from '../img/index';
 import { IProperty } from '../models/property';
 import Spinner from '../components/spinner';
 import Authentication from '../services/authentication/authentication';
@@ -13,6 +16,8 @@ import HubRequest from '../services/rest/hubRequest';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import './index.css';
+import './managePropertyModal.css';
+import './addAssetModal.css';
 
 const web3 = window['web3'];
 const Modal = require('react-modal');
@@ -65,6 +70,9 @@ const managePropertyModalStyles = {
     },
     overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.25)'
+    },
+    xxx: {
+        backgroundColor: 'red'
     }
 };
 
@@ -83,6 +91,7 @@ export namespace PropertyDetail {
         addAssetModalIsOpen: boolean;
         managePropertyModalIsOpen: boolean;
         mapOptions: any;
+        files: Array<any>;
     }
 }
 
@@ -147,7 +156,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
             mapOptions: {
                 zoom: [8],
                 center: [-122.419416, 37.774929]
-            }
+            },
+            files: []
         };
 
         this.addAsset = this.addAsset.bind(this);
@@ -241,6 +251,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
 
         var hubRequest = new HubRequest(Authentication.getInstance());
         hubRequest.postProperty(this.state.property).then((result) => {
+            return hubRequest.postPropertyImages(this.state.property.id, this.state.files);
+        }).then((result) => {
             console.log(result);
         }).catch((error) => {
             console.log(error);
@@ -324,11 +336,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
     }
 
     onDrop(files: any) {
-        console.log(files);
-        var tmp = this.state.property;
-        tmp.images = files;
         this.setState({
-            property: tmp
+            files: files
         });
     }
 
@@ -407,11 +416,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                 Price and Currency is the only needed information we need to create you asset smart contract.
                                 Further details can be added afterward.
                             </p>
-                            <form>
+                            <form className='add-asset-modal-form'>
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td className='label'><label>Price:</label></td>
+                                            <td ><label>Price:</label></td>
                                             <td>
                                                 <input
                                                     className='value'
@@ -423,7 +432,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className='label'><label>Currency:</label></td>
+                                            <td ><label>Currency:</label></td>
                                             <td>
                                                 <input
                                                     className='value'
@@ -454,9 +463,8 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                             <img className='close' src={egoCloseHexagon} onClick={this.managePropertyOnRequestClose} />
                         </div>
                         <div className='modal-content'>
-                            <div className='map-selector'>
-                                <p>Drag the map to your property location. Please be as precise as possible.</p>
-                                <img className='map-cursor' src={egoLocation} />
+                            <div className='manage-property-modal-map-selector'>
+                                <img className='manage-property-modal-map-cursor' src={egoLocation} />
                                 <Map
                                     style='mapbox://styles/mapbox/streets-v9'
                                     containerStyle={{
@@ -469,11 +477,11 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                     onZoomEnd={(map: any, event: React.SyntheticEvent<any>) => { this.onMapZoomDragEnd(map, event); }}
                                 />
                             </div>
-                            <form>
+                            <form className='manage-property-modal-form'>
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td className='label'><label>Name:</label></td>
+                                            <td><label>Name:</label></td>
                                             <td>
                                                 <input
                                                     className='value'
@@ -491,7 +499,7 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className='label'><label>Description:</label></td>
+                                            <td ><label>Description:</label></td>
                                             <td>
                                                 <input
                                                     className='value'
@@ -508,9 +516,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Disabled access:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Disabled access:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.accessibility.value}
                                                     icons={false}
@@ -526,9 +534,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Computers available:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Computers available:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.computers.value}
                                                     icons={false}
@@ -544,9 +552,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Conference venues:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Conference venues:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.conferenceVenues.value}
                                                     icons={false}
@@ -562,9 +570,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Library:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Library:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.library.value}
                                                     icons={false}
@@ -580,9 +588,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Lockers:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Lockers:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.lockers.value}
                                                     icons={false}
@@ -598,9 +606,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Pet allowed:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Pet allowed:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.pet.value}
                                                     icons={false}
@@ -616,9 +624,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Restaurants:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Restaurants:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.restaurants.value}
                                                     icons={false}
@@ -634,9 +642,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Smoke free:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td ><label>Smoke free:</label></td>
+                                            <td >
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.smoking.value}
                                                     icons={false}
@@ -652,9 +660,9 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='amenity'>
-                                            <td className='label'><label>Wifi available:</label></td>
-                                            <td className='toggle'>
+                                        <tr className='manage-property-modal-amenity'>
+                                            <td><label>Wifi available:</label></td>
+                                            <td>
                                                 <Toggle
                                                     defaultChecked={this.state.property.amenities.wifi.value}
                                                     icons={false}
@@ -670,17 +678,36 @@ class PropertyDetail extends React.Component<PropertyDetail.Props, PropertyDetai
                                                 />
                                             </td>
                                         </tr>
-                                        <tr className='images'>
-                                            <td className='label'><label>Upload images:</label></td>
-                                            <td className='upload'>
-                                                <Dropzone className='drop-zone' onDrop={this.onDrop}>
-                                                    <p>Drap or click here to upload some images.</p>
+                                        <tr className='manage-property-modal-upload-images'>
+                                            <td><label>Upload images:</label></td>
+                                            <td>
+                                                <Dropzone className='manage-property-modal-upload-images-drop-zone' onDrop={this.onDrop} accept='image/*'>
+                                                    <p><img src={egoUpload} /> Drag or click here to upload some images.</p>
                                                 </Dropzone>
-                                                <ul className='drop-zone-files'>
-                                                    {this.state.property.images && this.state.property.images.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)}
+                                                <ul className='manage-property-modal-upload-images-drop-zone-files'>
+                                                    {this.state.files &&
+                                                        this.state.files.map(f =>
+                                                            <li className='manage-property-modal-upload-images-drop-zone-file' key={f.name}>
+                                                                <img src={egoAdd} />
+                                                                <span>{f.name} - {f.size} bytes</span>
+                                                            </li>
+                                                        )
+                                                    }
                                                 </ul>
                                             </td>
                                         </tr>
+                                        {this.state.property.images.length > 0 && <tr className='manage-property-modal-current-images-container'>
+                                            <td >Current images: </td>
+                                            <td className='manage-property-modal-current-images'>
+                                                {
+                                                    this.state.property.images.map((image: string, index: number) => {
+                                                        return <div className='manage-property-modal-current-image-container' key={index}>
+                                                            <img className='manage-property-modal-current-image' src={image} />
+                                                        </div>;
+                                                    })
+                                                }
+                                            </td>
+                                        </tr>}
                                     </tbody>
                                 </table>
                             </form>

@@ -6,6 +6,7 @@ import { Breadcrumbs } from '../breadcrumbs';
 import { Button, IButtonState } from '../components/button';
 import Spinner from '../components/spinner';
 import './index.css';
+import './addPropertyModal.css';
 
 const web3 = window['web3'];
 const Modal = require('react-modal');
@@ -198,7 +199,7 @@ class CompanyDetail extends React.Component<CompanyDetail.Props, CompanyDetail.S
                             <p className='description'>Those are only basic information needed to create a property. 
                                 You'll always be able to manage this property freely after creation.
                                 In order for everyone to see it, you'll need to activate it first.</p>
-                            <form className='addPropertyForm'>
+                            <form className='add-property-modal-form'>
                                 <table>
                                     <tbody>
                                         <tr>

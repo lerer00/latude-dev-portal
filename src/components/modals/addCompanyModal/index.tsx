@@ -1,6 +1,7 @@
 import * as React from 'react';
 const Modal = require('react-modal');
 import { egoCloseHexagon, egoAddHexagon1, egoBuilding3 } from '../../../img/index';
+import './index.css';
 
 const addCompanyModalStyles = {
     content: {
@@ -53,7 +54,7 @@ class AddCompanyModal extends React.Component<Props> {
                     </div>
                     <p className='description'>Create the contract who will act as your company on the blockchain.
                This is only for architectural purpose since every property will now be created within this company.</p>
-                    <form>
+                    <form className='add-company-modal-form'>
                         <table>
                             <tbody>
                                 <tr>

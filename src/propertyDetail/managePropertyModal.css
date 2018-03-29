@@ -1,0 +1,101 @@
+.manage-property-modal-map-selector {
+    position: relative;
+    width: 100%;
+}
+
+.manage-property-modal-map-selector .manage-property-modal-map-cursor {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    height: 32px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.manage-property-modal-form {
+    margin-top: 16px;
+}
+
+.manage-property-modal-form table {
+    width: 100%;
+}
+
+.manage-property-modal-form table tbody tr td:first-child {
+    text-align: right;
+    color: #c0c0c0;
+}
+
+.manage-property-modal-form table tbody tr td:last-child {
+    padding: 8px 0;
+}
+
+.manage-property-modal-form table tbody tr td:last-child .react-toggle {
+    vertical-align: middle;
+}
+
+.manage-property-modal-form table tbody tr td label {
+    padding-right: 8px;
+}
+
+.manage-property-modal-form table tbody tr td .value {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background-color: #f4f4f4;
+    outline: 0;
+    font-size: 18px;
+    border-radius: 3px;
+}
+
+.manage-property-modal-upload-images .manage-property-modal-upload-images-drop-zone img {
+    width: 16px;
+}
+
+.manage-property-modal-upload-images .manage-property-modal-upload-images-drop-zone p {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+    border: dashed 2px #dbdbdb;
+    outline: 0;
+    font-size: 18px;
+    border-radius: 3px;
+    color: #a8a8a8;
+}
+
+.manage-property-modal-upload-images .manage-property-modal-upload-images-drop-zone-files {
+    margin: 8px 0 0 10px;
+}
+
+.manage-property-modal-upload-images .manage-property-modal-upload-images-drop-zone-files .manage-property-modal-upload-images-drop-zone-file img {
+    width: 16px;
+    margin-right: 6px;
+}
+
+.manage-property-modal-upload-images .manage-property-modal-upload-images-drop-zone-files .manage-property-modal-upload-images-drop-zone-file span {
+    color: #595959;
+}
+
+.manage-property-modal-current-images-container td:first-child {
+    padding: 8px 8px 0 0;
+    vertical-align: top;
+}
+
+.manage-property-modal-current-images-container .manage-property-modal-current-images {
+    max-width: 552px;
+}
+
+.manage-property-modal-current-images-container .manage-property-modal-current-images .manage-property-modal-current-image-container {
+    display: inline-block;
+    width: 150px;
+    background-color: #f4f4f4;
+    border-radius: 3px;
+    margin: 4px 4px 0 0;
+}
+
+.manage-property-modal-current-images-container .manage-property-modal-current-images .manage-property-modal-current-image-container .manage-property-modal-current-image {
+    display: block;
+    height: 180px;
+    margin: auto;
+}

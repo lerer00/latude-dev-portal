@@ -10,6 +10,7 @@ import HubRequest from '../services/rest/hubRequest';
 import axios from 'axios';
 import Spinner from '../components/spinner';
 import './index.css';
+import './addStayModal.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const web3 = window['web3'];
@@ -331,7 +332,7 @@ class AssetDetail extends React.Component<AssetDetail.Props, AssetDetail.State> 
                                 <img className='action' src={egoDataTransfer} />
                             </div>
                             <p className='description'>Set details about this current asset. Some are read-only and cannot be modified.</p>
-                            <form>
+                            <form className='add-stay-modal-form'>
                                 <table>
                                     <tbody>
                                         <tr>
