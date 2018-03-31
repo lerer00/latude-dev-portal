@@ -9,7 +9,7 @@ export type Context = {
 export interface State {
     isLoading: boolean;
     companies: string[];
-    modalOpen: boolean;
+    addCompanyModalIsOpen: boolean;
     newCompany: {
         name: string;
     };

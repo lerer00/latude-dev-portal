@@ -34,7 +34,7 @@ class Company extends React.Component<Company.Props, Company.State> {
         web3: PropTypes.object
     };
 
-    componentWillMount() {
+    componentDidMount() {
         companyContract.setProvider(web3.currentProvider);
         this.getName();
         this.getBalance();

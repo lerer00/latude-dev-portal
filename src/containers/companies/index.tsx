@@ -11,16 +11,8 @@ import './index.css';
 
 const { toast } = require('react-toastify');
 import { Props, State, CompanyModel, Context } from './model';
-import { addAction, toggleModalAction, updateNewCompanyAction, fetchCompaniesAction } from './actions';
+import { addCompanyAction, toggleAddCompanyModalAction, updateNewCompanyAction, fetchCompaniesAction } from './actions';
 import AddCompanyModal from '../../components/modals/addCompanyModal';
-
-const routes: Breadcrumbs.Crumb[] = [
-    {
-        name: 'Companies',
-        path: '/companies',
-        active: true,
-    }
-];
 
 class Companies extends React.Component<Props> {
     static contextTypes = {
@@ -36,6 +28,14 @@ class Companies extends React.Component<Props> {
     }
 
     render() {
+        const routes: Breadcrumbs.Crumb[] = [
+            {
+                name: 'Companies',
+                path: '/companies',
+                active: true,
+            }
+        ];
+
         var content;
         if (this.props.isLoading) {
             content = (
@@ -63,11 +63,11 @@ class Companies extends React.Component<Props> {
                     </div>
 
                     <AddCompanyModal
-                        modalOpen={this.props.modalOpen}
-                        newCompany={this.props.newCompany}
+                        modalIsOpen={this.props.addCompanyModalIsOpen}
+                        modalClose={this.props.closeAddCompanyModal}
+                        company={this.props.newCompany}
                         addCompany={() => this.props.addCompany(this.props.newCompany, this.context)}
-                        closeAddCompanyModal={this.props.closeAddCompanyModal}
-                        updateNewCompany={this.props.updateNewCompany}
+                        updateCompany={this.props.updateNewCompany}
                     />
                 </div>
             </div>
@@ -78,25 +78,25 @@ class Companies extends React.Component<Props> {
 const mapStateToProps = (state: {}) => {
     const companiesState: State = state['companies'];
     return {
-        modalOpen: companiesState.modalOpen,
-        companies: companiesState.companies,
-        newCompany: companiesState.newCompany,
         isLoading: companiesState.isLoading,
+        companies: companiesState.companies,
+        addCompanyModalIsOpen: companiesState.addCompanyModalIsOpen,
+        newCompany: companiesState.newCompany,
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     return {
         addCompany: (newCompany: CompanyModel, context: Context) => {
-            dispatch(addAction(newCompany, context, () => {
+            dispatch(addCompanyAction(newCompany, context, () => {
                 toast.success('Success, company was added.', {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
             }));
-            dispatch(toggleModalAction(false));
+            dispatch(toggleAddCompanyModalAction(false));
         },
-        openAddCompanyModal: () => { dispatch(toggleModalAction(true)); },
-        closeAddCompanyModal: () => { dispatch(toggleModalAction(false)); },
+        openAddCompanyModal: () => { dispatch(toggleAddCompanyModalAction(true)); },
+        closeAddCompanyModal: () => { dispatch(toggleAddCompanyModalAction(false)); },
         fetchCompanies: () => { dispatch(fetchCompaniesAction()); },
         updateNewCompany: (prop: string, value: string) => { dispatch(updateNewCompanyAction(prop, value)); },
     };

@@ -1,14 +1,14 @@
-.companies {
+.company-detail {
     background-color: transparent;
 }
 
-.companies .container {
+.company-detail .container{
     position: relative;
     width: 1180px;
     margin: auto;
     padding: 16px;
 }
 
-.companies .content {
+.company-detail .content{
     margin-top: 16px;
 }

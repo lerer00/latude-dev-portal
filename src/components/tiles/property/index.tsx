@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import './index.css';
 import { NavLink } from 'react-router-dom';
+import { egoCogDouble } from '../../../img/index';
 
 const web3 = window['web3'];
 const contract = require('truffle-contract');
-const PropertyContract = require('../../build/contracts/Property.json');
+const PropertyContract = require('../../../build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
-const egoCogDouble = require('../../img/ego/cog-double-2.svg');
 
 export namespace Property {
     export interface Props {
@@ -35,7 +35,7 @@ class Property extends React.Component<Property.Props, Property.State> {
         web3: PropTypes.object
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.getName();
         this.getBalance();
     }

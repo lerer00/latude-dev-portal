@@ -1,20 +1,15 @@
 import * as t from './actionTypes';
 
-export const addAction = (newCompany: any, context: any, cb: () => void) => {
+export const addCompanyAction = (newCompany: any, context: any, cb: () => void) => {
     return ({
-        type: t.ADD,
+        type: t.ADD_COMPANY,
         payload: { newCompany, context, cb }
     });
 };
 
-export const toggleModalAction = (value: boolean) => ({
-    type: t.TOGGLE_MODAL,
+export const toggleAddCompanyModalAction = (value: boolean) => ({
+    type: t.TOGGLE_ADD_COMPANY_MODAL,
     payload: value
-});
-
-export const companiesFetched = (companies: any[]) => ({
-    type: t.COMPANIES_FETCHED,
-    payload: companies,
 });
 
 export const fetchCompaniesAction = () => {
@@ -24,8 +19,13 @@ export const fetchCompaniesAction = () => {
     };
 };
 
+export const companiesFetchedAction = (companies: any[]) => ({
+    type: t.COMPANIES_FETCHED,
+    payload: companies,
+});
+
 export const updateNewCompanyAction = (prop: string, value: string) => ({
-    type: t.UPDATE_NEW_COMPANY_MODAL,
+    type: t.UPDATE_NEW_COMPANY,
     payload: {
         prop,
         value,

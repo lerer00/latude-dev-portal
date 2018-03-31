@@ -9,20 +9,14 @@ class CompaniesService {
         companyFactoryContract.setProvider(web3.currentProvider);
     }
 
-    private waitingCompany = new Map();
     private _instance: Promise<any>;
-
     public getInstance(): Promise<any> {
         if (!this._instance) {
             this._instance = companyFactoryContract.deployed();
             this._instance.then((instance) => {
                 // instance.companyCreated('latest').watch((error: Error, result: any) => {
                 //     store.dispatch({ type: 'companies/FETCH_COMPANIES' });
-                //     const name = result.args.name;
-                //     if (this.waitingCompany.has(name)) {
-                //         this.waitingCompany.get(name)();
-                //         this.waitingCompany.delete(name);
-                //     }
+                //     console.log(result);
                 // });
             });
         }
@@ -38,7 +32,6 @@ class CompaniesService {
 
     public async addCompany(name: string, context: any, cb: () => void) {
         const instance = await this.getInstance();
-        this.waitingCompany.set(name, cb);
         return await instance.addCompany(name, { from: context.web3.selectedAccount });
     }
 }

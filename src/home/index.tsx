@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Companies from '../containers/companies';
-import CompanyDetail from '../companyDetail';
+// import CompanyDetail from '../companyDetail';
+import Company from '../containers/company';
 import PropertyDetail from '../propertyDetail';
 import AssetDetail from '../assetDetail';
 import Header from '../layouts/header';
@@ -46,7 +47,8 @@ class Home extends React.Component<Home.Props, Home.State> {
         <Switch>
           <Route exact={true} path='/' component={Default} />
           <Route exact={true} path='/companies' component={Companies} />
-          <Route exact={true} path='/companies/:cid' component={CompanyDetail} />
+          {/* <Route exact={true} path='/companies/:cid' component={CompanyDetail} /> */}
+          <Route exact={true} path='/companies/:cid' component={Company} />
           <Route exact={true} path='/companies/:cid/properties/:pid' component={PropertyDetail} />
           <Route exact={true} path='/companies/:cid/properties/:pid/assets/:aid' component={AssetDetail} />
         </Switch>
