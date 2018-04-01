@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { egoNetwork, egoWarning } from './img/index';
-import Home from './home';
+import Root from './containers/root';
 import Authentication from './services/authentication/authentication';
 import './App.css';
 import store from './store';
@@ -49,11 +49,11 @@ class App extends React.Component {
     switch (this.context.web3.networkId) {
       // rinkeby
       case '4':
-        content = <Home />;
+        content = <Root />;
         break;
       // ganache
       case '5777':
-        content = <Home />;
+        content = <Root />;
         break;
       default:
         content = unknownNetwork;

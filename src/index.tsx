@@ -3,11 +3,12 @@ import * as ReactDOM from 'react-dom';
 import App from './App';
 import { egowindowLock, egoWarning, egoBubbleChatTyping } from './img/index';
 import './index.css';
+import './styles/missingProvider.css';
+import './styles/modalEnhancer.css';
+import './styles/calendarEnhancer.css';
+import './styles/reactToggle.css';
 
 const { Web3Provider } = require('react-web3');
-import './missingProvider.css';
-import './calendarEnhancer.css';
-import './reactToggle.css';
 
 var unlockWalletHtml = (
   <div className='web3-needed'>
