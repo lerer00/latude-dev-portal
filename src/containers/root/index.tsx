@@ -1,21 +1,20 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Companies from '../containers/companies';
-// import CompanyDetail from '../companyDetail';
-import Company from '../containers/company';
-import PropertyDetail from '../propertyDetail';
-import AssetDetail from '../assetDetail';
-import Header from '../layouts/header';
-import Footer from '../layouts//footer';
-import Default from './default';
-import Menu from '../layouts/menu';
+import Companies from '../../containers/companies';
+import Company from '../../containers/company';
+import Home from '../../containers/home';
+import PropertyDetail from '../../propertyDetail';
+import AssetDetail from '../../assetDetail';
+import Header from '../../layouts/header';
+import Footer from '../../layouts//footer';
+import Menu from '../../layouts/menu';
 import './index.css';
 
 const { ToastContainer } = require('react-toastify');
 import 'react-toastify/dist/ReactToastify.min.css';
 import './toast.css';
 
-export namespace Home {
+export namespace Root {
   export interface Props {
     // empty
   }
@@ -25,8 +24,8 @@ export namespace Home {
   }
 }
 
-class Home extends React.Component<Home.Props, Home.State> {
-  constructor(props?: Home.Props, context?: any) {
+class Root extends React.Component<Root.Props, Root.State> {
+  constructor(props?: Root.Props, context?: any) {
     super(props, context);
   }
 
@@ -45,9 +44,8 @@ class Home extends React.Component<Home.Props, Home.State> {
         <Header />
         <Menu />
         <Switch>
-          <Route exact={true} path='/' component={Default} />
+          <Route exact={true} path='/' component={Home} />
           <Route exact={true} path='/companies' component={Companies} />
-          {/* <Route exact={true} path='/companies/:cid' component={CompanyDetail} /> */}
           <Route exact={true} path='/companies/:cid' component={Company} />
           <Route exact={true} path='/companies/:cid/properties/:pid' component={PropertyDetail} />
           <Route exact={true} path='/companies/:cid/properties/:pid/assets/:aid' component={AssetDetail} />

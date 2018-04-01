@@ -1,9 +1,8 @@
 import * as React from 'react';
+import { egoSteveJobs } from '../../img/index';
 import './index.css';
 
-const egoSteveJobs = require('../../img/ego/steve-jobs.svg');
-
-class Default extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div className='default'>
@@ -20,4 +19,4 @@ class Default extends React.Component {
   }
 }
 
-export default Default;
+export default Home;

@@ -14,3 +14,4 @@ export const egoBubbleChatTyping = require('../img/ego/bubble-chat-typing.svg');
 export const egoNetwork = require('../img/ego/network.svg');
 export const egoUpload = require('../img/ego/upload-3.svg');
 export const egoAdd = require('../img/ego/add-1.svg');
+export const egoSteveJobs = require('../img/ego/steve-jobs.svg');
