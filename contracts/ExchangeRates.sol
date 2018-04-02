@@ -14,7 +14,7 @@ contract ExchangeRates is usingOraclize, Authorization {
 
     function ExchangeRates() public payable {
         // Initialize the delay
-         delay = 86400;
+        delay = 86400;
 
         // This should only be used when deploying to a local rpc.
         OAR = OraclizeAddrResolverI(0x6f485C8BF6fc43eA212E93BBF8ce046C7f1cb475);
@@ -53,7 +53,7 @@ contract ExchangeRates is usingOraclize, Authorization {
     }
 
     function getCurrenciesRate(uint d) internal {
-        bytes32 queryId = oraclize_query(d, "URL", "json(https://latude-currency-api.herokuapp.com/currency).rates");
+        bytes32 queryId = oraclize_query(d, "URL", "json(https://latude-hub.herokuapp.com/rates).rates");
         validIds[queryId] = true;
     }
 
@@ -72,7 +72,7 @@ contract ExchangeRates is usingOraclize, Authorization {
     function stringToBytes32(string memory source) private pure returns (bytes32 result) {
         bytes memory tempEmptyStringTest = bytes(source);
         if (tempEmptyStringTest.length == 0) {
-           return 0x0;
+            return 0x0;
         }
 
         assembly {
