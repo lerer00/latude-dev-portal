@@ -25,15 +25,15 @@ const addPropertyModalStyles = {
 
 interface Props {
     modalIsOpen: boolean;
-    modalClose: () => void;
-    addProperty: (event: any) => void;
-    updateProperty: (prop: string, value: string) => void;
     property: {
         name: string;
     };
+    modalClose: () => void;
+    addProperty: (event: any) => void;
+    updateProperty: (prop: string, value: string) => void;
 }
 
-class AddCompanyModal extends React.Component<Props> {
+class AddPropertyModal extends React.Component<Props> {
     render() {
         return (
             <Modal
@@ -82,4 +82,4 @@ class AddCompanyModal extends React.Component<Props> {
     }
 }
 
-export default AddCompanyModal;
+export default AddPropertyModal;

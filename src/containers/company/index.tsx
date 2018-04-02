@@ -92,9 +92,10 @@ const mapStateToProps = (state: {}) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     return {
+        fetchProperties: (companyContractAddress: string) => { dispatch(fetchPropertiesAction(companyContractAddress)); },
         addProperty: (companyContractAddress: string, newProperty: PropertyModel, context: Context) => {
             dispatch(addPropertyAction(companyContractAddress, newProperty, context, () => {
-                toast.success('Success, company was added.', {
+                toast.success('Success, property was added.', {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
             }));
@@ -102,7 +103,6 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
         },
         openAddPropertyModal: () => { dispatch(toggleAddPropertyModalAction(true)); },
         closeAddPropertyModal: () => { dispatch(toggleAddPropertyModalAction(false)); },
-        fetchProperties: (companyContractAddress: string) => { dispatch(fetchPropertiesAction(companyContractAddress)); },
         updateNewProperty: (prop: string, value: string) => { dispatch(updateNewPropertyAction(prop, value)); },
     };
 };

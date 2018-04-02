@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Home from '../../containers/home';
 import Companies from '../../containers/companies';
 import Company from '../../containers/company';
-import Home from '../../containers/home';
-import PropertyDetail from '../../propertyDetail';
+import Property from '../../containers/property';
 import AssetDetail from '../../assetDetail';
 import Header from '../../layouts/header';
-import Footer from '../../layouts//footer';
+import Footer from '../../layouts/footer';
 import Menu from '../../layouts/menu';
 import './index.css';
 
@@ -47,7 +47,7 @@ class Root extends React.Component<Root.Props, Root.State> {
           <Route exact={true} path='/' component={Home} />
           <Route exact={true} path='/companies' component={Companies} />
           <Route exact={true} path='/companies/:cid' component={Company} />
-          <Route exact={true} path='/companies/:cid/properties/:pid' component={PropertyDetail} />
+          <Route exact={true} path='/companies/:cid/properties/:pid' component={Property} />
           <Route exact={true} path='/companies/:cid/properties/:pid/assets/:aid' component={AssetDetail} />
         </Switch>
         <Footer />
@@ -56,4 +56,4 @@ class Root extends React.Component<Root.Props, Root.State> {
   }
 }
 
-export default Home;
+export default Root;

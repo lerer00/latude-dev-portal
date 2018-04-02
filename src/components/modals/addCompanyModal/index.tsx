@@ -25,13 +25,12 @@ const addCompanyModalStyles = {
 
 interface Props {
     modalIsOpen: boolean;
-    modalClose: () => void;
-    addCompany: (event: any) => void;
-    updateCompany: (prop: string, value: string) => void;
     company: {
         name: string;
     };
-
+    modalClose: () => void;
+    addCompany: (event: any) => void;
+    updateCompany: (prop: string, value: string) => void;
 }
 
 class AddCompanyModal extends React.Component<Props> {

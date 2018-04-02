@@ -9,6 +9,10 @@ class HubRequest {
         this.authentication = authentication;
     }
 
+    public getProperty(id: string) {
+        return axios.get(process.env.REACT_APP_HUB_URL + '/properties/' + id);
+    }
+
     public postProperty(property: IProperty) {
         return axios.post(process.env.REACT_APP_HUB_URL + '/properties/' + property.id, property, { headers: { 'Authorization': this.authentication.getAuthenticationToken() } })
             .then((result) => {

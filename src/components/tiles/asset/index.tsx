@@ -1,8 +1,7 @@
 import * as React from 'react';
 import './index.css';
 import { NavLink } from 'react-router-dom';
-
-const egoCogDouble = require('../../img/ego/cog-double-2.svg');
+import { egoCogDouble } from '../../../img/index';
 
 export namespace Asset {
     export interface Props {
