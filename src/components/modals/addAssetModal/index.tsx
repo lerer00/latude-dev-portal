@@ -1,6 +1,8 @@
 import * as React from 'react';
+import Select from 'react-select';
 const Modal = require('react-modal');
 import { egoCloseHexagon, egoStoreMobile, egoAddHexagon1 } from '../../../img/index';
+import 'react-select/dist/react-select.css';
 import './index.css';
 
 const addAssetModalStyles = {
@@ -35,6 +37,16 @@ interface Props {
 }
 
 class AddAssetModal extends React.Component<Props> {
+    constructor() {
+        super();
+
+        this.handleCurrencyChange = this.handleCurrencyChange.bind(this);
+    }
+
+    handleCurrencyChange = (selectedCurrency: any) => {
+        this.props.updateAsset('currency', selectedCurrency.value);
+    }
+
     render() {
         return (
             <Modal
@@ -53,12 +65,28 @@ class AddAssetModal extends React.Component<Props> {
                         <img className='action' src={egoAddHexagon1} />
                     </div>
                     <p className='description'>
-                        Price and Currency is the only needed information we need to create you asset smart contract.
+                        Price and Currency are the only needed information we need to create you asset smart contract.
                         Further details can be added afterward.
-                            </p>
+                    </p>
                     <form className='add-asset-modal-form'>
                         <table>
                             <tbody>
+                                <tr>
+                                    <td ><label>Currency:</label></td>
+                                    <td>
+                                        <Select
+                                            name='form-field-name'
+                                            value={this.props.asset.currency}
+                                            onChange={this.handleCurrencyChange}
+                                            clearable={false}
+                                            searchable={false}
+                                            options={[
+                                                { value: 'CAD', label: 'CAD' },
+                                                { value: 'USD', label: 'USD' },
+                                            ]}
+                                        />
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td ><label>Price:</label></td>
                                     <td>
@@ -68,18 +96,6 @@ class AddAssetModal extends React.Component<Props> {
                                             value={this.props.asset.price}
                                             placeholder='asset value for 1 night'
                                             onChange={(e) => this.props.updateAsset('price', e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td ><label>Currency:</label></td>
-                                    <td>
-                                        <input
-                                            className='value'
-                                            type='text'
-                                            value={this.props.asset.currency}
-                                            placeholder='desired currency'
-                                            onChange={(e) => this.props.updateAsset('currency', e.target.value)}
                                         />
                                     </td>
                                 </tr>

@@ -33,3 +33,48 @@
     font-size: 18px;
     border-radius: 3px;
 }
+
+.add-asset-modal-form table tbody tr td .Select {
+    position: relative;
+    width: 80%;
+    border: none;
+}
+
+.add-asset-modal-form table tbody tr td .Select.is-focused .Select-control {
+    background-color: #f4f4f4;
+}
+
+.add-asset-modal-form table tbody tr td .Select-control {
+    outline: 0;
+    background-color: #f4f4f4;
+    border: none;
+}
+
+.add-asset-modal-form table tbody tr td .Select-control .Select-value {
+    outline: 0;
+    background-color: #f4f4f4;
+}
+
+.add-asset-modal-form table tbody tr td .Select .Select-menu-outer {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    border-radius: 3px;
+    font-size: 14px;
+    border: solid 1px #f4f4f4;
+}
+
+.add-asset-modal-form table tbody tr td .Select .Select-menu-outer .Select-option {
+    border-left: solid 2px transparent;
+    background-color: #ffffff;
+    box-shadow: 0 2px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)
+}
+
+.add-asset-modal-form table tbody tr td .Select .Select-menu-outer .Select-option.is-focused {
+    background-color: #f4f4f4;
+}
+
+.add-asset-modal-form table tbody tr td .Select .Select-menu-outer .Select-option.is-selected {
+    border-left-color: #399aff;
+    background-color: #ffffff;
+}

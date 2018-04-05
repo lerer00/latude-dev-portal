@@ -55,7 +55,7 @@ const initialState: State = {
     managePropertyModalIsOpen: false,
     newAsset: {
         price: 0,
-        currency: '',
+        currency: 'CAD',
     }
 };
 
@@ -65,44 +65,34 @@ export default (state = initialState, action: AnyAction): State => {
     const resetNewAsset = (stateArg = state) => update({ newProperty: initialState.newAsset }, state);
 
     switch (action.type) {
-        case t.ADD_ASSET:
-            propertyService.init(action.payload.propertyContractAddress);
-            propertyService.addAsset(action.payload.newAsset, action.payload.context, action.payload.cb);
-            return resetNewAsset(isLoading());
-        case t.SAVE_PROPERTY:
-            Hub.getInstance().postProperty(action.payload.property);
-
-            if (action.payload.images.length > 0)
-                Hub.getInstance().postPropertyImages(action.payload.property.id, action.payload.images);
-
-            return update({
-                managePropertyModalIsOpen: false,
-                propertyImages: []
-            });
-        case t.TOGGLE_ADD_ASSET_MODAL:
-            return update({ addAssetModalIsOpen: action.payload });
-        case t.TOGGLE_MANAGE_PROPERTY_MODAL:
-            return update({ managePropertyModalIsOpen: action.payload });
-        case t.FETCH_PROPERTY:
-            Hub.getInstance().getProperty(action.payload.propertyContractAddress);
-            return isLoading();
         case t.FETCH_ASSETS:
             propertyService.init(action.payload.propertyContractAddress);
             propertyService.getAssets();
+            return isLoading();
+        case t.ASSETS_FETCHED:
+            return update({
+                assets: action.payload,
+                isLoading: false,
+            });
+        case t.FETCH_PROPERTY:
+            Hub.getInstance().getProperty(action.payload.propertyContractAddress);
             return isLoading();
         case t.PROPERTY_FETCHED:
             return update({
                 property: action.payload,
                 isLoading: false,
             });
-        case t.ASSETS_FETCHED:
-            return update({
-                assets: action.payload,
-                isLoading: false,
-            });
+        case t.TOGGLE_ADD_ASSET_MODAL:
+            return update({ addAssetModalIsOpen: action.payload });
         case t.UPDATE_NEW_ASSET:
             const updatedAsset = Object.assign({}, state.newAsset, { [action.payload.prop]: action.payload.value });
             return update({ newAsset: updatedAsset });
+        case t.ADD_ASSET:
+            propertyService.init(action.payload.propertyContractAddress);
+            propertyService.addAsset(action.payload.newAsset, action.payload.context, action.payload.cb);
+            return resetNewAsset(isLoading());
+        case t.TOGGLE_MANAGE_PROPERTY_MODAL:
+            return update({ managePropertyModalIsOpen: action.payload });
         case t.UPDATE_MANAGE_PROPERTY:
             const updatedProperty = Object.assign({}, state.property, { [action.payload.prop]: action.payload.value });
             return update({ property: updatedProperty });
@@ -125,6 +115,16 @@ export default (state = initialState, action: AnyAction): State => {
             });
         case t.UPDATE_MANAGE_PROPERTY_IMAGES:
             return update({ propertyImages: action.payload.files });
+        case t.SAVE_PROPERTY:
+            Hub.getInstance().postProperty(action.payload.property);
+
+            if (action.payload.images.length > 0)
+                Hub.getInstance().postPropertyImages(action.payload.property.id, action.payload.images);
+
+            return update({
+                managePropertyModalIsOpen: false,
+                propertyImages: []
+            });
         default:
             return state;
     }

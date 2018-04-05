@@ -34,7 +34,6 @@ export default (state = initialState, action: AnyAction): State => {
         isLoading: false,
       });
     case t.UPDATE_NEW_COMPANY:
-      console.log(action.payload);
       const updatedCompany = Object.assign({}, state.newCompany, { [action.payload.prop]: action.payload.value });
       return update({ newCompany: updatedCompany });
     default:
