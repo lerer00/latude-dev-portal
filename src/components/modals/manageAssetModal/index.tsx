@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { egoCloseHexagon, egoAddHexagon1, egoBuilding3 } from '../../../img/index';
+import { egoCloseHexagon, egoStoreMobile, egoDataTransfer } from '../../../img/index';
+import { IAsset } from '../../../models/asset';
 import './index.css';
 
 const Modal = require('react-modal');
 
-const addCompanyModalStyles = {
+const manageAssetModalStyles = {
     content: {
         padding: '16px',
         width: '600px',
@@ -26,46 +27,43 @@ const addCompanyModalStyles = {
 
 interface Props {
     modalIsOpen: boolean;
-    company: {
-        name: string;
-    };
+    asset: IAsset;
     modalClose: () => void;
-    addCompany: (event: any) => void;
-    updateCompany: (prop: string, value: string) => void;
+    saveAsset: (event: any) => void;
+    updateAsset: (prop: string, value: any) => void;
 }
 
-class AddCompanyModal extends React.Component<Props> {
+class ManageAssetModal extends React.Component<Props> {
     render() {
         return (
             <Modal
                 isOpen={this.props.modalIsOpen}
                 onRequestClose={this.props.modalClose}
-                style={addCompanyModalStyles}
+                style={manageAssetModalStyles}
                 contentLabel='Modal'
             >
                 <div className='modal-header'>
-                    <h1 className='title'>Add company</h1>
+                    <h1 className='title'>Manage asset</h1>
                     <img className='close' src={egoCloseHexagon} onClick={this.props.modalClose} />
                 </div>
                 <div className='modal-content'>
                     <div className='visual-tip'>
-                        <img className='tip' src={egoBuilding3} />
-                        <img className='action' src={egoAddHexagon1} />
+                        <img className='tip' src={egoStoreMobile} />
+                        <img className='action' src={egoDataTransfer} />
                     </div>
-                    <p className='description'>Create the contract who will act as your company on the blockchain.
-               This is only for architectural purpose since every property will now be created within this company.</p>
-                    <form className='add-company-modal-form'>
+                    <p className='description'>Set details about this current asset. Some are read-only and cannot be modified.</p>
+                    <form className='add-stay-modal-form'>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td className='label'><label>Name:</label></td>
+                                    <td className='label'><label>Description:</label></td>
                                     <td>
                                         <input
                                             className='value'
                                             type='text'
-                                            value={this.props.company.name}
-                                            placeholder='insert company name'
-                                            onChange={(e) => this.props.updateCompany('name', e.target.value)}
+                                            value={this.props.asset.description}
+                                            placeholder='small description'
+                                            onChange={(e) => this.props.updateAsset('description', e.target.value)}
                                         />
                                     </td>
                                 </tr>
@@ -74,7 +72,7 @@ class AddCompanyModal extends React.Component<Props> {
                     </form>
                 </div>
                 <div className='modal-actions'>
-                    <button className='button' onClick={(e) => this.props.addCompany(e)}>Add</button>
+                    <button className='button' onClick={(e) => this.props.saveAsset(e)}>Save</button>
                     <button className='action close' onClick={this.props.modalClose}>Close</button>
                 </div>
             </Modal>
@@ -82,4 +80,4 @@ class AddCompanyModal extends React.Component<Props> {
     }
 }
 
-export default AddCompanyModal;
+export default ManageAssetModal;

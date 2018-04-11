@@ -1,0 +1,33 @@
+.asset-detail {
+    background-color: transparent;
+}
+
+.asset-detail .container {
+    position: relative;
+    width: 1180px;
+    margin: auto;
+    padding: 16px;
+}
+
+.asset-detail .container .button {
+    margin-right: 8px;
+}
+
+.asset-detail .container .informations {
+    position: relative;
+    padding: 24px 8px 16px 16px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    margin: 8px 8px 8px 0;
+    color: #595959;
+}
+
+.asset-detail .container .informations .custom-calendar {
+    position: relative;
+    z-index: 0;
+}
+
+.select-range {
+    display: block !important;
+    margin: 36px auto 8px !important;
+}

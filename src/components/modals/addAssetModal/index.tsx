@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Select from 'react-select';
-const Modal = require('react-modal');
 import { egoCloseHexagon, egoStoreMobile, egoAddHexagon1 } from '../../../img/index';
 import 'react-select/dist/react-select.css';
 import './index.css';
+
+const Modal = require('react-modal');
 
 const addAssetModalStyles = {
     content: {

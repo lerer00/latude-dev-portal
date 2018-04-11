@@ -16,7 +16,7 @@ const Map = ReactMapboxGl({
 const managePropertyModalStyles = {
     content: {
         padding: '16px',
-        width: '800px',
+        width: '600px',
         top: '50%',
         left: '50%',
         right: 'auto',

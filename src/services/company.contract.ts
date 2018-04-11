@@ -35,7 +35,10 @@ class CompanyService {
 
     public async addProperty(name: string, context: any, cb: () => void) {
         const instance = await this.getInstance();
-        return await instance.addProperty(name, { from: context.web3.selectedAccount });
+        instance.addProperty(name, { from: context.web3.selectedAccount })
+            .then(() => {
+                cb();
+            });
     }
 }
 

@@ -32,7 +32,10 @@ class CompaniesService {
 
     public async addCompany(name: string, context: any, cb: () => void) {
         const instance = await this.getInstance();
-        return await instance.addCompany(name, { from: context.web3.selectedAccount });
+        instance.addCompany(name, { from: context.web3.selectedAccount })
+            .then(() => {
+                cb();
+            });
     }
 }
 

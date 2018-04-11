@@ -4,7 +4,7 @@ import Home from '../../containers/home';
 import Companies from '../../containers/companies';
 import Company from '../../containers/company';
 import Property from '../../containers/property';
-import AssetDetail from '../../assetDetail';
+import Asset from '../../containers/asset';
 import Header from '../../layouts/header';
 import Footer from '../../layouts/footer';
 import Menu from '../../layouts/menu';
@@ -48,7 +48,7 @@ class Root extends React.Component<Root.Props, Root.State> {
           <Route exact={true} path='/companies' component={Companies} />
           <Route exact={true} path='/companies/:cid' component={Company} />
           <Route exact={true} path='/companies/:cid/properties/:pid' component={Property} />
-          <Route exact={true} path='/companies/:cid/properties/:pid/assets/:aid' component={AssetDetail} />
+          <Route exact={true} path='/companies/:cid/properties/:pid/assets/:aid' component={Asset} />
         </Switch>
         <Footer />
       </div>

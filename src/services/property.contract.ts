@@ -45,7 +45,35 @@ class PropertyService {
 
     public async addAsset(asset: any, context: any, cb: () => void) {
         const instance = await this.getInstance();
-        return await instance.addAsset(asset.price, asset.currency, { from: context.web3.selectedAccount });
+        instance.addAsset(asset.price, asset.currency, { from: context.web3.selectedAccount })
+            .then(() => {
+                cb();
+            });
+    }
+
+    public async getStay(assetId: string, stayId: string) {
+        const instance = await this.getInstance();
+        const stay = await instance.getStay.call(assetId, stayId);
+
+        return stay;
+    }
+
+    public async addStay(assetId: string, stay: any, context: any, cb: () => void) {
+        const durationInDays = stay.endDate.diff(stay.startDate, 'days');
+        const instance = await this.getInstance();
+        const price = await instance.getStayPriceInWei.call(assetId, durationInDays);
+
+        const start = stay.startDate.unix();
+        const end = stay.endDate.unix();
+
+        instance.addStay(assetId, start, end,
+            {
+                from: context.web3.selectedAccount,
+                value: price
+            }).then(() => {
+                cb();
+            });
+
     }
 }
 

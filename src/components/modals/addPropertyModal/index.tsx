@@ -1,7 +1,8 @@
 import * as React from 'react';
-const Modal = require('react-modal');
 import { egoCloseHexagon, egoBuilding10, egoAddHexagon1 } from '../../../img/index';
 import './index.css';
+
+const Modal = require('react-modal');
 
 const addPropertyModalStyles = {
     content: {

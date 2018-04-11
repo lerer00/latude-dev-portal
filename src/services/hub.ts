@@ -26,13 +26,24 @@ class HubService {
     }
 
     public async postPropertyImages(propertyId: string, files: Array<any>) {
-        console.log(propertyId, files);
         var formData = new FormData();
         files.forEach((file: File) => {
             formData.append('photos', file);
         });
 
         var result = await axios.post(process.env.REACT_APP_HUB_URL + '/properties/' + propertyId + '/upload', formData, { headers: { 'Authorization': this._authentication.getAuthenticationToken(), 'Content-Type': 'multipart/form-data' } });
+        return result;
+    }
+
+    public async getAsset(id: string) {
+        var asset = await axios.get(process.env.REACT_APP_HUB_URL + '/assets/' + id);
+        store.dispatch({ type: 'asset/ASSET_FETCHED', payload: asset.data });
+        return asset.data;
+    }
+
+    public async postAsset(asset: any, cb: () => {}) {
+        var result = await axios.post(process.env.REACT_APP_HUB_URL + '/assets/' + asset.id, asset, { headers: { 'Authorization': this._authentication.getAuthenticationToken() } });
+        cb();
         return result;
     }
 }
