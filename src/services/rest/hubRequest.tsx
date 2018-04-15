@@ -28,7 +28,6 @@ class HubRequest {
             formData.append('photos', file);
         });
 
-        console.log('Calling: ', process.env.REACT_APP_HUB_URL + '/properties/' + id + '/upload');
         return axios.post(process.env.REACT_APP_HUB_URL + '/properties/' + id + '/upload', formData, { headers: { 'Authorization': this.authentication.getAuthenticationToken(), 'Content-Type': 'multipart/form-data' } })
             .then((result) => {
                 console.log('Upload images', result);
@@ -38,7 +37,6 @@ class HubRequest {
     }
 
     public postAsset(asset: IAsset) {
-        console.log(asset);
         return axios.post(process.env.REACT_APP_HUB_URL + '/assets/' + asset.id, asset, { headers: { 'Authorization': this.authentication.getAuthenticationToken() } })
             .then((result) => {
                 console.log(result);
