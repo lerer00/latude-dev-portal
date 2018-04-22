@@ -13,16 +13,8 @@ class CompanyService {
         this._companyContractAddress = contractAddress;
     }
 
-    public getInstance(): Promise<any> {
-        if (!this._instance) {
-            this._instance = companyContract.at(this._companyContractAddress);
-            this._instance.then((instance) => {
-                // instance.PropertyCreated('latest').watch((error: Error, result: any) => {
-                //     store.dispatch({ type: 'company/FETCH_PROPERTIES' });
-                //     console.log(result);
-                // });
-            });
-        }
+    public async getInstance(): Promise<any> {
+        this._instance = await companyContract.at(this._companyContractAddress);
         return this._instance;
     }
 

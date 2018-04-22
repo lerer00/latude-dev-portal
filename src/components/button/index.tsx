@@ -36,7 +36,8 @@ export class Button extends React.Component<Button.Props & React.HTMLAttributes<
         this.executeAction = this.executeAction.bind(this);
     }
 
-    executeAction() {
+    executeAction(e: any) {
+        e.preventDefault();
         this.props.action();
     }
 
@@ -64,7 +65,7 @@ export class Button extends React.Component<Button.Props & React.HTMLAttributes<
         }
 
         return (
-            <button className={wantedStyles} onClick={() => this.executeAction()}>
+            <button type='button' className={wantedStyles} onClick={(e) => this.executeAction(e)}>
                 <span className='button-text'>{this.props.text}</span>
             </button>
         );

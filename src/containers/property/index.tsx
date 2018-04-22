@@ -94,7 +94,7 @@ class Property extends React.Component<Props> {
                         modalIsOpen={this.props.addAssetModalIsOpen}
                         modalClose={this.props.closeAddAssetModal}
                         asset={this.props.newAsset}
-                        addAsset={() => this.props.addAsset(this.props.match.pid, this.props.newAsset, this.context)}
+                        addAsset={() => this.props.addAsset(this.props.match.params.pid, this.props.newAsset, this.context)}
                         updateAsset={this.props.updateNewAsset}
                     />
                     <ManagePropertyModal

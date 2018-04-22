@@ -15,7 +15,8 @@ const { toast } = require('react-toastify');
 import { Props, State, StayModel, Context } from './model';
 import {
     fetchAssetAction, toggleAddStayModalAction, updateNewStayAction, addStayAction,
-    toggleManageAssetModalAction, updateManageAssetAction, saveAssetAction
+    toggleManageAssetModalAction, updateManageAssetAction, saveAssetAction,
+    updateManageAssetAddAmenityAction, updateManageAssetRemoveAmenityAction
 } from './actions';
 import AddStayModal from '../../components/modals/addStayModal';
 import ManageAssetModal from '../../components/modals/manageAssetModal';
@@ -48,13 +49,9 @@ class Asset extends React.Component<Props> {
     }
 
     CreateEvent(stay: any) {
-        console.log(stay);
         var startDate: any = new Date(stay.checkInUtc * 1000);
-        console.log(startDate);
         var endDate: any = new Date(stay.checkInUtc * 1000);
         endDate.setDate(endDate.getDate() + parseInt(stay.duration, 10));
-        console.log(endDate);
-        console.log('==========');
 
         var event: CalendarEvent = {
             title: 'Booking',
@@ -151,6 +148,8 @@ class Asset extends React.Component<Props> {
                         asset={this.props.asset}
                         saveAsset={() => this.props.saveAsset(this.props.asset)}
                         updateAsset={this.props.updateAsset}
+                        addAmenity={this.props.addAssetAmenity}
+                        removeAmenity={this.props.removeAssetAmenity}
                     />
                 </div>
             </section>
@@ -189,6 +188,8 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
         openManageAssetModal: () => { dispatch(toggleManageAssetModalAction(true)); },
         closeManageAssetModal: () => { dispatch(toggleManageAssetModalAction(false)); },
         updateAsset: (prop: string, value: any) => { dispatch(updateManageAssetAction(prop, value)); },
+        addAssetAmenity: (amenity: any) => { dispatch(updateManageAssetAddAmenityAction(amenity)); },
+        removeAssetAmenity: (amenity: any) => { dispatch(updateManageAssetRemoveAmenityAction(amenity)); },
         saveAsset: (asset: IAsset, context: Context) => {
             dispatch(saveAssetAction(asset, () => {
                 toast.success('Success, asset saved.', {

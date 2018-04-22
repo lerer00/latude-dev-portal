@@ -8,6 +8,7 @@ export interface IAsset {
     parent: string;
     staysMap: any;
     stays: Array<any>;
+    amenities: Array<any>;
     price: number;
     currency: string;
 }

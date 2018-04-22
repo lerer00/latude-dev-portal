@@ -71,7 +71,7 @@ class Company extends React.Component<Props> {
                         modalIsOpen={this.props.addPropertyModalIsOpen}
                         modalClose={this.props.closeAddPropertyModal}
                         property={this.props.newProperty}
-                        addProperty={() => this.props.addProperty(this.props.match.cid, this.props.newProperty, this.context)}
+                        addProperty={() => this.props.addProperty(this.props.match.params.cid, this.props.newProperty, this.context)}
                         updateProperty={this.props.updateNewProperty}
                     />
                 </div>

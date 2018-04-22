@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { egoCloseHexagon, egoStoreMobile, egoDataTransfer } from '../../../img/index';
 import { IAsset } from '../../../models/asset';
+import { Button, IButtonState } from '../../../components/button';
+import AssetAmenity from '../../assetAmenity';
+import BedSelector from '../../bedSelector';
 import './index.css';
 
 const Modal = require('react-modal');
@@ -31,20 +34,58 @@ interface Props {
     modalClose: () => void;
     saveAsset: (event: any) => void;
     updateAsset: (prop: string, value: any) => void;
+    addAmenity: (amenity: any) => void;
+    removeAmenity: (amenity: any) => void;
 }
 
-class ManageAssetModal extends React.Component<Props> {
+interface State {
+    bedSelectorActive: boolean;
+}
+
+class ManageAssetModal extends React.Component<Props, State> {
+    constructor(props?: any, context?: any) {
+        super(props, context);
+
+        this.state = {
+            bedSelectorActive: false
+        };
+
+        this.addAmenity = this.addAmenity.bind(this);
+        this.removeAmenity = this.removeAmenity.bind(this);
+        this.close = this.close.bind(this);
+    }
+
+    addAmenity() {
+        this.setState({
+            bedSelectorActive: true
+        });
+    }
+
+    removeAmenity() {
+        this.setState({
+            bedSelectorActive: false
+        });
+    }
+
+    close() {
+        this.setState({
+            bedSelectorActive: false
+        });
+
+        this.props.modalClose();
+    }
+
     render() {
         return (
             <Modal
                 isOpen={this.props.modalIsOpen}
-                onRequestClose={this.props.modalClose}
+                onRequestClose={this.close}
                 style={manageAssetModalStyles}
                 contentLabel='Modal'
             >
                 <div className='modal-header'>
                     <h1 className='title'>Manage asset</h1>
-                    <img className='close' src={egoCloseHexagon} onClick={this.props.modalClose} />
+                    <img className='close' src={egoCloseHexagon} onClick={this.close} />
                 </div>
                 <div className='modal-content'>
                     <div className='visual-tip'>
@@ -52,7 +93,7 @@ class ManageAssetModal extends React.Component<Props> {
                         <img className='action' src={egoDataTransfer} />
                     </div>
                     <p className='description'>Set details about this current asset. Some are read-only and cannot be modified.</p>
-                    <form className='add-stay-modal-form'>
+                    <form className='manage-asset-modal-form'>
                         <table>
                             <tbody>
                                 <tr>
@@ -67,13 +108,26 @@ class ManageAssetModal extends React.Component<Props> {
                                         />
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td className='label'><label>Amenities:</label></td>
+                                    <td>
+                                        <div className='asset-amenities'>
+                                        {console.log(this.props.asset)}
+                                            {this.props.asset.amenities.length > 0 && this.props.asset.amenities.map((amenity, index) =>
+                                                <AssetAmenity key={index} amenity={amenity} />
+                                            )}
+                                        </div>
+                                        {this.state.bedSelectorActive && <BedSelector addBed={this.props.addAmenity} cancel={this.removeAmenity} />}
+                                        {!this.state.bedSelectorActive && <Button text='Add bed' state={IButtonState.default} action={this.addAmenity} />}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </form>
                 </div>
                 <div className='modal-actions'>
                     <button className='button' onClick={(e) => this.props.saveAsset(e)}>Save</button>
-                    <button className='action close' onClick={this.props.modalClose}>Close</button>
+                    <button className='action close' onClick={this.close}>Close</button>
                 </div>
             </Modal>
         );

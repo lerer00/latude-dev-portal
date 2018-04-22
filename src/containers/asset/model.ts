@@ -33,5 +33,7 @@ export type Props = State & {
     openManageAssetModal: () => void;
     closeManageAssetModal: () => void;
     updateAsset: (prop: string, value: any) => void;
+    addAssetAmenity: (amenity: any) => void;
+    removeAssetAmenity: (amenity: any) => void;
     saveAsset: (asset: IAsset) => void;
 };

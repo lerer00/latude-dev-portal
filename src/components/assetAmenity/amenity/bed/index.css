@@ -1,0 +1,15 @@
+.asset-bed-amenity .bed-number {
+    width: 24px;
+    color: #c0c0c0;
+    font-size: 0.8em;
+    display: inline-block;
+    text-align: left;
+}
+
+.asset-bed-amenity .bed-icon {
+    width: 20px;
+}
+
+.asset-bed-amenity .bed-properties {
+    display: inline-block;
+}

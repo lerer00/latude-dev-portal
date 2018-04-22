@@ -1,0 +1,21 @@
+.bed-selector {
+    display: grid;
+    grid-column-gap: 8px;
+    grid-template-columns: 2fr 1fr 1fr;
+    margin: 8px 0;
+}
+
+.bed-selector .value {
+    width: 100% !important;
+}
+
+.bed-selector .action-button {
+    width: 40%;
+    background: none;
+    border: none;
+}
+
+.bed-selector .action-button .save {
+    width: 100%;
+}
+

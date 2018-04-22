@@ -19,6 +19,7 @@ export default (state = initialState, action: AnyAction): State => {
 
     switch (action.type) {
         case t.ADD_PROPERTY:
+            console.log(action.payload);
             companyService.init(action.payload.companyContractAddress);
             companyService.addProperty(action.payload.newProperty.name, action.payload.context, action.payload.cb);
             return resetNewProperty(isLoading());

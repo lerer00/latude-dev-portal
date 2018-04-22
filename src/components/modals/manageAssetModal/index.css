@@ -2,6 +2,10 @@
     margin-top: 16px;
 }
 
+.manage-asset-modal-form .asset-amenities {
+    margin-bottom: 8px;
+}
+
 .manage-asset-modal-form table {
     width: 100%;
 }
@@ -32,4 +36,15 @@
     outline: 0;
     font-size: 18px;
     border-radius: 3px;
+}
+
+.manage-asset-modal-form .Select-menu-outer {
+    top: auto;
+    bottom: 100%;
+    border-radius: 3px 3px 0 0;
+}
+
+.manage-asset-modal-form .Select.is-open .Select-control {
+    border-radius: 0 0 3px 3px;
+    border-top: none;
 }

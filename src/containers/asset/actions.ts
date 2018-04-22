@@ -51,6 +51,18 @@ export const updateManageAssetAction = (prop: string, value: string) => ({
         value,
     }
 });
+export const updateManageAssetAddAmenityAction = (amenity: any) => ({
+    type: t.UPDATE_MANAGE_ASSET_ADD_AMENITY,
+    payload: {
+        amenity
+    }
+});
+export const updateManageAssetRemoveAmenityAction = (amenity: any) => ({
+    type: t.UPDATE_MANAGE_ASSET_REMOVE_AMENITY,
+    payload: {
+        amenity
+    }
+});
 export const saveAssetAction = (asset: any, cb: () => void) => {
     return ({
         type: t.SAVE_ASSET,
