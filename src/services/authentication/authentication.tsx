@@ -1,6 +1,12 @@
 import axios from 'axios';
-import * as Cookies from 'js-cookie';
+
+const moment = require('moment');
 const Web3 = window['web3'];
+
+interface IExpirableToken {
+    token: string;
+    timestamp: number;
+}
 
 interface IAuthenticatePayload {
     signature: string;
@@ -36,43 +42,10 @@ class Authentication {
         return this.getAuthenticationPayload().then((result: IAuthenticatePayload) => {
             return axios.post(process.env.REACT_APP_HUB_URL + '/authenticate', result);
         }).then((result) => {
-            this.createAuthenticationCookie(result.data);
+            this.createAuthenticationStorage(result.data);
         }).catch((error) => {
             console.log(error);
         });
-    }
-
-    public logout() {
-        this.deleteAuthenticationCookie();
-    }
-
-    public isLogin(): boolean {
-        var authenticationCookie = Cookies.get('authentication');
-        if (authenticationCookie === undefined) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public getSelectedAccount(): string {
-        if (!this.web3) {
-            return 'searching...';
-        }
-
-        return this.web3.selectedAccount;
-    }
-
-    public getAuthenticationToken(): string | undefined {
-        return Cookies.get('authentication');
-    }
-
-    private createAuthenticationCookie(data: any) {
-        Cookies.set('authentication', data.token, { expires: 7 });
-    }
-
-    private deleteAuthenticationCookie() {
-        Cookies.remove('authentication');
     }
 
     private getAuthenticationPayload(): Promise<any> {
@@ -98,6 +71,51 @@ class Authentication {
                     resolve(result);
                 });
         });
+    }
+
+    public logout() {
+        this.deleteAuthenticationStorage();
+    }
+
+    public isLogin(): boolean {
+        var authenticationToken = this.getAuthenticationToken();
+        if (authenticationToken === null) {
+            return false;
+        }
+        return true;
+    }
+
+    public getSelectedAccount(): string {
+        if (!this.web3) {
+            return 'searching...';
+        }
+        return this.web3.selectedAccount;
+    }
+
+    public getAuthenticationToken(): string | null {
+        var authenticationToken = localStorage.getItem('authentication');
+        if (authenticationToken === null)
+            return null;
+
+        var decodeToken: IExpirableToken = JSON.parse(atob(authenticationToken));
+        if (decodeToken.timestamp < moment().unix()) {
+            this.deleteAuthenticationStorage();
+            return null;
+        } else {
+            return decodeToken.token;
+        }
+    }
+
+    private createAuthenticationStorage(data: any) {
+        var token: IExpirableToken = {
+            token: data.token.toString(),
+            timestamp: moment().add(1, 'days').unix()
+        };
+        localStorage.setItem('authentication', btoa(JSON.stringify(token)));
+    }
+
+    private deleteAuthenticationStorage() {
+        localStorage.removeItem('authentication');
     }
 
     private toHex(s: string) {
