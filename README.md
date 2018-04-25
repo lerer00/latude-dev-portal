@@ -1,6 +1,6 @@
-# latude-owner-portal
+# Latude owner portal
 
-This repo is created to help us bootstrap the idea of removing third-parties within the accommodation industry. This application is the one that hotel manager will use to manage companies, properties and assets.
+This is the layer where hotel/property manager will be able to create and edit their assets. 
 
 ## Prerequisites
 
