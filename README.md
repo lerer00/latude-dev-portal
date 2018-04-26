@@ -1,4 +1,4 @@
-# Latude owner portal
+# 🐲 latude owner portal
 
 This is the layer where hotel/property manager will be able to create and edit their assets. 
 
