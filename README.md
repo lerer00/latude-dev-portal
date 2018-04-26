@@ -2,6 +2,10 @@
 
 This is the layer where hotel/property manager will be able to create and edit their assets. 
 
+### How to Contribute
+
+Any contributions are welcome!
+
 ### Prerequisites
 
 This is what you need to install before building the application
