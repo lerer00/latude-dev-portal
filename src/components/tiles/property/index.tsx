@@ -6,7 +6,7 @@ import { egoCogDouble } from '../../../img/index';
 
 const web3 = window['web3'];
 const contract = require('truffle-contract');
-const PropertyContract = require('../../../build/contracts/Property.json');
+const PropertyContract = require('latude-contracts/build/contracts/Property.json');
 const propertyContract = contract(PropertyContract);
 
 export namespace Property {

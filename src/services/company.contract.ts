@@ -1,5 +1,5 @@
 const contract = require('truffle-contract');
-const CompanyContract = require('../build/contracts/Company.json');
+const CompanyContract = require('latude-contracts/build/contracts/Company.json');
 const companyContract = contract(CompanyContract);
 const web3 = window['web3'];
 import store from '../store';

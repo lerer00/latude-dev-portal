@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bl": "^1.2.1",
+    "latude-contracts": "^1.0.0",
     "mapbox-gl": "^0.43.0",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
@@ -46,10 +47,6 @@
     "@types/react-redux": "^5.0.15",
     "@types/react-router-dom": "^4.0.8",
     "@types/react-select": "^1.2.6",
-    "@types/react-toggle": "^4.0.1",
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-exec": "^3.0.0"
+    "@types/react-toggle": "^4.0.1"
   }
 }

@@ -1,5 +1,5 @@
 const contract = require('truffle-contract');
-const ExchangeRatesContract = require('../build/contracts/ExchangeRates.json');
+const ExchangeRatesContract = require('latude-contracts/build/contracts/ExchangeRates.json');
 const exchangeRatesContract = contract(ExchangeRatesContract);
 const web3 = window['web3'];
 
