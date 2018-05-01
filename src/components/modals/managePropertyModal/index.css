@@ -88,14 +88,14 @@
 
 .manage-property-modal-current-images-container .manage-property-modal-current-images .manage-property-modal-current-image-container {
     display: inline-block;
-    width: 150px;
+    width: 24%;
     background-color: #f4f4f4;
-    border-radius: 3px;
     margin: 4px 4px 0 0;
 }
 
 .manage-property-modal-current-images-container .manage-property-modal-current-images .manage-property-modal-current-image-container .manage-property-modal-current-image {
     display: block;
-    height: 180px;
     margin: auto;
+    width: 100%;
+    border-radius: 3px;
 }
