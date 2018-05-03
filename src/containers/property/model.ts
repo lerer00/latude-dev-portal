@@ -24,7 +24,7 @@ export interface State {
 
 export type Props = State & {
     match: any;
-    fetchAssets: (propertyContractAddress: string) => void;
+    fetchAssets: (propertyContractAddress: string, context: Context) => void;
     fetchProperty: (propertyContractAddress: string) => void;
 
     openAddAssetModal: () => void;

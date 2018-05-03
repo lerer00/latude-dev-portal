@@ -17,7 +17,7 @@ export interface State {
 
 export type Props = State & {
     match: any;
-    fetchProperties: (companyContractAddress: string) => void;
+    fetchProperties: (companyContractAddress: string, context: Context) => void;
     addProperty: (companyContractAddress: string, newProperty: PropertyModel, context: Context) => void;
     openAddPropertyModal: () => void;
     closeAddPropertyModal: () => void;

@@ -1,10 +1,14 @@
 import * as t from './actionTypes';
+import { Context } from './model';
 
 // Assets fetch...
-export const fetchAssetsAction = (propertyContractAddress: string) => {
+export const fetchAssetsAction = (propertyContractAddress: string, context: Context) => {
     return {
         type: t.FETCH_ASSETS,
-        payload: { propertyContractAddress }
+        payload: {
+            propertyContractAddress,
+            context
+        }
     };
 };
 export const assetsFetched = (assets: any[]) => ({
@@ -36,10 +40,15 @@ export const updateNewAssetAction = (prop: string, value: string) => ({
         value,
     }
 });
-export const addAssetAction = (propertyContractAddress: string, newAsset: any, context: any, cb: () => void) => {
+export const addAssetAction = (propertyContractAddress: string, newAsset: any, context: Context, cb: () => void) => {
     return ({
         type: t.ADD_ASSET,
-        payload: { propertyContractAddress, newAsset, context, cb }
+        payload: {
+            propertyContractAddress,
+            newAsset,
+            context,
+            cb
+        }
     });
 };
 

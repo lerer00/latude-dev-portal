@@ -16,7 +16,7 @@ export interface State {
 }
 
 export type Props = State & {
-    fetchCompanies: () => void;
+    fetchCompanies: (context: Context) => void;
     addCompany: (newCompany: CompanyModel, context: Context) => void;
     openAddCompanyModal: () => void;
     closeAddCompanyModal: () => void;

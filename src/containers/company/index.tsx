@@ -24,7 +24,7 @@ class Company extends React.Component<Props> {
     }
 
     componentDidMount() {
-        this.props.fetchProperties(this.props.match.params.cid);
+        this.props.fetchProperties(this.props.match.params.cid, this.context);
     }
 
     render() {
@@ -92,7 +92,7 @@ const mapStateToProps = (state: {}) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     return {
-        fetchProperties: (companyContractAddress: string) => { dispatch(fetchPropertiesAction(companyContractAddress)); },
+        fetchProperties: (companyContractAddress: string, context: Context) => { dispatch(fetchPropertiesAction(companyContractAddress, context)); },
         addProperty: (companyContractAddress: string, newProperty: PropertyModel, context: Context) => {
             dispatch(addPropertyAction(companyContractAddress, newProperty, context, () => {
                 toast.success('Success, property was added.', {

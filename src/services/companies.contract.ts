@@ -23,9 +23,9 @@ class CompaniesService {
         return this._instance;
     }
 
-    public async getCompanies() {
+    public async getCompanies(context: any) {
         const instance = await this.getInstance();
-        const companies = await instance.getCompanies.call();
+        const companies = await instance.getCompanies.call({ from: context.web3.selectedAccount });
         store.dispatch({ type: 'companies/COMPANIES_FETCHED', payload: companies });
         return companies;
     }

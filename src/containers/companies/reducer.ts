@@ -26,7 +26,7 @@ export default (state = initialState, action: AnyAction): State => {
       return update({ addCompanyModalIsOpen: action.payload });
     case t.FETCH_COMPANIES:
       companiesService.init();
-      companiesService.getCompanies();
+      companiesService.getCompanies(action.payload.context);
       return isLoading();
     case t.COMPANIES_FETCHED:
       return update({

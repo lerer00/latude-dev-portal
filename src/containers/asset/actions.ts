@@ -1,4 +1,5 @@
 import * as t from './actionTypes';
+import { Context } from './model';
 
 // Asset fetch...
 export const fetchAssetAction = (propertyContractAddress: string, assetId: string) => {
@@ -26,7 +27,7 @@ export const updateNewStayAction = (dateRange: any) => ({
         dateRange
     }
 });
-export const addStayAction = (propertyContractAddress: string, assetId: string, newStay: any, context: any, cb: () => void) => {
+export const addStayAction = (propertyContractAddress: string, assetId: string, newStay: any, context: Context, cb: () => void) => {
     return ({
         type: t.ADD_STAY,
         payload: {

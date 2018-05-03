@@ -67,7 +67,7 @@ export default (state = initialState, action: AnyAction): State => {
     switch (action.type) {
         case t.FETCH_ASSETS:
             propertyService.init(action.payload.propertyContractAddress);
-            propertyService.getAssets();
+            propertyService.getAssets(action.payload.context);
             return isLoading();
         case t.ASSETS_FETCHED:
             return update({

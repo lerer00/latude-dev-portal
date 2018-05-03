@@ -58,16 +58,13 @@ export default (state = initialState, action: AnyAction): State => {
             return update({ asset: updatedAsset });
         case t.UPDATE_MANAGE_ASSET_ADD_AMENITY:
             var addedArr = pushToArray(state.asset.amenities, action.payload.amenity);
-            console.log(addedArr);
             const updatedAssetAddedAmenity = Object.assign({}, state.asset, { amenities: addedArr });
-            console.log(state.asset);
             return update({ asset: updatedAssetAddedAmenity });
         case t.UPDATE_MANAGE_ASSET_REMOVE_AMENITY:
             var removedArr = removeFromArray(state.asset.amenities, action.payload.amenity);
             const updatedAssetRemovedAmenitys = Object.assign({}, state.asset, { amenitites: removedArr });
             return update({ asset: updatedAssetRemovedAmenitys });
         case t.SAVE_ASSET:
-            console.log(action.payload.asset);
             Hub.getInstance().postAsset(action.payload.asset, action.payload.cb);
             return update({ manageAssetModalIsOpen: false });
         default:

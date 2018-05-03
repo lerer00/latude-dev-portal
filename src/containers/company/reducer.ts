@@ -19,7 +19,6 @@ export default (state = initialState, action: AnyAction): State => {
 
     switch (action.type) {
         case t.ADD_PROPERTY:
-            console.log(action.payload);
             companyService.init(action.payload.companyContractAddress);
             companyService.addProperty(action.payload.newProperty.name, action.payload.context, action.payload.cb);
             return resetNewProperty(isLoading());
@@ -27,7 +26,7 @@ export default (state = initialState, action: AnyAction): State => {
             return update({ addPropertyModalIsOpen: action.payload });
         case t.FETCH_PROPERTIES:
             companyService.init(action.payload.companyContractAddress);
-            companyService.getProperties();
+            companyService.getProperties(action.payload.context);
             return isLoading();
         case t.PROPERTIES_FETCHED:
             return update({

@@ -1,9 +1,15 @@
 import * as t from './actionTypes';
+import { Context } from './model';
 
-export const addPropertyAction = (companyContractAddress: string, newProperty: any, context: any, cb: () => void) => {
+export const addPropertyAction = (companyContractAddress: string, newProperty: any, context: Context, cb: () => void) => {
     return ({
         type: t.ADD_PROPERTY,
-        payload: { companyContractAddress, newProperty, context, cb }
+        payload: {
+            companyContractAddress,
+            newProperty,
+            context,
+            cb
+        }
     });
 };
 
@@ -12,10 +18,13 @@ export const toggleAddPropertyModalAction = (value: boolean) => ({
     payload: value
 });
 
-export const fetchPropertiesAction = (companyContractAddress: string) => {
+export const fetchPropertiesAction = (companyContractAddress: string, context: Context) => {
     return {
         type: t.FETCH_PROPERTIES,
-        payload: { companyContractAddress }
+        payload: {
+            companyContractAddress,
+            context
+        }
     };
 };
 

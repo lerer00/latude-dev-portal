@@ -18,9 +18,9 @@ class CompanyService {
         return this._instance;
     }
 
-    public async getProperties() {
+    public async getProperties(context: any) {
         const instance = await this.getInstance();
-        const properties = await instance.getProperties.call();
+        const properties = await instance.getProperties.call({ from: context.web3.selectedAccount });
         store.dispatch({ type: 'company/PROPERTIES_FETCHED', payload: properties });
         return properties;
     }

@@ -31,7 +31,7 @@ class Property extends React.Component<Props> {
 
     componentDidMount() {
         this.props.fetchProperty(this.props.match.params.pid);
-        this.props.fetchAssets(this.props.match.params.pid);
+        this.props.fetchAssets(this.props.match.params.pid, this.context);
     }
 
     render() {
@@ -129,7 +129,7 @@ const mapStateToProps = (state: {}) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     return {
-        fetchAssets: (propertyContractAddress: string) => { dispatch(fetchAssetsAction(propertyContractAddress)); },
+        fetchAssets: (propertyContractAddress: string, context: Context) => { dispatch(fetchAssetsAction(propertyContractAddress, context)); },
         fetchProperty: (propertyContractAddress: string) => { dispatch(fetchPropertyAction(propertyContractAddress)); },
 
         openAddAssetModal: () => { dispatch(toggleAddAssetModalAction(true)); },

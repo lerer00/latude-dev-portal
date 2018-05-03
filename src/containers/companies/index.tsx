@@ -24,7 +24,7 @@ class Companies extends React.Component<Props> {
     }
 
     componentDidMount() {
-        this.props.fetchCompanies();
+        this.props.fetchCompanies(this.context);
     }
 
     render() {
@@ -97,7 +97,7 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
         },
         openAddCompanyModal: () => { dispatch(toggleAddCompanyModalAction(true)); },
         closeAddCompanyModal: () => { dispatch(toggleAddCompanyModalAction(false)); },
-        fetchCompanies: () => { dispatch(fetchCompaniesAction()); },
+        fetchCompanies: (context: Context) => { dispatch(fetchCompaniesAction(context)); },
         updateNewCompany: (prop: string, value: string) => { dispatch(updateNewCompanyAction(prop, value)); },
     };
 };

@@ -18,9 +18,9 @@ class PropertyService {
         return this._instance;
     }
 
-    public async getAssets() {
+    public async getAssets(context: any) {
         const instance = await this.getInstance();
-        const numberOfAssets = await instance.numberOfAssets.call();
+        const numberOfAssets = await instance.numberOfAssets.call({ from: context.web3.selectedAccount });
         var assets: Array<any> = [];
         for (let i = 0; i < numberOfAssets; i++) {
             var asset = await instance.getAsset(i);
@@ -43,17 +43,17 @@ class PropertyService {
             });
     }
 
-    public async getStay(assetId: string, stayId: string) {
-        const instance = await this.getInstance();
-        const stay = await instance.getStay.call(assetId, stayId);
+    // public async getStay(assetId: string, stayId: string, context: any) {
+    //     const instance = await this.getInstance();
+    //     const stay = await instance.getStay.call(assetId, stayId, { from: context.web3.selectedAccount });
 
-        return stay;
-    }
+    //     return stay;
+    // }
 
     public async addStay(assetId: string, stay: any, context: any, cb: () => void) {
         const durationInDays = stay.endDate.diff(stay.startDate, 'days');
         const instance = await this.getInstance();
-        const price = await instance.getStayPriceInWei.call(assetId, durationInDays);
+        const price = await instance.getStayPriceInWei.call(assetId, durationInDays, { from: context.web3.selectedAccount });
 
         const start = stay.startDate.unix();
         const end = stay.endDate.unix();
