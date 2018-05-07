@@ -1,7 +1,7 @@
 import * as t from './actionTypes';
 import { AnyAction } from 'redux';
 import { State } from './model';
-import companyService from '../../services/company.contract';
+import propertiesService from '../../services/properties.contract';
 
 const initialState: State = {
     isLoading: true,
@@ -19,14 +19,14 @@ export default (state = initialState, action: AnyAction): State => {
 
     switch (action.type) {
         case t.ADD_PROPERTY:
-            companyService.init(action.payload.companyContractAddress);
-            companyService.addProperty(action.payload.newProperty.name, action.payload.context, action.payload.cb);
+            propertiesService.init();
+            propertiesService.addProperty(action.payload.newProperty.name, action.payload.context, action.payload.cb);
             return resetNewProperty(isLoading());
         case t.TOGGLE_ADD_PROPERTY_MODAL:
             return update({ addPropertyModalIsOpen: action.payload });
         case t.FETCH_PROPERTIES:
-            companyService.init(action.payload.companyContractAddress);
-            companyService.getProperties(action.payload.context);
+            propertiesService.init();
+            propertiesService.getProperties(action.payload.context);
             return isLoading();
         case t.PROPERTIES_FETCHED:
             return update({

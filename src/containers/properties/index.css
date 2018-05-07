@@ -1,14 +1,14 @@
-.company-detail {
+.properties-detail {
     background-color: transparent;
 }
 
-.company-detail .container{
+.properties-detail .container{
     position: relative;
     width: 1180px;
     margin: auto;
     padding: 16px;
 }
 
-.company-detail .content{
+.properties-detail .content{
     margin-top: 16px;
 }

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../../containers/home';
-import Companies from '../../containers/companies';
-import Company from '../../containers/company';
+import Properties from '../../containers/properties';
 import Property from '../../containers/property';
 import Asset from '../../containers/asset';
 import Header from '../../layouts/header';
@@ -45,10 +44,9 @@ class Root extends React.Component<Root.Props, Root.State> {
         <Menu />
         <Switch>
           <Route exact={true} path='/' component={Home} />
-          <Route exact={true} path='/companies' component={Companies} />
-          <Route exact={true} path='/companies/:cid' component={Company} />
-          <Route exact={true} path='/companies/:cid/properties/:pid' component={Property} />
-          <Route exact={true} path='/companies/:cid/properties/:pid/assets/:aid' component={Asset} />
+          <Route exact={true} path='/properties' component={Properties} />
+          <Route exact={true} path='/properties/:pid' component={Property} />
+          <Route exact={true} path='/properties/:pid/assets/:aid' component={Asset} />
         </Switch>
         <Footer />
       </div>

@@ -37,23 +37,13 @@ class Property extends React.Component<Props> {
     render() {
         const routes: Breadcrumbs.Crumb[] = [
             {
-                name: 'Companies',
-                path: '/companies',
-                active: true,
-            },
-            {
-                name: this.props.match.params.cid,
-                path: '/companies/' + this.props.match.params.cid,
-                active: true,
-            },
-            {
                 name: 'Properties',
-                path: '/companies/' + this.props.match.params.cid + '/properties/',
-                active: false,
+                path: '/properties/',
+                active: true,
             },
             {
                 name: this.props.match.params.pid,
-                path: '/companies/' + this.props.match.params.cid + '/properties/' + this.props.match.params.pid,
+                path: '/properties/' + this.props.match.params.pid,
                 active: true,
             },
         ];

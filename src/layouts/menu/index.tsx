@@ -22,9 +22,9 @@ class Menu extends React.Component<Menu.Props, Menu.State> {
                         <img className='icon' src={egoMultiPlatform} />
                         <p>Home</p>
                     </NavLink>
-                    <NavLink className='link' activeClassName='active' to='/companies'>
+                    <NavLink className='link' activeClassName='active' to='/properties'>
                         <img className='icon' src={egoBuilding3} />
-                        <p>Companies</p>
+                        <p>Properties</p>
                     </NavLink>
                 </div>
             </section>

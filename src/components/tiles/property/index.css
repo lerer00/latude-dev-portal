@@ -31,7 +31,7 @@
     color: #A0A0A0;
 }
 
-.property .description .name{
+.property .description .identifier{
     max-width: 75%;
     white-space: nowrap;
     overflow: hidden;

@@ -12,7 +12,8 @@ class ExchangeRatesService {
 
     public getInstance(): Promise<any> {
         if (!this._instance) {
-            this._instance = exchangeRatesContract.deployed();
+            // this._instance = exchangeRatesContract.deployed();
+            this._instance = exchangeRatesContract.at(process.env.REACT_APP_LOCAL_EXCHANGE_RATES);
         }
         return this._instance;
     }

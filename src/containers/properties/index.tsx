@@ -14,7 +14,7 @@ import { Props, State, PropertyModel, Context } from './model';
 import { addPropertyAction, toggleAddPropertyModalAction, fetchPropertiesAction, updateNewPropertyAction } from './actions';
 import AddPropertyModal from '../../components/modals/addPropertyModal';
 
-class Company extends React.Component<Props> {
+class Properties extends React.Component<Props> {
     static contextTypes = {
         web3: PropTypes.object
     };
@@ -24,19 +24,14 @@ class Company extends React.Component<Props> {
     }
 
     componentDidMount() {
-        this.props.fetchProperties(this.props.match.params.cid, this.context);
+        this.props.fetchProperties(this.context);
     }
 
     render() {
         const routes: Breadcrumbs.Crumb[] = [
             {
-                name: 'Companies',
-                path: '/companies',
-                active: true,
-            },
-            {
-                name: this.props.match.params.cid,
-                path: '/companies/' + this.props.match.params.cid,
+                name: 'Properties',
+                path: '/properties',
                 active: true,
             }
         ];
@@ -44,12 +39,12 @@ class Company extends React.Component<Props> {
         var content;
         if (this.props.isLoading) {
             content = (
-                <Spinner text='loading company...' />
+                <Spinner text='loading properties...' />
             );
         } else {
             if (this.props.properties.length > 0) {
                 content = this.props.properties.map((id) =>
-                    <Property company={this.props.match.params.cid} key={id} id={id} />
+                    <Property key={id} id={id} />
                 );
             } else {
                 content = <EmptySearch text='You do not have any properties...' />;
@@ -57,7 +52,7 @@ class Company extends React.Component<Props> {
         }
 
         return (
-            <section className='company-detail'>
+            <section className='properties-detail'>
                 <div className='container'>
                     <Breadcrumbs routes={routes} />
                     <div className='actions'>
@@ -71,7 +66,7 @@ class Company extends React.Component<Props> {
                         modalIsOpen={this.props.addPropertyModalIsOpen}
                         modalClose={this.props.closeAddPropertyModal}
                         property={this.props.newProperty}
-                        addProperty={() => this.props.addProperty(this.props.match.params.cid, this.props.newProperty, this.context)}
+                        addProperty={() => this.props.addProperty(this.props.newProperty, this.context)}
                         updateProperty={this.props.updateNewProperty}
                     />
                 </div>
@@ -81,20 +76,20 @@ class Company extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: {}) => {
-    const companyState: State = state['company'];
+    const propertiesState: State = state['properties'];
     return {
-        isLoading: companyState.isLoading,
-        properties: companyState.properties,
-        addPropertyModalIsOpen: companyState.addPropertyModalIsOpen,
-        newProperty: companyState.newProperty,
+        isLoading: propertiesState.isLoading,
+        properties: propertiesState.properties,
+        addPropertyModalIsOpen: propertiesState.addPropertyModalIsOpen,
+        newProperty: propertiesState.newProperty,
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     return {
-        fetchProperties: (companyContractAddress: string, context: Context) => { dispatch(fetchPropertiesAction(companyContractAddress, context)); },
-        addProperty: (companyContractAddress: string, newProperty: PropertyModel, context: Context) => {
-            dispatch(addPropertyAction(companyContractAddress, newProperty, context, () => {
+        fetchProperties: (context: Context) => { dispatch(fetchPropertiesAction(context)); },
+        addProperty: (newProperty: PropertyModel, context: Context) => {
+            dispatch(addPropertyAction(newProperty, context, () => {
                 toast.success('Success, property was added.', {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
@@ -107,4 +102,4 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Company);
+export default connect(mapStateToProps, mapDispatchToProps)(Properties);

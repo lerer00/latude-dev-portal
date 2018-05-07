@@ -11,12 +11,11 @@ const propertyContract = contract(PropertyContract);
 
 export namespace Property {
     export interface Props {
-        company: string;
         id: string;
     }
 
     export interface State {
-        name: string;
+        id: string;
         balance: number;
     }
 }
@@ -26,7 +25,7 @@ class Property extends React.Component<Property.Props, Property.State> {
         super(props, context);
 
         this.state = {
-            name: '',
+            id: '',
             balance: -1
         };
     }
@@ -46,10 +45,10 @@ class Property extends React.Component<Property.Props, Property.State> {
         propertyContract.at(this.props.id).then((instance: any) => {
             propertyInstance = instance;
 
-            return propertyInstance.name.call({ from: this.context.web3.selectedAccount });
+            return propertyInstance.id.call({ from: this.context.web3.selectedAccount });
         }).then((result: any) => {
             this.setState({
-                name: result
+                id: result
             });
         });
     }
@@ -68,8 +67,8 @@ class Property extends React.Component<Property.Props, Property.State> {
                 <div className='description'>
                     <span className='address'>address: {this.props.id}</span>
                     <span className='balance'>balance: {this.state.balance} ether</span>
-                    <p className='name'>{this.state.name}</p>
-                    <NavLink className='detail' to={'/companies/' + this.props.company + '/properties/' + this.props.id}>
+                    <p className='identifier'>{this.state.id}</p>
+                    <NavLink className='detail' to={'/properties/' + this.props.id}>
                         <img className='plus' src={egoCogDouble} />
                     </NavLink>
                 </div>
