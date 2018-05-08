@@ -32,6 +32,11 @@
     line-height: 70px;
     font-size: 1.8em;
     margin-right: 4px;
+    text-decoration: none;
+}
+
+.header .container .content .title:visited{
+    color: #ffffff;
 }
 
 .header .container .content .subtitle {

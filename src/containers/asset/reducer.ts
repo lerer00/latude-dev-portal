@@ -12,16 +12,16 @@ const initialState: State = {
         description: '',
         active: false,
         parent: '',
-        staysMap: [],
-        stays: [],
+        bookingsMap: [],
+        bookings: [],
         amenities: [],
         price: 0,
         currency: ''
     },
-    stays: [],
-    addStayModalIsOpen: false,
+    bookings: [],
+    addBookingModalIsOpen: false,
     manageAssetModalIsOpen: false,
-    newStay: {
+    newBooking: {
         startDate: null,
         endDate: null
     }
@@ -30,7 +30,7 @@ const initialState: State = {
 export default (state = initialState, action: AnyAction): State => {
     const update = (payload: {}, stateArg = state) => Object.assign({}, stateArg, payload);
     const isLoading = (stateArg = state) => update({ isLoading: true }, state);
-    const resetNewStay = (stateArg = state) => update({ newStay: initialState.newStay }, state);
+    const resetNewBooking = (stateArg = state) => update({ newBooking: initialState.newBooking }, state);
     const pushToArray = (oldArr: Array<any>, newValue: any) => { return [...oldArr, newValue]; };
     const removeFromArray = (oldArr: Array<any>, objToRemove: any) => { return oldArr.filter(o => o.id !== objToRemove.id); };
 
@@ -43,14 +43,14 @@ export default (state = initialState, action: AnyAction): State => {
                 asset: action.payload,
                 isLoading: false,
             });
-        case t.TOGGLE_ADD_STAY_MODAL:
-            return update({ addStayModalIsOpen: action.payload });
-        case t.UPDATE_NEW_STAY:
-            return update({ newStay: action.payload.dateRange });
-        case t.ADD_STAY:
+        case t.TOGGLE_ADD_BOOKING_MODAL:
+            return update({ addBookingModalIsOpen: action.payload });
+        case t.UPDATE_NEW_BOOKING:
+            return update({ newBooking: action.payload.dateRange });
+        case t.ADD_BOOKING:
             propertyService.init(action.payload.propertyContractAddress);
-            propertyService.addStay(action.payload.assetId, action.payload.newStay, action.payload.context, action.payload.cb);
-            return resetNewStay(isLoading());
+            propertyService.addBooking(action.payload.assetId, action.payload.newBooking, action.payload.context, action.payload.cb);
+            return resetNewBooking(isLoading());
         case t.TOGGLE_MANAGE_ASSET_MODAL:
             return update({ manageAssetModalIsOpen: action.payload });
         case t.UPDATE_MANAGE_ASSET:

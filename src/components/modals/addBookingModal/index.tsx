@@ -5,7 +5,7 @@ import './index.css';
 const Modal = require('react-modal');
 const DateRange = require('react-date-range').DateRange;
 
-const assStayModalStyles = {
+const addBookingModalStyles = {
     content: {
         padding: '16px',
         width: '600px',
@@ -27,26 +27,26 @@ const assStayModalStyles = {
 
 interface Props {
     modalIsOpen: boolean;
-    stay: {
+    booking: {
         startDate: string;
         endDate: string;
     };
     modalClose: () => void;
-    addStay: (event: any) => void;
-    updateStay: (prop: string, value: string) => void;
+    addBooking: (event: any) => void;
+    updateBooking: (prop: string, value: string) => void;
 }
 
-class AddStayModal extends React.Component<Props> {
+class AddBookingModal extends React.Component<Props> {
     render() {
         return (
             <Modal
                 isOpen={this.props.modalIsOpen}
                 onRequestClose={this.props.modalClose}
-                style={assStayModalStyles}
+                style={addBookingModalStyles}
                 contentLabel='Modal'
             >
                 <div className='modal-header'>
-                    <h1 className='title'>Add stay</h1>
+                    <h1 className='title'>Add booking</h1>
                     <img className='close' src={egoCloseHexagon} onClick={this.props.modalClose} />
                 </div>
                 <div className='modal-content'>
@@ -55,19 +55,19 @@ class AddStayModal extends React.Component<Props> {
                         <img className='action' src={egoAddHexagon1} />
                     </div>
                     <p className='description'>
-                        Add a stay for this asset.
+                        Book a room for this asset.
                         Choose a starting and ending date.
-                        Note that the last day is not included within your stay, it's the date your are checking out.
+                        Note that the last day is not included within your booking, it's the date your are checking out.
                             </p>
                     <DateRange
                         className='select-range'
                         calendars={1}
-                        onInit={this.props.updateStay}
-                        onChange={this.props.updateStay}
+                        onInit={this.props.updateBooking}
+                        onChange={this.props.updateBooking}
                     />
                 </div>
                 <div className='modal-actions'>
-                    <button className='button' onClick={(e) => this.props.addStay(e)}>Save</button>
+                    <button className='button' onClick={(e) => this.props.addBooking(e)}>Save</button>
                     <button className='action close' onClick={this.props.modalClose}>Close</button>
                 </div>
             </Modal>
@@ -75,4 +75,4 @@ class AddStayModal extends React.Component<Props> {
     }
 }
 
-export default AddStayModal;
+export default AddBookingModal;

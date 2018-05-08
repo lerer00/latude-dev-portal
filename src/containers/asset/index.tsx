@@ -12,13 +12,13 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const moment = require('moment');
 const { toast } = require('react-toastify');
-import { Props, State, StayModel, Context } from './model';
+import { Props, State, BookingModel, Context } from './model';
 import {
-    fetchAssetAction, toggleAddStayModalAction, updateNewStayAction, addStayAction,
+    fetchAssetAction, toggleAddBookingModalAction, updateNewBookingAction, addBookingAction,
     toggleManageAssetModalAction, updateManageAssetAction, saveAssetAction,
     updateManageAssetAddAmenityAction, updateManageAssetRemoveAmenityAction
 } from './actions';
-import AddStayModal from '../../components/modals/addStayModal';
+import AddBookingModal from '../../components/modals/addBookingModal';
 import ManageAssetModal from '../../components/modals/manageAssetModal';
 
 export interface CalendarEvent {
@@ -44,14 +44,14 @@ class Asset extends React.Component<Props> {
         this.props.fetchAsset(this.props.match.params.pid, this.props.match.params.aid);
     }
 
-    ConvertStaysIntoEvents() {
-        return this.props.asset.stays.map(s => { return this.CreateEvent(s); });
+    ConvertBookingsIntoEvents() {
+        return this.props.asset.bookings.map(b => { return this.CreateEvent(b); });
     }
 
-    CreateEvent(stay: any) {
-        var startDate: any = new Date(stay.checkInUtc * 1000);
-        var endDate: any = new Date(stay.checkInUtc * 1000);
-        endDate.setDate(endDate.getDate() + parseInt(stay.duration, 10));
+    CreateEvent(booking: any) {
+        var startDate: any = new Date(booking.checkInUtc * 1000);
+        var endDate: any = new Date(booking.checkInUtc * 1000);
+        endDate.setDate(endDate.getDate() + parseInt(booking.duration, 10));
 
         var event: CalendarEvent = {
             title: 'Booking',
@@ -93,7 +93,7 @@ class Asset extends React.Component<Props> {
         if (this.props.isLoading) {
             content = <Spinner text='loading asset...' />;
         } else {
-            var stays = this.ConvertStaysIntoEvents();
+            var bookings = this.ConvertBookingsIntoEvents();
             content = (
                 <div className='informations'>
                     <p className='asset-name'>Name: {this.props.asset.name || 'Asset ' + this.props.match.params.aid}</p>
@@ -103,7 +103,7 @@ class Asset extends React.Component<Props> {
                     <BigCalendar
                         className='custom-calendar'
                         views={['month', 'week']}
-                        events={stays}
+                        events={bookings}
                     />
                 </div>
             );
@@ -114,19 +114,19 @@ class Asset extends React.Component<Props> {
                 <div className='container'>
                     <Breadcrumbs routes={routes} />
                     <div className='action'>
-                        <Button text='Add stay' state={IButtonState.default} action={this.props.openAddStayModal} />
+                        <Button text='Add booking' state={IButtonState.default} action={this.props.openAddBookingModal} />
                         <Button text='Manage asset' state={IButtonState.default} action={this.props.openManageAssetModal} />
                     </div>
                     <div className='content'>
                         {content}
                     </div>
 
-                    <AddStayModal
-                        modalIsOpen={this.props.addStayModalIsOpen}
-                        modalClose={this.props.closeAddStayModal}
-                        stay={this.props.newStay}
-                        addStay={() => this.props.addStay(this.props.match.params.pid, this.props.match.params.aid, this.props.newStay, this.context)}
-                        updateStay={this.props.updateNewStay}
+                    <AddBookingModal
+                        modalIsOpen={this.props.addBookingModalIsOpen}
+                        modalClose={this.props.closeAddBookingModal}
+                        booking={this.props.newBooking}
+                        addBooking={() => this.props.addBooking(this.props.match.params.pid, this.props.match.params.aid, this.props.newBooking, this.context)}
+                        updateBooking={this.props.updateNewBooking}
                     />
 
                     <ManageAssetModal
@@ -149,10 +149,10 @@ const mapStateToProps = (state: {}) => {
     return {
         isLoading: assetState.isLoading,
         asset: assetState.asset,
-        stays: assetState.stays,
-        addStayModalIsOpen: assetState.addStayModalIsOpen,
+        bookings: assetState.bookings,
+        addBookingModalIsOpen: assetState.addBookingModalIsOpen,
         manageAssetModalIsOpen: assetState.manageAssetModalIsOpen,
-        newStay: assetState.newStay
+        newBooking: assetState.newBooking
     };
 };
 
@@ -160,16 +160,16 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     return {
         fetchAsset: (propertyContractAddress: string, assetId: string) => { dispatch(fetchAssetAction(propertyContractAddress, assetId)); },
 
-        openAddStayModal: () => { dispatch(toggleAddStayModalAction(true)); },
-        closeAddStayModal: () => { dispatch(toggleAddStayModalAction(false)); },
-        updateNewStay: (dateRange: any) => { dispatch(updateNewStayAction(dateRange)); },
-        addStay: (propertyContractAddress: string, assetId: string, newStay: StayModel, context: Context) => {
-            dispatch(addStayAction(propertyContractAddress, assetId, newStay, context, () => {
-                toast.success('Success, stay was added.', {
+        openAddBookingModal: () => { dispatch(toggleAddBookingModalAction(true)); },
+        closeAddBookingModal: () => { dispatch(toggleAddBookingModalAction(false)); },
+        updateNewBooking: (dateRange: any) => { dispatch(updateNewBookingAction(dateRange)); },
+        addBooking: (propertyContractAddress: string, assetId: string, newBooking: BookingModel, context: Context) => {
+            dispatch(addBookingAction(propertyContractAddress, assetId, newBooking, context, () => {
+                toast.success('Success, booking was added.', {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
             }));
-            dispatch(toggleAddStayModalAction(false));
+            dispatch(toggleAddBookingModalAction(false));
         },
 
         openManageAssetModal: () => { dispatch(toggleManageAssetModalAction(true)); },

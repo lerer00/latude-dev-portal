@@ -1,5 +1,6 @@
 import * as React from 'react';
 import LoginControl from '../../components/loginControl';
+import { NavLink } from 'react-router-dom';
 import './index.css';
 
 export namespace Header {
@@ -21,7 +22,9 @@ class Header extends React.Component<Header.Props, Header.State> {
             <header className='header'>
                 <div className='container'>
                     <div className='left content'>
-                        <h1 className='title'>latude</h1>
+                        <NavLink className='title' to={'/'} >
+                            latude
+                        </NavLink>
                         <p className='subtitle'>owner</p>
                     </div>
                     <div className='right content'>

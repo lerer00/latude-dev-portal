@@ -1,29 +1,29 @@
-.add-stay-modal-form {
+.add-booking-modal-form {
     margin-top: 16px;
 }
 
-.add-stay-modal-form table {
+.add-booking-modal-form table {
     width: 100%;
 }
 
-.add-stay-modal-form table tbody tr td:first-child {
+.add-booking-modal-form table tbody tr td:first-child {
     text-align: right;
     color: #c0c0c0;
 }
 
-.add-stay-modal-form table tbody tr td:last-child {
+.add-booking-modal-form table tbody tr td:last-child {
     padding: 8px 0;
 }
 
-.add-stay-modal-form table tbody tr td:last-child .react-toggle {
+.add-booking-modal-form table tbody tr td:last-child .react-toggle {
     vertical-align: middle;
 }
 
-.add-stay-modal-form table tbody tr td label {
+.add-booking-modal-form table tbody tr td label {
     padding-right: 8px;
 }
 
-.add-stay-modal-form table tbody tr td .value {
+.add-booking-modal-form table tbody tr td .value {
     box-sizing: border-box;
     width: 80%;
     padding: 8px;

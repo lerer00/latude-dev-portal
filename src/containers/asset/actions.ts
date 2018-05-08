@@ -16,24 +16,24 @@ export const assetFetched = (asset: any) => ({
     payload: asset,
 });
 
-// Toggle, update and save new stay.
-export const toggleAddStayModalAction = (value: boolean) => ({
-    type: t.TOGGLE_ADD_STAY_MODAL,
+// Toggle, update and save new booking.
+export const toggleAddBookingModalAction = (value: boolean) => ({
+    type: t.TOGGLE_ADD_BOOKING_MODAL,
     payload: value
 });
-export const updateNewStayAction = (dateRange: any) => ({
-    type: t.UPDATE_NEW_STAY,
+export const updateNewBookingAction = (dateRange: any) => ({
+    type: t.UPDATE_NEW_BOOKING,
     payload: {
         dateRange
     }
 });
-export const addStayAction = (propertyContractAddress: string, assetId: string, newStay: any, context: Context, cb: () => void) => {
+export const addBookingAction = (propertyContractAddress: string, assetId: string, newBooking: any, context: Context, cb: () => void) => {
     return ({
-        type: t.ADD_STAY,
+        type: t.ADD_BOOKING,
         payload: {
             propertyContractAddress,
             assetId,
-            newStay,
+            newBooking,
             context,
             cb
         }

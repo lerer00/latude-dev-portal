@@ -1,6 +1,6 @@
 import { IAsset } from '../../models/asset';
 
-export type StayModel = {
+export type BookingModel = {
     startDate: any;
     endDate: any;
 };
@@ -12,10 +12,10 @@ export type Context = {
 export interface State {
     isLoading: boolean;
     asset: IAsset;
-    stays: Array<any>;
-    addStayModalIsOpen: boolean;
+    bookings: Array<any>;
+    addBookingModalIsOpen: boolean;
     manageAssetModalIsOpen: boolean;
-    newStay: {
+    newBooking: {
         startDate: any;
         endDate: any;
     };
@@ -25,10 +25,10 @@ export type Props = State & {
     match: any;
     fetchAsset: (propertyContractAddress: string, assetId: string) => void;
 
-    openAddStayModal: () => void;
-    closeAddStayModal: () => void;
-    updateNewStay: (dateRange: any) => void;
-    addStay: (propertyContractAddress: string, assetId: string, newStay: StayModel, context: Context) => void;
+    openAddBookingModal: () => void;
+    closeAddBookingModal: () => void;
+    updateNewBooking: (dateRange: any) => void;
+    addBooking: (propertyContractAddress: string, assetId: string, newBooking: BookingModel, context: Context) => void;
 
     openManageAssetModal: () => void;
     closeManageAssetModal: () => void;

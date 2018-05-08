@@ -28,7 +28,7 @@ class PropertyService {
                 id: asset[0].toNumber(),
                 price: asset[1].toNumber(),
                 currency: asset[2],
-                stays: asset[3]
+                bookings: asset[3]
             });
         }
         store.dispatch({ type: 'property/ASSETS_FETCHED', payload: assets });
@@ -43,22 +43,22 @@ class PropertyService {
             });
     }
 
-    // public async getStay(assetId: string, stayId: string, context: any) {
+    // public async getBooking(assetId: string, bookingId: string, context: any) {
     //     const instance = await this.getInstance();
-    //     const stay = await instance.getStay.call(assetId, stayId, { from: context.web3.selectedAccount });
+    //     const booking = await instance.getBooking.call(assetId, bookingId, { from: context.web3.selectedAccount });
 
-    //     return stay;
+    //     return booking;
     // }
 
-    public async addStay(assetId: string, stay: any, context: any, cb: () => void) {
-        const durationInDays = stay.endDate.diff(stay.startDate, 'days');
+    public async addBooking(assetId: string, booking: any, context: any, cb: () => void) {
+        const durationInDays = booking.endDate.diff(booking.startDate, 'days');
         const instance = await this.getInstance();
-        const price = await instance.getStayPriceInWei.call(assetId, durationInDays, { from: context.web3.selectedAccount });
+        const price = await instance.getBookingPriceInWei.call(assetId, durationInDays, { from: context.web3.selectedAccount });
 
-        const start = stay.startDate.unix();
-        const end = stay.endDate.unix();
+        const start = booking.startDate.unix();
+        const end = booking.endDate.unix();
 
-        instance.addStay(assetId, start, end,
+        instance.addBooking(assetId, start, end,
             {
                 from: context.web3.selectedAccount,
                 value: price
