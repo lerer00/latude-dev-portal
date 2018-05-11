@@ -28,7 +28,7 @@ var unlockWalletHtml = (
         </p>
       </div>
       <div className='modal-actions'>
-        <button className='button'>Info</button>
+        <a target='_blank' className='button' href='https://medium.com/latude/metamask-introduction-f89ac80bd30f'>Info</a>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@ var web3NeededHtml = (
         </p>
       </div>
       <div className='modal-actions'>
-        <button className='button'>Info</button>
+        <a target='_blank' className='button' href='https://medium.com/latude/metamask-introduction-f89ac80bd30f'>Info</a>
       </div>
     </div>
   </div>

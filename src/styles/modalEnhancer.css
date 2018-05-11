@@ -58,16 +58,18 @@
     border: none;
 }
 
-.modal-actions button {
+.modal-actions button, .modal-actions a {
     background-color: #ffffff;
     border: solid #399aff 1px;
     color: #399aff;
     border-radius: 3px;
     margin: 4px 8px;
     cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
 }
 
-.modal-actions button:hover {
+.modal-actions button:hover, .modal-actions a:hover {
     background-color: #399aff;
     color: #ffffff;
 }
