@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { egoNetwork, egoWarning } from './img/index';
+import { egoNetwork, egoWarningTriangle } from './img/index';
 import Root from './containers/root';
 import Authentication from './services/authentication/authentication';
 import './App.css';
@@ -17,7 +17,7 @@ var unknownNetwork = (
       <div className='modal-content'>
         <div className='visual-tip'>
           <img className='tip' src={egoNetwork} />
-          <img className='action' src={egoWarning} />
+          <img className='action' src={egoWarningTriangle} />
         </div>
         <p>
           This application is only deployed on the RinkeBy until a stable production version is available.

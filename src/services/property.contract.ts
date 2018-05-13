@@ -43,13 +43,6 @@ class PropertyService {
             });
     }
 
-    // public async getBooking(assetId: string, bookingId: string, context: any) {
-    //     const instance = await this.getInstance();
-    //     const booking = await instance.getBooking.call(assetId, bookingId, { from: context.web3.selectedAccount });
-
-    //     return booking;
-    // }
-
     public async addBooking(assetId: string, booking: any, context: any, cb: () => void) {
         const durationInDays = booking.endDate.diff(booking.startDate, 'days');
         const instance = await this.getInstance();
@@ -66,6 +59,14 @@ class PropertyService {
                 cb();
             });
 
+    }
+
+    public async selfdestruct(context: any, cb: () => void) {
+        const instance = await this.getInstance();
+        instance.terminate({ from: context.web3.selectedAccount })
+            .then(() => {
+                cb();
+            });
     }
 }
 

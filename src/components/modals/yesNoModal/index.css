@@ -1,0 +1,11 @@
+.modal-content ul {
+    margin: 16px 0 16px 24px;
+    color: #f4511e;
+}
+
+.modal-content li:before {
+    font-size: 16px;
+    vertical-align: top;
+    content: "• ";
+    color: #f4511e;
+}

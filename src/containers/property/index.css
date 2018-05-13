@@ -57,3 +57,7 @@
     display: block;
     margin: 0 0 16px 8px;
 }
+
+.property-detail .container .danger-zone{
+    margin-top: 16px;
+}

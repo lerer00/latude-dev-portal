@@ -75,6 +75,7 @@
 }
 
 .modal-actions .close {
+    color: #c0c0c0;
     font-family: 'CircularStdBook', sans-serif !important;
     font-size: 0.8em !important;
     border-color: transparent !important;
@@ -82,6 +83,6 @@
 
 .modal-actions .close:hover, .modal-actions .close:active {
     outline: 0;
-    color: #399aff !important;
+    color: #595959 !important;
     background-color: #ffffff !important;
 }

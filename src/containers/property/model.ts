@@ -16,6 +16,7 @@ export interface State {
     assets: Array<any>;
     addAssetModalIsOpen: boolean;
     managePropertyModalIsOpen: boolean;
+    deletePropertyModalIsOpen: boolean;
     newAsset: {
         price: number;
         currency: string;
@@ -39,4 +40,9 @@ export type Props = State & {
     updatePropertyLocation: (coordinates: Array<number>, type: string) => void;
     updatePropertyImages: (files: Array<File>) => void;
     saveProperty: (property: IProperty, images: Array<File>) => void;
+
+    openDeletePropertyModal: () => void;
+    closeDeletePropertyModal: () => void;
+    deletePropertyYes: (propertyContractAddress: string, context: Context) => void;
+    deletePropertyCancel: () => void;
 };

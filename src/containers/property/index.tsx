@@ -5,6 +5,7 @@ import Asset from '../../components/tiles/asset';
 import EmptySearch from '../../components/emptySearch';
 import { Dispatch } from 'redux';
 import { Breadcrumbs } from '../../breadcrumbs';
+import { egoWarningTriangle } from '../../img/index';
 import { Button, IButtonState } from '../../components/button';
 import { connect } from 'react-redux';
 import { IProperty } from '../../models/property';
@@ -15,10 +16,13 @@ import { Props, State, AssetModel, Context } from './model';
 import {
     fetchPropertyAction, fetchAssetsAction, addAssetAction, toggleAddAssetModalAction,
     updateNewAssetAction, toggleManagePropertyModalAction, savePropertyAction, updateManagePropertyAction,
-    updateManagePropertyAmenitiesAction, updateManagePropertyImagesAction, updateManagePropertyLocationAction
+    updateManagePropertyAmenitiesAction, updateManagePropertyImagesAction, updateManagePropertyLocationAction,
+    toggleDeletePropertyModalAction,
+    deletePropertyActionResult
 } from './actions';
 import AddAssetModal from '../../components/modals/addAssetModal';
 import ManagePropertyModal from '../../components/modals/managePropertyModal';
+import YesNoModal from '../../components/modals/yesNoModal';
 
 class Property extends React.Component<Props> {
     static contextTypes = {
@@ -72,12 +76,14 @@ class Property extends React.Component<Props> {
                     </div>
                     <div className='content'>
                         <span className='address'>address: {this.props.match.params.pid}</span>
-                        {/* <span className='balance'>balance: {this.props.property.balance} ether</span> */}
                         <p className='name'>{this.props.property.name}</p>
                         <p className='description'>{this.props.property.description}</p>
                         <div className='assets'>
                             {content}
                         </div>
+                    </div>
+                    <div className='danger-zone'>
+                        <Button text='Delete property' state={IButtonState.error} action={this.props.openDeletePropertyModal} />
                     </div>
 
                     <AddAssetModal
@@ -98,6 +104,30 @@ class Property extends React.Component<Props> {
                         updatePropertyLocation={this.props.updatePropertyLocation}
                         updatePropertyImages={this.props.updatePropertyImages}
                     />
+
+                    <YesNoModal
+                        title={'Delete property'}
+                        modalIsOpen={this.props.deletePropertyModalIsOpen}
+                        modalClose={this.props.closeDeletePropertyModal}
+                        actionYes={() => this.props.deletePropertyYes(this.props.match.params.pid, this.context)}
+                        actionCancel={this.props.deletePropertyCancel}
+                    >
+                        <div className='visual-tip'>
+                            <img className='tip' src={egoWarningTriangle} />
+                        </div>
+                        <p>
+                            WARNING! You are about to DELETE this property. This will indeed have irreversible effects, here's the list.
+                        </p>
+                        <ul>
+                            <li>The contract will be deleted from the blockchain.</li>
+                            <li>All remaining funds will be returned to the contract owner.</li>
+                            <li>This is not reversible by any means.</li>
+                        </ul>
+                        <p>
+                            Do you want still to proceed and DELETE this property?
+                        </p>
+                    </YesNoModal>
+
                 </div>
             </section>
         );
@@ -113,15 +143,20 @@ const mapStateToProps = (state: {}) => {
         assets: propertyState.assets,
         addAssetModalIsOpen: propertyState.addAssetModalIsOpen,
         managePropertyModalIsOpen: propertyState.managePropertyModalIsOpen,
+        deletePropertyModalIsOpen: propertyState.deletePropertyModalIsOpen,
         newAsset: propertyState.newAsset
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
     return {
+        // assets
         fetchAssets: (propertyContractAddress: string, context: Context) => { dispatch(fetchAssetsAction(propertyContractAddress, context)); },
+
+        // property
         fetchProperty: (propertyContractAddress: string) => { dispatch(fetchPropertyAction(propertyContractAddress)); },
 
+        // add asset modal
         openAddAssetModal: () => { dispatch(toggleAddAssetModalAction(true)); },
         closeAddAssetModal: () => { dispatch(toggleAddAssetModalAction(false)); },
         updateNewAsset: (prop: string, value: string) => { dispatch(updateNewAssetAction(prop, value)); },
@@ -134,6 +169,7 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
             dispatch(toggleAddAssetModalAction(false));
         },
 
+        // manage property modal
         openManagePropertyModal: () => { dispatch(toggleManagePropertyModalAction(true)); },
         closeManagePropertyModal: () => { dispatch(toggleManagePropertyModalAction(false)); },
         updateProperty: (prop: string, value: any) => { dispatch(updateManagePropertyAction(prop, value)); },
@@ -146,7 +182,21 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
             }));
-        }
+        },
+
+        // delete property modal
+        openDeletePropertyModal: () => { dispatch(toggleDeletePropertyModalAction(true)); },
+        closeDeletePropertyModal: () => { dispatch(toggleDeletePropertyModalAction(false)); },
+        deletePropertyYes: (propertyContractAddress: string, context: Context) => {
+            dispatch(deletePropertyActionResult(true, propertyContractAddress, context, () => {
+                toast.success('Success, property was deleted.', {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                });
+            }));
+        },
+        deletePropertyCancel: () => {
+            dispatch(deletePropertyActionResult(false));
+        },
     };
 };
 

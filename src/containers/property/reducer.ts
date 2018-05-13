@@ -53,6 +53,7 @@ const initialState: State = {
     assets: [],
     addAssetModalIsOpen: false,
     managePropertyModalIsOpen: false,
+    deletePropertyModalIsOpen: false,
     newAsset: {
         price: 0,
         currency: 'CAD',
@@ -65,6 +66,7 @@ export default (state = initialState, action: AnyAction): State => {
     const resetNewAsset = (stateArg = state) => update({ newProperty: initialState.newAsset }, state);
 
     switch (action.type) {
+        // assets
         case t.FETCH_ASSETS:
             propertyService.init(action.payload.propertyContractAddress);
             propertyService.getAssets(action.payload.context);
@@ -74,6 +76,7 @@ export default (state = initialState, action: AnyAction): State => {
                 assets: action.payload,
                 isLoading: false,
             });
+        // property
         case t.FETCH_PROPERTY:
             Hub.getInstance().getProperty(action.payload.propertyContractAddress);
             return isLoading();
@@ -82,6 +85,7 @@ export default (state = initialState, action: AnyAction): State => {
                 property: action.payload,
                 isLoading: false,
             });
+        // add asset modal
         case t.TOGGLE_ADD_ASSET_MODAL:
             return update({ addAssetModalIsOpen: action.payload });
         case t.UPDATE_NEW_ASSET:
@@ -91,6 +95,7 @@ export default (state = initialState, action: AnyAction): State => {
             propertyService.init(action.payload.propertyContractAddress);
             propertyService.addAsset(action.payload.newAsset, action.payload.context, action.payload.cb);
             return resetNewAsset(isLoading());
+        // manage property modal
         case t.TOGGLE_MANAGE_PROPERTY_MODAL:
             return update({ managePropertyModalIsOpen: action.payload });
         case t.UPDATE_MANAGE_PROPERTY:
@@ -106,7 +111,6 @@ export default (state = initialState, action: AnyAction): State => {
             });
         case t.UPDATE_MANAGE_PROPERTY_LOCATION:
             const updatedLocation = Object.assign({}, state.property.location, { coordinates: action.payload.coordinates, type: action.payload.type });
-            console.log(updatedLocation);
             return update({
                 property: {
                     ...state.property,
@@ -124,6 +128,20 @@ export default (state = initialState, action: AnyAction): State => {
             return update({
                 managePropertyModalIsOpen: false,
                 propertyImages: []
+            });
+        // delete property modal
+        case t.TOGGLE_DELETE_PROPERTY_MODAL:
+            return update({ deletePropertyModalIsOpen: action.payload });
+        case t.DELETE_PROPERTY_ACTION_RESULT:
+            if (!action.payload.result) {
+                return update({ deletePropertyModalIsOpen: false });
+            }
+
+            propertyService.init(action.payload.propertyContractAddress);
+            propertyService.selfdestruct(action.payload.context, action.payload.cb);
+
+            return update({
+                deletePropertyModalIsOpen: false
             });
         default:
             return state;

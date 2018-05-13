@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-import { egowindowLock, egoWarning, egoBubbleChatTyping } from './img/index';
+import { egowindowLock, egoWarningTriangle, egoBubbleChatTyping } from './img/index';
 import './index.css';
 import './styles/missingProvider.css';
 import './styles/modalEnhancer.css';
@@ -19,7 +19,7 @@ var unlockWalletHtml = (
       <div className='modal-content'>
         <div className='visual-tip'>
           <img className='tip' src={egowindowLock} />
-          <img className='action' src={egoWarning} />
+          <img className='action' src={egoWarningTriangle} />
         </div>
         <p>
           This application requires at least one valid account to be
@@ -43,7 +43,7 @@ var web3NeededHtml = (
       <div className='modal-content'>
         <div className='visual-tip'>
           <img className='tip' src={egoBubbleChatTyping} />
-          <img className='action' src={egoWarning} />
+          <img className='action' src={egoWarningTriangle} />
         </div>
         <p>
           This is a decentralized web application which requires an ethereum provider. You can use

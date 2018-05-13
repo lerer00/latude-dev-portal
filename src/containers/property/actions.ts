@@ -87,6 +87,25 @@ export const updateManagePropertyImagesAction = (files: Array<File>) => ({
 export const savePropertyAction = (property: any, images: Array<File>, cb: () => void) => {
     return ({
         type: t.SAVE_PROPERTY,
-        payload: { property, images, cb }
+        payload: {
+            property,
+            images,
+            cb
+        }
     });
 };
+
+// Toggle, update and save new asset.
+export const toggleDeletePropertyModalAction = (value: boolean) => ({
+    type: t.TOGGLE_DELETE_PROPERTY_MODAL,
+    payload: value
+});
+export const deletePropertyActionResult = (result: boolean, propertyContractAddress?: string, context?: Context, cb?: () => void) => ({
+    type: t.DELETE_PROPERTY_ACTION_RESULT,
+    payload: {
+        result,
+        propertyContractAddress,
+        context,
+        cb
+    }
+});

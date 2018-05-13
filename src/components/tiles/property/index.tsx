@@ -15,9 +15,15 @@ export namespace Property {
     }
 
     export interface State {
+        status: IPropertyStatus;
         id: string;
         balance: number;
     }
+}
+
+enum IPropertyStatus {
+    created = 0,
+    deleted = 1,
 }
 
 class Property extends React.Component<Property.Props, Property.State> {
@@ -25,6 +31,7 @@ class Property extends React.Component<Property.Props, Property.State> {
         super(props, context);
 
         this.state = {
+            status: IPropertyStatus.created,
             id: '',
             balance: -1
         };
@@ -35,13 +42,14 @@ class Property extends React.Component<Property.Props, Property.State> {
     };
 
     componentDidMount() {
-        this.getName();
+        this.getid();
         this.getBalance();
     }
 
-    getName() {
+    getid() {
         var propertyInstance: any;
         propertyContract.setProvider(web3.currentProvider);
+
         propertyContract.at(this.props.id).then((instance: any) => {
             propertyInstance = instance;
 
@@ -49,6 +57,10 @@ class Property extends React.Component<Property.Props, Property.State> {
         }).then((result: any) => {
             this.setState({
                 id: result
+            });
+        }).catch((error: any) => {
+            this.setState({
+                status: IPropertyStatus.deleted
             });
         });
     }
@@ -63,7 +75,7 @@ class Property extends React.Component<Property.Props, Property.State> {
 
     render() {
         return (
-            <section className='property'>
+            <section className={'property ' + (this.state.status === IPropertyStatus.created ? 'created' : 'deleted')}>
                 <div className='description'>
                     <span className='address'>address: {this.props.id}</span>
                     <span className='balance'>balance: {this.state.balance} ether</span>
