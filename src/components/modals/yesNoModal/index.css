@@ -1,9 +1,9 @@
-.modal-content ul {
+.modal-content .warning-list {
     margin: 16px 0 16px 24px;
     color: #f4511e;
 }
 
-.modal-content li:before {
+.modal-content .warning-list li:before {
     font-size: 16px;
     vertical-align: top;
     content: "• ";

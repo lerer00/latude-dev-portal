@@ -118,7 +118,7 @@ class Property extends React.Component<Props> {
                         <p>
                             WARNING! You are about to DELETE this property. This will indeed have irreversible effects, here's the list.
                         </p>
-                        <ul>
+                        <ul className='warning-list'>
                             <li>The contract will be deleted from the blockchain.</li>
                             <li>All remaining funds will be returned to the contract owner.</li>
                             <li>This is not reversible by any means.</li>
