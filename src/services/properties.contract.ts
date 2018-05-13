@@ -12,7 +12,7 @@ class PropertiesService {
     private _instance: Promise<any>;
     public getInstance(): Promise<any> {
         if (!this._instance) {
-            this._instance = propertyFactoryContract.at(process.env.REACT_APP_LOCAL_PROPERTY_FACTORY);
+            this._instance = propertyFactoryContract.deployed();
             this._instance.then((instance) => {
                 // instance.propertyCreated('latest').watch((error: Error, result: any) => {
                 //     store.dispatch({ type: 'properties/FETCH_PROPERTIES' });
