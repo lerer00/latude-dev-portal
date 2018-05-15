@@ -11,12 +11,15 @@ export type Context = {
 
 export interface State {
     isLoading: boolean;
+    owner: string;
+    balance: number;
     property: IProperty;
     propertyImages: Array<File>;
     assets: Array<any>;
     addAssetModalIsOpen: boolean;
     managePropertyModalIsOpen: boolean;
     deletePropertyModalIsOpen: boolean;
+    withdrawFundModalIsOpen: boolean;
     newAsset: {
         price: number;
         currency: string;
@@ -25,8 +28,10 @@ export interface State {
 
 export type Props = State & {
     match: any;
-    fetchAssets: (propertyContractAddress: string, context: Context) => void;
     fetchProperty: (propertyContractAddress: string) => void;
+    fetchAssets: (propertyContractAddress: string, context: Context) => void;
+    fetchOwner: (propertyContractAddress: string, context: Context) => string;
+    fetchBalance: (propertyContractAddress: string) => number;
 
     openAddAssetModal: () => void;
     closeAddAssetModal: () => void;
@@ -45,4 +50,9 @@ export type Props = State & {
     closeDeletePropertyModal: () => void;
     deletePropertyYes: (propertyContractAddress: string, context: Context) => void;
     deletePropertyCancel: () => void;
+
+    openWithdrawFundModal: () => void;
+    closeWithdrawFundModal: () => void;
+    withdrawFund: (propertyContractAddress: string, context: Context) => void;
+    withdrawFundCancel: () => void;
 };

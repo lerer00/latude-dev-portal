@@ -18,6 +18,19 @@ class PropertyService {
         return this._instance;
     }
 
+    public async owner(context: any) {
+        const instance = await this.getInstance();
+        const owner = await instance.owner.call({ from: context.web3.selectedAccount });
+        store.dispatch({ type: 'property/PROPERTY_OWNER_FETCHED', payload: owner });
+        return owner;
+    }
+
+    public async balance() {
+        const balance: any = await this.getBalance();
+        store.dispatch({ type: 'property/PROPERTY_BALANCE_FETCHED', payload: balance.toNumber() });
+        return balance.toNumber();
+    }
+
     public async getAssets(context: any) {
         const instance = await this.getInstance();
         const numberOfAssets = await instance.numberOfAssets.call({ from: context.web3.selectedAccount });
@@ -67,6 +80,18 @@ class PropertyService {
             .then(() => {
                 cb();
             });
+    }
+
+    private getBalance() {
+        return new Promise((resolve: any, reject: any) => {
+            web3.eth.getBalance(this._propertyContractAddress, function (error: any, result: any) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
     }
 }
 

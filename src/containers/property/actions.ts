@@ -20,12 +20,43 @@ export const assetsFetched = (assets: any[]) => ({
 export const fetchPropertyAction = (propertyContractAddress: string) => {
     return {
         type: t.FETCH_PROPERTY,
-        payload: { propertyContractAddress }
+        payload: {
+            propertyContractAddress
+        }
     };
 };
 export const propertyFetched = (property: any) => ({
     type: t.PROPERTY_FETCHED,
     payload: property,
+});
+
+// Ownership fetch...
+export const fetchPropertyOwnerAction = (propertyContractAddress: string, context: Context) => {
+    return {
+        type: t.FETCH_PROPERTY_OWNER,
+        payload: {
+            propertyContractAddress,
+            context
+        }
+    };
+};
+export const ownerFetched = (owner: string) => ({
+    type: t.ASSETS_FETCHED,
+    payload: owner,
+});
+
+// Balance fetch...
+export const fetchPropertyBalanceAction = (propertyContractAddress: string, context: Context) => {
+    return {
+        type: t.FETCH_PROPERTY_BALANCE,
+        payload: {
+            propertyContractAddress
+        }
+    };
+};
+export const balanceFetched = (owner: string) => ({
+    type: t.ASSETS_FETCHED,
+    payload: owner,
 });
 
 // Toggle, update and save new asset.

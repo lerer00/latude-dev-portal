@@ -18,7 +18,9 @@ import {
     updateNewAssetAction, toggleManagePropertyModalAction, savePropertyAction, updateManagePropertyAction,
     updateManagePropertyAmenitiesAction, updateManagePropertyImagesAction, updateManagePropertyLocationAction,
     toggleDeletePropertyModalAction,
-    deletePropertyActionResult
+    deletePropertyActionResult,
+    fetchPropertyOwnerAction,
+    fetchPropertyBalanceAction
 } from './actions';
 import AddAssetModal from '../../components/modals/addAssetModal';
 import ManagePropertyModal from '../../components/modals/managePropertyModal';
@@ -36,6 +38,8 @@ class Property extends React.Component<Props> {
     componentDidMount() {
         this.props.fetchProperty(this.props.match.params.pid);
         this.props.fetchAssets(this.props.match.params.pid, this.context);
+        this.props.fetchOwner(this.props.match.params.pid, this.context);
+        this.props.fetchBalance(this.props.match.params.pid);
     }
 
     render() {
@@ -66,6 +70,8 @@ class Property extends React.Component<Props> {
             }
         }
 
+        console.log(this.props);
+
         return (
             <section className='property-detail'>
                 <div className='container'>
@@ -83,7 +89,23 @@ class Property extends React.Component<Props> {
                         </div>
                     </div>
                     <div className='danger-zone'>
-                        <Button text='Delete property' state={IButtonState.error} action={this.props.openDeletePropertyModal} />
+                        <h1 className='title'>Danger Zone</h1>
+                        <div className='danger-zone-table'>
+                            <div className='danger-zone-table-content spacer-bottom'>
+                                <div>
+                                    <h1>Delete this property</h1>
+                                    <p>Remove this property from the blockchain, this is irreversible.</p>
+                                </div>
+                                <Button text='Delete property' state={IButtonState.error} action={this.props.openDeletePropertyModal} />
+                            </div>
+                            <div className='danger-zone-table-content'>
+                                <div>
+                                    <h1>Withdraw fund</h1>
+                                    <p>Retreive funds from the smart contract, this is irreversible. Current balance is {this.props.balance} and owner is {this.props.owner}</p>
+                                </div>
+                                <Button text='Withdraw funds' state={IButtonState.error} action={this.props.openWithdrawFundModal} />
+                            </div>
+                        </div>
                     </div>
 
                     <AddAssetModal
@@ -106,7 +128,7 @@ class Property extends React.Component<Props> {
                     />
 
                     <YesNoModal
-                        title={'Delete property'}
+                        title={'Delete Property'}
                         modalIsOpen={this.props.deletePropertyModalIsOpen}
                         modalClose={this.props.closeDeletePropertyModal}
                         actionYes={() => this.props.deletePropertyYes(this.props.match.params.pid, this.context)}
@@ -128,6 +150,28 @@ class Property extends React.Component<Props> {
                         </p>
                     </YesNoModal>
 
+                    <YesNoModal
+                        title={'Withdraw Fund'}
+                        modalIsOpen={this.props.withdrawFundModalIsOpen}
+                        modalClose={this.props.closeWithdrawFundModal}
+                        actionYes={() => this.props.withdrawFund(this.props.match.params.pid, this.context)}
+                        actionCancel={this.props.deletePropertyCancel}
+                    >
+                        <div className='visual-tip'>
+                            <img className='tip' src={egoWarningTriangle} />
+                        </div>
+                        <p>
+                            ! You are about to DELETE this property. This will indeed have irreversible effects, here's the list.
+                        </p>
+                        <ul className='warning-list'>
+                            <li>The contract will be deleted from the blockchain.</li>
+                            <li>All remaining funds will be returned to the contract owner.</li>
+                            <li>This is not reversible by any means.</li>
+                        </ul>
+                        <p>
+                            Do you want still to proceed and DELETE this property?
+                        </p>
+                    </YesNoModal>
                 </div>
             </section>
         );
@@ -138,6 +182,8 @@ const mapStateToProps = (state: {}) => {
     const propertyState: State = state['property'];
     return {
         isLoading: propertyState.isLoading,
+        owner: propertyState.owner,
+        balance: propertyState.balance,
         property: propertyState.property,
         propertyImages: propertyState.propertyImages,
         assets: propertyState.assets,
@@ -155,6 +201,12 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
 
         // property
         fetchProperty: (propertyContractAddress: string) => { dispatch(fetchPropertyAction(propertyContractAddress)); },
+
+        // owner
+        fetchOwner: (propertyContractAddress: string, context: Context) => { dispatch(fetchPropertyOwnerAction(propertyContractAddress, context)); },
+
+        // balance
+        fetchBalance: (propertyContractAddress: string, context: Context) => { dispatch(fetchPropertyBalanceAction(propertyContractAddress, context)); },
 
         // add asset modal
         openAddAssetModal: () => { dispatch(toggleAddAssetModalAction(true)); },

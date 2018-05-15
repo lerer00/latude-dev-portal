@@ -9,7 +9,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bl": "^1.2.1",
-    "latude-contracts": "^0.3.1",
+    "latude-contracts": "^0.3.2",
     "mapbox-gl": "^0.43.0",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",

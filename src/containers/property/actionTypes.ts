@@ -6,6 +6,14 @@ export const ASSETS_FETCHED = 'property/ASSETS_FETCHED';
 export const FETCH_PROPERTY = 'property/FETCH_PROPERTY';
 export const PROPERTY_FETCHED = 'property/PROPERTY_FETCHED'; 
 
+// owner
+export const FETCH_PROPERTY_OWNER = 'property/FETCH_PROPERTY_OWNER';
+export const PROPERTY_OWNER_FETCHED = 'property/PROPERTY_OWNER_FETCHED'; 
+
+// balance
+export const FETCH_PROPERTY_BALANCE = 'property/FETCH_PROPERTY_BALANCE';
+export const PROPERTY_BALANCE_FETCHED = 'property/PROPERTY_BALANCE_FETCHED'; 
+
 // add asset modal
 export const TOGGLE_ADD_ASSET_MODAL = 'property/OPEN_ADD_ASSET_MODAL';
 export const UPDATE_NEW_ASSET = 'property/UPDATE_NEW_ASSET';

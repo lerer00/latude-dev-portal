@@ -6,6 +6,8 @@ import Hub from '../../services/hub';
 
 const initialState: State = {
     isLoading: true,
+    owner: '',
+    balance: 0,
     property: {
         active: false,
         comments: [],
@@ -54,6 +56,7 @@ const initialState: State = {
     addAssetModalIsOpen: false,
     managePropertyModalIsOpen: false,
     deletePropertyModalIsOpen: false,
+    withdrawFundModalIsOpen: false,
     newAsset: {
         price: 0,
         currency: 'CAD',
@@ -83,6 +86,26 @@ export default (state = initialState, action: AnyAction): State => {
         case t.PROPERTY_FETCHED:
             return update({
                 property: action.payload,
+                isLoading: false,
+            });
+        // owner
+        case t.FETCH_PROPERTY_OWNER:
+            propertyService.init(action.payload.propertyContractAddress);
+            propertyService.owner(action.payload.context);
+            return isLoading();
+        case t.PROPERTY_OWNER_FETCHED:
+            return update({
+                owner: action.payload,
+                isLoading: false,
+            });
+        // balance
+        case t.FETCH_PROPERTY_BALANCE:
+            propertyService.init(action.payload.propertyContractAddress);
+            propertyService.balance();
+            return isLoading();
+        case t.PROPERTY_BALANCE_FETCHED:
+            return update({
+                balance: action.payload,
                 isLoading: false,
             });
         // add asset modal

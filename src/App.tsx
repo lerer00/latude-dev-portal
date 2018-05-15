@@ -25,7 +25,7 @@ var unknownNetwork = (
         </p>
       </div>
       <div className='modal-actions'>
-        <button className='button'>Info</button>
+        <a target='_blank' className='button' href='https://medium.com/latude/ethereum-test-networks-69a5463789be'>Info</a>
       </div>
     </div>
   </div>
